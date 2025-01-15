@@ -3,9 +3,6 @@ PROTO_PATH=protobuf/proto
 GEN_PATH=kitex_gen
 MODULE_NAME=github.com/lzl-here/bt-shop-backend
 
-
-
-
 # 生成proto代码
 gen:
 	@ make clean
@@ -15,9 +12,5 @@ gen:
 # 清空proto代码
 clean:
 	@ rm -rf $(GEN_PATH)/*
-
-
-
-
 
 .PHONY: gen clean

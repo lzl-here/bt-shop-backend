@@ -1,6 +1,5 @@
-# 
 
-### 项目目录
+## 项目目录
 ``` shell
 .
 ├── Makefile     全局脚本，根据protobuf生成代码
@@ -19,9 +18,6 @@
 
 
 
-### 服务目录
-
-
 ## 迭代方式
 
 1. 假如需要新增服务，在项目根目录下的protobuf中的proto下编写proto文件
@@ -30,18 +26,19 @@
 
 3. 编写完成后使用Makefile进行生成golang代码： make gen
 
-导入方式：
-``` golang
-import (
-	pgens "github.com/lzl-here/bt-shop-backend/kitex_gen/example/exampleservice"
-)
-```
-
 
 ## 项目启动
 每个服务下有一个makefile文件，进入到服务文件夹下，make dev执行
 
-vscode 的 debug启动: 
+导入proto生成代码：
+``` golang
+import (
+	pgen "github.com/lzl-here/bt-shop-backend/kitex_gen/example"
+)
+```
+
+
+example 服务的 vscode 的 debug启动: 
 ``` json
 {
     "version": "0.2.0",
