@@ -10,7 +10,7 @@ import (
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	"github.com/cloudwego/kitex/server"
 	etcd "github.com/kitex-contrib/registry-etcd"
-	pgens "github.com/lzl-here/bt-shop-backend/kitex_gen/person/personservice"
+	pgens "github.com/lzl-here/bt-shop-backend/kitex_gen/example/exampleservice"
 	"github.com/lzl-here/bt-shop-backend/pkg/config"
 	"github.com/lzl-here/bt-shop-backend/services/example/internal/service"
 )
@@ -36,7 +36,7 @@ func main() {
 
 	slog.Info(fmt.Sprintf("%s 启动", appConfig.ServiceName), "key", "value")
 
-	// 初始化rpc服务
+	// 启动rpc服务
 	r, err := etcd.NewEtcdRegistry([]string{appConfig.RegisterAddress})
 	if err != nil {
 		panic(err)
@@ -47,7 +47,7 @@ func main() {
 		panic(err)
 	}
 
-	srv := pgens.NewServer(service.NewPersonService(),
+	srv := pgens.NewServer(service.NewExampleService(),
 		server.WithServerBasicInfo(&rpcinfo.EndpointBasicInfo{ServiceName: appConfig.ServiceName}), // server name
 		server.WithServiceAddr(addr), // address
 		server.WithRegistry(r),       // registry
