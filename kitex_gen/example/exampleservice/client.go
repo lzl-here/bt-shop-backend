@@ -12,6 +12,7 @@ import (
 // Client is designed to provide IDL-compatible methods with call-option parameter for kitex framework.
 type Client interface {
 	PingPong(ctx context.Context, Req *example.PingReq, callOptions ...callopt.Option) (r *example.PingRsp, err error)
+	GetPerson(ctx context.Context, Req *example.GetPersonReq, callOptions ...callopt.Option) (r *example.GetPersonRsp, err error)
 }
 
 // NewClient creates a client for the service defined in IDL.
@@ -46,4 +47,9 @@ type kExampleServiceClient struct {
 func (p *kExampleServiceClient) PingPong(ctx context.Context, Req *example.PingReq, callOptions ...callopt.Option) (r *example.PingRsp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
 	return p.kClient.PingPong(ctx, Req)
+}
+
+func (p *kExampleServiceClient) GetPerson(ctx context.Context, Req *example.GetPersonReq, callOptions ...callopt.Option) (r *example.GetPersonRsp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.GetPerson(ctx, Req)
 }

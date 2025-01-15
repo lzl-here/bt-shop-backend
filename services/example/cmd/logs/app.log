@@ -1,9 +1,11 @@
-{"time":"2025-01-15T14:50:22.37481+08:00","level":"INFO","msg":"example 启动","key":"value"}
-{"time":"2025-01-15T14:55:00.110286+08:00","level":"INFO","msg":"example 启动","key":"value"}
-{"time":"2025-01-15T14:55:00.113611+08:00","level":"ERROR","msg":"服务启动失败","err":"listen tcp 127.0.0.1:9090: bind: address already in use"}
-{"time":"2025-01-15T14:55:26.139569+08:00","level":"INFO","msg":"example 启动","key":"value"}
-{"time":"2025-01-15T14:58:18.106093+08:00","level":"INFO","msg":"example 启动","key":"value"}
-{"time":"2025-01-15T14:58:29.578761+08:00","level":"INFO","msg":"example 启动","key":"value"}
-{"time":"2025-01-15T14:59:55.076512+08:00","level":"INFO","msg":"example 启动","key":"value"}
-{"time":"2025-01-15T14:59:55.080818+08:00","level":"ERROR","msg":"服务启动失败","err":"listen tcp 127.0.0.1:9090: bind: address already in use"}
-{"time":"2025-01-15T15:00:13.380281+08:00","level":"INFO","msg":"example 启动","key":"value"}
+{"time":"2025-01-15T17:37:48.065174+08:00","level":"INFO","msg":"example 启动","key":"value"}
+{"time":"2025-01-15T17:37:48.065409+08:00","level":"INFO","msg":"连接数据库","dsn":"root:376772346Lzl@@tcp(localhost:3306)/test?charset=utf8mb4&parseTime=True&loc=Local"}
+{"time":"2025-01-15T17:37:48.082016+08:00","level":"INFO","msg":"连接redis成功","pong":"PONG"}
+{"time":"2025-01-15T17:38:07.85832+08:00","level":"INFO","msg":"redis set","res":"OK"}
+{"time":"2025-01-15T17:41:04.616367+08:00","level":"INFO","msg":"example 启动","key":"value"}
+{"time":"2025-01-15T17:41:04.616725+08:00","level":"INFO","msg":"连接数据库","dsn":"root:376772346Lzl@@tcp(localhost:3306)/test?charset=utf8mb4&parseTime=True&loc=Local"}
+{"time":"2025-01-15T17:41:04.638699+08:00","level":"INFO","msg":"连接redis成功","pong":"PONG"}
+{"time":"2025-01-15T17:41:09.090998+08:00","level":"INFO","msg":"redis set","res":"OK"}
+{"time":"2025-01-15T17:47:56.858886+08:00","level":"INFO","msg":"example 启动","key":"value"}
+{"time":"2025-01-15T17:47:56.859271+08:00","level":"INFO","msg":"连接数据库","dsn":"root:376772346Lzl@@tcp(localhost:3306)/test?charset=utf8mb4&parseTime=True&loc=Local"}
+{"time":"2025-01-15T17:47:56.876643+08:00","level":"INFO","msg":"连接redis成功","pong":"PONG"}

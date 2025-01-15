@@ -22,6 +22,13 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingUnary),
 	),
+	"GetPerson": kitex.NewMethodInfo(
+		getPersonHandler,
+		newGetPersonArgs,
+		newGetPersonResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingUnary),
+	),
 }
 
 var (
@@ -241,6 +248,159 @@ func (p *PingPongResult) GetResult() interface{} {
 	return p.Success
 }
 
+func getPersonHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	switch s := arg.(type) {
+	case *streaming.Args:
+		st := s.Stream
+		req := new(example.GetPersonReq)
+		if err := st.RecvMsg(req); err != nil {
+			return err
+		}
+		resp, err := handler.(example.ExampleService).GetPerson(ctx, req)
+		if err != nil {
+			return err
+		}
+		return st.SendMsg(resp)
+	case *GetPersonArgs:
+		success, err := handler.(example.ExampleService).GetPerson(ctx, s.Req)
+		if err != nil {
+			return err
+		}
+		realResult := result.(*GetPersonResult)
+		realResult.Success = success
+		return nil
+	default:
+		return errInvalidMessageType
+	}
+}
+func newGetPersonArgs() interface{} {
+	return &GetPersonArgs{}
+}
+
+func newGetPersonResult() interface{} {
+	return &GetPersonResult{}
+}
+
+type GetPersonArgs struct {
+	Req *example.GetPersonReq
+}
+
+func (p *GetPersonArgs) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
+	if !p.IsSetReq() {
+		p.Req = new(example.GetPersonReq)
+	}
+	return p.Req.FastRead(buf, _type, number)
+}
+
+func (p *GetPersonArgs) FastWrite(buf []byte) (n int) {
+	if !p.IsSetReq() {
+		return 0
+	}
+	return p.Req.FastWrite(buf)
+}
+
+func (p *GetPersonArgs) Size() (n int) {
+	if !p.IsSetReq() {
+		return 0
+	}
+	return p.Req.Size()
+}
+
+func (p *GetPersonArgs) Marshal(out []byte) ([]byte, error) {
+	if !p.IsSetReq() {
+		return out, nil
+	}
+	return proto.Marshal(p.Req)
+}
+
+func (p *GetPersonArgs) Unmarshal(in []byte) error {
+	msg := new(example.GetPersonReq)
+	if err := proto.Unmarshal(in, msg); err != nil {
+		return err
+	}
+	p.Req = msg
+	return nil
+}
+
+var GetPersonArgs_Req_DEFAULT *example.GetPersonReq
+
+func (p *GetPersonArgs) GetReq() *example.GetPersonReq {
+	if !p.IsSetReq() {
+		return GetPersonArgs_Req_DEFAULT
+	}
+	return p.Req
+}
+
+func (p *GetPersonArgs) IsSetReq() bool {
+	return p.Req != nil
+}
+
+func (p *GetPersonArgs) GetFirstArgument() interface{} {
+	return p.Req
+}
+
+type GetPersonResult struct {
+	Success *example.GetPersonRsp
+}
+
+var GetPersonResult_Success_DEFAULT *example.GetPersonRsp
+
+func (p *GetPersonResult) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
+	if !p.IsSetSuccess() {
+		p.Success = new(example.GetPersonRsp)
+	}
+	return p.Success.FastRead(buf, _type, number)
+}
+
+func (p *GetPersonResult) FastWrite(buf []byte) (n int) {
+	if !p.IsSetSuccess() {
+		return 0
+	}
+	return p.Success.FastWrite(buf)
+}
+
+func (p *GetPersonResult) Size() (n int) {
+	if !p.IsSetSuccess() {
+		return 0
+	}
+	return p.Success.Size()
+}
+
+func (p *GetPersonResult) Marshal(out []byte) ([]byte, error) {
+	if !p.IsSetSuccess() {
+		return out, nil
+	}
+	return proto.Marshal(p.Success)
+}
+
+func (p *GetPersonResult) Unmarshal(in []byte) error {
+	msg := new(example.GetPersonRsp)
+	if err := proto.Unmarshal(in, msg); err != nil {
+		return err
+	}
+	p.Success = msg
+	return nil
+}
+
+func (p *GetPersonResult) GetSuccess() *example.GetPersonRsp {
+	if !p.IsSetSuccess() {
+		return GetPersonResult_Success_DEFAULT
+	}
+	return p.Success
+}
+
+func (p *GetPersonResult) SetSuccess(x interface{}) {
+	p.Success = x.(*example.GetPersonRsp)
+}
+
+func (p *GetPersonResult) IsSetSuccess() bool {
+	return p.Success != nil
+}
+
+func (p *GetPersonResult) GetResult() interface{} {
+	return p.Success
+}
+
 type kClient struct {
 	c client.Client
 }
@@ -256,6 +416,16 @@ func (p *kClient) PingPong(ctx context.Context, Req *example.PingReq) (r *exampl
 	_args.Req = Req
 	var _result PingPongResult
 	if err = p.c.Call(ctx, "PingPong", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) GetPerson(ctx context.Context, Req *example.GetPersonReq) (r *example.GetPersonRsp, err error) {
+	var _args GetPersonArgs
+	_args.Req = Req
+	var _result GetPersonResult
+	if err = p.c.Call(ctx, "GetPerson", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil

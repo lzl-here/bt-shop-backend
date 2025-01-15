@@ -1,111 +1,40 @@
 package config
 
 import (
-	"os"
-	"strconv"
+	"context"
+	"fmt"
+	"log/slog"
 
-	"github.com/joho/godotenv"
+	"github.com/redis/go-redis/v9"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 )
 
-func LoadService(cfgFile string) *AppServiceConfig {
-	if cfgFile == "" {
-		panic("配置文件路径不能为空")
+func (a *AppServiceConfig) ConnectDB(gormCfg *gorm.Config) (*gorm.DB, error) {
+	dsn := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
+		a.DBUser,
+		a.DBPass,
+		a.DBHost,
+		a.DBName,
+	)
+	slog.Info("连接数据库", "dsn", dsn)
+	db, err := gorm.Open(mysql.Open(dsn), gormCfg)
+	if err != nil {
+		return nil, err
 	}
-	if err := loadFromFile(cfgFile); err != nil {
-		panic(err)
-	}
-
-	return &AppServiceConfig{
-		&RepoConfig{
-			&DBRepoConfig{
-				DBHost: getStrEnvOrDefault("DB_HOST", "localhost"),
-				DBPort: getIntEnvOrDefault("DB_PORT", 3306),
-				DBUser: getStrEnvOrDefault("DB_USER", "root"),
-				DBPass: getStrEnvOrDefault("DB_PASS", "root"),
-				DBName: getStrEnvOrDefault("DB_TABLE_NAME", "test_db"),
-			},
-			&CacheRepoConfig{
-				CacheHost:         getStrEnvOrDefault("CACHE_HOST", "localhost"),
-				CachePort:         getIntEnvOrDefault("CACHE_PORT", 6379),
-				CacheUser:         getStrEnvOrDefault("CACHE_USER", ""),
-				CachePass:         getStrEnvOrDefault("CACHE_PASS", ""),
-				CacheReadTimeout:  getIntEnvOrDefault("CACHE_READ_TIMEOUT", 5),
-				CacheWriteTimeout: getIntEnvOrDefault("CACHE_WRITE_TIMEOUT", 5),
-				CacheMaxIdle:      getIntEnvOrDefault("CACHE_MAX_IDLE", 100),
-				CacheMaxActive:    getIntEnvOrDefault("CACHE_MAX_ACTIVE", 12000),
-				CacheIdleTimeout:  getIntEnvOrDefault("CACHE_IDLE_TIMEOUT", 180),
-			},
-		},
-		&ServiceConfig{
-			ServiceAddress:  getStrEnvOrDefault("SERVICE_ADDRESS", "localhost:9090"),
-			ServiceDesc:     getStrEnvOrDefault("SERVICE_DESC", "暂无描述"),
-			ServiceID:       getIntEnvOrDefault("SERVICE_ID", -1),
-			ServiceName:     getStrEnvOrDefault("SERVICE_NAME", "暂无名称"),
-		},
-		&CosConfig{
-			CosBucket:    getStrEnvOrDefault("COS_BUCKET", ""),
-			CosHost:      getStrEnvOrDefault("COS_HOST", ""),
-			CosSecretID:  getStrEnvOrDefault("COS_SECRET_ID", ""),
-			CosSecretKey: getStrEnvOrDefault("COS_SECRET_KEY", ""),
-		},
-		&LogConfig{
-			LogLevel: getStrEnvOrDefault("LOG_LEVEL", "debug"),
-			LogPath:  getStrEnvOrDefault("LOG_PATH", "./logs"),
-		},
-		&RegisterConfig{
-			RegisterAddress: getStrEnvOrDefault("REGISTER_ADDRESS", "127.0.0.1:2379"),
-		},
-	}
+	return db, nil
 }
 
-func LoadGateway(cfgFile string) *AppGatewayConfig {
-	asc := LoadService(cfgFile)
-	agc := &AppGatewayConfig{
-		AppServiceConfig: asc,
-		GatewayConfig: &GatewayConfig{
-			GatewayHttpPort: getIntEnvOrDefault("GATEWAY_HTTP_PORT", 8080),
-		},
+func (a *AppServiceConfig) ConnectCache(ctx context.Context) (*redis.Client, error) {
+	rdb := redis.NewClient(&redis.Options{
+		Addr:     a.CacheHost,
+		Password: a.CacheHost,
+		MaxIdleConns: a.CacheMaxIdle,
+	})
+	pong, err := rdb.Ping(ctx).Result()
+	if err != nil {
+		return nil, err
 	}
-	return agc
-}
-
-func loadFromFile(cfg string) error {
-	if err := godotenv.Load(cfg); err != nil {
-		return err
-	}
-	return nil
-}
-
-func getStrEnvOrDefault(key string, defaultValue string) string {
-	if value, ok := os.LookupEnv(key); ok {
-		return value
-	}
-	return defaultValue
-}
-
-func getIntEnvOrDefault(key string, defaultValue int) int {
-	if value, ok := os.LookupEnv(key); ok {
-		if v, err := strconv.Atoi(value); err == nil {
-			return v
-		}
-	}
-	return defaultValue
-}
-
-func getFloatEnvOrDefault(key string, defaultValue float64) float64 {
-	if value, ok := os.LookupEnv(key); ok {
-		if v, err := strconv.ParseFloat(value, 64); err == nil {
-			return v
-		}
-	}
-	return defaultValue
-}
-
-func getBoolEnvOrDefault(key string, defaultValue bool) bool {
-	if value, ok := os.LookupEnv(key); ok {
-		if v, err := strconv.ParseBool(value); err == nil {
-			return v
-		}
-	}
-	return defaultValue
+	slog.Info("连接redis成功", "pong", pong)
+	return rdb, nil
 }
