@@ -39,7 +39,7 @@ import (
 
 
 ## 项目启动
-每个服务下有一个makefile文件，进入到服务文件夹下，make run执行
+每个服务下有一个makefile文件，进入到服务文件夹下，make dev执行
 
 vscode 的 debug启动: 
 ``` json
