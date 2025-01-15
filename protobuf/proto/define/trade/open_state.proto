@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package trade;
+
+option go_package = "github.com/lzl-here/bt-shop-common/gen/define/trade;trade";
+
+enum OpenState {
+  OpenStateUnknown = 0;
+
+  Open = 1;
+
+  Close = 2;
+}
