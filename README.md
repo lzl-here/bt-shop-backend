@@ -2,18 +2,21 @@
 ## 项目目录
 ``` shell
 .
-├── Makefile     全局脚本，根据protobuf生成代码
-├── README.md   
-├── gateway      网关代码
-├── kitex_gen.   kitex生成的代码
-├── pkg          公共代码
-├── protobuf     protobuf文件
-└── services     存放各个服务的业务代码
-    ├── example
-    ├── goods
-    ├── order
-    ├── pay
-    └── user
+├── Makefile.      # 全局构建脚本，通过proto生成代码
+├── apps           # 项目文件夹， 服务 + 网关
+│   ├── example. 
+│   ├── gateway
+│   ├── goods
+│   ├── order
+│   ├── pay
+│   └── user
+├── deploy         # 部署相关，后续sql放这，并且加入一键部署所有服务 
+├── go.mod
+├── go.sum
+├── kitex_gen      # 通过proto生成的代码 
+├── pkg            # 公共包
+├── protobuf       # proto文件
+└── todo.txt       
 ```
 
 
