@@ -11,6 +11,9 @@ type AppServiceConfig struct {
 	*RepoConfig
 	*ServiceConfig
 	*CosConfig
+	*LogConfig
+	*RegisterConfig
+
 }
 
 // 网关配置
@@ -24,4 +27,13 @@ type CosConfig struct {
 	CosHost      string `json:"cos_host"`
 	CosSecretID  string `json:"cos_secret_id"`
 	CosSecretKey string `json:"cos_secret_key"`
+}
+
+type LogConfig struct{
+	LogLevel string `json:"log_level"`
+	LogPath  string `json:"log_path"`
+}
+
+type RegisterConfig struct {
+	RegisterAddress string `json:"register_address"`
 }

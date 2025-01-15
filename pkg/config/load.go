@@ -9,7 +9,7 @@ import (
 
 func LoadService(cfgFile string) *AppServiceConfig {
 	if cfgFile == "" {
-		panic("cfgFile 不能为空")
+		panic("配置文件路径不能为空")
 	}
 	if err := loadFromFile(cfgFile); err != nil {
 		panic(err)
@@ -25,20 +25,19 @@ func LoadService(cfgFile string) *AppServiceConfig {
 				DBName: getStrEnvOrDefault("DB_TABLE_NAME", "test_db"),
 			},
 			&CacheRepoConfig{
-				CacheHost: getStrEnvOrDefault("CACHE_HOST", "localhost"),
-				CachePort: getIntEnvOrDefault("CACHE_PORT", 6379),
-				CacheUser: getStrEnvOrDefault("CACHE_USER", ""),
-				CachePass: getStrEnvOrDefault("CACHE_PASS", ""),
-				CacheReadTimeout: getIntEnvOrDefault("CACHE_READ_TIMEOUT", 5),
+				CacheHost:         getStrEnvOrDefault("CACHE_HOST", "localhost"),
+				CachePort:         getIntEnvOrDefault("CACHE_PORT", 6379),
+				CacheUser:         getStrEnvOrDefault("CACHE_USER", ""),
+				CachePass:         getStrEnvOrDefault("CACHE_PASS", ""),
+				CacheReadTimeout:  getIntEnvOrDefault("CACHE_READ_TIMEOUT", 5),
 				CacheWriteTimeout: getIntEnvOrDefault("CACHE_WRITE_TIMEOUT", 5),
-				CacheMaxIdle: getIntEnvOrDefault("CACHE_MAX_IDLE", 100),
-				CacheMaxActive: getIntEnvOrDefault("CACHE_MAX_ACTIVE", 12000),
-				CacheIdleTimeout: getIntEnvOrDefault("CACHE_IDLE_TIMEOUT", 180),
+				CacheMaxIdle:      getIntEnvOrDefault("CACHE_MAX_IDLE", 100),
+				CacheMaxActive:    getIntEnvOrDefault("CACHE_MAX_ACTIVE", 12000),
+				CacheIdleTimeout:  getIntEnvOrDefault("CACHE_IDLE_TIMEOUT", 180),
 			},
 		},
 		&ServiceConfig{
-			ServiceAddress:  getStrEnvOrDefault("SERVICE_ADDRESS", "localhost"),
-			ServiceGrpcPort: getIntEnvOrDefault("SERVICE_GRPC_PORT", 9090),
+			ServiceAddress:  getStrEnvOrDefault("SERVICE_ADDRESS", "localhost:9090"),
 			ServiceDesc:     getStrEnvOrDefault("SERVICE_DESC", "暂无描述"),
 			ServiceID:       getIntEnvOrDefault("SERVICE_ID", -1),
 			ServiceName:     getStrEnvOrDefault("SERVICE_NAME", "暂无名称"),
@@ -48,6 +47,13 @@ func LoadService(cfgFile string) *AppServiceConfig {
 			CosHost:      getStrEnvOrDefault("COS_HOST", ""),
 			CosSecretID:  getStrEnvOrDefault("COS_SECRET_ID", ""),
 			CosSecretKey: getStrEnvOrDefault("COS_SECRET_KEY", ""),
+		},
+		&LogConfig{
+			LogLevel: getStrEnvOrDefault("LOG_LEVEL", "debug"),
+			LogPath:  getStrEnvOrDefault("LOG_PATH", "./logs"),
+		},
+		&RegisterConfig{
+			RegisterAddress: getStrEnvOrDefault("REGISTER_ADDRESS", "127.0.0.1:2379"),
 		},
 	}
 }
