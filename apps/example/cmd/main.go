@@ -13,8 +13,8 @@ import (
 	etcd "github.com/kitex-contrib/registry-etcd"
 	pgens "github.com/lzl-here/bt-shop-backend/kitex_gen/example/exampleservice"
 	"github.com/lzl-here/bt-shop-backend/pkg/config"
-	api "github.com/lzl-here/bt-shop-backend/services/example/internal/api"
-	"github.com/lzl-here/bt-shop-backend/services/example/internal/repo"
+	api "github.com/lzl-here/bt-shop-backend/apps/example/internal/api"
+	"github.com/lzl-here/bt-shop-backend/apps/example/internal/repo"
 	"gorm.io/gorm"
 )
 

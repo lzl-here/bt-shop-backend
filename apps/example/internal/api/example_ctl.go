@@ -4,8 +4,8 @@ import (
 	"context"
 
 	pgen "github.com/lzl-here/bt-shop-backend/kitex_gen/example"
-	"github.com/lzl-here/bt-shop-backend/services/example/internal/service/handler"
-	"github.com/lzl-here/bt-shop-backend/services/example/internal/repo"
+	"github.com/lzl-here/bt-shop-backend/apps/example/internal/service/handler"
+	"github.com/lzl-here/bt-shop-backend/apps/example/internal/repo"
 )
 
 // rpc入口

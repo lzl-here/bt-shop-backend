@@ -5,7 +5,7 @@ import (
 
 	pgen "github.com/lzl-here/bt-shop-backend/kitex_gen/example"
 	"github.com/lzl-here/bt-shop-backend/pkg/verr"
-	"github.com/lzl-here/bt-shop-backend/services/example/internal/repo"
+	"github.com/lzl-here/bt-shop-backend/apps/example/internal/repo"
 )
 
 // 做业务处理的部分

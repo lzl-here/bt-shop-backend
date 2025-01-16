@@ -6,7 +6,7 @@ import (
 	"log/slog"
 	"strconv"
 
-	"github.com/lzl-here/bt-shop-backend/services/example/internal/domain/model"
+	"github.com/lzl-here/bt-shop-backend/apps/example/internal/domain/model"
 	"github.com/redis/go-redis/v9"
 	"gorm.io/gorm"
 )
@@ -38,11 +38,11 @@ func (r *Repo) GetPersonByID(ctx context.Context, id uint64) (*model.Person, err
 	}
 	// 缓存为空
 	if err == redis.Nil || str == "" {
-		err = r.db.Model(p).Where(&model.Person{ID: id}).Find(p).Error
+		err = r.db.Model(p).Where("id = ?", id).Find(p).Error
 		if err != nil {
 			return nil, err
 		}
-		
+
 		// 写入缓存失败不应该影响返回值
 		if err := r.cache.Set(ctx, "person:"+strconv.Itoa(int(id)), p, 0).Err(); err != nil {
 			slog.Error("redis set error", "err", err)
