@@ -7,6 +7,7 @@ import (
 
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/lzl-here/bt-shop-backend/apps/example/internal/domain/model"
+	// bizerr "github.com/lzl-here/bt-shop-backend/apps/example/pkg"
 	"github.com/redis/go-redis/v9"
 	"gorm.io/gorm"
 )
@@ -38,7 +39,10 @@ func (r *Repo) GetPersonByID(ctx context.Context, id uint64) (*model.Person, err
 	}
 	// 缓存为空
 	if err == redis.Nil || str == "" {
-		err = r.db.Model(p).Where("id = ?", id).Find(p).Error
+		err = r.db.Model(p).Where("id = ?", id).First(p).Error
+		// if err == gorm.ErrRecordNotFound {
+		// 	return nil, bizerr.ErrResourceNotFound
+		// }
 		if err != nil {
 			return nil, err
 		}

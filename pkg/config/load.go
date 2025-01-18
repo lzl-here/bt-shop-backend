@@ -38,3 +38,4 @@ func (a *AppServiceConfig) ConnectCache(ctx context.Context) (*redis.Client, err
 	klog.Infof("连接到redis成功, pong: %s", pong)
 	return rdb, nil
 }
+

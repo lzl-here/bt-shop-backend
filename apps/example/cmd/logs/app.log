@@ -94,3 +94,50 @@
 2025/01/18 12:04:25.263666 e_md.go:20: [Error] biz error: code=404, msg=not foudadadawednd
 2025/01/18 12:04:27.250029 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6655ms
 2025/01/18 12:04:34.528950 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/01/18 14:48:37.379341 load.go:20: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/test?charset=utf8mb4&parseTime=True&loc=Local
+2025/01/18 14:48:37.396204 load.go:38: [Info] 连接到redis成功, pong: PONG
+2025/01/18 14:48:37.485135 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9090
+2025/01/18 14:48:38.494898 etcd_registry.go:299: [Info] start keepalive lease 694d947507799e5f for etcd registry
+2025/01/18 14:48:39.958375 log_md.go:25: [Info] 请求路径: ExampleService.GetPerson, 请求地址: 127.0.0.1:60838, 请求体: &{Stream:0x14001f7c120}
+2025/01/18 14:49:28.626325 load.go:20: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/test?charset=utf8mb4&parseTime=True&loc=Local
+2025/01/18 14:49:28.638189 load.go:38: [Info] 连接到redis成功, pong: PONG
+2025/01/18 14:49:28.725240 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9090
+2025/01/18 14:49:29.734863 etcd_registry.go:299: [Info] start keepalive lease 694d947507799e66 for etcd registry
+2025/01/18 14:49:34.118220 log_md.go:25: [Info] 请求路径: ExampleService.GetPerson, 请求地址: 127.0.0.1:60859, 请求体: &{Stream:0x14001fa0060}
+2025/01/18 14:50:26.307716 load.go:20: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/test?charset=utf8mb4&parseTime=True&loc=Local
+2025/01/18 14:50:26.319535 load.go:38: [Info] 连接到redis成功, pong: PONG
+2025/01/18 14:50:26.406417 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9090
+2025/01/18 14:50:27.421054 etcd_registry.go:299: [Info] start keepalive lease 694d947507799e6e for etcd registry
+2025/01/18 14:50:31.322088 log_md.go:25: [Info] 请求路径: ExampleService.GetPerson, 请求地址: 127.0.0.1:60880, 请求体: &{Stream:0x14001995f00}
+2025/01/18 14:51:32.933167 load.go:20: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/test?charset=utf8mb4&parseTime=True&loc=Local
+2025/01/18 14:51:32.940373 load.go:38: [Info] 连接到redis成功, pong: PONG
+2025/01/18 14:51:33.028016 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9090
+2025/01/18 14:51:34.036812 etcd_registry.go:299: [Info] start keepalive lease 694d947507799e76 for etcd registry
+2025/01/18 14:51:37.085042 log_md.go:25: [Info] 请求路径: ExampleService.GetPerson, 请求地址: 127.0.0.1:60893, 请求体: &{Stream:0x14001b8e940}
+2025/01/18 14:51:59.028276 load.go:20: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/test?charset=utf8mb4&parseTime=True&loc=Local
+2025/01/18 14:51:59.042468 load.go:38: [Info] 连接到redis成功, pong: PONG
+2025/01/18 14:51:59.132271 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9090
+2025/01/18 14:52:00.142244 etcd_registry.go:299: [Info] start keepalive lease 694d947507799e7e for etcd registry
+2025/01/18 14:52:01.959284 log_md.go:25: [Info] 请求路径: ExampleService.GetPerson, 请求地址: 127.0.0.1:60909, 请求体: &{Stream:0x14001cfc8c0}
+2025/01/18 14:52:26.235378 load.go:20: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/test?charset=utf8mb4&parseTime=True&loc=Local
+2025/01/18 14:52:26.245473 load.go:38: [Info] 连接到redis成功, pong: PONG
+2025/01/18 14:52:26.337494 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9090
+2025/01/18 14:52:27.347250 etcd_registry.go:299: [Info] start keepalive lease 694d947507799e85 for etcd registry
+2025/01/18 14:52:33.187047 log_md.go:25: [Info] 请求路径: ExampleService.GetPerson, 请求地址: 127.0.0.1:60930, 请求体: &{Stream:0x14001bcc2e0}
+2025/01/18 14:53:04.995933 error_md.go:15: [Error] biz error: invalid value, should be pointer to struct or slice
+2025/01/18 14:53:04.996852 log_md.go:36: [Info] 响应体: <nil>, 耗时: 31809ms
+2025/01/18 14:53:04.996345 etcd_registry.go:225: [Warn] keep register get kitex/registry-etcd/example/127.0.0.1:9090 failed with err: context deadline exceeded
+2025/01/18 14:53:04.996933 server_handler.go:372: [Error] KITEX: processing gRPC request error, remoteAddr=127.0.0.1:60930, error=biz error: invalid value, should be pointer to struct or slice
+2025/01/18 15:04:09.377157 load.go:20: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/test?charset=utf8mb4&parseTime=True&loc=Local
+2025/01/18 15:04:09.391762 load.go:38: [Info] 连接到redis成功, pong: PONG
+2025/01/18 15:04:09.478961 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9090
+2025/01/18 15:04:10.488332 etcd_registry.go:299: [Info] start keepalive lease 694d947507799ecf for etcd registry
+2025/01/18 15:04:44.842189 load.go:20: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/test?charset=utf8mb4&parseTime=True&loc=Local
+2025/01/18 15:04:44.851456 load.go:38: [Info] 连接到redis成功, pong: PONG
+2025/01/18 15:04:44.954157 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9090
+2025/01/18 15:04:45.961752 etcd_registry.go:299: [Info] start keepalive lease 694d947507799ed6 for etcd registry
+2025/01/18 15:04:52.244855 log_md.go:25: [Info] 请求路径: ExampleService.GetPerson, 请求地址: 127.0.0.1:61218, 请求体: &{Stream:0x14001b17220}
+2025/01/18 15:05:45.683666 error_md.go:16: [Error] biz error: record not found
+2025/01/18 15:05:45.684054 etcd_registry.go:225: [Warn] keep register get kitex/registry-etcd/example/127.0.0.1:9090 failed with err: context deadline exceeded
+2025/01/18 15:05:51.285844 error_md.go:21: [Error] biz error: code=10002, msg=服务端内部异常
+2025/01/18 15:05:54.830856 log_md.go:36: [Info] 响应体: <nil>, 耗时: 62142ms

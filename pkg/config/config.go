@@ -13,7 +13,6 @@ type AppServiceConfig struct {
 	*CosConfig
 	*LogConfig
 	*RegisterConfig
-
 }
 
 // 网关配置
@@ -29,11 +28,21 @@ type CosConfig struct {
 	CosSecretKey string `json:"cos_secret_key"`
 }
 
-type LogConfig struct{
+type LogConfig struct {
 	LogLevel string `json:"log_level"`
 	LogPath  string `json:"log_path"`
 }
 
 type RegisterConfig struct {
 	RegisterAddress string `json:"register_address"`
+	RegisterUser    string `json:"register_user"`
+	RegisterPass    string `json:"register_pass"`
+}
+
+// 服务配置
+type ServiceConfig struct {
+	ServiceID       int    `json:"id"`        //服务实例唯一id
+	ServiceName     string `json:"name"`      // 服务名称
+	ServiceDesc     string `json:"desc"`      // 服务描述
+	ServiceAddress  string `json:"address"`   // 地址
 }

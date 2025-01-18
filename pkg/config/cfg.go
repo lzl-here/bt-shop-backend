@@ -35,10 +35,10 @@ func LoadService(cfgFile string) *AppServiceConfig {
 			},
 		},
 		&ServiceConfig{
-			ServiceAddress:  getStrEnvOrDefault("SERVICE_ADDRESS", "localhost:9090"),
-			ServiceDesc:     getStrEnvOrDefault("SERVICE_DESC", "暂无描述"),
-			ServiceID:       getIntEnvOrDefault("SERVICE_ID", -1),
-			ServiceName:     getStrEnvOrDefault("SERVICE_NAME", "暂无名称"),
+			ServiceAddress: getStrEnvOrDefault("SERVICE_ADDRESS", "localhost:9090"),
+			ServiceDesc:    getStrEnvOrDefault("SERVICE_DESC", "暂无描述"),
+			ServiceID:      getIntEnvOrDefault("SERVICE_ID", -1),
+			ServiceName:    getStrEnvOrDefault("SERVICE_NAME", "暂无名称"),
 		},
 		&CosConfig{
 			CosBucket:    getStrEnvOrDefault("COS_BUCKET", ""),
@@ -52,6 +52,8 @@ func LoadService(cfgFile string) *AppServiceConfig {
 		},
 		&RegisterConfig{
 			RegisterAddress: getStrEnvOrDefault("REGISTER_ADDRESS", "127.0.0.1:2379"),
+			RegisterUser:    getStrEnvOrDefault("REGISTER_USER", "root"),
+			RegisterPass:    getStrEnvOrDefault("REGISTER_PASS", "root"),
 		},
 	}
 }

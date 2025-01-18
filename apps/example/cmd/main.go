@@ -51,7 +51,9 @@ func main() {
 	}
 	rep := repo.NewRepo(db, cache)
 	// 启动rpc服务
-	r, err := etcd.NewEtcdRegistry([]string{appConfig.RegisterAddress}, etcd.WithAuthOpt("root", "root"))
+	r, err := etcd.NewEtcdRegistry([]string{appConfig.RegisterAddress}, 
+		etcd.WithAuthOpt(appConfig.RegisterUser, appConfig.RegisterPass),
+	)
 	if err != nil {
 		panic(err)
 	}
