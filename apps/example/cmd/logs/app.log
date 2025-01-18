@@ -1,11 +1,96 @@
-{"time":"2025-01-15T17:37:48.065174+08:00","level":"INFO","msg":"example 启动","key":"value"}
-{"time":"2025-01-15T17:37:48.065409+08:00","level":"INFO","msg":"连接数据库","dsn":"root:376772346Lzl@@tcp(localhost:3306)/test?charset=utf8mb4&parseTime=True&loc=Local"}
-{"time":"2025-01-15T17:37:48.082016+08:00","level":"INFO","msg":"连接redis成功","pong":"PONG"}
-{"time":"2025-01-15T17:38:07.85832+08:00","level":"INFO","msg":"redis set","res":"OK"}
-{"time":"2025-01-15T17:41:04.616367+08:00","level":"INFO","msg":"example 启动","key":"value"}
-{"time":"2025-01-15T17:41:04.616725+08:00","level":"INFO","msg":"连接数据库","dsn":"root:376772346Lzl@@tcp(localhost:3306)/test?charset=utf8mb4&parseTime=True&loc=Local"}
-{"time":"2025-01-15T17:41:04.638699+08:00","level":"INFO","msg":"连接redis成功","pong":"PONG"}
-{"time":"2025-01-15T17:41:09.090998+08:00","level":"INFO","msg":"redis set","res":"OK"}
-{"time":"2025-01-15T17:47:56.858886+08:00","level":"INFO","msg":"example 启动","key":"value"}
-{"time":"2025-01-15T17:47:56.859271+08:00","level":"INFO","msg":"连接数据库","dsn":"root:376772346Lzl@@tcp(localhost:3306)/test?charset=utf8mb4&parseTime=True&loc=Local"}
-{"time":"2025-01-15T17:47:56.876643+08:00","level":"INFO","msg":"连接redis成功","pong":"PONG"}
+2025/01/18 11:51:01.744854 load.go:20: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/test?charset=utf8mb4&parseTime=True&loc=Local
+2025/01/18 11:51:01.755579 load.go:38: [Info] 连接到redis成功, pong: PONG
+2025/01/18 11:51:01.872489 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9090
+2025/01/18 11:51:02.883636 etcd_registry.go:299: [Info] start keepalive lease 694d947507799dd4 for etcd registry
+2025/01/18 11:51:17.100836 log_md.go:25: [Info] 请求路径: ExampleService.GetPerson, 请求地址: 127.0.0.1:59462, 请求体: &{Stream:0x14001c0ef00}
+2025/01/18 11:54:53.234886 load.go:20: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/test?charset=utf8mb4&parseTime=True&loc=Local
+2025/01/18 11:54:53.251959 load.go:38: [Info] 连接到redis成功, pong: PONG
+2025/01/18 11:54:53.370611 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9090
+2025/01/18 11:54:54.384430 etcd_registry.go:299: [Info] start keepalive lease 694d947507799de3 for etcd registry
+2025/01/18 11:55:01.200699 log_md.go:25: [Info] 请求路径: ExampleService.GetPerson, 请求地址: 127.0.0.1:59630, 请求体: &{Stream:0x140000fac00}
+2025/01/18 11:55:24.473033 e_md.go:16: [Error] biz error: code=404, msg=not foudadadawednd
+2025/01/18 11:55:24.473494 log_md.go:36: [Info] 响应体: <nil>, 耗时: 23272ms
+2025/01/18 11:55:24.473606 server_handler.go:372: [Error] KITEX: processing gRPC request error, remoteAddr=127.0.0.1:59630, error=biz error: code=404, msg=not foudadadawednd
+2025/01/18 11:55:24.475374 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/01/18 11:57:38.203208 load.go:20: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/test?charset=utf8mb4&parseTime=True&loc=Local
+2025/01/18 11:57:38.216194 load.go:38: [Info] 连接到redis成功, pong: PONG
+2025/01/18 11:57:38.337023 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9090
+2025/01/18 11:57:39.346129 etcd_registry.go:299: [Info] start keepalive lease 694d947507799df5 for etcd registry
+2025/01/18 11:57:49.980428 log_md.go:25: [Info] 请求路径: ExampleService.GetPerson, 请求地址: 127.0.0.1:59656, 请求体: &{Stream:0x14001f7e0e0}
+2025/01/18 11:57:49.981075 e_md.go:19: [Error] biz error: code=404, msg=not foudadadawednd
+2025/01/18 11:57:49.981116 log_md.go:36: [Info] 响应体: <nil>, 耗时: 0ms
+2025/01/18 11:57:49.981147 server_handler.go:372: [Error] KITEX: processing gRPC request error, remoteAddr=127.0.0.1:59656, error=biz error: code=404, msg=not foudadadawednd
+2025/01/18 11:57:49.982114 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/01/18 11:58:04.416507 log_md.go:25: [Info] 请求路径: ExampleService.GetPerson, 请求地址: 127.0.0.1:59662, 请求体: &{Stream:0x14001c8a4e0}
+2025/01/18 11:58:04.417029 e_md.go:19: [Error] biz error: code=404, msg=not foudadadawednd
+2025/01/18 11:58:04.417066 log_md.go:36: [Info] 响应体: <nil>, 耗时: 0ms
+2025/01/18 11:58:04.417095 server_handler.go:372: [Error] KITEX: processing gRPC request error, remoteAddr=127.0.0.1:59662, error=biz error: code=404, msg=not foudadadawednd
+2025/01/18 11:58:15.147301 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/01/18 11:59:26.921378 etcd_registry.go:216: [Info] stop keep register service kitex/registry-etcd/example/127.0.0.1:9090
+2025/01/18 11:59:26.921430 server_handler.go:384: [Info] KITEX: gRPC GracefulShutdown starts
+2025/01/18 11:59:26.972646 server_handler.go:386: [Info] KITEX: gRPC GracefulShutdown ends
+2025/01/18 11:59:31.943435 load.go:20: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/test?charset=utf8mb4&parseTime=True&loc=Local
+2025/01/18 11:59:31.956904 load.go:38: [Info] 连接到redis成功, pong: PONG
+2025/01/18 11:59:32.075611 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9090
+2025/01/18 11:59:33.085164 etcd_registry.go:299: [Info] start keepalive lease 694d947507799e06 for etcd registry
+2025/01/18 11:59:45.775718 log_md.go:25: [Info] 请求路径: ExampleService.GetPerson, 请求地址: 127.0.0.1:59684, 请求体: &{Stream:0x14001f1c160}
+2025/01/18 11:59:45.776464 e_md.go:20: [Error] biz error: code=404, msg=not foudadadawednd
+2025/01/18 11:59:45.776506 log_md.go:36: [Info] 响应体: <nil>, 耗时: 0ms
+2025/01/18 11:59:53.463283 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/01/18 12:00:07.473736 etcd_registry.go:216: [Info] stop keep register service kitex/registry-etcd/example/127.0.0.1:9090
+2025/01/18 12:00:07.473805 server_handler.go:384: [Info] KITEX: gRPC GracefulShutdown starts
+2025/01/18 12:00:07.525057 server_handler.go:386: [Info] KITEX: gRPC GracefulShutdown ends
+2025/01/18 12:00:14.565682 load.go:20: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/test?charset=utf8mb4&parseTime=True&loc=Local
+2025/01/18 12:00:14.576758 load.go:38: [Info] 连接到redis成功, pong: PONG
+2025/01/18 12:00:14.696622 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9090
+2025/01/18 12:00:15.705216 etcd_registry.go:299: [Info] start keepalive lease 694d947507799e12 for etcd registry
+2025/01/18 12:00:26.131211 log_md.go:25: [Info] 请求路径: ExampleService.GetPerson, 请求地址: 127.0.0.1:59700, 请求体: &{Stream:0x14001c86a20}
+2025/01/18 12:00:26.131750 e_md.go:20: [Error] biz error: code=404, msg=not foudadadawednd
+2025/01/18 12:00:26.131781 log_md.go:36: [Info] 响应体: <nil>, 耗时: 0ms
+2025/01/18 12:00:31.946604 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/01/18 12:01:07.039353 load.go:20: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/test?charset=utf8mb4&parseTime=True&loc=Local
+2025/01/18 12:01:07.050106 load.go:38: [Info] 连接到redis成功, pong: PONG
+2025/01/18 12:01:07.170930 server.go:77: [Error] KITEX: server listen failed, addr=127.0.0.1:9090 error=listen tcp 127.0.0.1:9090: bind: address already in use
+2025/01/18 12:01:07.171058 server.go:275: [Error] KITEX: server start error: error=listen tcp 127.0.0.1:9090: bind: address already in use
+2025/01/18 12:01:07.171085 main.go:74: [Error] 服务启动失败errlisten tcp 127.0.0.1:9090: bind: address already in use
+2025/01/18 12:01:12.450645 log_md.go:25: [Info] 请求路径: ExampleService.GetPerson, 请求地址: 127.0.0.1:59712, 请求体: &{Stream:0x140020240a0}
+2025/01/18 12:01:12.451525 e_md.go:20: [Error] biz error: code=404, msg=not foudadadawednd
+2025/01/18 12:01:12.451612 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/01/18 12:01:12.455383 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/01/18 12:01:27.358062 etcd_registry.go:216: [Info] stop keep register service kitex/registry-etcd/example/127.0.0.1:9090
+2025/01/18 12:01:27.358138 server_handler.go:384: [Info] KITEX: gRPC GracefulShutdown starts
+2025/01/18 12:01:27.408762 server_handler.go:386: [Info] KITEX: gRPC GracefulShutdown ends
+2025/01/18 12:01:38.254681 load.go:20: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/test?charset=utf8mb4&parseTime=True&loc=Local
+2025/01/18 12:01:38.264427 load.go:38: [Info] 连接到redis成功, pong: PONG
+2025/01/18 12:01:38.384464 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9090
+2025/01/18 12:01:39.392569 etcd_registry.go:299: [Info] start keepalive lease 694d947507799e26 for etcd registry
+2025/01/18 12:01:43.821261 log_md.go:25: [Info] 请求路径: ExampleService.GetPerson, 请求地址: 127.0.0.1:59726, 请求体: &{Stream:0x14001c0ee60}
+2025/01/18 12:01:55.353380 e_md.go:20: [Error] biz error: code=404, msg=not foudadadawednd
+2025/01/18 12:02:00.625188 log_md.go:36: [Info] 响应体: <nil>, 耗时: 15270ms
+2025/01/18 12:02:30.283305 load.go:20: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/test?charset=utf8mb4&parseTime=True&loc=Local
+2025/01/18 12:02:30.295172 load.go:38: [Info] 连接到redis成功, pong: PONG
+2025/01/18 12:02:30.413767 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9090
+2025/01/18 12:02:31.421221 etcd_registry.go:299: [Info] start keepalive lease 694d947507799e34 for etcd registry
+2025/01/18 12:02:52.000060 log_md.go:25: [Info] 请求路径: ExampleService.GetPerson, 请求地址: 127.0.0.1:59748, 请求体: &{Stream:0x14001af73c0}
+2025/01/18 12:02:52.001034 e_md.go:20: [Error] biz error: code=404, msg=not foudadadawednd
+2025/01/18 12:02:52.001104 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/01/18 12:02:52.001169 server_handler.go:372: [Error] KITEX: processing gRPC request error, remoteAddr=127.0.0.1:59748, error=biz error: code=404, msg=not foudadadawednd
+2025/01/18 12:02:52.003327 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/01/18 12:02:58.922587 etcd_registry.go:216: [Info] stop keep register service kitex/registry-etcd/example/127.0.0.1:9090
+2025/01/18 12:02:58.922593 server_handler.go:384: [Info] KITEX: gRPC GracefulShutdown starts
+2025/01/18 12:02:58.973950 server_handler.go:386: [Info] KITEX: gRPC GracefulShutdown ends
+2025/01/18 12:03:04.306261 load.go:20: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/test?charset=utf8mb4&parseTime=True&loc=Local
+2025/01/18 12:03:04.316430 load.go:38: [Info] 连接到redis成功, pong: PONG
+2025/01/18 12:03:04.434945 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9090
+2025/01/18 12:03:05.440960 etcd_registry.go:299: [Info] start keepalive lease 694d947507799e40 for etcd registry
+2025/01/18 12:03:11.301134 log_md.go:25: [Info] 请求路径: ExampleService.GetPerson, 请求地址: 127.0.0.1:59759, 请求体: &{Stream:0x14001b8e960}
+2025/01/18 12:03:16.353609 e_md.go:20: [Error] biz error: code=404, msg=not foudadadawednd
+2025/01/18 12:03:22.276247 log_md.go:36: [Info] 响应体: <nil>, 耗时: 10504ms
+2025/01/18 12:04:13.944328 load.go:20: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/test?charset=utf8mb4&parseTime=True&loc=Local
+2025/01/18 12:04:13.952794 load.go:38: [Info] 连接到redis成功, pong: PONG
+2025/01/18 12:04:14.066416 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9090
+2025/01/18 12:04:15.075268 etcd_registry.go:299: [Info] start keepalive lease 694d947507799e50 for etcd registry
+2025/01/18 12:04:20.415640 log_md.go:25: [Info] 请求路径: ExampleService.GetPerson, 请求地址: 127.0.0.1:59778, 请求体: &{Stream:0x14001aa8140}
+2025/01/18 12:04:25.263666 e_md.go:20: [Error] biz error: code=404, msg=not foudadadawednd
+2025/01/18 12:04:27.250029 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6655ms
+2025/01/18 12:04:34.528950 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]

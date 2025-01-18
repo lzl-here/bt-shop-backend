@@ -3,9 +3,9 @@ package repo
 import (
 	"context"
 	"encoding/json"
-	"log/slog"
 	"strconv"
 
+	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/lzl-here/bt-shop-backend/apps/example/internal/domain/model"
 	"github.com/redis/go-redis/v9"
 	"gorm.io/gorm"
@@ -45,7 +45,7 @@ func (r *Repo) GetPersonByID(ctx context.Context, id uint64) (*model.Person, err
 
 		// 写入缓存失败不应该影响返回值
 		if err := r.cache.Set(ctx, "person:"+strconv.Itoa(int(id)), p, 0).Err(); err != nil {
-			slog.Error("redis set error", "err", err)
+			klog.Error("redis set error: %v", err)
 		}
 		return p, nil
 	}
