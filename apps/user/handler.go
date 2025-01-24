@@ -8,21 +8,15 @@ import (
 type UserServiceImpl struct{}
 
 // CreateUser implements the UserServiceImpl interface.
-func (s *UserServiceImpl) CreateUser(ctx context.Context, req *user.RegisterReq) (resp *user.RegisterResponse, err error) {
-	resp = new(user.Register)
+func (s *UserServiceImpl) Register(ctx context.Context, req *user.RegisterReq) (resp *user.RegisterResp, err error) {
 
-	if err := mysql.CreateUser([]*model.User{
-		{
-			Name:      req.Name,
-			Gender:    int64(req.Gender),
-			Age:       req.Age,
-			Introduce: req.Introduce,
-		},
-	}); err != nil {
-		resp.Msg = err.Error()
-		resp.Code = user.Code_DBErr
-	}
+	resp = new(user.RegisterResp)
 
-	resp.Code = user.Code_Success
+	return
+}
+
+func (s *UserServiceImpl) Login(ctx context.Context, req *user.LoginReq) (resp *user.LoginResp, err error) {
+	resp = new(user.LoginResp)
+
 	return
 }

@@ -1,13 +1,13 @@
 package conf
 
 import (
-	"gopkg.in/validator.v2"
 	"os"
 	"path/filepath"
 	"sync"
 
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/kr/pretty"
+	"gopkg.in/validator.v2"
 	"gopkg.in/yaml.v2"
 )
 

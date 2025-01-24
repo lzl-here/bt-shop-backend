@@ -1,7 +1,16 @@
 package main
 
-import "github.com/lzl-here/bt-shop-backend/kitex_gen/user/userservice"
+import (
+	"github.com/bt-shop-backend/apps/user/biz/Dail/mysql"
+	userSrv "github.com/lzl-here/bt-shop-backend/kitex_gen/user/userservice"
+	"log"
+)
 
 func main() {
-	srv := userservice.NewServer()
+	svr := userSrv.NewServer(new(UserServiceImpl))
+	mysql.Init()
+	err := svr.Run()
+	if err != nil {
+		log.Println(err.Error())
+	}
 }
