@@ -141,3 +141,28 @@
 2025/01/18 15:05:45.684054 etcd_registry.go:225: [Warn] keep register get kitex/registry-etcd/example/127.0.0.1:9090 failed with err: context deadline exceeded
 2025/01/18 15:05:51.285844 error_md.go:21: [Error] biz error: code=10002, msg=服务端内部异常
 2025/01/18 15:05:54.830856 log_md.go:36: [Info] 响应体: <nil>, 耗时: 62142ms
+2025/01/18 15:13:17.108821 load.go:20: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/test?charset=utf8mb4&parseTime=True&loc=Local
+2025/01/18 15:13:17.124240 load.go:38: [Info] 连接到redis成功, pong: PONG
+2025/01/18 15:13:17.219993 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9090
+2025/01/18 15:13:18.228742 etcd_registry.go:299: [Info] start keepalive lease 694d947507799ee1 for etcd registry
+2025/01/18 15:13:28.601691 log_md.go:25: [Info] 请求路径: ExampleService.GetPerson, 请求地址: 127.0.0.1:61317, 请求体: &{Stream:0x14001b44280}
+2025/01/18 15:13:28.611826 error_md.go:33: [Error] <nil>
+2025/01/18 15:13:28.611950 log_md.go:36: [Info] 响应体: <nil>, 耗时: 10ms
+2025/01/18 15:13:45.840768 etcd_registry.go:216: [Info] stop keep register service kitex/registry-etcd/example/127.0.0.1:9090
+2025/01/18 15:13:45.840800 server_handler.go:384: [Info] KITEX: gRPC GracefulShutdown starts
+2025/01/18 15:13:45.843141 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/01/18 15:13:45.891753 server_handler.go:386: [Info] KITEX: gRPC GracefulShutdown ends
+2025/01/19 12:36:44.380982 load.go:20: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/test?charset=utf8mb4&parseTime=True&loc=Local
+2025/01/19 12:36:44.433492 load.go:38: [Info] 连接到redis成功, pong: PONG
+2025/01/19 12:36:44.564484 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9090
+2025/01/19 12:36:45.585740 etcd_registry.go:299: [Info] start keepalive lease 694d947507799eea for etcd registry
+2025/01/19 12:36:58.606823 etcd_registry.go:216: [Info] stop keep register service kitex/registry-etcd/example/127.0.0.1:9090
+2025/01/19 12:36:58.606856 server_handler.go:384: [Info] KITEX: gRPC GracefulShutdown starts
+2025/01/19 12:36:58.658252 server_handler.go:386: [Info] KITEX: gRPC GracefulShutdown ends
+2025/01/19 22:38:42.267702 load.go:20: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/test?charset=utf8mb4&parseTime=True&loc=Local
+2025/01/19 22:38:42.321281 load.go:38: [Info] 连接到redis成功, pong: PONG
+2025/01/19 22:38:42.495415 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9090
+2025/01/19 22:38:43.501980 etcd_registry.go:299: [Info] start keepalive lease 694d947f00473209 for etcd registry
+2025/01/19 22:38:54.014479 etcd_registry.go:216: [Info] stop keep register service kitex/registry-etcd/example/127.0.0.1:9090
+2025/01/19 22:38:54.014500 server_handler.go:384: [Info] KITEX: gRPC GracefulShutdown starts
+2025/01/19 22:38:54.065682 server_handler.go:386: [Info] KITEX: gRPC GracefulShutdown ends

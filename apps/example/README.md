@@ -34,3 +34,32 @@
 
 成功后用grpc客户端对接口进行测试：
 ![alt text](./imgs/image.png)
+
+
+导入proto生成代码：
+``` golang
+import (
+	pgen "github.com/lzl-here/bt-shop-backend/kitex_gen/example"
+)
+```
+
+
+example 服务的 vscode 的 debug启动: 
+``` json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "example",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/main.go",
+            "args": [
+                "--cfgFile", "${workspaceFolder}/.env.production",
+            ]
+        }
+    ]
+}
+```
+

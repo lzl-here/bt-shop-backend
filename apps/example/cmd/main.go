@@ -13,12 +13,13 @@ import (
 	"github.com/cloudwego/kitex/server"
 	etcd "github.com/kitex-contrib/registry-etcd"
 	api "github.com/lzl-here/bt-shop-backend/apps/example/internal/api"
-	"github.com/lzl-here/bt-shop-backend/apps/example/internal/api/middleware"
+	"github.com/lzl-here/bt-shop-backend/pkg/middleware"
 	"github.com/lzl-here/bt-shop-backend/apps/example/internal/repo"
 	pgens "github.com/lzl-here/bt-shop-backend/kitex_gen/example/exampleservice"
 	"github.com/lzl-here/bt-shop-backend/pkg/config"
 	"gorm.io/gorm"
 )
+
 
 func main() {
 	ctx := context.Background()

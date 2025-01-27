@@ -1,2 +1,7 @@
 .DS_Store
 apps/example/cmd/logs/app.log
+apps/pay/.vscode/launch.json
+apps/pay/bin/example
+apps/pay/bin/pay
+apps/pay/cmd/logs/app.log
+pkg/.DS_Store

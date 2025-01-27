@@ -31,32 +31,37 @@
 
 
 ## 项目启动
-每个服务下有一个makefile文件，进入到服务文件夹下，make dev执行
+每个服务下创建makefile文件，进入到服务文件夹下，make dev执行
 
-导入proto生成代码：
-``` golang
-import (
-	pgen "github.com/lzl-here/bt-shop-backend/kitex_gen/example"
-)
+## 项目依赖
+0. golang
+1. kitex
+2. proto，以及proto的golang插件
+3. mysql
+4. redis
+5. etcd
+6. makefile
+
+后续引入es + 健康监控
+
+
+
+## pkg
+定义一些不同服务之间通用的代码，比如配置，中间件
+
+``` shell
+├── config             # 服务配置相关，定义了服务之间通的配置，比如mysql，redis，grpc端口号
+│   ├── cfg.go          
+│   ├── config.go
+│   ├── load.go
+│   └── repo.go
+├── middleware         # 定义了基础中间件，错误处理和日志打印，其他服务自定义的中间件放在服务自己的文件夹下
+│   ├── error_md.go
+│   └── log_md.go
+└── model              
+    └── base_model.go
 ```
 
-
-example 服务的 vscode 的 debug启动: 
-``` json
-{
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "example",
-            "type": "go",
-            "request": "launch",
-            "mode": "auto",
-            "program": "${workspaceFolder}/cmd/main.go",
-            "args": [
-                "--cfgFile", "${workspaceFolder}/.env.production",
-            ]
-        }
-    ]
-}
-```
+因为不同服务之间会有自定义的配置，所以服务需要组合AppServiceConfig使用，详情查看example服务:
+![alt text](./imgs/image.png)
 
