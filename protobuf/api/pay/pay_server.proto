@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+// protobuf的package，根据业务来定，一个文件夹下的package得是一样的
+package pay;
+
+// 和package保持一致
+option go_package = "pay";
+
+// 导入需要使用的文件，package/文件名
+import "pay/prepay.proto";
+
+import "api.proto";
+
+
+// rpc服务
+service ExampleService {
+    rpc Prepay(PrepayReq) returns (PrepayRsp) {
+        option (api.post) = "/pay/prepay";
+    }
+}
+
