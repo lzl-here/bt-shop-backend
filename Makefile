@@ -1,5 +1,6 @@
 # 定义变量
 PROTO_PATH=protobuf/proto
+API_PATH=protobuf/api
 GEN_PATH=kitex_gen
 MODULE_NAME=github.com/lzl-here/bt-shop-backend
 
@@ -8,7 +9,11 @@ gen:
 	@ make clean
 	@ kitex -module $(MODULE_NAME) -type=protobuf -I $(PROTO_PATH) $(PROTO_PATH)/example/example_server.proto
 	@ kitex -module $(MODULE_NAME) -type=protobuf -I $(PROTO_PATH) $(PROTO_PATH)/define/base_response.proto
-	
+	@ kitex -module $(MODULE_NAME) -type=protobuf -I $(PROTO_PATH) $(PROTO_PATH)/user/user.proto
+
+	@ cd apps/gateway  && hz update -I ../../$(API_PATH) -idl ../../$(API_PATH)/example/example_server.proto
+	@ cd apps/gateway  && hz update -I ../../$(API_PATH) -idl ../../$(API_PATH)/user/user.proto
+
 	@ go mod tidy
 
 # 清空proto代码
