@@ -18,6 +18,8 @@ import (
 
 // 防止重复执行，不手动执行cleaner，让redis自动过期
 // 同样的请求不能重复执行（有超时时间）
+
+// 业务逻辑产生异常记得调用cleaner
 func NoDuplicate(ctx context.Context, redisCli *redis.Client, prefix string, value any, ttl time.Duration) (ok bool, cleaner func(int) (int64, error), key string, err error) {
 	// no panic guaranteed
 	defer func() {
