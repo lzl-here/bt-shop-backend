@@ -13,6 +13,8 @@ import (
 type Client interface {
 	Pay(ctx context.Context, Req *pay.PayReq, callOptions ...callopt.Option) (r *pay.PayRsp, err error)
 	AlipayWebhook(ctx context.Context, Req *pay.AlipayWebhookReq, callOptions ...callopt.Option) (r *pay.AlipayWebhookRsp, err error)
+	CancelPay(ctx context.Context, Req *pay.CancelPayReq, callOptions ...callopt.Option) (r *pay.CancelPayRsp, err error)
+	RefundPay(ctx context.Context, Req *pay.RefundPayReq, callOptions ...callopt.Option) (r *pay.RefundPayRsp, err error)
 }
 
 // NewClient creates a client for the service defined in IDL.
@@ -52,4 +54,14 @@ func (p *kPayServiceClient) Pay(ctx context.Context, Req *pay.PayReq, callOption
 func (p *kPayServiceClient) AlipayWebhook(ctx context.Context, Req *pay.AlipayWebhookReq, callOptions ...callopt.Option) (r *pay.AlipayWebhookRsp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
 	return p.kClient.AlipayWebhook(ctx, Req)
+}
+
+func (p *kPayServiceClient) CancelPay(ctx context.Context, Req *pay.CancelPayReq, callOptions ...callopt.Option) (r *pay.CancelPayRsp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.CancelPay(ctx, Req)
+}
+
+func (p *kPayServiceClient) RefundPay(ctx context.Context, Req *pay.RefundPayReq, callOptions ...callopt.Option) (r *pay.RefundPayRsp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.RefundPay(ctx, Req)
 }

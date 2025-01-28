@@ -29,6 +29,20 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingUnary),
 	),
+	"CancelPay": kitex.NewMethodInfo(
+		cancelPayHandler,
+		newCancelPayArgs,
+		newCancelPayResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingUnary),
+	),
+	"RefundPay": kitex.NewMethodInfo(
+		refundPayHandler,
+		newRefundPayArgs,
+		newRefundPayResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingUnary),
+	),
 }
 
 var (
@@ -401,6 +415,312 @@ func (p *AlipayWebhookResult) GetResult() interface{} {
 	return p.Success
 }
 
+func cancelPayHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	switch s := arg.(type) {
+	case *streaming.Args:
+		st := s.Stream
+		req := new(pay.CancelPayReq)
+		if err := st.RecvMsg(req); err != nil {
+			return err
+		}
+		resp, err := handler.(pay.PayService).CancelPay(ctx, req)
+		if err != nil {
+			return err
+		}
+		return st.SendMsg(resp)
+	case *CancelPayArgs:
+		success, err := handler.(pay.PayService).CancelPay(ctx, s.Req)
+		if err != nil {
+			return err
+		}
+		realResult := result.(*CancelPayResult)
+		realResult.Success = success
+		return nil
+	default:
+		return errInvalidMessageType
+	}
+}
+func newCancelPayArgs() interface{} {
+	return &CancelPayArgs{}
+}
+
+func newCancelPayResult() interface{} {
+	return &CancelPayResult{}
+}
+
+type CancelPayArgs struct {
+	Req *pay.CancelPayReq
+}
+
+func (p *CancelPayArgs) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
+	if !p.IsSetReq() {
+		p.Req = new(pay.CancelPayReq)
+	}
+	return p.Req.FastRead(buf, _type, number)
+}
+
+func (p *CancelPayArgs) FastWrite(buf []byte) (n int) {
+	if !p.IsSetReq() {
+		return 0
+	}
+	return p.Req.FastWrite(buf)
+}
+
+func (p *CancelPayArgs) Size() (n int) {
+	if !p.IsSetReq() {
+		return 0
+	}
+	return p.Req.Size()
+}
+
+func (p *CancelPayArgs) Marshal(out []byte) ([]byte, error) {
+	if !p.IsSetReq() {
+		return out, nil
+	}
+	return proto.Marshal(p.Req)
+}
+
+func (p *CancelPayArgs) Unmarshal(in []byte) error {
+	msg := new(pay.CancelPayReq)
+	if err := proto.Unmarshal(in, msg); err != nil {
+		return err
+	}
+	p.Req = msg
+	return nil
+}
+
+var CancelPayArgs_Req_DEFAULT *pay.CancelPayReq
+
+func (p *CancelPayArgs) GetReq() *pay.CancelPayReq {
+	if !p.IsSetReq() {
+		return CancelPayArgs_Req_DEFAULT
+	}
+	return p.Req
+}
+
+func (p *CancelPayArgs) IsSetReq() bool {
+	return p.Req != nil
+}
+
+func (p *CancelPayArgs) GetFirstArgument() interface{} {
+	return p.Req
+}
+
+type CancelPayResult struct {
+	Success *pay.CancelPayRsp
+}
+
+var CancelPayResult_Success_DEFAULT *pay.CancelPayRsp
+
+func (p *CancelPayResult) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
+	if !p.IsSetSuccess() {
+		p.Success = new(pay.CancelPayRsp)
+	}
+	return p.Success.FastRead(buf, _type, number)
+}
+
+func (p *CancelPayResult) FastWrite(buf []byte) (n int) {
+	if !p.IsSetSuccess() {
+		return 0
+	}
+	return p.Success.FastWrite(buf)
+}
+
+func (p *CancelPayResult) Size() (n int) {
+	if !p.IsSetSuccess() {
+		return 0
+	}
+	return p.Success.Size()
+}
+
+func (p *CancelPayResult) Marshal(out []byte) ([]byte, error) {
+	if !p.IsSetSuccess() {
+		return out, nil
+	}
+	return proto.Marshal(p.Success)
+}
+
+func (p *CancelPayResult) Unmarshal(in []byte) error {
+	msg := new(pay.CancelPayRsp)
+	if err := proto.Unmarshal(in, msg); err != nil {
+		return err
+	}
+	p.Success = msg
+	return nil
+}
+
+func (p *CancelPayResult) GetSuccess() *pay.CancelPayRsp {
+	if !p.IsSetSuccess() {
+		return CancelPayResult_Success_DEFAULT
+	}
+	return p.Success
+}
+
+func (p *CancelPayResult) SetSuccess(x interface{}) {
+	p.Success = x.(*pay.CancelPayRsp)
+}
+
+func (p *CancelPayResult) IsSetSuccess() bool {
+	return p.Success != nil
+}
+
+func (p *CancelPayResult) GetResult() interface{} {
+	return p.Success
+}
+
+func refundPayHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	switch s := arg.(type) {
+	case *streaming.Args:
+		st := s.Stream
+		req := new(pay.RefundPayReq)
+		if err := st.RecvMsg(req); err != nil {
+			return err
+		}
+		resp, err := handler.(pay.PayService).RefundPay(ctx, req)
+		if err != nil {
+			return err
+		}
+		return st.SendMsg(resp)
+	case *RefundPayArgs:
+		success, err := handler.(pay.PayService).RefundPay(ctx, s.Req)
+		if err != nil {
+			return err
+		}
+		realResult := result.(*RefundPayResult)
+		realResult.Success = success
+		return nil
+	default:
+		return errInvalidMessageType
+	}
+}
+func newRefundPayArgs() interface{} {
+	return &RefundPayArgs{}
+}
+
+func newRefundPayResult() interface{} {
+	return &RefundPayResult{}
+}
+
+type RefundPayArgs struct {
+	Req *pay.RefundPayReq
+}
+
+func (p *RefundPayArgs) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
+	if !p.IsSetReq() {
+		p.Req = new(pay.RefundPayReq)
+	}
+	return p.Req.FastRead(buf, _type, number)
+}
+
+func (p *RefundPayArgs) FastWrite(buf []byte) (n int) {
+	if !p.IsSetReq() {
+		return 0
+	}
+	return p.Req.FastWrite(buf)
+}
+
+func (p *RefundPayArgs) Size() (n int) {
+	if !p.IsSetReq() {
+		return 0
+	}
+	return p.Req.Size()
+}
+
+func (p *RefundPayArgs) Marshal(out []byte) ([]byte, error) {
+	if !p.IsSetReq() {
+		return out, nil
+	}
+	return proto.Marshal(p.Req)
+}
+
+func (p *RefundPayArgs) Unmarshal(in []byte) error {
+	msg := new(pay.RefundPayReq)
+	if err := proto.Unmarshal(in, msg); err != nil {
+		return err
+	}
+	p.Req = msg
+	return nil
+}
+
+var RefundPayArgs_Req_DEFAULT *pay.RefundPayReq
+
+func (p *RefundPayArgs) GetReq() *pay.RefundPayReq {
+	if !p.IsSetReq() {
+		return RefundPayArgs_Req_DEFAULT
+	}
+	return p.Req
+}
+
+func (p *RefundPayArgs) IsSetReq() bool {
+	return p.Req != nil
+}
+
+func (p *RefundPayArgs) GetFirstArgument() interface{} {
+	return p.Req
+}
+
+type RefundPayResult struct {
+	Success *pay.RefundPayRsp
+}
+
+var RefundPayResult_Success_DEFAULT *pay.RefundPayRsp
+
+func (p *RefundPayResult) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
+	if !p.IsSetSuccess() {
+		p.Success = new(pay.RefundPayRsp)
+	}
+	return p.Success.FastRead(buf, _type, number)
+}
+
+func (p *RefundPayResult) FastWrite(buf []byte) (n int) {
+	if !p.IsSetSuccess() {
+		return 0
+	}
+	return p.Success.FastWrite(buf)
+}
+
+func (p *RefundPayResult) Size() (n int) {
+	if !p.IsSetSuccess() {
+		return 0
+	}
+	return p.Success.Size()
+}
+
+func (p *RefundPayResult) Marshal(out []byte) ([]byte, error) {
+	if !p.IsSetSuccess() {
+		return out, nil
+	}
+	return proto.Marshal(p.Success)
+}
+
+func (p *RefundPayResult) Unmarshal(in []byte) error {
+	msg := new(pay.RefundPayRsp)
+	if err := proto.Unmarshal(in, msg); err != nil {
+		return err
+	}
+	p.Success = msg
+	return nil
+}
+
+func (p *RefundPayResult) GetSuccess() *pay.RefundPayRsp {
+	if !p.IsSetSuccess() {
+		return RefundPayResult_Success_DEFAULT
+	}
+	return p.Success
+}
+
+func (p *RefundPayResult) SetSuccess(x interface{}) {
+	p.Success = x.(*pay.RefundPayRsp)
+}
+
+func (p *RefundPayResult) IsSetSuccess() bool {
+	return p.Success != nil
+}
+
+func (p *RefundPayResult) GetResult() interface{} {
+	return p.Success
+}
+
 type kClient struct {
 	c client.Client
 }
@@ -426,6 +746,26 @@ func (p *kClient) AlipayWebhook(ctx context.Context, Req *pay.AlipayWebhookReq) 
 	_args.Req = Req
 	var _result AlipayWebhookResult
 	if err = p.c.Call(ctx, "AlipayWebhook", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) CancelPay(ctx context.Context, Req *pay.CancelPayReq) (r *pay.CancelPayRsp, err error) {
+	var _args CancelPayArgs
+	_args.Req = Req
+	var _result CancelPayResult
+	if err = p.c.Call(ctx, "CancelPay", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) RefundPay(ctx context.Context, Req *pay.RefundPayReq) (r *pay.RefundPayRsp, err error) {
+	var _args RefundPayArgs
+	_args.Req = Req
+	var _result RefundPayResult
+	if err = p.c.Call(ctx, "RefundPay", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil

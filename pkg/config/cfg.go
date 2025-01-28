@@ -63,7 +63,7 @@ func LoadGateway(cfgFile string) *AppGatewayConfig {
 	agc := &AppGatewayConfig{
 		AppServiceConfig: asc,
 		GatewayConfig: &GatewayConfig{
-			GatewayHttpPort: GetIntEnvOrDefault("GATEWAY_HTTP_PORT", 8080),
+			GatewayHttpPort: GetStrEnvOrDefault("GATEWAY_HTTP_PORT", "8080"),
 		},
 	}
 	return agc

@@ -22,10 +22,22 @@ func NewPayServer(rep *repo.Repo) *PayServer {
 	}
 }
 
+// 支付
 func (s *PayServer) Pay(ctx context.Context, req *pgen.PayReq) (res *pgen.PayRsp, err error) {
 	return handler.NewPayHandler(s.rep).Pay(ctx, req)
 }
 
+// 支付宝回调
 func (s *PayServer) AlipayWebhook(ctx context.Context, req *pgen.AlipayWebhookReq) (res *pgen.AlipayWebhookRsp, err error) { 
 	return handler.NewPayHandler(s.rep).AlipayWebhook(ctx, req)
+}
+
+// 取消支付
+func (s *PayServer) CancelPay(ctx context.Context, req *pgen.CancelPayReq) (res *pgen.CancelPayRsp, err error) {
+	return handler.NewPayHandler(s.rep).CancelPay(ctx, req)
+}
+
+// 退款
+func (s *PayServer) RefundPay(ctx context.Context, req *pgen.RefundPayReq) (res *pgen.RefundPayRsp, err error){
+	return handler.NewPayHandler(s.rep).RefundPay(ctx, req)
 }

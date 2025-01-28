@@ -17,7 +17,7 @@ type AppServiceConfig struct {
 
 // 网关配置
 type GatewayConfig struct {
-	GatewayHttpPort int `json:"http_port"` // 网关对外暴露的http端口
+	GatewayHttpPort string `json:"http_port"` // 网关对外暴露的http端口
 }
 
 // 对象存储配置

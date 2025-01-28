@@ -42,8 +42,10 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	
-	h := server.Default()
+
+	h := server.Default(
+		server.WithHostPorts(global.AppConfig.GatewayHttpPort),
+	)
 
 	register(h)
 	h.Spin()

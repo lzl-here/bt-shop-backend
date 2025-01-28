@@ -10,8 +10,8 @@ import (
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
 	api_pay "github.com/lzl-here/bt-shop-backend/apps/gateway/biz/model/api_pay"
-	pgen "github.com/lzl-here/bt-shop-backend/kitex_gen/pay"
 	"github.com/lzl-here/bt-shop-backend/apps/gateway/global"
+	pgen "github.com/lzl-here/bt-shop-backend/kitex_gen/pay"
 	"github.com/smartwalle/alipay/v3"
 )
 
@@ -40,7 +40,7 @@ func Pay(ctx context.Context, c *app.RequestContext) {
 		TotalAmount: req.Subject,
 		TradeNo:     req.TradeNo,
 	})
-	
+
 	// TODO 异常处理
 	// TODO 通知支付宝已完成，不然支付宝会执行重试
 	alipay.ACKNotification(nil)
