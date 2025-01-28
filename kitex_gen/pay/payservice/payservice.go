@@ -22,6 +22,13 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingUnary),
 	),
+	"AlipayWebhook": kitex.NewMethodInfo(
+		alipayWebhookHandler,
+		newAlipayWebhookArgs,
+		newAlipayWebhookResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingUnary),
+	),
 }
 
 var (
@@ -241,6 +248,159 @@ func (p *PayResult) GetResult() interface{} {
 	return p.Success
 }
 
+func alipayWebhookHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	switch s := arg.(type) {
+	case *streaming.Args:
+		st := s.Stream
+		req := new(pay.AlipayWebhookReq)
+		if err := st.RecvMsg(req); err != nil {
+			return err
+		}
+		resp, err := handler.(pay.PayService).AlipayWebhook(ctx, req)
+		if err != nil {
+			return err
+		}
+		return st.SendMsg(resp)
+	case *AlipayWebhookArgs:
+		success, err := handler.(pay.PayService).AlipayWebhook(ctx, s.Req)
+		if err != nil {
+			return err
+		}
+		realResult := result.(*AlipayWebhookResult)
+		realResult.Success = success
+		return nil
+	default:
+		return errInvalidMessageType
+	}
+}
+func newAlipayWebhookArgs() interface{} {
+	return &AlipayWebhookArgs{}
+}
+
+func newAlipayWebhookResult() interface{} {
+	return &AlipayWebhookResult{}
+}
+
+type AlipayWebhookArgs struct {
+	Req *pay.AlipayWebhookReq
+}
+
+func (p *AlipayWebhookArgs) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
+	if !p.IsSetReq() {
+		p.Req = new(pay.AlipayWebhookReq)
+	}
+	return p.Req.FastRead(buf, _type, number)
+}
+
+func (p *AlipayWebhookArgs) FastWrite(buf []byte) (n int) {
+	if !p.IsSetReq() {
+		return 0
+	}
+	return p.Req.FastWrite(buf)
+}
+
+func (p *AlipayWebhookArgs) Size() (n int) {
+	if !p.IsSetReq() {
+		return 0
+	}
+	return p.Req.Size()
+}
+
+func (p *AlipayWebhookArgs) Marshal(out []byte) ([]byte, error) {
+	if !p.IsSetReq() {
+		return out, nil
+	}
+	return proto.Marshal(p.Req)
+}
+
+func (p *AlipayWebhookArgs) Unmarshal(in []byte) error {
+	msg := new(pay.AlipayWebhookReq)
+	if err := proto.Unmarshal(in, msg); err != nil {
+		return err
+	}
+	p.Req = msg
+	return nil
+}
+
+var AlipayWebhookArgs_Req_DEFAULT *pay.AlipayWebhookReq
+
+func (p *AlipayWebhookArgs) GetReq() *pay.AlipayWebhookReq {
+	if !p.IsSetReq() {
+		return AlipayWebhookArgs_Req_DEFAULT
+	}
+	return p.Req
+}
+
+func (p *AlipayWebhookArgs) IsSetReq() bool {
+	return p.Req != nil
+}
+
+func (p *AlipayWebhookArgs) GetFirstArgument() interface{} {
+	return p.Req
+}
+
+type AlipayWebhookResult struct {
+	Success *pay.AlipayWebhookRsp
+}
+
+var AlipayWebhookResult_Success_DEFAULT *pay.AlipayWebhookRsp
+
+func (p *AlipayWebhookResult) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
+	if !p.IsSetSuccess() {
+		p.Success = new(pay.AlipayWebhookRsp)
+	}
+	return p.Success.FastRead(buf, _type, number)
+}
+
+func (p *AlipayWebhookResult) FastWrite(buf []byte) (n int) {
+	if !p.IsSetSuccess() {
+		return 0
+	}
+	return p.Success.FastWrite(buf)
+}
+
+func (p *AlipayWebhookResult) Size() (n int) {
+	if !p.IsSetSuccess() {
+		return 0
+	}
+	return p.Success.Size()
+}
+
+func (p *AlipayWebhookResult) Marshal(out []byte) ([]byte, error) {
+	if !p.IsSetSuccess() {
+		return out, nil
+	}
+	return proto.Marshal(p.Success)
+}
+
+func (p *AlipayWebhookResult) Unmarshal(in []byte) error {
+	msg := new(pay.AlipayWebhookRsp)
+	if err := proto.Unmarshal(in, msg); err != nil {
+		return err
+	}
+	p.Success = msg
+	return nil
+}
+
+func (p *AlipayWebhookResult) GetSuccess() *pay.AlipayWebhookRsp {
+	if !p.IsSetSuccess() {
+		return AlipayWebhookResult_Success_DEFAULT
+	}
+	return p.Success
+}
+
+func (p *AlipayWebhookResult) SetSuccess(x interface{}) {
+	p.Success = x.(*pay.AlipayWebhookRsp)
+}
+
+func (p *AlipayWebhookResult) IsSetSuccess() bool {
+	return p.Success != nil
+}
+
+func (p *AlipayWebhookResult) GetResult() interface{} {
+	return p.Success
+}
+
 type kClient struct {
 	c client.Client
 }
@@ -256,6 +416,16 @@ func (p *kClient) Pay(ctx context.Context, Req *pay.PayReq) (r *pay.PayRsp, err 
 	_args.Req = Req
 	var _result PayResult
 	if err = p.c.Call(ctx, "Pay", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) AlipayWebhook(ctx context.Context, Req *pay.AlipayWebhookReq) (r *pay.AlipayWebhookRsp, err error) {
+	var _args AlipayWebhookArgs
+	_args.Req = Req
+	var _result AlipayWebhookResult
+	if err = p.c.Call(ctx, "AlipayWebhook", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil

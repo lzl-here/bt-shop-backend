@@ -20,6 +20,8 @@ func NewPayHandler(rep repo.RepoInterface) *PayHandler {
 	}
 }
 
+// 统一支付接口: 
+// 调用第三方支付，创建本地支付流水
 func (h *PayHandler) Pay(ctx context.Context, req *pgen.PayReq) (res *pgen.PayRsp, err error) {
 	param := alipay.TradePagePay{}
 	param.OutTradeNo = req.TradeNo
@@ -44,4 +46,11 @@ func (h *PayHandler) Pay(ctx context.Context, req *pgen.PayReq) (res *pgen.PayRs
 			TradeNo: req.TradeNo,
 		},
 	}, nil
+}
+
+
+// 支付宝回调
+// 本地支付流水状态流转 和 订单状态流转
+func (h *PayHandler) AlipayWebhook(ctx context.Context, req *pgen.AlipayWebhookReq) (res *pgen.AlipayWebhookRsp, err error) {
+	panic("implement me")
 }

@@ -20,3 +20,13 @@ func _prepayMw() []app.HandlerFunc {
 	// your code...
 	return nil
 }
+
+func _webhookMw() []app.HandlerFunc {
+	// your code...
+	return nil
+}
+
+func _alipaywebhookMw() []app.HandlerFunc {
+	// your code...
+	return nil
+}

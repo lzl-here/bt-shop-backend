@@ -25,3 +25,7 @@ func NewPayServer(rep *repo.Repo) *PayServer {
 func (s *PayServer) Pay(ctx context.Context, req *pgen.PayReq) (res *pgen.PayRsp, err error) {
 	return handler.NewPayHandler(s.rep).Pay(ctx, req)
 }
+
+func (s *PayServer) AlipayWebhook(ctx context.Context, req *pgen.AlipayWebhookReq) (res *pgen.AlipayWebhookRsp, err error) { 
+	return handler.NewPayHandler(s.rep).AlipayWebhook(ctx, req)
+}

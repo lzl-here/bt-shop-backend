@@ -19,6 +19,10 @@ func Register(r *server.Hertz) {
 	root := r.Group("/", rootMw()...)
 	{
 		_pay := root.Group("/pay", _payMw()...)
-		_pay.POST("/pay", append(_prepayMw(), pay.Prepay)...)
+		_pay.POST("/pay", append(_prepayMw(), pay.Pay)...)
+		{
+			_webhook := _pay.Group("/webhook", _webhookMw()...)
+			_webhook.POST("/alipay", append(_alipaywebhookMw(), pay.AlipayWebhook)...)
+		}
 	}
 }

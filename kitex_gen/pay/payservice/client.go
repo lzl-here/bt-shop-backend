@@ -12,6 +12,7 @@ import (
 // Client is designed to provide IDL-compatible methods with call-option parameter for kitex framework.
 type Client interface {
 	Pay(ctx context.Context, Req *pay.PayReq, callOptions ...callopt.Option) (r *pay.PayRsp, err error)
+	AlipayWebhook(ctx context.Context, Req *pay.AlipayWebhookReq, callOptions ...callopt.Option) (r *pay.AlipayWebhookRsp, err error)
 }
 
 // NewClient creates a client for the service defined in IDL.
@@ -46,4 +47,9 @@ type kPayServiceClient struct {
 func (p *kPayServiceClient) Pay(ctx context.Context, Req *pay.PayReq, callOptions ...callopt.Option) (r *pay.PayRsp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
 	return p.kClient.Pay(ctx, Req)
+}
+
+func (p *kPayServiceClient) AlipayWebhook(ctx context.Context, Req *pay.AlipayWebhookReq, callOptions ...callopt.Option) (r *pay.AlipayWebhookRsp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.AlipayWebhook(ctx, Req)
 }

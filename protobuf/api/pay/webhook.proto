@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+// protobuf的package，根据业务来定，一个文件夹下的package得是一样的
+package pay;
+
+// 和package保持一致
+option go_package = "pay";
+
+
+message AlipayWebhookReq{
+    
+}
+
+message AlipayWebhookRsp{
+    int32 code = 1; 
+    string msg = 2; 
+    string log_id = 3; 
+    AlipayWebhookRspData data = 4; 
+    message AlipayWebhookRspData{
+    }
+}
+
+
+

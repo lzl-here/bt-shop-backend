@@ -8,11 +8,15 @@ option go_package = "pay";
 
 // 导入需要使用的文件，package/文件名
 import "pay/pay.proto";
+import "pay/webhook.proto";
 
 
 // rpc服务
 service PayService {
-    rpc Pay(PayReq) returns (PayRsp) {
-    }
+    // 支付 
+    rpc Pay(PayReq) returns (PayRsp) {}
+
+    // 支付宝异步回调
+    rpc AlipayWebhook(AlipayWebhookReq) returns (AlipayWebhookRsp) {}
 }
 

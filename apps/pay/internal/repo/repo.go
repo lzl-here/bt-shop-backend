@@ -34,9 +34,9 @@ func NewRepo(db *gorm.DB, cache *redis.Client, alipay *alipay.Client) *Repo {
 
 // 支付宝支付
 func (r *Repo) AlipayPay(param alipay.TradePagePay) (*url.URL, error) {
-	param.NotifyURL = config.AppConfig.AlipayServerDomain + "/pay/notify"
-	param.ReturnURL = config.AppConfig.AlipayServerDomain + "/pay/return"
-	param.ProductCode = "FAST_INSTANT_TRADE_PAY"
+	param.NotifyURL = config.AppConfig.AlipayServerUrl // 异步回调连接
+	param.ReturnURL = config.AppConfig.AlipayServerUrl // 支付成功跳转链接
+	param.ProductCode = "FAST_INSTANT_TRADE_PAY"       // 这个写死不要动
 	payPageUrl, err := r.Alipay.TradePagePay(param)
 	return payPageUrl, err
 }
