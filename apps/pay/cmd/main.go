@@ -41,34 +41,8 @@ func main() {
 	klog.SetOutput(logFile)
 	klog.SetLevel(klog.LevelInfo)
 
-	// 连接中间件
-	db, err := config.AppConfig.ConnectDB(&gorm.Config{})
-	if err != nil {
-		panic(err)
-	}
 
-	cache, err := config.AppConfig.ConnectCache(ctx)
-	if err != nil {
-		panic(err)
-	}
-	var alipayClient *alipay.Client
-	if alipayClient, err = alipay.New(config.AppConfig.AlipayAppID, config.AppConfig.AlipayPrivateKey, false); err != nil {
-		klog.Error("初始化支付宝失败", "err", err)
-		return
-	}
-	// 公私钥模式
-	if err = alipayClient.LoadAliPayPublicKey("MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgTGFnztpui2IY4+maALrPuKwjXUYQ4z8vTBO47e27frpJQBEFBUNRgyTbVgt4N0yV42uE8blE6IXdAL5I9Y/hNlfX9L36GXWRHwS8qYODfCgsAxNQ9cSdUR9cSAJTKzpYB1ML76mH4c95RqZHEqnXpfHMi186zph6XLtuKFHyrUKWoCqvsQ+TJALOK/JT0ahotZNWC5tt2f/SQtM/QgeDLdHOVQNIh4GCXzPxf/x2tlel5NlCSvTxLCR/O36BZt3N9Q00JPhJr/OYCwgBgQMuyL/eUwBL+dO8XrKwjvxKf8BxmisSzC+bzIskqgfnjqfzfyYY5IbYA6CTJdYUnpSVwIDAQAB"); err != nil {
-		klog.Error("加载支付宝公钥发生错误", "err", err)
-		return
-	}
-	//接口内容加密
-	if err = alipayClient.SetEncryptKey(config.AppConfig.AlipayEncryptKey); err != nil {
-		klog.Error("加载内容加密密钥发生错误", "err", err)
-		return
-	}
-
-	rep := repo.NewRepo(db, cache, alipayClient)
-	// 启动rpc服务
+	// 注册中心
 	r, err := etcd.NewEtcdRegistry([]string{config.AppConfig.RegisterAddress},
 		etcd.WithAuthOpt(config.AppConfig.RegisterUser, config.AppConfig.RegisterPass),
 	)
@@ -81,11 +55,15 @@ func main() {
 		panic(err)
 	}
 
+	// 初始化数据访问层
+	rep := newRepo(ctx)
+
+	// 初始化server
 	srv := pgens.NewServer(api.NewPayServer(rep),
 		server.WithMetaHandler(transmeta.ServerHTTP2Handler),
 		server.WithServerBasicInfo(&rpcinfo.EndpointBasicInfo{ServiceName: config.AppConfig.ServiceName}), // server name
-		server.WithServiceAddr(addr),                                                               // address
-		server.WithRegistry(r),                                                                     // registry
+		server.WithServiceAddr(addr), // address
+		server.WithRegistry(r),       // registry
 		server.WithMiddleware(endpoint.Chain(middleware.LogMiddleWare, middleware.ErrorMiddleWare)),
 	)
 
@@ -94,4 +72,37 @@ func main() {
 		klog.Error("服务启动失败", "err", err)
 	}
 
+}
+
+func newRepo(ctx context.Context) *repo.Repo {
+
+	// 连接db
+	db, err := config.AppConfig.ConnectDB(&gorm.Config{
+		SkipDefaultTransaction: true,
+		PrepareStmt:            true,
+	})
+	if err != nil {
+		panic(err)
+	}
+
+	// 连接缓存
+	cache, err := config.AppConfig.ConnectCache(ctx)
+	if err != nil {
+		panic(err)
+	}
+	// 初始化支付宝client
+	var alipayClient *alipay.Client
+	if alipayClient, err = alipay.New(config.AppConfig.AlipayAppID, config.AppConfig.AlipayPrivateKey, false); err != nil {
+		panic(err)
+	}
+	// 公私钥模式
+	if err = alipayClient.LoadAliPayPublicKey(config.AppConfig.AlipayPublicKey); err != nil {
+		panic(err)
+	}
+	//接口内容加密
+	if err = alipayClient.SetEncryptKey(config.AppConfig.AlipayEncryptKey); err != nil {
+		panic(err)
+	}
+
+	return repo.NewRepo(db, cache, alipayClient)
 }

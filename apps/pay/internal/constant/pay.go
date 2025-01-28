@@ -1,6 +1,5 @@
 package constant
 
-// 支付流水状态
 const (
 	PayStatePaying       = 1 // 支付中
 	PayStatePayed        = 2 // 已支付
