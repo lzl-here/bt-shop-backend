@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package order;
+
+option go_package = "order";
+
+import "order/common.proto";
+
+
+// 下单相关
+message CreateTradeReq{
+    string trade_no = 1;
+}
+
+message CreateTradeRsp{
+    int32 code = 1; 
+    string msg = 2; 
+    string log_id = 3; 
+    CreateTradeRspData data = 4; 
+    message CreateTradeRspData {
+        string trade_no = 1; // 电商交易号
+        repeated OrderInfo order_info_list = 2; // 订单列表
+    }
+}
+
+

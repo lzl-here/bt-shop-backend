@@ -1,0 +1,28 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/pay/pay": {
+            "post": {
+                "responses": {}
+            }
+        },
+        "/pay/webhook/alipay": {
+            "post": {
+                "responses": {}
+            }
+        },
+        "/user/login": {
+            "post": {
+                "responses": {}
+            }
+        },
+        "/user/register": {
+            "post": {
+                "responses": {}
+            }
+        }
+    }
+}

@@ -11,6 +11,8 @@ gen:
 	@ kitex -module $(MODULE_NAME) -type=protobuf -I $(PROTO_PATH) $(PROTO_PATH)/define/base_response.proto
 	@ kitex -module $(MODULE_NAME) -type=protobuf -I $(PROTO_PATH) $(PROTO_PATH)/user/user.proto
 	@ kitex -module $(MODULE_NAME) -type=protobuf -I $(PROTO_PATH) $(PROTO_PATH)/pay/pay_server.proto
+	@ kitex -module $(MODULE_NAME) -type=protobuf -I $(PROTO_PATH) $(PROTO_PATH)/order/order_server.proto
+
 
 
 	@ cd apps/gateway  && hz update -I ../../$(API_PATH) -idl ../../$(API_PATH)/user/user.proto

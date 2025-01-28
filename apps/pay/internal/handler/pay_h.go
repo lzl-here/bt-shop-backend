@@ -22,6 +22,7 @@ func NewPayHandler(rep repo.RepoInterface) *PayHandler {
 
 // 统一支付接口:
 // 调用第三方支付，创建本地支付流水
+// TODO 根据tradeNo做幂等
 func (h *PayHandler) Pay(ctx context.Context, req *pgen.PayReq) (res *pgen.PayRsp, err error) {
 	param := alipay.TradePagePay{}
 	param.OutTradeNo = req.TradeNo

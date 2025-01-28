@@ -1,0 +1,16 @@
+info:
+  contact: {}
+paths:
+  /pay/pay:
+    post:
+      responses: {}
+  /pay/webhook/alipay:
+    post:
+      responses: {}
+  /user/login:
+    post:
+      responses: {}
+  /user/register:
+    post:
+      responses: {}
+swagger: "2.0"

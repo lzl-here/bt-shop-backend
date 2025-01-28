@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package order;
+
+option go_package = "order";
+
+
+message OrderInfo {
+    string trade_no = 1;
+    string order_no = 2;
+}
+

@@ -9,10 +9,11 @@ import (
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
+	_ "github.com/hertz-contrib/swagger"
 	api_pay "github.com/lzl-here/bt-shop-backend/apps/gateway/biz/model/api_pay"
 	"github.com/lzl-here/bt-shop-backend/apps/gateway/global"
 	pgen "github.com/lzl-here/bt-shop-backend/kitex_gen/pay"
-	"github.com/smartwalle/alipay/v3"
+	_ "github.com/swaggo/files"
 )
 
 // Pay .
@@ -25,26 +26,17 @@ func Pay(ctx context.Context, c *app.RequestContext) {
 		c.String(consts.StatusBadRequest, err.Error())
 		return
 	}
-	values := url.Values{}
-	// 校验签名
-	for _, p := range c.Params {
-		values.Add(p.Key, p.Value)
-	}
-	_, err = global.AlipayClient.DecodeNotification(values)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
+
 	srvResp, err := global.PayClient.Pay(ctx, &pgen.PayReq{
 		Subject:     req.Subject,
 		TotalAmount: req.Subject,
 		TradeNo:     req.TradeNo,
 	})
 
-	// TODO 异常处理
-	// TODO 通知支付宝已完成，不然支付宝会执行重试
-	alipay.ACKNotification(nil)
-
+	if err != nil {
+		c.JSON(consts.StatusInternalServerError, &pgen.PayRsp{Code: 500, Msg: err.Error()})
+		return
+	}
 	resp := &pgen.PayRsp{
 		Code:  int32(srvResp.Code),
 		Msg:   srvResp.Msg,
@@ -67,7 +59,18 @@ func AlipayWebhook(ctx context.Context, c *app.RequestContext) {
 		c.String(consts.StatusBadRequest, err.Error())
 		return
 	}
-
+	values := url.Values{}
+	// 校验签名
+	for _, p := range c.Params {
+		values.Add(p.Key, p.Value)
+	}
+	_, err = global.AlipayClient.DecodeNotification(values)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	// TODO 通知支付宝已完成，不然支付宝会执行重试
+	// alipay.ACKNotification(nil)
 	resp := new(api_pay.ApiAlipayWebhookRsp)
 
 	c.JSON(consts.StatusOK, resp)

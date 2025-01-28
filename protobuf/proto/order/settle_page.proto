@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package order;
+
+option go_package = "order";
+
+import "order/common.proto";
+
+message GenSettlePageReq{
+    
+}
+
+message GenSettlePageRsp{
+    int32 code = 1; 
+    string msg = 2; 
+    string log_id = 3; 
+    GenSettlePageRspData data = 4; 
+    message GenSettlePageRspData {
+        string trade_no = 1;
+        repeated OrderInfo order_info_list = 2;
+    }
+}
+
+
