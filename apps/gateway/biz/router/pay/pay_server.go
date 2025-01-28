@@ -19,6 +19,6 @@ func Register(r *server.Hertz) {
 	root := r.Group("/", rootMw()...)
 	{
 		_pay := root.Group("/pay", _payMw()...)
-		_pay.POST("/prepay", append(_prepayMw(), pay.Prepay)...)
+		_pay.POST("/pay", append(_prepayMw(), pay.Prepay)...)
 	}
 }

@@ -3,26 +3,25 @@ package api
 import (
 	"context"
 
-	pgen "github.com/lzl-here/bt-shop-backend/kitex_gen/example"
 	"github.com/lzl-here/bt-shop-backend/apps/pay/internal/handler"
 	"github.com/lzl-here/bt-shop-backend/apps/pay/internal/repo"
+	pgen "github.com/lzl-here/bt-shop-backend/kitex_gen/pay"
 )
 
 // rpc入口
 
-var _ (pgen.ExampleService) = (*ExampleServer)(nil)
+var _ (pgen.PayService) = (*PayServer)(nil)
 
-type ExampleServer struct {
-	pgen.ExampleService
-	pingHandler   *handler.PingHandler
+type PayServer struct {
+	rep *repo.Repo
 }
 
-func NewExampleServer(rep *repo.Repo) *ExampleServer {
-	return &ExampleServer{
-		pingHandler:   handler.NewPingHandler(),
+func NewPayServer(rep *repo.Repo) *PayServer {
+	return &PayServer{
+		rep: rep,
 	}
 }
 
-func (s *ExampleServer) PingPong(ctx context.Context, req *pgen.PingReq) (resp *pgen.PingRsp, err error) {
-	return s.pingHandler.PingPong(ctx, req)
+func (s *PayServer) Pay(ctx context.Context, req *pgen.PayReq) (res *pgen.PayRsp, err error) {
+	return handler.NewPayHandler(s.rep).Pay(ctx, req)
 }

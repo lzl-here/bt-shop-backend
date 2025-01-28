@@ -5,3 +5,4 @@ apps/pay/bin/example
 apps/pay/bin/pay
 apps/pay/cmd/logs/app.log
 pkg/.DS_Store
+.DS_Store

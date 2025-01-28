@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+// protobuf的package，根据业务来定，一个文件夹下的package得是一样的
+package pay;
+
+// 和package保持一致
+option go_package = "pay";
+
+
+
+message PayReq{
+    string subject = 1;     // 订单标题
+    string totalAmount = 2; // 订单金额
+}
+
+message PayRsp{
+    int32 code = 1; 
+    string msg = 2; 
+    string log_id = 3; 
+    PayRspData data = 4; 
+    message PayRspData{
+        string out_orderNo = 1; // 电商平台订单号
+        string pay_url = 2;     // 支付链接
+        string trade_no = 3;    // 电商平台交易号
+    }
+}

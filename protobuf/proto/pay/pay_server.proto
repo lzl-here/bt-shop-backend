@@ -7,12 +7,12 @@ package pay;
 option go_package = "pay";
 
 // 导入需要使用的文件，package/文件名
-import "pay/prepay.proto";
+import "pay/pay.proto";
 
 
 // rpc服务
-service ExampleService {
-    rpc Prepay(PrepayReq) returns (PrepayRsp) {
+service PayService {
+    rpc Pay(PayReq) returns (PayRsp) {
     }
 }
 
