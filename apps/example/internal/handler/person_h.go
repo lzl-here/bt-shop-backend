@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/lzl-here/bt-shop-backend/apps/example/internal/repo"
-	bizerr "github.com/lzl-here/bt-shop-backend/apps/example/pkg"
+	bizerr "github.com/lzl-here/bt-shop-backend/pkg/err"
 	pgen "github.com/lzl-here/bt-shop-backend/kitex_gen/example"
 )
 
@@ -26,11 +26,6 @@ func (h *PersonHandler) GetPerson(ctx context.Context, req *pgen.GetPersonReq) (
 	if person == nil {
 		return nil, bizerr.ErrResourceNotFound
 	}
-	// bizErr := kerrors.NewGRPCBizStatusErrorWithExtra(404, "not foudadadawednd", map[string]string{"key" : "value"})
-	// grpcStatusErr := bizErr.(kerrors.GRPCStatusIface)
-	// st, _ := grpcStatusErr.GRPCStatus().WithDetails()
-	// grpcStatusErr.SetGRPCStatus(st)
-	// return nil, bizErr
 
 	return &pgen.GetPersonRsp{
 		Code: 0,

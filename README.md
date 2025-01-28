@@ -2,32 +2,40 @@
 ## 项目目录
 ``` shell
 .
-├── Makefile.      # 全局构建脚本，通过proto生成代码
-├── apps           # 项目文件夹， 服务 + 网关
-│   ├── example. 
-│   ├── gateway
-│   ├── goods
-│   ├── order
-│   ├── pay
-│   └── user
-├── deploy         # 部署相关，后续sql放这，并且加入一键部署所有服务 
-├── go.mod
+├── Makefile
+├── README.md
+├── apps                    # 存放服务代码
+│   ├── example                 # 示例服务
+│   ├── gateway                 # 网关，负责和前端交互
+│   ├── goods                   # 商品服务
+│   ├── order                   # 订单服务
+│   ├── pay                     # 支付服务
+│   └── user                    # 用户服务
+├── deploy                      # 启动项目部署相关
+├── go.mod  
 ├── go.sum
-├── kitex_gen      # 通过proto生成的代码 
-├── pkg            # 公共包
-├── protobuf       # proto文件
-└── todo.txt       
+├── imgs                    # 存放图片
+├── kitex_gen               # proto生成的golang代码
+├── pkg                     # 公共代码
+│   ├── config                  # 服务配置相关
+│   ├── middleware              # 中间件
+│   ├── model                   # model
+│   └── utils                   # 工具，比如幂等防重
+├── protobuf                # protobuf相关
+│   ├── api                     # proto文件，用于生成网关的api代码，需要暴露在网关外和前端交互的接口需要在这冗余写一份
+│   └── proto                   # proto文件，用于生成服务内部调用的grpc代码
+└── todo.txt                # todo list
 ```
 
 
 
 ## 迭代方式
 
-1. 假如需要新增服务，在项目根目录下的protobuf中的proto下编写proto文件
+1. 在项目根目录下的protobuf中的proto下编写proto文件
 
-2. 每个服务对应一个文件夹，详情查看example，一个文件对应server: XXX_server.proto，其他的一个文件对应一个接口
+2. 每个服务对应一个文件夹，详情查看example，一个文件对应server: XXX_server.proto，其他的一个文件对应一组相关的接口
 
-3. 编写完成后使用Makefile进行生成golang代码： make gen
+3. 编写完成后使用Makefile进行生成golang代码，在项目根目录或者protobuf目录下执行make gen，两者等价
 
 
 ## 项目启动
@@ -42,26 +50,10 @@
 5. etcd
 6. makefile
 
-后续引入es + 健康监控
 
-
-
-## pkg
-定义一些不同服务之间通用的代码，比如配置，中间件
-
-``` shell
-├── config             # 服务配置相关，定义了服务之间通的配置，比如mysql，redis，grpc端口号
-│   ├── cfg.go          
-│   ├── config.go
-│   ├── load.go
-│   └── repo.go
-├── middleware         # 定义了基础中间件，错误处理和日志打印，其他服务自定义的中间件放在服务自己的文件夹下
-│   ├── error_md.go
-│   └── log_md.go
-└── model              
-    └── base_model.go
-```
 
 因为不同服务之间会有自定义的配置，所以服务需要组合AppServiceConfig使用，详情查看example服务:
 ![alt text](./imgs/image.png)
 
+## 其他
+一定一定先看一遍example服务！！

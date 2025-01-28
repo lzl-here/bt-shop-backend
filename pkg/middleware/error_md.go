@@ -6,7 +6,7 @@ import (
 	"github.com/cloudwego/kitex/pkg/endpoint"
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
-	bizerr "github.com/lzl-here/bt-shop-backend/apps/example/pkg"
+	bizerr "github.com/lzl-here/bt-shop-backend/pkg/err"
 )
 
 // ErrorMiddleWare 错误处理中间件
