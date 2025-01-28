@@ -48,18 +48,20 @@ func (h *PayHandler) Pay(ctx context.Context, req *pgen.PayReq) (res *pgen.PayRs
 	}, nil
 }
 
+// TODO implement
+
 // 支付宝回调
 // 本地支付流水状态流转 和 订单状态流转
 func (h *PayHandler) AlipayWebhook(ctx context.Context, req *pgen.AlipayWebhookReq) (res *pgen.AlipayWebhookRsp, err error) {
 	panic("implement me")
 }
 
-// 取消支付
+// 取消支付，本地支付流水状态流转 和 订单状态流转
 func (h *PayHandler) CancelPay(ctx context.Context, req *pgen.CancelPayReq) (res *pgen.CancelPayRsp, err error) {
 	panic("implement me")
 }
 
-// 退款
+// 退款，本地支付流水状态流转 和 订单状态流转
 func (h *PayHandler) RefundPay(ctx context.Context, req *pgen.RefundPayReq) (res *pgen.RefundPayRsp, err error) {
 	panic("implement me")
 }
