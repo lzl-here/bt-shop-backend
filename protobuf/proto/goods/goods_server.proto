@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+// protobuf的package，根据业务来定，一个文件夹下的package得是一样的
+package goods;
+
+// 和package保持一致
+option go_package = "goods";
+
+// 导入需要使用的文件，package/文件名
+
+service GoodsService {
+}
+
