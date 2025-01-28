@@ -7,11 +7,12 @@ import (
 )
 
 type Person struct {
-	Name            string `gorm:"column:name"`
-	Age             int32  `gorm:"column:age"`
-	Email           string `gorm:"column:email"`
-	Password        string `gorm:"column:password"`
-	model.BaseModel        
+	ID       uint64 `gorm:"column:id"`
+	Name     string `gorm:"column:name"`
+	Age      int32  `gorm:"column:age"`
+	Email    string `gorm:"column:email"`
+	Password string `gorm:"column:password"`
+	model.BaseModel
 }
 
 func (p *Person) TableName() string {

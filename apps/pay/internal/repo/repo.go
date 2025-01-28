@@ -11,7 +11,7 @@ import (
 
 // 在mock数据时，在newServer的时候替换成mockImpl
 type RepoInterface interface {
-	AlipayPay()
+	AlipayPay(alipay.TradePagePay) (*url.URL, error)
 }
 
 // 数据访问层实现了RepoInterface

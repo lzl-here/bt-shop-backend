@@ -9,10 +9,10 @@ import (
 )
 
 type PayHandler struct {
-	rep *repo.Repo
+	rep repo.RepoInterface
 }
 
-func NewPayHandler(rep *repo.Repo) *PayHandler {
+func NewPayHandler(rep repo.RepoInterface) *PayHandler {
 	return &PayHandler{
 		rep: rep,
 	}
