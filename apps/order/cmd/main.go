@@ -27,7 +27,7 @@ func main() {
 	flag.StringVar(&cfgFile, "cfgFile", "", "配置文件路径")
 	flag.Parse()
 	// 读取配置文件
-	config.AppConfig = config.LoadPayService(cfgFile)
+	config.AppConfig = config.LoadOrderConfig(cfgFile)
 	// 初始化日志
 	logFile, err := os.OpenFile(config.AppConfig.LogPath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {

@@ -1,5 +1,5 @@
 package config
 
 var (
-	AppConfig *PayConfig
+	AppConfig *OrderConfig
 )
