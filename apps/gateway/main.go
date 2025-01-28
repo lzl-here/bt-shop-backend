@@ -3,12 +3,49 @@
 package main
 
 import (
+	"flag"
+
 	"github.com/cloudwego/hertz/pkg/app/server"
+	"github.com/cloudwego/kitex/client"
+	"github.com/cloudwego/kitex/transport"
+	etcd "github.com/kitex-contrib/registry-etcd"
+
+	"github.com/lzl-here/bt-shop-backend/apps/gateway/global"
+	pc "github.com/lzl-here/bt-shop-backend/kitex_gen/pay/payservice"
+	"github.com/lzl-here/bt-shop-backend/pkg/config"
 )
 
 func main() {
-	h := server.Default()
+
+	// config
+	var cfgFile string
+	flag.StringVar(&cfgFile, "cfgFile", "", "配置文件路径")
+	flag.Parse()
+	// 读取配置文件
+	global.AppConfig = config.LoadGateway(cfgFile)
+
+	// 连接到注册中心
+	r, err := etcd.NewEtcdResolver(
+		[]string{global.AppConfig.RegisterAddress},
+		etcd.WithAuthOpt(
+			global.AppConfig.RegisterUser,
+			global.AppConfig.RegisterPass),
+	)
+	if err != nil {
+		panic(err)
+	}
+
+	// pay client
+	global.PayClient, err = pc.NewClient(global.AppConfig.ServiceName, client.WithResolver(r),
+		client.WithTransportProtocol(transport.GRPC),
+	)
+	if err != nil {
+		panic(err)
+	}
 	
+	h := server.Default()
+
 	register(h)
 	h.Spin()
+
 }

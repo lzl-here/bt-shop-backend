@@ -13,9 +13,8 @@ gen:
 	@ kitex -module $(MODULE_NAME) -type=protobuf -I $(PROTO_PATH) $(PROTO_PATH)/pay/pay_server.proto
 
 
-	@ cd apps/gateway  && hz update -I ../../$(API_PATH) -idl ../../$(API_PATH)/example/example_server.proto
 	@ cd apps/gateway  && hz update -I ../../$(API_PATH) -idl ../../$(API_PATH)/user/user.proto
-	@ cd apps/gateway  && hz update -I ../../$(API_PATH) -idl ../../$(API_PATH)/pay/pay_server.proto
+	@ cd apps/gateway  && hz update -I ../../$(API_PATH) -idl ../../$(API_PATH)/pay/api_pay_server.proto
 
 
 	@ go mod tidy
