@@ -7,10 +7,14 @@ import (
 )
 
 type PayFlow struct {
-	ID uint64 `gorm:"column:id"`
-	OutTradeNo string `gorm:"column:out_trade_no"`
-	PayState int `gorm:"column:pay_state"`
-	TotalAmount string `gorm:"column:total_amount"`
+	ID            uint64 `gorm:"column:id"`
+	PayState      int    `gorm:"column:pay_state"`
+	TradeNo       string `gorm:"column:trade_no"`
+	ThirdTradeNo  string `gorm:"column:third_trade_no"`
+	ThirdBuyerID  string `gorm:"column:third_buyer_id"`
+	ThirdSellerID string `gorm:"column:third_seller_id"`
+	TotalAmount   string `gorm:"column:total_amount"`
+
 	// TODO 店铺信息
 	// TODO 卖家信息
 	// TODO 买家信息

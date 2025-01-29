@@ -13,7 +13,7 @@ import (
 type Client interface {
 	Pay(ctx context.Context, Req *pay.PayReq, callOptions ...callopt.Option) (r *pay.PayRsp, err error)
 	AlipayWebhook(ctx context.Context, Req *pay.AlipayWebhookReq, callOptions ...callopt.Option) (r *pay.AlipayWebhookRsp, err error)
-	CancelPay(ctx context.Context, Req *pay.CancelPayReq, callOptions ...callopt.Option) (r *pay.CancelPayRsp, err error)
+	ClosePay(ctx context.Context, Req *pay.ClosePayReq, callOptions ...callopt.Option) (r *pay.ClosePayRsp, err error)
 	RefundPay(ctx context.Context, Req *pay.RefundPayReq, callOptions ...callopt.Option) (r *pay.RefundPayRsp, err error)
 }
 
@@ -56,9 +56,9 @@ func (p *kPayServiceClient) AlipayWebhook(ctx context.Context, Req *pay.AlipayWe
 	return p.kClient.AlipayWebhook(ctx, Req)
 }
 
-func (p *kPayServiceClient) CancelPay(ctx context.Context, Req *pay.CancelPayReq, callOptions ...callopt.Option) (r *pay.CancelPayRsp, err error) {
+func (p *kPayServiceClient) ClosePay(ctx context.Context, Req *pay.ClosePayReq, callOptions ...callopt.Option) (r *pay.ClosePayRsp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
-	return p.kClient.CancelPay(ctx, Req)
+	return p.kClient.ClosePay(ctx, Req)
 }
 
 func (p *kPayServiceClient) RefundPay(ctx context.Context, Req *pay.RefundPayReq, callOptions ...callopt.Option) (r *pay.RefundPayRsp, err error) {

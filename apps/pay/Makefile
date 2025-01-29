@@ -2,7 +2,7 @@
 SERVICE_NAME=pay
 
 build: 
-	@ go build -o ./bin/$(SERVICE_NAME) ./cmd/main.go	
+	@ go build -o ./bin/$(SERVICE_NAME) ./cmd/.	
 
 # 本地构建运行服务
 dev: 

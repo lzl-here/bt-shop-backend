@@ -8,6 +8,12 @@ option go_package = "pay";
 
 
 message RefundPayReq{
+    string trade_no = 1;            // 电商交易号
+    string refund_amount = 2;       // 退款金额
+    string out_request_no = 3;      // 退款请求号，一笔交易下进行多次退款使用，每次退款都需要是不同的退款请求号，同一笔交易下需要保持唯一
+    string refund_reason = 4;       // 退款原因
+    string related_settle_confirm_no = 5; //在结算后退款需要指定结算单号
+    //refund_royalty_parameters //退款分账参数
 }
 
 message RefundPayRsp{

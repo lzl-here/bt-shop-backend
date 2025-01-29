@@ -11,6 +11,7 @@ require (
 	github.com/kitex-contrib/registry-etcd v0.2.5
 	github.com/redis/go-redis/v9 v9.7.0
 	github.com/smartwalle/alipay/v3 v3.2.24
+	github.com/smartwalle/xid v1.0.7
 	github.com/swaggo/files v1.0.1
 	github.com/swaggo/swag v1.16.4
 	google.golang.org/protobuf v1.36.2

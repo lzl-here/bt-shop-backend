@@ -1,6 +1,7 @@
 package repo
 
 import (
+	"context"
 	"net/url"
 
 	"github.com/lzl-here/bt-shop-backend/apps/pay/internal/config"
@@ -14,7 +15,10 @@ import (
 // 在mock数据时，在newServer的时候替换成mockImpl
 type RepoInterface interface {
 	AlipayPay(alipay.TradePagePay) (*url.URL, error)
+	AlipayClose(context.Context, alipay.TradeClose) (*alipay.TradeCloseRsp, error)
+	AlipayRefund(context.Context, alipay.TradeRefund) (*alipay.TradeRefundRsp, error)
 	CreatePayFlow(payFlow *model.PayFlow) (*model.PayFlow, error)
+	UpdatePayFlow(payFlow *model.PayFlow) (*model.PayFlow, error)
 }
 
 // 数据访问层实现了RepoInterface
@@ -41,6 +45,19 @@ func (r *Repo) AlipayPay(param alipay.TradePagePay) (*url.URL, error) {
 	return payPageUrl, err
 }
 
+// 支付宝关闭交易
+func (r *Repo) AlipayClose(ctx context.Context, param alipay.TradeClose) (*alipay.TradeCloseRsp, error) {
+	param.NotifyURL = config.AppConfig.AlipayServerUrl // 异步回调连接
+	return r.Alipay.TradeClose(ctx, param)
+}
+
+
+// 支付宝退款
+func (r *Repo) AlipayRefund(ctx context.Context, param alipay.TradeRefund) (*alipay.TradeRefundRsp, error) {
+	return r.Alipay.TradeRefund(ctx, param)
+}
+
+
 // 创建支付流水
 func (r *Repo) CreatePayFlow(payFlow *model.PayFlow) (*model.PayFlow, error) {
 	p := new(model.PayFlow)
@@ -50,3 +67,15 @@ func (r *Repo) CreatePayFlow(payFlow *model.PayFlow) (*model.PayFlow, error) {
 	}
 	return p, nil
 }
+
+// 修改支付流水
+func (r *Repo) UpdatePayFlow(payFlow *model.PayFlow) (*model.PayFlow, error) {
+	p := new(model.PayFlow)
+	if err := r.DB.Model(p).Clauses(clause.Returning{}).
+		Where("trade_no = ?", payFlow.TradeNo).
+		Updates(payFlow).Error; err != nil {
+		return nil, err
+	}
+	return p, nil
+}
+

@@ -29,10 +29,10 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingUnary),
 	),
-	"CancelPay": kitex.NewMethodInfo(
-		cancelPayHandler,
-		newCancelPayArgs,
-		newCancelPayResult,
+	"ClosePay": kitex.NewMethodInfo(
+		closePayHandler,
+		newClosePayArgs,
+		newClosePayResult,
 		false,
 		kitex.WithStreamingMode(kitex.StreamingUnary),
 	),
@@ -415,73 +415,73 @@ func (p *AlipayWebhookResult) GetResult() interface{} {
 	return p.Success
 }
 
-func cancelPayHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+func closePayHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
 	switch s := arg.(type) {
 	case *streaming.Args:
 		st := s.Stream
-		req := new(pay.CancelPayReq)
+		req := new(pay.ClosePayReq)
 		if err := st.RecvMsg(req); err != nil {
 			return err
 		}
-		resp, err := handler.(pay.PayService).CancelPay(ctx, req)
+		resp, err := handler.(pay.PayService).ClosePay(ctx, req)
 		if err != nil {
 			return err
 		}
 		return st.SendMsg(resp)
-	case *CancelPayArgs:
-		success, err := handler.(pay.PayService).CancelPay(ctx, s.Req)
+	case *ClosePayArgs:
+		success, err := handler.(pay.PayService).ClosePay(ctx, s.Req)
 		if err != nil {
 			return err
 		}
-		realResult := result.(*CancelPayResult)
+		realResult := result.(*ClosePayResult)
 		realResult.Success = success
 		return nil
 	default:
 		return errInvalidMessageType
 	}
 }
-func newCancelPayArgs() interface{} {
-	return &CancelPayArgs{}
+func newClosePayArgs() interface{} {
+	return &ClosePayArgs{}
 }
 
-func newCancelPayResult() interface{} {
-	return &CancelPayResult{}
+func newClosePayResult() interface{} {
+	return &ClosePayResult{}
 }
 
-type CancelPayArgs struct {
-	Req *pay.CancelPayReq
+type ClosePayArgs struct {
+	Req *pay.ClosePayReq
 }
 
-func (p *CancelPayArgs) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
+func (p *ClosePayArgs) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
 	if !p.IsSetReq() {
-		p.Req = new(pay.CancelPayReq)
+		p.Req = new(pay.ClosePayReq)
 	}
 	return p.Req.FastRead(buf, _type, number)
 }
 
-func (p *CancelPayArgs) FastWrite(buf []byte) (n int) {
+func (p *ClosePayArgs) FastWrite(buf []byte) (n int) {
 	if !p.IsSetReq() {
 		return 0
 	}
 	return p.Req.FastWrite(buf)
 }
 
-func (p *CancelPayArgs) Size() (n int) {
+func (p *ClosePayArgs) Size() (n int) {
 	if !p.IsSetReq() {
 		return 0
 	}
 	return p.Req.Size()
 }
 
-func (p *CancelPayArgs) Marshal(out []byte) ([]byte, error) {
+func (p *ClosePayArgs) Marshal(out []byte) ([]byte, error) {
 	if !p.IsSetReq() {
 		return out, nil
 	}
 	return proto.Marshal(p.Req)
 }
 
-func (p *CancelPayArgs) Unmarshal(in []byte) error {
-	msg := new(pay.CancelPayReq)
+func (p *ClosePayArgs) Unmarshal(in []byte) error {
+	msg := new(pay.ClosePayReq)
 	if err := proto.Unmarshal(in, msg); err != nil {
 		return err
 	}
@@ -489,59 +489,59 @@ func (p *CancelPayArgs) Unmarshal(in []byte) error {
 	return nil
 }
 
-var CancelPayArgs_Req_DEFAULT *pay.CancelPayReq
+var ClosePayArgs_Req_DEFAULT *pay.ClosePayReq
 
-func (p *CancelPayArgs) GetReq() *pay.CancelPayReq {
+func (p *ClosePayArgs) GetReq() *pay.ClosePayReq {
 	if !p.IsSetReq() {
-		return CancelPayArgs_Req_DEFAULT
+		return ClosePayArgs_Req_DEFAULT
 	}
 	return p.Req
 }
 
-func (p *CancelPayArgs) IsSetReq() bool {
+func (p *ClosePayArgs) IsSetReq() bool {
 	return p.Req != nil
 }
 
-func (p *CancelPayArgs) GetFirstArgument() interface{} {
+func (p *ClosePayArgs) GetFirstArgument() interface{} {
 	return p.Req
 }
 
-type CancelPayResult struct {
-	Success *pay.CancelPayRsp
+type ClosePayResult struct {
+	Success *pay.ClosePayRsp
 }
 
-var CancelPayResult_Success_DEFAULT *pay.CancelPayRsp
+var ClosePayResult_Success_DEFAULT *pay.ClosePayRsp
 
-func (p *CancelPayResult) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
+func (p *ClosePayResult) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
 	if !p.IsSetSuccess() {
-		p.Success = new(pay.CancelPayRsp)
+		p.Success = new(pay.ClosePayRsp)
 	}
 	return p.Success.FastRead(buf, _type, number)
 }
 
-func (p *CancelPayResult) FastWrite(buf []byte) (n int) {
+func (p *ClosePayResult) FastWrite(buf []byte) (n int) {
 	if !p.IsSetSuccess() {
 		return 0
 	}
 	return p.Success.FastWrite(buf)
 }
 
-func (p *CancelPayResult) Size() (n int) {
+func (p *ClosePayResult) Size() (n int) {
 	if !p.IsSetSuccess() {
 		return 0
 	}
 	return p.Success.Size()
 }
 
-func (p *CancelPayResult) Marshal(out []byte) ([]byte, error) {
+func (p *ClosePayResult) Marshal(out []byte) ([]byte, error) {
 	if !p.IsSetSuccess() {
 		return out, nil
 	}
 	return proto.Marshal(p.Success)
 }
 
-func (p *CancelPayResult) Unmarshal(in []byte) error {
-	msg := new(pay.CancelPayRsp)
+func (p *ClosePayResult) Unmarshal(in []byte) error {
+	msg := new(pay.ClosePayRsp)
 	if err := proto.Unmarshal(in, msg); err != nil {
 		return err
 	}
@@ -549,22 +549,22 @@ func (p *CancelPayResult) Unmarshal(in []byte) error {
 	return nil
 }
 
-func (p *CancelPayResult) GetSuccess() *pay.CancelPayRsp {
+func (p *ClosePayResult) GetSuccess() *pay.ClosePayRsp {
 	if !p.IsSetSuccess() {
-		return CancelPayResult_Success_DEFAULT
+		return ClosePayResult_Success_DEFAULT
 	}
 	return p.Success
 }
 
-func (p *CancelPayResult) SetSuccess(x interface{}) {
-	p.Success = x.(*pay.CancelPayRsp)
+func (p *ClosePayResult) SetSuccess(x interface{}) {
+	p.Success = x.(*pay.ClosePayRsp)
 }
 
-func (p *CancelPayResult) IsSetSuccess() bool {
+func (p *ClosePayResult) IsSetSuccess() bool {
 	return p.Success != nil
 }
 
-func (p *CancelPayResult) GetResult() interface{} {
+func (p *ClosePayResult) GetResult() interface{} {
 	return p.Success
 }
 
@@ -751,11 +751,11 @@ func (p *kClient) AlipayWebhook(ctx context.Context, Req *pay.AlipayWebhookReq) 
 	return _result.GetSuccess(), nil
 }
 
-func (p *kClient) CancelPay(ctx context.Context, Req *pay.CancelPayReq) (r *pay.CancelPayRsp, err error) {
-	var _args CancelPayArgs
+func (p *kClient) ClosePay(ctx context.Context, Req *pay.ClosePayReq) (r *pay.ClosePayRsp, err error) {
+	var _args ClosePayArgs
 	_args.Req = Req
-	var _result CancelPayResult
-	if err = p.c.Call(ctx, "CancelPay", &_args, &_result); err != nil {
+	var _result ClosePayResult
+	if err = p.c.Call(ctx, "ClosePay", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil

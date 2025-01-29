@@ -14,6 +14,31 @@ var (
 
 func (x *RefundPayReq) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
 	switch number {
+	case 1:
+		offset, err = x.fastReadField1(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 2:
+		offset, err = x.fastReadField2(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 3:
+		offset, err = x.fastReadField3(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 4:
+		offset, err = x.fastReadField4(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 5:
+		offset, err = x.fastReadField5(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
 	default:
 		offset, err = fastpb.Skip(buf, _type, number)
 		if err != nil {
@@ -23,6 +48,33 @@ func (x *RefundPayReq) FastRead(buf []byte, _type int8, number int32) (offset in
 	return offset, nil
 SkipFieldError:
 	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
+ReadFieldError:
+	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_RefundPayReq[number], err)
+}
+
+func (x *RefundPayReq) fastReadField1(buf []byte, _type int8) (offset int, err error) {
+	x.TradeNo, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
+func (x *RefundPayReq) fastReadField2(buf []byte, _type int8) (offset int, err error) {
+	x.RefundAmount, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
+func (x *RefundPayReq) fastReadField3(buf []byte, _type int8) (offset int, err error) {
+	x.OutRequestNo, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
+func (x *RefundPayReq) fastReadField4(buf []byte, _type int8) (offset int, err error) {
+	x.RefundReason, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
+func (x *RefundPayReq) fastReadField5(buf []byte, _type int8) (offset int, err error) {
+	x.RelatedSettleConfirmNo, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
 }
 
 func (x *RefundPayRsp) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
@@ -102,6 +154,51 @@ func (x *RefundPayReq) FastWrite(buf []byte) (offset int) {
 	if x == nil {
 		return offset
 	}
+	offset += x.fastWriteField1(buf[offset:])
+	offset += x.fastWriteField2(buf[offset:])
+	offset += x.fastWriteField3(buf[offset:])
+	offset += x.fastWriteField4(buf[offset:])
+	offset += x.fastWriteField5(buf[offset:])
+	return offset
+}
+
+func (x *RefundPayReq) fastWriteField1(buf []byte) (offset int) {
+	if x.TradeNo == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 1, x.GetTradeNo())
+	return offset
+}
+
+func (x *RefundPayReq) fastWriteField2(buf []byte) (offset int) {
+	if x.RefundAmount == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 2, x.GetRefundAmount())
+	return offset
+}
+
+func (x *RefundPayReq) fastWriteField3(buf []byte) (offset int) {
+	if x.OutRequestNo == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 3, x.GetOutRequestNo())
+	return offset
+}
+
+func (x *RefundPayReq) fastWriteField4(buf []byte) (offset int) {
+	if x.RefundReason == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 4, x.GetRefundReason())
+	return offset
+}
+
+func (x *RefundPayReq) fastWriteField5(buf []byte) (offset int) {
+	if x.RelatedSettleConfirmNo == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 5, x.GetRelatedSettleConfirmNo())
 	return offset
 }
 
@@ -159,6 +256,51 @@ func (x *RefundPayReq) Size() (n int) {
 	if x == nil {
 		return n
 	}
+	n += x.sizeField1()
+	n += x.sizeField2()
+	n += x.sizeField3()
+	n += x.sizeField4()
+	n += x.sizeField5()
+	return n
+}
+
+func (x *RefundPayReq) sizeField1() (n int) {
+	if x.TradeNo == "" {
+		return n
+	}
+	n += fastpb.SizeString(1, x.GetTradeNo())
+	return n
+}
+
+func (x *RefundPayReq) sizeField2() (n int) {
+	if x.RefundAmount == "" {
+		return n
+	}
+	n += fastpb.SizeString(2, x.GetRefundAmount())
+	return n
+}
+
+func (x *RefundPayReq) sizeField3() (n int) {
+	if x.OutRequestNo == "" {
+		return n
+	}
+	n += fastpb.SizeString(3, x.GetOutRequestNo())
+	return n
+}
+
+func (x *RefundPayReq) sizeField4() (n int) {
+	if x.RefundReason == "" {
+		return n
+	}
+	n += fastpb.SizeString(4, x.GetRefundReason())
+	return n
+}
+
+func (x *RefundPayReq) sizeField5() (n int) {
+	if x.RelatedSettleConfirmNo == "" {
+		return n
+	}
+	n += fastpb.SizeString(5, x.GetRelatedSettleConfirmNo())
 	return n
 }
 
@@ -212,7 +354,13 @@ func (x *RefundPayRsp_RefundPayRspData) Size() (n int) {
 	return n
 }
 
-var fieldIDToName_RefundPayReq = map[int32]string{}
+var fieldIDToName_RefundPayReq = map[int32]string{
+	1: "TradeNo",
+	2: "RefundAmount",
+	3: "OutRequestNo",
+	4: "RefundReason",
+	5: "RelatedSettleConfirmNo",
+}
 
 var fieldIDToName_RefundPayRsp = map[int32]string{
 	1: "Code",

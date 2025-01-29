@@ -22,9 +22,12 @@ func LoadPayService(cfgFile string) *PayConfig {
 	// 支付宝配置
 	p.AlipayAppID = cfg.GetStrEnvOrDefault("PAY_ALIPAY_APPID", "")
 	p.AlipayPrivateKey = cfg.GetStrEnvOrDefault("PAY_ALIPAY_PRIVATE_KEY", "")
-	p.AlipayServerUrl = cfg.GetStrEnvOrDefault("PAY_SALIPAY_ERVER_URL", "")
+	p.AlipayServerUrl = cfg.GetStrEnvOrDefault("PAY_ALIPAY_SERVER_URL", "")
 	p.AlipayFrontUrl = cfg.GetStrEnvOrDefault("PAY_ALIPAY_FRONT_URL", "")
 	p.AlipayEncryptKey = cfg.GetStrEnvOrDefault("PAY_ALIPAY_ENCRYPT_KEY", "")
 	p.AlipayPublicKey = cfg.GetStrEnvOrDefault("PAY_ALIPAY_PUBLIC_KEY", "")
+	if p.AlipayAppID == "" || p.AlipayPrivateKey == "" || p.AlipayServerUrl == "" || p.AlipayFrontUrl == "" || p.AlipayEncryptKey == "" || p.AlipayPublicKey == "" {
+		panic(*p)
+	}
 	return p
 }

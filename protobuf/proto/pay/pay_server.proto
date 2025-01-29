@@ -9,7 +9,7 @@ option go_package = "pay";
 // 导入需要使用的文件，package/文件名
 import "pay/pay.proto";
 import "pay/webhook.proto";
-import "pay/cancel_pay.proto";
+import "pay/close_pay.proto";
 import "pay/refund_pay.proto";
 
 
@@ -22,7 +22,7 @@ service PayService {
     rpc AlipayWebhook(AlipayWebhookReq) returns (AlipayWebhookRsp) {}
 
     // 取消支付
-    rpc CancelPay(CancelPayReq) returns (CancelPayRsp) {}
+    rpc ClosePay(ClosePayReq) returns (ClosePayRsp) {}
 
     // 退款
     rpc RefundPay(RefundPayReq) returns (RefundPayRsp) {}
