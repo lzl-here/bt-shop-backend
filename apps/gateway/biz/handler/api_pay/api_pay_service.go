@@ -45,8 +45,8 @@ func Pay(ctx context.Context, c *app.RequestContext) {
 		Msg:   rpcResp.Msg,
 		LogId: "",
 		Data: &pgen.PayRsp_PayRspData{
-			PayUrl:  rpcResp.Data.PayUrl,
-			TradeNo: rpcResp.Data.TradeNo,
+			PayPageUrl: rpcResp.Data.PayPageUrl,
+			TradeNo:    rpcResp.Data.TradeNo,
 		},
 	}
 	c.JSON(consts.StatusOK, resp)

@@ -34,12 +34,6 @@ message CreateTradeRsp{
 }
 
 
-
-
-
-
-
-
 // 取消交易
 message CancelTradeReq{
     string trade_no = 1;

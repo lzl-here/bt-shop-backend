@@ -21,3 +21,18 @@ message PaySuccessToOrderRsp{
         string trade_no = 1;
     }
 }
+
+// 取消支付
+message PayCancelToOrderReq{
+    string trade_no = 1;
+}
+message PayCancelToOrderRsp{
+    int32 code = 1; 
+    string msg = 2; 
+    string log_id = 3; 
+    PayCancelToOrderRspData data = 4; 
+    message PayCancelToOrderRspData {
+        string trade_no = 1;
+    }
+}
+

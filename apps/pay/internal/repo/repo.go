@@ -26,6 +26,7 @@ type RepoInterface interface {
 
 	GetOrderItems(ctx context.Context, req *ogen.GetOrderItemsReq) (*ogen.GetOrderItemsRsp, error)             // 获取订单项
 	PaySuccessToOrder(ctx context.Context, req *ogen.PaySuccessToOrderReq) (*ogen.PaySuccessToOrderRsp, error) //支付成功通知订单系统
+	PayCancelToOrder(ctx context.Context, req *ogen.PayCancelToOrderReq) (*ogen.PayCancelToOrderRsp, error)    //支付取消通知订单系统
 
 	AlipayPay(alipay.TradePagePay) (*url.URL, error)                                  // 拉起支付宝支付
 	AlipayClose(context.Context, alipay.TradeClose) (*alipay.TradeCloseRsp, error)    // 支付宝关闭支付
@@ -116,4 +117,9 @@ func (r *Repo) GetOrderItems(ctx context.Context, req *ogen.GetOrderItemsReq) (*
 // 支付成功通知订单系统
 func (r *Repo) PaySuccessToOrder(ctx context.Context, req *ogen.PaySuccessToOrderReq) (*ogen.PaySuccessToOrderRsp, error) {
 	return r.OrderClient.PaySuccessToOrder(ctx, req)
+}
+
+// 支付取消通知订单系统
+func (r *Repo) PayCancelToOrder(ctx context.Context, req *ogen.PayCancelToOrderReq) (*ogen.PayCancelToOrderRsp, error) {
+	return r.OrderClient.PayCancelToOrder(ctx, req)
 }

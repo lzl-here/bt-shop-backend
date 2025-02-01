@@ -15,6 +15,7 @@ type Client interface {
 	CancelTrade(ctx context.Context, Req *order.CancelTradeReq, callOptions ...callopt.Option) (r *order.CancelTradeRsp, err error)
 	GetOrderItems(ctx context.Context, Req *order.GetOrderItemsReq, callOptions ...callopt.Option) (r *order.GetOrderItemsRsp, err error)
 	PaySuccessToOrder(ctx context.Context, Req *order.PaySuccessToOrderReq, callOptions ...callopt.Option) (r *order.PaySuccessToOrderRsp, err error)
+	PayCancelToOrder(ctx context.Context, Req *order.PayCancelToOrderReq, callOptions ...callopt.Option) (r *order.PayCancelToOrderRsp, err error)
 }
 
 // NewClient creates a client for the service defined in IDL.
@@ -64,4 +65,9 @@ func (p *kOrderServiceClient) GetOrderItems(ctx context.Context, Req *order.GetO
 func (p *kOrderServiceClient) PaySuccessToOrder(ctx context.Context, Req *order.PaySuccessToOrderReq, callOptions ...callopt.Option) (r *order.PaySuccessToOrderRsp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
 	return p.kClient.PaySuccessToOrder(ctx, Req)
+}
+
+func (p *kOrderServiceClient) PayCancelToOrder(ctx context.Context, Req *order.PayCancelToOrderReq, callOptions ...callopt.Option) (r *order.PayCancelToOrderRsp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.PayCancelToOrder(ctx, Req)
 }

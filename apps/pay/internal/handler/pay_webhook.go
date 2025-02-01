@@ -3,14 +3,12 @@ package handler
 import (
 	"context"
 
-	"github.com/cloudwego/kitex/pkg/kerrors"
 	"github.com/lzl-here/bt-shop-backend/apps/pay/internal/constant"
 	"github.com/lzl-here/bt-shop-backend/apps/pay/internal/domain/model"
 	ogen "github.com/lzl-here/bt-shop-backend/kitex_gen/order"
 	pgen "github.com/lzl-here/bt-shop-backend/kitex_gen/pay"
 	bizerr "github.com/lzl-here/bt-shop-backend/pkg/err"
 	"github.com/lzl-here/bt-shop-backend/pkg/utils"
-	"github.com/smartwalle/alipay/v3"
 )
 
 // 支付宝回调
@@ -26,7 +24,7 @@ func (h *PayHandler) AlipayWebhook(ctx context.Context, req *pgen.AlipayWebhookR
 			return h.payPartRefund(ctx, req)
 		} else if req.TradeStatus == constant.AlipayTradeClosed && req.GmtRefund == "" {
 			// 支付关闭
-			return h.payClosed(ctx, req)
+			return h.payCancel(ctx, req)
 		} else if req.TradeStatus == constant.AlipayTradeClosed && req.GmtRefund != "" {
 			// 全额退款
 			return h.payFullRefund(ctx, req)
@@ -91,65 +89,24 @@ func (h *PayHandler) paySuccess(ctx context.Context, req *pgen.AlipayWebhookReq)
 	}, nil
 }
 
-func (h *PayHandler) payPartRefund(ctx context.Context, req *pgen.AlipayWebhookReq) (*pgen.AlipayWebhookRsp, error) {
-	p := &model.PayFlow{
-		TradeNo:      req.OutTradeNo,
-		ThirdTradeNo: req.TradeNo,
-	}
-	if _, err := h.rep.UpdatePayFlow(&model.PayFlow{TradeNo: req.OutTradeNo}, p); err != nil {
-		return nil, err
-	}
-
-	// TODO 通知order同步订单状态
-	return &pgen.AlipayWebhookRsp{
-		Code: 1,
-		Msg:  "ok",
-	}, nil
-}
-
-func (h *PayHandler) payFullRefund(ctx context.Context, req *pgen.AlipayWebhookReq) (*pgen.AlipayWebhookRsp, error) {
-	p := &model.PayFlow{
-		TradeNo:      req.OutTradeNo,
-		ThirdTradeNo: req.TradeNo,
-	}
-	if _, err := h.rep.UpdatePayFlow(&model.PayFlow{TradeNo: req.OutTradeNo}, p); err != nil {
-		return nil, err
-	}
-
-	// TODO 通知order同步订单状态
-	return &pgen.AlipayWebhookRsp{
-		Code: 1,
-		Msg:  "ok",
-	}, nil
-}
-
 // 支付宝支付关闭回调：关闭订单
-func (h *PayHandler) payClosed(ctx context.Context, req *pgen.AlipayWebhookReq) (res *pgen.AlipayWebhookRsp, err error) {
-	param := alipay.TradeClose{
-		OutTradeNo: req.TradeNo,
-	}
-	alipayResp, err := h.rep.AlipayClose(ctx, param)
-	if err != nil {
-		return nil, err
-	}
-	if !alipayResp.IsSuccess() {
-		return nil, kerrors.NewBizStatusError(bizerr.ErrDownStream.BizStatusCode(), alipayResp.Msg)
-	}
-	p := &model.PayFlow{
-		TradeNo:       req.OutTradeNo,
-		ThirdTradeNo:  req.TradeNo,
-		ThirdBuyerID:  req.BuyerId,
-		ThirdSellerID: req.SellerId,
-		Status:        constant.PayStatusCancel,
-		TotalAmount:   req.TotalAmount,
-	}
-	if _, err := h.rep.UpdatePayFlow(&model.PayFlow{TradeNo: req.OutTradeNo}, p); err != nil {
-		return nil, err
-	}
-
-	// TODO 通知order同步订单状态
+// 通知order系统
+func (h *PayHandler) payCancel(ctx context.Context, req *pgen.AlipayWebhookReq) (res *pgen.AlipayWebhookRsp, err error) {
+	h.rep.PayCancelToOrder(ctx, &ogen.PayCancelToOrderReq{
+		TradeNo: req.OutTradeNo,
+	})
 	return &pgen.AlipayWebhookRsp{
 		Code: 1,
 		Msg:  "ok",
 	}, nil
+}
+
+// 部分退款
+func (h *PayHandler) payPartRefund(ctx context.Context, req *pgen.AlipayWebhookReq) (*pgen.AlipayWebhookRsp, error) {
+	return nil, nil
+}
+
+// 全额退款
+func (h *PayHandler) payFullRefund(ctx context.Context, req *pgen.AlipayWebhookReq) (*pgen.AlipayWebhookRsp, error) {
+	return nil, nil
 }

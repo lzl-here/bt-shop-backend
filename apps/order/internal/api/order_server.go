@@ -41,3 +41,8 @@ func (s *OrderServer) GetOrderItems(ctx context.Context, req *ogen.GetOrderItems
 func (s *OrderServer) PaySuccessToOrder(ctx context.Context, req *ogen.PaySuccessToOrderReq) (res *ogen.PaySuccessToOrderRsp, err error) {
 	return handler.NewOrderHandler(s.rep).PaySuccessToOrder(ctx, req)
 }
+
+// 支付取消回调
+func (s *OrderServer) PayCancelToOrder(ctx context.Context, req *ogen.PayCancelToOrderReq) (res *ogen.PayCancelToOrderRsp, err error) {
+	return handler.NewOrderHandler(s.rep).PayCancelToOrder(ctx, req)
+}

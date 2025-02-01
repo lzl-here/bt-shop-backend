@@ -71,10 +71,10 @@ func buildSkuList(skus []*model.GoodsSku) []*ggen.GetGoodsListRsp_SkuInfo {
 	rsp := make([]*ggen.GetGoodsListRsp_SkuInfo, 0)
 	for _, s := range skus {
 		rsp = append(rsp, &ggen.GetGoodsListRsp_SkuInfo{
-			SkuId:         s.ID,
-			SpuId:         s.SpuID,
-			SpecValueList: buildSpecList(s.SpecValues),
-			StockNum:      s.StockNum,
+			SkuId:    s.ID,
+			SpuId:    s.SpuID,
+			SpecStr:  s.SpecValues,
+			StockNum: s.StockNum,
 		})
 	}
 	return rsp
