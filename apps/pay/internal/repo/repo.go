@@ -10,6 +10,11 @@ import (
 	"github.com/smartwalle/alipay/v3"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
+
+	gc "github.com/lzl-here/bt-shop-backend/kitex_gen/goods/goodsservice"
+	oc "github.com/lzl-here/bt-shop-backend/kitex_gen/order/orderservice"
+	pc "github.com/lzl-here/bt-shop-backend/kitex_gen/pay/payservice"
+	uc "github.com/lzl-here/bt-shop-backend/kitex_gen/user/userservice"
 )
 
 // 在mock数据时，在newServer的时候替换成mockImpl
@@ -23,16 +28,24 @@ type RepoInterface interface {
 
 // 数据访问层实现了RepoInterface
 type Repo struct {
-	DB     *gorm.DB
-	Cache  *redis.Client
-	Alipay *alipay.Client
+	DB          *gorm.DB
+	Cache       *redis.Client
+	Alipay      *alipay.Client
+	PayClient   *pc.Client
+	OrderClient *oc.Client
+	GoodsClient *gc.Client
+	UserClient  *uc.Client
 }
 
-func NewRepo(db *gorm.DB, cache *redis.Client, alipay *alipay.Client) *Repo {
+func NewRepo(db *gorm.DB, cache *redis.Client, alipay *alipay.Client, payClient *pc.Client, orderClient *oc.Client, goodsClient *gc.Client, userClient *uc.Client) *Repo {
 	return &Repo{
-		DB:     db,
-		Cache:  cache,
-		Alipay: alipay,
+		DB:        db,
+		Cache:     cache,
+		Alipay:    alipay,
+		PayClient: payClient,
+		OrderClient: orderClient,
+		GoodsClient: goodsClient,
+		UserClient: userClient,
 	}
 }
 
@@ -51,12 +64,10 @@ func (r *Repo) AlipayClose(ctx context.Context, param alipay.TradeClose) (*alipa
 	return r.Alipay.TradeClose(ctx, param)
 }
 
-
 // 支付宝退款
 func (r *Repo) AlipayRefund(ctx context.Context, param alipay.TradeRefund) (*alipay.TradeRefundRsp, error) {
 	return r.Alipay.TradeRefund(ctx, param)
 }
-
 
 // 创建支付流水
 func (r *Repo) CreatePayFlow(payFlow *model.PayFlow) (*model.PayFlow, error) {
@@ -78,4 +89,3 @@ func (r *Repo) UpdatePayFlow(payFlow *model.PayFlow) (*model.PayFlow, error) {
 	}
 	return p, nil
 }
-

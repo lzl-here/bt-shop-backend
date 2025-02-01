@@ -6,3 +6,4 @@ apps/pay/bin/pay
 apps/pay/cmd/logs/app.log
 pkg/.DS_Store
 .DS_Store
+apps/goods/cmd/logs/app.log

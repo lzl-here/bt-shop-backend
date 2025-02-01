@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"flag"
 	"net"
 	"os"
@@ -11,7 +10,6 @@ import (
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	"github.com/cloudwego/kitex/pkg/transmeta"
 	"github.com/cloudwego/kitex/server"
-	etcd "github.com/kitex-contrib/registry-etcd"
 	api "github.com/lzl-here/bt-shop-backend/apps/goods/internal/api"
 	"github.com/lzl-here/bt-shop-backend/apps/goods/internal/config"
 	repo "github.com/lzl-here/bt-shop-backend/apps/goods/internal/repo"
@@ -19,6 +17,10 @@ import (
 
 	ggens "github.com/lzl-here/bt-shop-backend/kitex_gen/goods/goodsservice"
 	"gorm.io/gorm"
+
+	"context"
+
+	etcd "github.com/kitex-contrib/registry-etcd"
 )
 
 func main() {
@@ -87,5 +89,8 @@ func newRepo(ctx context.Context) *repo.Repo {
 	if err != nil {
 		panic(err)
 	}
-	return repo.NewRepo(db, cache)
+	// grpc client
+	payClient, goodsClient, orderClient, userClient := config.AppConfig.ConnectGrpcClient()
+
+	return repo.NewRepo(db, cache, payClient, goodsClient, orderClient, userClient)
 }

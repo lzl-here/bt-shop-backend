@@ -41,7 +41,6 @@ func main() {
 	klog.SetOutput(logFile)
 	klog.SetLevel(klog.LevelInfo)
 
-
 	// 注册中心
 	r, err := etcd.NewEtcdRegistry([]string{config.AppConfig.RegisterAddress},
 		etcd.WithAuthOpt(config.AppConfig.RegisterUser, config.AppConfig.RegisterPass),
@@ -103,6 +102,8 @@ func newRepo(ctx context.Context) *repo.Repo {
 	if err = alipayClient.SetEncryptKey(config.AppConfig.AlipayEncryptKey); err != nil {
 		panic(err)
 	}
+	// grpc client
+	payClient, goodsClient, orderClient, userClient := config.AppConfig.ConnectGrpcClient()
 
-	return repo.NewRepo(db, cache, alipayClient)
+	return repo.NewRepo(db, cache, alipayClient, payClient, orderClient, goodsClient, userClient)
 }

@@ -13,3 +13,10 @@
 2025/01/28 16:16:54.234542 etcd_registry.go:216: [Info] stop keep register service kitex/registry-etcd/goods/127.0.0.1:9091
 2025/01/28 16:16:54.234655 server_handler.go:384: [Info] KITEX: gRPC GracefulShutdown starts
 2025/01/28 16:16:54.286233 server_handler.go:386: [Info] KITEX: gRPC GracefulShutdown ends
+2025/02/01 19:50:08.535787 load.go:20: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/01 19:50:08.560773 load.go:38: [Info] 连接到redis成功, pong: PONG
+2025/02/01 19:50:08.629132 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9093
+2025/02/01 19:50:09.641844 etcd_registry.go:299: [Info] start keepalive lease 694d94afa265432a for etcd registry
+2025/02/01 19:51:26.703221 etcd_registry.go:216: [Info] stop keep register service kitex/registry-etcd/goods/127.0.0.1:9093
+2025/02/01 19:51:26.703328 server_handler.go:384: [Info] KITEX: gRPC GracefulShutdown starts
+2025/02/01 19:51:26.754721 server_handler.go:386: [Info] KITEX: gRPC GracefulShutdown ends

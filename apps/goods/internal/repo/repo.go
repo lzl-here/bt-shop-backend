@@ -4,6 +4,10 @@ import (
 	"context"
 
 	"github.com/lzl-here/bt-shop-backend/apps/goods/internal/domain/model"
+	gc "github.com/lzl-here/bt-shop-backend/kitex_gen/goods/goodsservice"
+	oc "github.com/lzl-here/bt-shop-backend/kitex_gen/order/orderservice"
+	pc "github.com/lzl-here/bt-shop-backend/kitex_gen/pay/payservice"
+	uc "github.com/lzl-here/bt-shop-backend/kitex_gen/user/userservice"
 	"github.com/redis/go-redis/v9"
 	"gorm.io/gorm"
 )
@@ -19,14 +23,22 @@ type RepoInterface interface {
 
 // 数据访问层实现了RepoInterface
 type Repo struct {
-	DB    *gorm.DB
-	Cache *redis.Client
+	DB          *gorm.DB
+	Cache       *redis.Client
+	PayClient   *pc.Client
+	GoodsClient *gc.Client
+	OrderClient *oc.Client
+	UserClient  *uc.Client
 }
 
-func NewRepo(db *gorm.DB, cache *redis.Client) *Repo {
+func NewRepo(db *gorm.DB, cache *redis.Client, payClient *pc.Client, goodsClient *gc.Client, orderClient *oc.Client, userClient *uc.Client) *Repo {
 	return &Repo{
-		DB:    db,
-		Cache: cache,
+		DB:          db,
+		Cache:       cache,
+		PayClient:   payClient,
+		GoodsClient: goodsClient,
+		OrderClient: orderClient,
+		UserClient:  userClient,
 	}
 }
 
