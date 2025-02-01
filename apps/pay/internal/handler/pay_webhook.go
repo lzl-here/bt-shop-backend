@@ -44,7 +44,7 @@ func (h *PayHandler) paySuccess(ctx context.Context, req *pgen.AlipayWebhookReq)
 		ThirdBuyerID:  req.BuyerId,
 		ThirdSellerID: req.SellerId,
 	}
-	if _, err := h.rep.UpdatePayFlow(p); err != nil {
+	if _, err := h.rep.CreatePayFlow(p); err != nil {
 		return nil, err
 	}
 

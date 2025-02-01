@@ -21,6 +21,7 @@ func (h *PayHandler) Pay(ctx context.Context, req *pgen.PayReq) (res *pgen.PayRs
 	if err != nil {
 		return nil, err
 	}
+	// TODO 支付流水拆分
 	if _, err = h.rep.CreatePayFlow(&model.PayFlow{
 		TradeNo:     req.TradeNo,
 		PayState:    constant.PayStatePaying,
