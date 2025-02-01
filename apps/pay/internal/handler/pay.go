@@ -3,8 +3,6 @@ package handler
 import (
 	"context"
 
-	"github.com/lzl-here/bt-shop-backend/apps/pay/internal/constant"
-	"github.com/lzl-here/bt-shop-backend/apps/pay/internal/domain/model"
 	pgen "github.com/lzl-here/bt-shop-backend/kitex_gen/pay"
 	"github.com/smartwalle/alipay/v3"
 )
@@ -19,14 +17,6 @@ func (h *PayHandler) Pay(ctx context.Context, req *pgen.PayReq) (res *pgen.PayRs
 	param.TotalAmount = req.TotalAmount
 	url, err := h.rep.AlipayPay(param)
 	if err != nil {
-		return nil, err
-	}
-	// TODO 支付流水拆分
-	if _, err = h.rep.CreatePayFlow(&model.PayFlow{
-		TradeNo:     req.TradeNo,
-		PayState:    constant.PayStatePaying,
-		TotalAmount: req.TotalAmount,
-	}); err != nil {
 		return nil, err
 	}
 	return &pgen.PayRsp{

@@ -31,9 +31,9 @@ func (h *PayHandler) RefundPay(ctx context.Context, req *pgen.RefundPayReq) (res
 	p := &model.PayFlow{
 		TradeNo:      req.TradeNo,
 		ThirdTradeNo: alipayResp.TradeNo,
-		PayState:     constant.PayStateFullRefunded,
+		Status:     constant.PayStatusRefund,
 	}
-	if _, err := h.rep.UpdatePayFlow(p); err != nil {
+	if _, err := h.rep.CreatePayFlow(p); err != nil {
 		return nil, err
 	}
 	// TODO 同步order

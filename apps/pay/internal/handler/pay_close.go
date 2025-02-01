@@ -25,9 +25,12 @@ func (h *PayHandler) ClosePay(ctx context.Context, req *pgen.ClosePayReq) (*pgen
 	if !alipayResp.IsSuccess() {
 		return nil, kerrors.NewBizStatusError(bizerr.ErrDownStreamError.BizStatusCode(), alipayResp.Msg)
 	}
-	_, err = h.rep.UpdatePayFlow(&model.PayFlow{
-		TradeNo:  req.TradeNo,
-		PayState: constant.PayStateRefunding,
+	// TODO 给每个订单项都生成
+	_, err = h.rep.CreatePayFlow(&model.PayFlow{
+		TradeNo:      req.TradeNo,
+		Status:       constant.PayStatusCancel,
+		ThirdTradeNo: alipayResp.TradeNo,
+
 	})
 	if err != nil {
 		return nil, err

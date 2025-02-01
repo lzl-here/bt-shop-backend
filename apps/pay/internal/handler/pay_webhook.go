@@ -29,10 +29,10 @@ func (h *PayHandler) AlipayWebhook(ctx context.Context, req *pgen.AlipayWebhookR
 			return h.payFullRefund(ctx, req)
 		}
 	}
+	// TODO 回调的返回值应该是什么？
 	return nil, nil
 
 }
-
 
 // 支付宝支付成功回调: 修改本地状态，通知order同步订单状态
 func (h *PayHandler) paySuccess(ctx context.Context, req *pgen.AlipayWebhookReq) (*pgen.AlipayWebhookRsp, error) {
@@ -40,10 +40,14 @@ func (h *PayHandler) paySuccess(ctx context.Context, req *pgen.AlipayWebhookReq)
 	p := &model.PayFlow{
 		TradeNo:       req.OutTradeNo,
 		ThirdTradeNo:  req.TradeNo,
-		PayState:      constant.PayStatePayed,
+		Status:        constant.PayStatusSuccess,
+		TotalAmount:   req.TotalAmount,
+		Type:          constant.PayTypeAlipay,
 		ThirdBuyerID:  req.BuyerId,
 		ThirdSellerID: req.SellerId,
 	}
+
+	// TODO 根据订单项做流水拆分
 	if _, err := h.rep.CreatePayFlow(p); err != nil {
 		return nil, err
 	}
@@ -60,7 +64,6 @@ func (h *PayHandler) payPartRefund(ctx context.Context, req *pgen.AlipayWebhookR
 	p := &model.PayFlow{
 		TradeNo:      req.OutTradeNo,
 		ThirdTradeNo: req.TradeNo,
-		PayState:     constant.PayStatePartRefunded,
 	}
 	if _, err := h.rep.UpdatePayFlow(p); err != nil {
 		return nil, err
@@ -78,7 +81,6 @@ func (h *PayHandler) payFullRefund(ctx context.Context, req *pgen.AlipayWebhookR
 	p := &model.PayFlow{
 		TradeNo:      req.OutTradeNo,
 		ThirdTradeNo: req.TradeNo,
-		PayState:     constant.PayStateFullRefunded,
 	}
 	if _, err := h.rep.UpdatePayFlow(p); err != nil {
 		return nil, err
@@ -105,11 +107,12 @@ func (h *PayHandler) payClosed(ctx context.Context, req *pgen.AlipayWebhookReq) 
 	}
 	// TODO 状态机
 	p := &model.PayFlow{
-		TradeNo:       req.TradeNo,
-		ThirdTradeNo:  alipayResp.TradeNo,
-		PayState:      constant.PayStateCanceled,
+		TradeNo:       req.OutTradeNo,
+		ThirdTradeNo:  req.TradeNo,
 		ThirdBuyerID:  req.BuyerId,
 		ThirdSellerID: req.SellerId,
+		Status:        constant.PayStatusCancel,
+		TotalAmount:   req.TotalAmount,
 	}
 	if _, err := h.rep.UpdatePayFlow(p); err != nil {
 		return nil, err
