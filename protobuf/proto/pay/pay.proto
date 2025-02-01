@@ -19,7 +19,7 @@ message PayRsp{
     string log_id = 3; 
     PayRspData data = 4; 
     message PayRspData{
-        string pay_url = 1;     // 支付链接
+        string pay_page_url = 1;     // 支付页面链接
         string trade_no = 2;    // 电商平台交易号
     }
 }

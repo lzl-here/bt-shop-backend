@@ -31,13 +31,13 @@ type Repo struct {
 	DB          *gorm.DB
 	Cache       *redis.Client
 	Alipay      *alipay.Client
-	PayClient   *pc.Client
-	OrderClient *oc.Client
-	GoodsClient *gc.Client
-	UserClient  *uc.Client
+	PayClient   pc.Client
+	OrderClient oc.Client
+	GoodsClient gc.Client
+	UserClient  uc.Client
 }
 
-func NewRepo(db *gorm.DB, cache *redis.Client, alipay *alipay.Client, payClient *pc.Client, orderClient *oc.Client, goodsClient *gc.Client, userClient *uc.Client) *Repo {
+func NewRepo(db *gorm.DB, cache *redis.Client, alipay *alipay.Client, payClient pc.Client, orderClient oc.Client, goodsClient gc.Client, userClient uc.Client) *Repo {
 	return &Repo{
 		DB:        db,
 		Cache:     cache,

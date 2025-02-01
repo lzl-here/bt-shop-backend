@@ -23,8 +23,8 @@ func (h *PayHandler) Pay(ctx context.Context, req *pgen.PayReq) (res *pgen.PayRs
 		Code: 1,
 		Msg:  "ok",
 		Data: &pgen.PayRsp_PayRspData{
-			PayUrl:  url.String(),
-			TradeNo: req.TradeNo,
+			PayPageUrl: url.String(),
+			TradeNo:    req.TradeNo,
 		},
 	}, nil
 }

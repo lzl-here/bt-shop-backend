@@ -38,8 +38,10 @@ message GetGoodsListRsp {
     message SkuInfo {
         uint64 sku_id = 1;
         uint64 spu_id = 2;
-        repeated SpecValueInfo spec_value_list = 3;
-        uint64 stock_num = 4;
+        uint64 stock_num = 3;
+        string sku_amount = 4;
+        string sku_name = 5;
+        string spec_str = 6;
     }
 
     message SpecInfo {

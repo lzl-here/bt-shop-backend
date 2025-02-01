@@ -47,7 +47,7 @@ func (a *AppServiceConfig) ConnectCache(ctx context.Context) (*redis.Client, err
 	return rdb, nil
 }
 
-func (a *AppServiceConfig) ConnectGrpcClient() (*pc.Client, *gc.Client, *oc.Client, *uc.Client) {
+func (a *AppServiceConfig) ConnectGrpcClient() (pc.Client, gc.Client, oc.Client, uc.Client) {
 	// grpc client
 	r, err := etcd.NewEtcdResolver(
 		[]string{a.RegisterAddress},
@@ -82,5 +82,5 @@ func (a *AppServiceConfig) ConnectGrpcClient() (*pc.Client, *gc.Client, *oc.Clie
 	if err != nil {
 		panic(err)
 	}
-	return &payClient, &goodsClient, &orderClient, &userClient
+	return payClient, goodsClient, orderClient, userClient
 }

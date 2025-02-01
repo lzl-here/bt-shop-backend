@@ -143,7 +143,7 @@ ReadFieldError:
 }
 
 func (x *PayRsp_PayRspData) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	x.PayUrl, offset, err = fastpb.ReadString(buf, _type)
+	x.PayPageUrl, offset, err = fastpb.ReadString(buf, _type)
 	return offset, err
 }
 
@@ -239,10 +239,10 @@ func (x *PayRsp_PayRspData) FastWrite(buf []byte) (offset int) {
 }
 
 func (x *PayRsp_PayRspData) fastWriteField1(buf []byte) (offset int) {
-	if x.PayUrl == "" {
+	if x.PayPageUrl == "" {
 		return offset
 	}
-	offset += fastpb.WriteString(buf[offset:], 1, x.GetPayUrl())
+	offset += fastpb.WriteString(buf[offset:], 1, x.GetPayPageUrl())
 	return offset
 }
 
@@ -341,10 +341,10 @@ func (x *PayRsp_PayRspData) Size() (n int) {
 }
 
 func (x *PayRsp_PayRspData) sizeField1() (n int) {
-	if x.PayUrl == "" {
+	if x.PayPageUrl == "" {
 		return n
 	}
-	n += fastpb.SizeString(1, x.GetPayUrl())
+	n += fastpb.SizeString(1, x.GetPayPageUrl())
 	return n
 }
 
@@ -370,6 +370,6 @@ var fieldIDToName_PayRsp = map[int32]string{
 }
 
 var fieldIDToName_PayRsp_PayRspData = map[int32]string{
-	1: "PayUrl",
+	1: "PayPageUrl",
 	2: "TradeNo",
 }

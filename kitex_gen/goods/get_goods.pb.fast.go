@@ -318,6 +318,16 @@ func (x *GetGoodsListRsp_SkuInfo) FastRead(buf []byte, _type int8, number int32)
 		if err != nil {
 			goto ReadFieldError
 		}
+	case 5:
+		offset, err = x.fastReadField5(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 6:
+		offset, err = x.fastReadField6(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
 	default:
 		offset, err = fastpb.Skip(buf, _type, number)
 		if err != nil {
@@ -342,17 +352,22 @@ func (x *GetGoodsListRsp_SkuInfo) fastReadField2(buf []byte, _type int8) (offset
 }
 
 func (x *GetGoodsListRsp_SkuInfo) fastReadField3(buf []byte, _type int8) (offset int, err error) {
-	var v GetGoodsListRsp_SpecValueInfo
-	offset, err = fastpb.ReadMessage(buf, _type, &v)
-	if err != nil {
-		return offset, err
-	}
-	x.SpecValueList = append(x.SpecValueList, &v)
-	return offset, nil
+	x.StockNum, offset, err = fastpb.ReadUint64(buf, _type)
+	return offset, err
 }
 
 func (x *GetGoodsListRsp_SkuInfo) fastReadField4(buf []byte, _type int8) (offset int, err error) {
-	x.StockNum, offset, err = fastpb.ReadUint64(buf, _type)
+	x.SkuAmount, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
+func (x *GetGoodsListRsp_SkuInfo) fastReadField5(buf []byte, _type int8) (offset int, err error) {
+	x.SkuName, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
+func (x *GetGoodsListRsp_SkuInfo) fastReadField6(buf []byte, _type int8) (offset int, err error) {
+	x.SpecStr, offset, err = fastpb.ReadString(buf, _type)
 	return offset, err
 }
 
@@ -666,6 +681,8 @@ func (x *GetGoodsListRsp_SkuInfo) FastWrite(buf []byte) (offset int) {
 	offset += x.fastWriteField2(buf[offset:])
 	offset += x.fastWriteField3(buf[offset:])
 	offset += x.fastWriteField4(buf[offset:])
+	offset += x.fastWriteField5(buf[offset:])
+	offset += x.fastWriteField6(buf[offset:])
 	return offset
 }
 
@@ -686,20 +703,34 @@ func (x *GetGoodsListRsp_SkuInfo) fastWriteField2(buf []byte) (offset int) {
 }
 
 func (x *GetGoodsListRsp_SkuInfo) fastWriteField3(buf []byte) (offset int) {
-	if x.SpecValueList == nil {
+	if x.StockNum == 0 {
 		return offset
 	}
-	for i := range x.GetSpecValueList() {
-		offset += fastpb.WriteMessage(buf[offset:], 3, x.GetSpecValueList()[i])
-	}
+	offset += fastpb.WriteUint64(buf[offset:], 3, x.GetStockNum())
 	return offset
 }
 
 func (x *GetGoodsListRsp_SkuInfo) fastWriteField4(buf []byte) (offset int) {
-	if x.StockNum == 0 {
+	if x.SkuAmount == "" {
 		return offset
 	}
-	offset += fastpb.WriteUint64(buf[offset:], 4, x.GetStockNum())
+	offset += fastpb.WriteString(buf[offset:], 4, x.GetSkuAmount())
+	return offset
+}
+
+func (x *GetGoodsListRsp_SkuInfo) fastWriteField5(buf []byte) (offset int) {
+	if x.SkuName == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 5, x.GetSkuName())
+	return offset
+}
+
+func (x *GetGoodsListRsp_SkuInfo) fastWriteField6(buf []byte) (offset int) {
+	if x.SpecStr == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 6, x.GetSpecStr())
 	return offset
 }
 
@@ -991,6 +1022,8 @@ func (x *GetGoodsListRsp_SkuInfo) Size() (n int) {
 	n += x.sizeField2()
 	n += x.sizeField3()
 	n += x.sizeField4()
+	n += x.sizeField5()
+	n += x.sizeField6()
 	return n
 }
 
@@ -1011,20 +1044,34 @@ func (x *GetGoodsListRsp_SkuInfo) sizeField2() (n int) {
 }
 
 func (x *GetGoodsListRsp_SkuInfo) sizeField3() (n int) {
-	if x.SpecValueList == nil {
+	if x.StockNum == 0 {
 		return n
 	}
-	for i := range x.GetSpecValueList() {
-		n += fastpb.SizeMessage(3, x.GetSpecValueList()[i])
-	}
+	n += fastpb.SizeUint64(3, x.GetStockNum())
 	return n
 }
 
 func (x *GetGoodsListRsp_SkuInfo) sizeField4() (n int) {
-	if x.StockNum == 0 {
+	if x.SkuAmount == "" {
 		return n
 	}
-	n += fastpb.SizeUint64(4, x.GetStockNum())
+	n += fastpb.SizeString(4, x.GetSkuAmount())
+	return n
+}
+
+func (x *GetGoodsListRsp_SkuInfo) sizeField5() (n int) {
+	if x.SkuName == "" {
+		return n
+	}
+	n += fastpb.SizeString(5, x.GetSkuName())
+	return n
+}
+
+func (x *GetGoodsListRsp_SkuInfo) sizeField6() (n int) {
+	if x.SpecStr == "" {
+		return n
+	}
+	n += fastpb.SizeString(6, x.GetSpecStr())
 	return n
 }
 
@@ -1130,8 +1177,10 @@ var fieldIDToName_GetGoodsListRsp_SpuInfo = map[int32]string{
 var fieldIDToName_GetGoodsListRsp_SkuInfo = map[int32]string{
 	1: "SkuId",
 	2: "SpuId",
-	3: "SpecValueList",
-	4: "StockNum",
+	3: "StockNum",
+	4: "SkuAmount",
+	5: "SkuName",
+	6: "SpecStr",
 }
 
 var fieldIDToName_GetGoodsListRsp_SpecInfo = map[int32]string{

@@ -8,3 +8,8 @@ type Trade struct {
 	TradeStatus string `gorm:"column:trade_status"`
 	model.BaseModel
 }
+
+
+func (t *Trade) TableName() string {
+	return "t_trade"
+}
