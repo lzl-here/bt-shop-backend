@@ -32,3 +32,6 @@ func (s *OrderServer) CancelTrade(ctx context.Context, req *ogen.CancelTradeReq)
 }
 
 
+func (s *OrderServer) GetOrderItems(ctx context.Context, req *ogen.GetOrderItemsReq) (res *ogen.GetOrderItemsRsp, err error) {
+	return handler.NewOrderHandler(s.rep).GetOrderItems(ctx, req)
+}

@@ -4,8 +4,6 @@ import (
 	"context"
 
 	"github.com/cloudwego/kitex/pkg/kerrors"
-	"github.com/lzl-here/bt-shop-backend/apps/pay/internal/constant"
-	"github.com/lzl-here/bt-shop-backend/apps/pay/internal/domain/model"
 	pgen "github.com/lzl-here/bt-shop-backend/kitex_gen/pay"
 	bizerr "github.com/lzl-here/bt-shop-backend/pkg/err"
 	"github.com/smartwalle/alipay/v3"
@@ -23,19 +21,20 @@ func (h *PayHandler) RefundPay(ctx context.Context, req *pgen.RefundPayReq) (res
 	if err != nil {
 		return nil, err
 	}
+
 	if !alipayResp.IsSuccess() {
 		return nil, kerrors.NewBizStatusError(bizerr.ErrDownStream.BizStatusCode(), alipayResp.Msg)
 	}
 
-	// TODO 状态机 和 部分退款
-	p := &model.PayFlow{
-		TradeNo:      req.TradeNo,
-		ThirdTradeNo: alipayResp.TradeNo,
-		Status:     constant.PayStatusRefund,
-	}
-	if _, err := h.rep.CreatePayFlow(p); err != nil {
-		return nil, err
-	}
+	// // TODO 状态机 和 部分退款
+	// p := &model.PayFlow{
+	// 	TradeNo:      req.TradeNo,
+	// 	ThirdTradeNo: alipayResp.TradeNo,
+	// 	Status:     constant.PayStatusRefund,
+	// }
+	// if _, err := h.rep.CreatePayFlows(p); err != nil {
+	// 	return nil, err
+	// }
 	// TODO 同步order
 	return &pgen.RefundPayRsp{
 		Code: 1,

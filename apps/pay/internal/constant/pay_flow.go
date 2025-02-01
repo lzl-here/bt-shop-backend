@@ -9,6 +9,11 @@ const (
 )
 
 const (
-	PayType = iota
+	PayType       = iota
 	PayTypeAlipay = "ALIPAY"
+)
+
+const (
+	PayInType  = "in"  // 入帐
+	PayOutType = "out" // 出账
 )

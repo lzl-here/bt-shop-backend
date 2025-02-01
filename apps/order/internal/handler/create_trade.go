@@ -99,22 +99,22 @@ func (h *OrderHandler) checkParam(ctx context.Context, req *ogen.CreateTradeReq)
 		return bizerr.ErrDownStream
 	}
 	// 后端存的数据
-	goodSkuIDMap := make(map[uint64]*ggen.GetGoodsListRsp_SkuInfo)
+	itemSkuIDMap := make(map[uint64]*ggen.GetGoodsListRsp_SkuInfo)
 	for _, spu := range goodsRsp.Data.SpuList {
 		for _, sku := range spu.SkuList {
-			goodSkuIDMap[sku.SkuId] = sku
+			itemSkuIDMap[sku.SkuId] = sku
 		}
 	}
 	// 前端传来的数据
 	for _, o := range req.TradeInfo.OrderInfoList {
-		for _, sku := range o.SkuList {
+		for _, oi := range o.OrderItemList {
 			// 不存在
-			if _, ok := goodSkuIDMap[sku.SkuId]; !ok {
+			if _, ok := itemSkuIDMap[oi.SkuId]; !ok {
 				return bizerr.ErrGoodsNotExist
 			}
 			// 金额有问题
-			skuFromFront := goodSkuIDMap[sku.SkuId]
-			if skuFromFront.SkuAmount != sku.SkuAmount {
+			skuFromFront := itemSkuIDMap[oi.SkuId]
+			if skuFromFront.SkuAmount != oi.SkuAmount {
 				return bizerr.ErrGoodsNotCorrect
 			}
 		}
@@ -128,7 +128,7 @@ func (h *OrderHandler) checkParam(ctx context.Context, req *ogen.CreateTradeReq)
 			return bizerr.ErrInvalidTradeAmount
 		}
 		totalOrderAmount := "0"
-		for _, s := range o.SkuList {
+		for _, s := range o.OrderItemList {
 			totalOrderAmount = common.AmountPlus(totalOrderAmount, s.SkuAmount)
 		}
 		if !common.AmountEqual(totalOrderAmount, o.OrderAmount) {
@@ -167,7 +167,7 @@ func buildModels(req *ogen.CreateTradeReq) (*model.Trade, []*model.Order, []*mod
 			PayType:     req.PayType,
 		})
 		// items
-		for _, s := range o.SkuList {
+		for _, s := range o.OrderItemList {
 			itemRSp = append(itemRSp, &model.OrderItem{
 				TradeNo:      tradeNo,
 				OrderNo:      orderNo,

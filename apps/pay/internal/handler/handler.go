@@ -13,3 +13,4 @@ func NewPayHandler(rep repo.RepoInterface) *PayHandler {
 		rep: rep,
 	}
 }
+

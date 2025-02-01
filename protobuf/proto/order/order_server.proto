@@ -7,15 +7,23 @@ package order;
 option go_package = "order";
 
 // 导入需要使用的文件，package/文件名
-import "order/create_trade.proto";
-import "order/cancel_trade.proto";
+import "order/trade.proto";
+import "order/order_items.proto";
+import "order/order.proto";
 
 service OrderService {
 
-    // 创建一笔交易
+    // 创建一笔交易 对外
     rpc CreateTrade(CreateTradeReq) returns (CreateTradeRsp) {}
 
-    // 取消一笔交易
+    // 取消一笔交易 对外
     rpc CancelTrade(CancelTradeReq) returns (CancelTradeRsp) {}
+
+    // 查询订单项 对外
+    rpc GetOrderItems(GetOrderItemsReq) returns (GetOrderItemsRsp) {}
+
+    // 支付成功通知 对内
+    rpc PaySuccessToOrder(PaySuccessToOrderReq) returns (PaySuccessToOrderRsp) {}
+    
 }
 

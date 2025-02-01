@@ -12,7 +12,7 @@ var (
 	_ = fastpb.Skip
 )
 
-func (x *CancelTradeReq) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
+func (x *PaySuccessToOrderReq) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
 	switch number {
 	case 1:
 		offset, err = x.fastReadField1(buf, _type)
@@ -29,15 +29,15 @@ func (x *CancelTradeReq) FastRead(buf []byte, _type int8, number int32) (offset 
 SkipFieldError:
 	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
 ReadFieldError:
-	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_CancelTradeReq[number], err)
+	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_PaySuccessToOrderReq[number], err)
 }
 
-func (x *CancelTradeReq) fastReadField1(buf []byte, _type int8) (offset int, err error) {
+func (x *PaySuccessToOrderReq) fastReadField1(buf []byte, _type int8) (offset int, err error) {
 	x.TradeNo, offset, err = fastpb.ReadString(buf, _type)
 	return offset, err
 }
 
-func (x *CancelTradeRsp) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
+func (x *PaySuccessToOrderRsp) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
 	switch number {
 	case 1:
 		offset, err = x.fastReadField1(buf, _type)
@@ -69,26 +69,26 @@ func (x *CancelTradeRsp) FastRead(buf []byte, _type int8, number int32) (offset 
 SkipFieldError:
 	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
 ReadFieldError:
-	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_CancelTradeRsp[number], err)
+	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_PaySuccessToOrderRsp[number], err)
 }
 
-func (x *CancelTradeRsp) fastReadField1(buf []byte, _type int8) (offset int, err error) {
+func (x *PaySuccessToOrderRsp) fastReadField1(buf []byte, _type int8) (offset int, err error) {
 	x.Code, offset, err = fastpb.ReadInt32(buf, _type)
 	return offset, err
 }
 
-func (x *CancelTradeRsp) fastReadField2(buf []byte, _type int8) (offset int, err error) {
+func (x *PaySuccessToOrderRsp) fastReadField2(buf []byte, _type int8) (offset int, err error) {
 	x.Msg, offset, err = fastpb.ReadString(buf, _type)
 	return offset, err
 }
 
-func (x *CancelTradeRsp) fastReadField3(buf []byte, _type int8) (offset int, err error) {
+func (x *PaySuccessToOrderRsp) fastReadField3(buf []byte, _type int8) (offset int, err error) {
 	x.LogId, offset, err = fastpb.ReadString(buf, _type)
 	return offset, err
 }
 
-func (x *CancelTradeRsp) fastReadField4(buf []byte, _type int8) (offset int, err error) {
-	var v CancelTradeRsp_CancelTradeRspData
+func (x *PaySuccessToOrderRsp) fastReadField4(buf []byte, _type int8) (offset int, err error) {
+	var v PaySuccessToOrderRsp_PaySuccessToOrderRspData
 	offset, err = fastpb.ReadMessage(buf, _type, &v)
 	if err != nil {
 		return offset, err
@@ -97,7 +97,7 @@ func (x *CancelTradeRsp) fastReadField4(buf []byte, _type int8) (offset int, err
 	return offset, nil
 }
 
-func (x *CancelTradeRsp_CancelTradeRspData) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
+func (x *PaySuccessToOrderRsp_PaySuccessToOrderRspData) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
 	switch number {
 	case 1:
 		offset, err = x.fastReadField1(buf, _type)
@@ -114,15 +114,15 @@ func (x *CancelTradeRsp_CancelTradeRspData) FastRead(buf []byte, _type int8, num
 SkipFieldError:
 	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
 ReadFieldError:
-	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_CancelTradeRsp_CancelTradeRspData[number], err)
+	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_PaySuccessToOrderRsp_PaySuccessToOrderRspData[number], err)
 }
 
-func (x *CancelTradeRsp_CancelTradeRspData) fastReadField1(buf []byte, _type int8) (offset int, err error) {
+func (x *PaySuccessToOrderRsp_PaySuccessToOrderRspData) fastReadField1(buf []byte, _type int8) (offset int, err error) {
 	x.TradeNo, offset, err = fastpb.ReadString(buf, _type)
 	return offset, err
 }
 
-func (x *CancelTradeReq) FastWrite(buf []byte) (offset int) {
+func (x *PaySuccessToOrderReq) FastWrite(buf []byte) (offset int) {
 	if x == nil {
 		return offset
 	}
@@ -130,7 +130,7 @@ func (x *CancelTradeReq) FastWrite(buf []byte) (offset int) {
 	return offset
 }
 
-func (x *CancelTradeReq) fastWriteField1(buf []byte) (offset int) {
+func (x *PaySuccessToOrderReq) fastWriteField1(buf []byte) (offset int) {
 	if x.TradeNo == "" {
 		return offset
 	}
@@ -138,7 +138,7 @@ func (x *CancelTradeReq) fastWriteField1(buf []byte) (offset int) {
 	return offset
 }
 
-func (x *CancelTradeRsp) FastWrite(buf []byte) (offset int) {
+func (x *PaySuccessToOrderRsp) FastWrite(buf []byte) (offset int) {
 	if x == nil {
 		return offset
 	}
@@ -149,7 +149,7 @@ func (x *CancelTradeRsp) FastWrite(buf []byte) (offset int) {
 	return offset
 }
 
-func (x *CancelTradeRsp) fastWriteField1(buf []byte) (offset int) {
+func (x *PaySuccessToOrderRsp) fastWriteField1(buf []byte) (offset int) {
 	if x.Code == 0 {
 		return offset
 	}
@@ -157,7 +157,7 @@ func (x *CancelTradeRsp) fastWriteField1(buf []byte) (offset int) {
 	return offset
 }
 
-func (x *CancelTradeRsp) fastWriteField2(buf []byte) (offset int) {
+func (x *PaySuccessToOrderRsp) fastWriteField2(buf []byte) (offset int) {
 	if x.Msg == "" {
 		return offset
 	}
@@ -165,7 +165,7 @@ func (x *CancelTradeRsp) fastWriteField2(buf []byte) (offset int) {
 	return offset
 }
 
-func (x *CancelTradeRsp) fastWriteField3(buf []byte) (offset int) {
+func (x *PaySuccessToOrderRsp) fastWriteField3(buf []byte) (offset int) {
 	if x.LogId == "" {
 		return offset
 	}
@@ -173,7 +173,7 @@ func (x *CancelTradeRsp) fastWriteField3(buf []byte) (offset int) {
 	return offset
 }
 
-func (x *CancelTradeRsp) fastWriteField4(buf []byte) (offset int) {
+func (x *PaySuccessToOrderRsp) fastWriteField4(buf []byte) (offset int) {
 	if x.Data == nil {
 		return offset
 	}
@@ -181,7 +181,7 @@ func (x *CancelTradeRsp) fastWriteField4(buf []byte) (offset int) {
 	return offset
 }
 
-func (x *CancelTradeRsp_CancelTradeRspData) FastWrite(buf []byte) (offset int) {
+func (x *PaySuccessToOrderRsp_PaySuccessToOrderRspData) FastWrite(buf []byte) (offset int) {
 	if x == nil {
 		return offset
 	}
@@ -189,7 +189,7 @@ func (x *CancelTradeRsp_CancelTradeRspData) FastWrite(buf []byte) (offset int) {
 	return offset
 }
 
-func (x *CancelTradeRsp_CancelTradeRspData) fastWriteField1(buf []byte) (offset int) {
+func (x *PaySuccessToOrderRsp_PaySuccessToOrderRspData) fastWriteField1(buf []byte) (offset int) {
 	if x.TradeNo == "" {
 		return offset
 	}
@@ -197,7 +197,7 @@ func (x *CancelTradeRsp_CancelTradeRspData) fastWriteField1(buf []byte) (offset 
 	return offset
 }
 
-func (x *CancelTradeReq) Size() (n int) {
+func (x *PaySuccessToOrderReq) Size() (n int) {
 	if x == nil {
 		return n
 	}
@@ -205,7 +205,7 @@ func (x *CancelTradeReq) Size() (n int) {
 	return n
 }
 
-func (x *CancelTradeReq) sizeField1() (n int) {
+func (x *PaySuccessToOrderReq) sizeField1() (n int) {
 	if x.TradeNo == "" {
 		return n
 	}
@@ -213,7 +213,7 @@ func (x *CancelTradeReq) sizeField1() (n int) {
 	return n
 }
 
-func (x *CancelTradeRsp) Size() (n int) {
+func (x *PaySuccessToOrderRsp) Size() (n int) {
 	if x == nil {
 		return n
 	}
@@ -224,7 +224,7 @@ func (x *CancelTradeRsp) Size() (n int) {
 	return n
 }
 
-func (x *CancelTradeRsp) sizeField1() (n int) {
+func (x *PaySuccessToOrderRsp) sizeField1() (n int) {
 	if x.Code == 0 {
 		return n
 	}
@@ -232,7 +232,7 @@ func (x *CancelTradeRsp) sizeField1() (n int) {
 	return n
 }
 
-func (x *CancelTradeRsp) sizeField2() (n int) {
+func (x *PaySuccessToOrderRsp) sizeField2() (n int) {
 	if x.Msg == "" {
 		return n
 	}
@@ -240,7 +240,7 @@ func (x *CancelTradeRsp) sizeField2() (n int) {
 	return n
 }
 
-func (x *CancelTradeRsp) sizeField3() (n int) {
+func (x *PaySuccessToOrderRsp) sizeField3() (n int) {
 	if x.LogId == "" {
 		return n
 	}
@@ -248,7 +248,7 @@ func (x *CancelTradeRsp) sizeField3() (n int) {
 	return n
 }
 
-func (x *CancelTradeRsp) sizeField4() (n int) {
+func (x *PaySuccessToOrderRsp) sizeField4() (n int) {
 	if x.Data == nil {
 		return n
 	}
@@ -256,7 +256,7 @@ func (x *CancelTradeRsp) sizeField4() (n int) {
 	return n
 }
 
-func (x *CancelTradeRsp_CancelTradeRspData) Size() (n int) {
+func (x *PaySuccessToOrderRsp_PaySuccessToOrderRspData) Size() (n int) {
 	if x == nil {
 		return n
 	}
@@ -264,7 +264,7 @@ func (x *CancelTradeRsp_CancelTradeRspData) Size() (n int) {
 	return n
 }
 
-func (x *CancelTradeRsp_CancelTradeRspData) sizeField1() (n int) {
+func (x *PaySuccessToOrderRsp_PaySuccessToOrderRspData) sizeField1() (n int) {
 	if x.TradeNo == "" {
 		return n
 	}
@@ -272,17 +272,17 @@ func (x *CancelTradeRsp_CancelTradeRspData) sizeField1() (n int) {
 	return n
 }
 
-var fieldIDToName_CancelTradeReq = map[int32]string{
+var fieldIDToName_PaySuccessToOrderReq = map[int32]string{
 	1: "TradeNo",
 }
 
-var fieldIDToName_CancelTradeRsp = map[int32]string{
+var fieldIDToName_PaySuccessToOrderRsp = map[int32]string{
 	1: "Code",
 	2: "Msg",
 	3: "LogId",
 	4: "Data",
 }
 
-var fieldIDToName_CancelTradeRsp_CancelTradeRspData = map[int32]string{
+var fieldIDToName_PaySuccessToOrderRsp_PaySuccessToOrderRspData = map[int32]string{
 	1: "TradeNo",
 }

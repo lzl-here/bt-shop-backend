@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package order;
+
+option go_package = "order";
+
+
+import "order/common.proto";
+
+
+// 创建交易
+message CreateTradeReq{
+    string token = 1;
+    TradeInfo trade_info = 2;
+    string pay_type = 3; // 支付类型
+
+    message TradeInfo {
+        repeated TradeOrderInfo order_info_list = 1;   
+        string trade_amount = 2;
+    }    
+
+
+}
+
+message CreateTradeRsp{
+    int32 code = 1; 
+    string msg = 2; 
+    string log_id = 3; 
+    CreateTradeRspData data = 4; 
+    message CreateTradeRspData {
+        string trade_no = 1; // 电商交易号
+        string pay_page_url = 2;
+    }
+}
+
+
+
+
+
+
+
+
+// 取消交易
+message CancelTradeReq{
+    string trade_no = 1;
+}
+
+message CancelTradeRsp{
+    int32 code = 1; 
+    string msg = 2; 
+    string log_id = 3; 
+    CancelTradeRspData data = 4; 
+    message CancelTradeRspData {
+        string trade_no = 1; // 电商交易号
+    }
+}

@@ -13,6 +13,8 @@ import (
 type Client interface {
 	CreateTrade(ctx context.Context, Req *order.CreateTradeReq, callOptions ...callopt.Option) (r *order.CreateTradeRsp, err error)
 	CancelTrade(ctx context.Context, Req *order.CancelTradeReq, callOptions ...callopt.Option) (r *order.CancelTradeRsp, err error)
+	GetOrderItems(ctx context.Context, Req *order.GetOrderItemsReq, callOptions ...callopt.Option) (r *order.GetOrderItemsRsp, err error)
+	PaySuccessToOrder(ctx context.Context, Req *order.PaySuccessToOrderReq, callOptions ...callopt.Option) (r *order.PaySuccessToOrderRsp, err error)
 }
 
 // NewClient creates a client for the service defined in IDL.
@@ -52,4 +54,14 @@ func (p *kOrderServiceClient) CreateTrade(ctx context.Context, Req *order.Create
 func (p *kOrderServiceClient) CancelTrade(ctx context.Context, Req *order.CancelTradeReq, callOptions ...callopt.Option) (r *order.CancelTradeRsp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
 	return p.kClient.CancelTrade(ctx, Req)
+}
+
+func (p *kOrderServiceClient) GetOrderItems(ctx context.Context, Req *order.GetOrderItemsReq, callOptions ...callopt.Option) (r *order.GetOrderItemsRsp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.GetOrderItems(ctx, Req)
+}
+
+func (p *kOrderServiceClient) PaySuccessToOrder(ctx context.Context, Req *order.PaySuccessToOrderReq, callOptions ...callopt.Option) (r *order.PaySuccessToOrderRsp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.PaySuccessToOrder(ctx, Req)
 }

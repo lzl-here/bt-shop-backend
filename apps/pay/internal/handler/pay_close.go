@@ -18,6 +18,7 @@ func (h *PayHandler) ClosePay(ctx context.Context, req *pgen.ClosePayReq) (*pgen
 	param := alipay.TradeClose{
 		OutTradeNo: req.TradeNo,
 	}
+	// 关闭第三方支付机构交易
 	alipayResp, err := h.rep.AlipayClose(ctx, param)
 	if err != nil {
 		return nil, err
@@ -25,13 +26,15 @@ func (h *PayHandler) ClosePay(ctx context.Context, req *pgen.ClosePayReq) (*pgen
 	if !alipayResp.IsSuccess() {
 		return nil, kerrors.NewBizStatusError(bizerr.ErrDownStream.BizStatusCode(), alipayResp.Msg)
 	}
-	// TODO 给每个订单项都生成
-	_, err = h.rep.CreatePayFlow(&model.PayFlow{
-		TradeNo:      req.TradeNo,
-		Status:       constant.PayStatusCancel,
-		ThirdTradeNo: alipayResp.TradeNo,
 
-	})
+	// 修改支付流水状态
+	where := &model.PayFlow{
+		TradeNo: req.TradeNo,
+	}
+	update := &model.PayFlow{
+		Status: constant.PayStatusCancel,
+	}
+	_, err = h.rep.UpdatePayFlow(where, update)
 	if err != nil {
 		return nil, err
 	}

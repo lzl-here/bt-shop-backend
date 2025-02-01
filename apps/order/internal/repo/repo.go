@@ -26,6 +26,7 @@ type RepoInterface interface {
 	CreateTrade(ctx context.Context, create *model.Trade) error
 	CreateOrders(ctx context.Context, create []*model.Order) error
 	CreateOrderItems(ctx context.Context, create []*model.OrderItem) error
+	GetOrderItems(ctx context.Context, where *model.OrderItem) ([]*model.OrderItem, error)
 }
 
 var _ RepoInterface = (*Repo)(nil)
@@ -77,4 +78,10 @@ func (r *Repo) CreateOrderItems(ctx context.Context, create []*model.OrderItem) 
 
 func (r *Repo) Pay(ctx context.Context, req *pgen.PayReq) (*pgen.PayRsp, error) {
 	return r.PayClient.Pay(ctx, req)
+}
+
+func (r *Repo) GetOrderItems(ctx context.Context, where *model.OrderItem) ([]*model.OrderItem, error) {
+	var items []*model.OrderItem
+	err := r.DB.Model(&model.OrderItem{}).Where(where).Find(items).Error
+	return items, err
 }
