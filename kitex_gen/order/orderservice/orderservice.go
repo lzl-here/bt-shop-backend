@@ -15,13 +15,6 @@ import (
 var errInvalidMessageType = errors.New("invalid message type for service method handler")
 
 var serviceMethods = map[string]kitex.MethodInfo{
-	"GenSettlePage": kitex.NewMethodInfo(
-		genSettlePageHandler,
-		newGenSettlePageArgs,
-		newGenSettlePageResult,
-		false,
-		kitex.WithStreamingMode(kitex.StreamingUnary),
-	),
 	"CreateTrade": kitex.NewMethodInfo(
 		createTradeHandler,
 		newCreateTradeArgs,
@@ -100,159 +93,6 @@ func newServiceInfo(hasStreaming bool, keepStreamingMethods bool, keepNonStreami
 		Extra:           extra,
 	}
 	return svcInfo
-}
-
-func genSettlePageHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
-	switch s := arg.(type) {
-	case *streaming.Args:
-		st := s.Stream
-		req := new(order.GenSettlePageReq)
-		if err := st.RecvMsg(req); err != nil {
-			return err
-		}
-		resp, err := handler.(order.OrderService).GenSettlePage(ctx, req)
-		if err != nil {
-			return err
-		}
-		return st.SendMsg(resp)
-	case *GenSettlePageArgs:
-		success, err := handler.(order.OrderService).GenSettlePage(ctx, s.Req)
-		if err != nil {
-			return err
-		}
-		realResult := result.(*GenSettlePageResult)
-		realResult.Success = success
-		return nil
-	default:
-		return errInvalidMessageType
-	}
-}
-func newGenSettlePageArgs() interface{} {
-	return &GenSettlePageArgs{}
-}
-
-func newGenSettlePageResult() interface{} {
-	return &GenSettlePageResult{}
-}
-
-type GenSettlePageArgs struct {
-	Req *order.GenSettlePageReq
-}
-
-func (p *GenSettlePageArgs) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
-	if !p.IsSetReq() {
-		p.Req = new(order.GenSettlePageReq)
-	}
-	return p.Req.FastRead(buf, _type, number)
-}
-
-func (p *GenSettlePageArgs) FastWrite(buf []byte) (n int) {
-	if !p.IsSetReq() {
-		return 0
-	}
-	return p.Req.FastWrite(buf)
-}
-
-func (p *GenSettlePageArgs) Size() (n int) {
-	if !p.IsSetReq() {
-		return 0
-	}
-	return p.Req.Size()
-}
-
-func (p *GenSettlePageArgs) Marshal(out []byte) ([]byte, error) {
-	if !p.IsSetReq() {
-		return out, nil
-	}
-	return proto.Marshal(p.Req)
-}
-
-func (p *GenSettlePageArgs) Unmarshal(in []byte) error {
-	msg := new(order.GenSettlePageReq)
-	if err := proto.Unmarshal(in, msg); err != nil {
-		return err
-	}
-	p.Req = msg
-	return nil
-}
-
-var GenSettlePageArgs_Req_DEFAULT *order.GenSettlePageReq
-
-func (p *GenSettlePageArgs) GetReq() *order.GenSettlePageReq {
-	if !p.IsSetReq() {
-		return GenSettlePageArgs_Req_DEFAULT
-	}
-	return p.Req
-}
-
-func (p *GenSettlePageArgs) IsSetReq() bool {
-	return p.Req != nil
-}
-
-func (p *GenSettlePageArgs) GetFirstArgument() interface{} {
-	return p.Req
-}
-
-type GenSettlePageResult struct {
-	Success *order.GenSettlePageRsp
-}
-
-var GenSettlePageResult_Success_DEFAULT *order.GenSettlePageRsp
-
-func (p *GenSettlePageResult) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
-	if !p.IsSetSuccess() {
-		p.Success = new(order.GenSettlePageRsp)
-	}
-	return p.Success.FastRead(buf, _type, number)
-}
-
-func (p *GenSettlePageResult) FastWrite(buf []byte) (n int) {
-	if !p.IsSetSuccess() {
-		return 0
-	}
-	return p.Success.FastWrite(buf)
-}
-
-func (p *GenSettlePageResult) Size() (n int) {
-	if !p.IsSetSuccess() {
-		return 0
-	}
-	return p.Success.Size()
-}
-
-func (p *GenSettlePageResult) Marshal(out []byte) ([]byte, error) {
-	if !p.IsSetSuccess() {
-		return out, nil
-	}
-	return proto.Marshal(p.Success)
-}
-
-func (p *GenSettlePageResult) Unmarshal(in []byte) error {
-	msg := new(order.GenSettlePageRsp)
-	if err := proto.Unmarshal(in, msg); err != nil {
-		return err
-	}
-	p.Success = msg
-	return nil
-}
-
-func (p *GenSettlePageResult) GetSuccess() *order.GenSettlePageRsp {
-	if !p.IsSetSuccess() {
-		return GenSettlePageResult_Success_DEFAULT
-	}
-	return p.Success
-}
-
-func (p *GenSettlePageResult) SetSuccess(x interface{}) {
-	p.Success = x.(*order.GenSettlePageRsp)
-}
-
-func (p *GenSettlePageResult) IsSetSuccess() bool {
-	return p.Success != nil
-}
-
-func (p *GenSettlePageResult) GetResult() interface{} {
-	return p.Success
 }
 
 func createTradeHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
@@ -569,16 +409,6 @@ func newServiceClient(c client.Client) *kClient {
 	return &kClient{
 		c: c,
 	}
-}
-
-func (p *kClient) GenSettlePage(ctx context.Context, Req *order.GenSettlePageReq) (r *order.GenSettlePageRsp, err error) {
-	var _args GenSettlePageArgs
-	_args.Req = Req
-	var _result GenSettlePageResult
-	if err = p.c.Call(ctx, "GenSettlePage", &_args, &_result); err != nil {
-		return
-	}
-	return _result.GetSuccess(), nil
 }
 
 func (p *kClient) CreateTrade(ctx context.Context, Req *order.CreateTradeReq) (r *order.CreateTradeRsp, err error) {

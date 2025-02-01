@@ -8,6 +8,10 @@ option go_package = "goods";
 
 // 导入需要使用的文件，package/文件名
 
+import "goods/get_goods.proto";
+
 service GoodsService {
+    // 获取商品详情 sku + spu
+    rpc GetGoodsList(GetGoodsListReq) returns (GetGoodsListRsp){}
 }
 

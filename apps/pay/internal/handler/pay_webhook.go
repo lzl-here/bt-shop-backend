@@ -103,7 +103,7 @@ func (h *PayHandler) payClosed(ctx context.Context, req *pgen.AlipayWebhookReq) 
 		return nil, err
 	}
 	if !alipayResp.IsSuccess() {
-		return nil, kerrors.NewBizStatusError(bizerr.ErrDownStreamError.BizStatusCode(), alipayResp.Msg)
+		return nil, kerrors.NewBizStatusError(bizerr.ErrDownStream.BizStatusCode(), alipayResp.Msg)
 	}
 	// TODO 状态机
 	p := &model.PayFlow{

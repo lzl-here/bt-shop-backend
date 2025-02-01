@@ -21,12 +21,6 @@ func NewOrderServer(rep *repo.Repo) *OrderServer {
 		rep: rep,
 	}
 }
-
-// 生成结算页
-func (s *OrderServer) GenSettlePage(ctx context.Context, req *ogen.GenSettlePageReq) (res *ogen.GenSettlePageRsp, err error) {
-	return handler.NewOrderHandler(s.rep).GenSettlePage(ctx, req)
-}
-
 // 创建一笔交易
 func (s *OrderServer) CreateTrade(ctx context.Context, req *ogen.CreateTradeReq) (res *ogen.CreateTradeRsp, err error) {
 	return handler.NewOrderHandler(s.rep).CreateTrade(ctx, req)
@@ -36,4 +30,5 @@ func (s *OrderServer) CreateTrade(ctx context.Context, req *ogen.CreateTradeReq)
 func (s *OrderServer) CancelTrade(ctx context.Context, req *ogen.CancelTradeReq) (res *ogen.CancelTradeRsp, err error) {
 	return handler.NewOrderHandler(s.rep).CancelTrade(ctx, req)
 }
+
 

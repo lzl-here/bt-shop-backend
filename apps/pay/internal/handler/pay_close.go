@@ -23,7 +23,7 @@ func (h *PayHandler) ClosePay(ctx context.Context, req *pgen.ClosePayReq) (*pgen
 		return nil, err
 	}
 	if !alipayResp.IsSuccess() {
-		return nil, kerrors.NewBizStatusError(bizerr.ErrDownStreamError.BizStatusCode(), alipayResp.Msg)
+		return nil, kerrors.NewBizStatusError(bizerr.ErrDownStream.BizStatusCode(), alipayResp.Msg)
 	}
 	// TODO 给每个订单项都生成
 	_, err = h.rep.CreatePayFlow(&model.PayFlow{

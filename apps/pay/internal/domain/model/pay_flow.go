@@ -14,6 +14,7 @@ type PayFlow struct {
 	ID            uint64 `gorm:"column:id"`              // 支付流水号
 	TradeNo       string `gorm:"column:trade_no"`        // 电商交易号
 	OrderNo       string `gorm:"column:order_no"`        // 电商订单号
+	OrderItemNo   string `gorm:"column:order_item_id"`   //	关联的订单项号
 	ThirdTradeNo  string `gorm:"column:third_trade_no"`  // 支付机构交易号
 	Status        string `gorm:"column:status"`          // 流转状态 支付成功：success，取消：cancel，退款: refund, 完成结账：completed
 	Type          string `gorm:"column:type"`            // 出入账类型：入帐: in，出账: out
@@ -24,7 +25,6 @@ type PayFlow struct {
 	SellerID      uint64 `gorm:"column:seller_id"`       //	卖家id
 	BuyerID       uint64 `gorm:"column:buyer_id"`        //	买家id
 	PayType       int    `gorm:"column:pay_type"`        // 支付方式：1.支付宝 2.微信 3.银行卡 4.其他
-	// TODO 订单项
 
 	model.BaseModel
 }

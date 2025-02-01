@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package goods;
+
+option go_package = "goods";
+
+
+
+message GetGoodsListReq {
+    repeated uint64 spu_ids = 1;
+}
+
+message GetGoodsListRsp {
+    int32 code = 1;
+    string msg = 2;
+    string log_id = 3;
+    GetGoodsListRspData data = 4;
+    message GetGoodsListRspData {
+        repeated SpuInfo spu_list = 1;
+    }
+
+    message SpuInfo {
+        uint64 spu_id = 1;
+        string spu_name = 2;
+        string spu_desc = 3;
+        string spu_img_url = 4;
+        string spu_min_amount = 5;
+        string spu_max_amount = 6;
+        uint64 spu_category_id = 7;
+        string spu_category_name = 8;
+        uint64 brand_id = 9;
+        string brand_name = 10;
+        repeated SkuInfo sku_list = 11;
+        repeated SpecInfo spec_list = 12;   // 可选规格
+        repeated SpecValueInfo spec_value_list = 13; // 可选规格值
+    }
+
+    message SkuInfo {
+        uint64 sku_id = 1;
+        uint64 spu_id = 2;
+        repeated SpecValueInfo spec_value_list = 3;
+        uint64 stock_num = 4;
+    }
+
+    message SpecInfo {
+        uint64 spec_id = 1;
+        string spec_name = 2;
+        uint64 spu_id = 3;
+    }
+
+    message SpecValueInfo {
+        uint64 spec_value_id = 1;
+        string spec_name = 2;
+        string spec_value = 3;
+    }
+}
+
+

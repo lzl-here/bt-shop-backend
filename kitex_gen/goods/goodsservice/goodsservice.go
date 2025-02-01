@@ -3,15 +3,26 @@
 package goodsservice
 
 import (
+	"context"
 	"errors"
 	client "github.com/cloudwego/kitex/client"
 	kitex "github.com/cloudwego/kitex/pkg/serviceinfo"
+	streaming "github.com/cloudwego/kitex/pkg/streaming"
 	goods "github.com/lzl-here/bt-shop-backend/kitex_gen/goods"
+	proto "google.golang.org/protobuf/proto"
 )
 
 var errInvalidMessageType = errors.New("invalid message type for service method handler")
 
-var serviceMethods = map[string]kitex.MethodInfo{}
+var serviceMethods = map[string]kitex.MethodInfo{
+	"GetGoodsList": kitex.NewMethodInfo(
+		getGoodsListHandler,
+		newGetGoodsListArgs,
+		newGetGoodsListResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingUnary),
+	),
+}
 
 var (
 	goodsServiceServiceInfo                = NewServiceInfo()
@@ -77,6 +88,159 @@ func newServiceInfo(hasStreaming bool, keepStreamingMethods bool, keepNonStreami
 	return svcInfo
 }
 
+func getGoodsListHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	switch s := arg.(type) {
+	case *streaming.Args:
+		st := s.Stream
+		req := new(goods.GetGoodsListReq)
+		if err := st.RecvMsg(req); err != nil {
+			return err
+		}
+		resp, err := handler.(goods.GoodsService).GetGoodsList(ctx, req)
+		if err != nil {
+			return err
+		}
+		return st.SendMsg(resp)
+	case *GetGoodsListArgs:
+		success, err := handler.(goods.GoodsService).GetGoodsList(ctx, s.Req)
+		if err != nil {
+			return err
+		}
+		realResult := result.(*GetGoodsListResult)
+		realResult.Success = success
+		return nil
+	default:
+		return errInvalidMessageType
+	}
+}
+func newGetGoodsListArgs() interface{} {
+	return &GetGoodsListArgs{}
+}
+
+func newGetGoodsListResult() interface{} {
+	return &GetGoodsListResult{}
+}
+
+type GetGoodsListArgs struct {
+	Req *goods.GetGoodsListReq
+}
+
+func (p *GetGoodsListArgs) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
+	if !p.IsSetReq() {
+		p.Req = new(goods.GetGoodsListReq)
+	}
+	return p.Req.FastRead(buf, _type, number)
+}
+
+func (p *GetGoodsListArgs) FastWrite(buf []byte) (n int) {
+	if !p.IsSetReq() {
+		return 0
+	}
+	return p.Req.FastWrite(buf)
+}
+
+func (p *GetGoodsListArgs) Size() (n int) {
+	if !p.IsSetReq() {
+		return 0
+	}
+	return p.Req.Size()
+}
+
+func (p *GetGoodsListArgs) Marshal(out []byte) ([]byte, error) {
+	if !p.IsSetReq() {
+		return out, nil
+	}
+	return proto.Marshal(p.Req)
+}
+
+func (p *GetGoodsListArgs) Unmarshal(in []byte) error {
+	msg := new(goods.GetGoodsListReq)
+	if err := proto.Unmarshal(in, msg); err != nil {
+		return err
+	}
+	p.Req = msg
+	return nil
+}
+
+var GetGoodsListArgs_Req_DEFAULT *goods.GetGoodsListReq
+
+func (p *GetGoodsListArgs) GetReq() *goods.GetGoodsListReq {
+	if !p.IsSetReq() {
+		return GetGoodsListArgs_Req_DEFAULT
+	}
+	return p.Req
+}
+
+func (p *GetGoodsListArgs) IsSetReq() bool {
+	return p.Req != nil
+}
+
+func (p *GetGoodsListArgs) GetFirstArgument() interface{} {
+	return p.Req
+}
+
+type GetGoodsListResult struct {
+	Success *goods.GetGoodsListRsp
+}
+
+var GetGoodsListResult_Success_DEFAULT *goods.GetGoodsListRsp
+
+func (p *GetGoodsListResult) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
+	if !p.IsSetSuccess() {
+		p.Success = new(goods.GetGoodsListRsp)
+	}
+	return p.Success.FastRead(buf, _type, number)
+}
+
+func (p *GetGoodsListResult) FastWrite(buf []byte) (n int) {
+	if !p.IsSetSuccess() {
+		return 0
+	}
+	return p.Success.FastWrite(buf)
+}
+
+func (p *GetGoodsListResult) Size() (n int) {
+	if !p.IsSetSuccess() {
+		return 0
+	}
+	return p.Success.Size()
+}
+
+func (p *GetGoodsListResult) Marshal(out []byte) ([]byte, error) {
+	if !p.IsSetSuccess() {
+		return out, nil
+	}
+	return proto.Marshal(p.Success)
+}
+
+func (p *GetGoodsListResult) Unmarshal(in []byte) error {
+	msg := new(goods.GetGoodsListRsp)
+	if err := proto.Unmarshal(in, msg); err != nil {
+		return err
+	}
+	p.Success = msg
+	return nil
+}
+
+func (p *GetGoodsListResult) GetSuccess() *goods.GetGoodsListRsp {
+	if !p.IsSetSuccess() {
+		return GetGoodsListResult_Success_DEFAULT
+	}
+	return p.Success
+}
+
+func (p *GetGoodsListResult) SetSuccess(x interface{}) {
+	p.Success = x.(*goods.GetGoodsListRsp)
+}
+
+func (p *GetGoodsListResult) IsSetSuccess() bool {
+	return p.Success != nil
+}
+
+func (p *GetGoodsListResult) GetResult() interface{} {
+	return p.Success
+}
+
 type kClient struct {
 	c client.Client
 }
@@ -85,4 +249,14 @@ func newServiceClient(c client.Client) *kClient {
 	return &kClient{
 		c: c,
 	}
+}
+
+func (p *kClient) GetGoodsList(ctx context.Context, Req *goods.GetGoodsListReq) (r *goods.GetGoodsListRsp, err error) {
+	var _args GetGoodsListArgs
+	_args.Req = Req
+	var _result GetGoodsListResult
+	if err = p.c.Call(ctx, "GetGoodsList", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
 }

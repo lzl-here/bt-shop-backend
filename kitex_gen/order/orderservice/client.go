@@ -11,7 +11,6 @@ import (
 
 // Client is designed to provide IDL-compatible methods with call-option parameter for kitex framework.
 type Client interface {
-	GenSettlePage(ctx context.Context, Req *order.GenSettlePageReq, callOptions ...callopt.Option) (r *order.GenSettlePageRsp, err error)
 	CreateTrade(ctx context.Context, Req *order.CreateTradeReq, callOptions ...callopt.Option) (r *order.CreateTradeRsp, err error)
 	CancelTrade(ctx context.Context, Req *order.CancelTradeReq, callOptions ...callopt.Option) (r *order.CancelTradeRsp, err error)
 }
@@ -43,11 +42,6 @@ func MustNewClient(destService string, opts ...client.Option) Client {
 
 type kOrderServiceClient struct {
 	*kClient
-}
-
-func (p *kOrderServiceClient) GenSettlePage(ctx context.Context, Req *order.GenSettlePageReq, callOptions ...callopt.Option) (r *order.GenSettlePageRsp, err error) {
-	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
-	return p.kClient.GenSettlePage(ctx, Req)
 }
 
 func (p *kOrderServiceClient) CreateTrade(ctx context.Context, Req *order.CreateTradeReq, callOptions ...callopt.Option) (r *order.CreateTradeRsp, err error) {

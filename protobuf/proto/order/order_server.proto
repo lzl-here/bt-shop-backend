@@ -9,11 +9,8 @@ option go_package = "order";
 // 导入需要使用的文件，package/文件名
 import "order/create_trade.proto";
 import "order/cancel_trade.proto";
-import "order/settle_page.proto";
 
 service OrderService {
-    // 生成结算页
-    rpc GenSettlePage(GenSettlePageReq) returns (GenSettlePageRsp) {}
 
     // 创建一笔交易
     rpc CreateTrade(CreateTradeReq) returns (CreateTradeRsp) {}

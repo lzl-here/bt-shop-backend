@@ -19,7 +19,7 @@ func ErrorMiddleWare(next endpoint.Endpoint) endpoint.Endpoint {
 		err := next(ctx, req, resp)
 		if err != nil {
 			klog.Error(err)
-			bizErr := bizerr.ErrInternalError
+			bizErr := bizerr.ErrInternal
 			ri := rpcinfo.GetRPCInfo(ctx)
 			if setter, ok := ri.Invocation().(rpcinfo.InvocationSetter); ok {
 				setter.SetBizStatusErr(bizErr)
