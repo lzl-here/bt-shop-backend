@@ -260,48 +260,13 @@ ReadFieldError:
 }
 
 func (x *GetKeywordDownListRsp_GetKeyDownListRspData) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	var v GetKeywordDownListRsp_KeywordDown
+	var v Keyword
 	offset, err = fastpb.ReadMessage(buf, _type, &v)
 	if err != nil {
 		return offset, err
 	}
-	x.KeyDownList = append(x.KeyDownList, &v)
+	x.KeywordList = append(x.KeywordList, &v)
 	return offset, nil
-}
-
-func (x *GetKeywordDownListRsp_KeywordDown) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
-	switch number {
-	case 1:
-		offset, err = x.fastReadField1(buf, _type)
-		if err != nil {
-			goto ReadFieldError
-		}
-	case 2:
-		offset, err = x.fastReadField2(buf, _type)
-		if err != nil {
-			goto ReadFieldError
-		}
-	default:
-		offset, err = fastpb.Skip(buf, _type, number)
-		if err != nil {
-			goto SkipFieldError
-		}
-	}
-	return offset, nil
-SkipFieldError:
-	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
-ReadFieldError:
-	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_GetKeywordDownListRsp_KeywordDown[number], err)
-}
-
-func (x *GetKeywordDownListRsp_KeywordDown) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	x.Id, offset, err = fastpb.ReadUint64(buf, _type)
-	return offset, err
-}
-
-func (x *GetKeywordDownListRsp_KeywordDown) fastReadField2(buf []byte, _type int8) (offset int, err error) {
-	x.Value, offset, err = fastpb.ReadString(buf, _type)
-	return offset, err
 }
 
 func (x *SearchSpuListRsp_SearchSpuListRspData) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
@@ -538,37 +503,12 @@ func (x *GetKeywordDownListRsp_GetKeyDownListRspData) FastWrite(buf []byte) (off
 }
 
 func (x *GetKeywordDownListRsp_GetKeyDownListRspData) fastWriteField1(buf []byte) (offset int) {
-	if x.KeyDownList == nil {
+	if x.KeywordList == nil {
 		return offset
 	}
-	for i := range x.GetKeyDownList() {
-		offset += fastpb.WriteMessage(buf[offset:], 1, x.GetKeyDownList()[i])
+	for i := range x.GetKeywordList() {
+		offset += fastpb.WriteMessage(buf[offset:], 1, x.GetKeywordList()[i])
 	}
-	return offset
-}
-
-func (x *GetKeywordDownListRsp_KeywordDown) FastWrite(buf []byte) (offset int) {
-	if x == nil {
-		return offset
-	}
-	offset += x.fastWriteField1(buf[offset:])
-	offset += x.fastWriteField2(buf[offset:])
-	return offset
-}
-
-func (x *GetKeywordDownListRsp_KeywordDown) fastWriteField1(buf []byte) (offset int) {
-	if x.Id == 0 {
-		return offset
-	}
-	offset += fastpb.WriteUint64(buf[offset:], 1, x.GetId())
-	return offset
-}
-
-func (x *GetKeywordDownListRsp_KeywordDown) fastWriteField2(buf []byte) (offset int) {
-	if x.Value == "" {
-		return offset
-	}
-	offset += fastpb.WriteString(buf[offset:], 2, x.GetValue())
 	return offset
 }
 
@@ -784,37 +724,12 @@ func (x *GetKeywordDownListRsp_GetKeyDownListRspData) Size() (n int) {
 }
 
 func (x *GetKeywordDownListRsp_GetKeyDownListRspData) sizeField1() (n int) {
-	if x.KeyDownList == nil {
+	if x.KeywordList == nil {
 		return n
 	}
-	for i := range x.GetKeyDownList() {
-		n += fastpb.SizeMessage(1, x.GetKeyDownList()[i])
+	for i := range x.GetKeywordList() {
+		n += fastpb.SizeMessage(1, x.GetKeywordList()[i])
 	}
-	return n
-}
-
-func (x *GetKeywordDownListRsp_KeywordDown) Size() (n int) {
-	if x == nil {
-		return n
-	}
-	n += x.sizeField1()
-	n += x.sizeField2()
-	return n
-}
-
-func (x *GetKeywordDownListRsp_KeywordDown) sizeField1() (n int) {
-	if x.Id == 0 {
-		return n
-	}
-	n += fastpb.SizeUint64(1, x.GetId())
-	return n
-}
-
-func (x *GetKeywordDownListRsp_KeywordDown) sizeField2() (n int) {
-	if x.Value == "" {
-		return n
-	}
-	n += fastpb.SizeString(2, x.GetValue())
 	return n
 }
 
@@ -887,12 +802,7 @@ var fieldIDToName_SearchSpuListRsp = map[int32]string{
 }
 
 var fieldIDToName_GetKeywordDownListRsp_GetKeyDownListRspData = map[int32]string{
-	1: "KeyDownList",
-}
-
-var fieldIDToName_GetKeywordDownListRsp_KeywordDown = map[int32]string{
-	1: "Id",
-	2: "Value",
+	1: "KeywordList",
 }
 
 var fieldIDToName_SearchSpuListRsp_SearchSpuListRspData = map[int32]string{

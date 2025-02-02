@@ -43,14 +43,24 @@ message GetGoodsDetailRsp{
 // 发布商品
 message PublishGoodsReq{
     uint64 category_id = 1;
-    uint64 brand_id = 2;
-    string spu_name = 3;
-    string spu_desc = 4;
-    string spu_price = 5;
-    string spu_img_url = 6;
+    string category_name = 2;
+    uint64 brand_id = 3;
+    string brand_name = 4;
+    string spu_name = 5;
+    string spu_desc = 6;
+    string spu_price = 7;
+    string spu_img_url = 8;
 
     // 规格
-    repeated SpecKeyValue spec_key_value_list = 7;
+    repeated PublishSkuInfo sku_info_list = 9;
+    // 属性
+    repeated AttributeInfo attribute_info_list = 10;
+
+    message PublishSkuInfo {
+    uint64 stock_num = 1;
+    string sku_price = 2;
+    repeated SpecKeyValue spec_key_value = 3;
+    }
 }
 
 

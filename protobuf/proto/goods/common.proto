@@ -11,8 +11,7 @@ message SpuInfo {
     string spu_name = 2;
     string spu_desc = 3;
     string spu_img_url = 4;
-    string spu_min_amount = 5;
-    string spu_max_amount = 6;
+    string spu_price = 5;
     uint64 spu_category_id = 7;
     string spu_category_name = 8;
     uint64 brand_id = 9;
@@ -48,7 +47,25 @@ message SpecValueInfo {
 
 // 规格项列表， 需要新增规格时使用
 message SpecKeyValue {
-    string spec_key = 7;
-    string spec_value = 8;
+    string spec_name = 1;
+    string spec_value = 2;
 }
 
+message AttributeInfo {
+    string attribute_name = 1;
+    string attribute_value = 2;
+}
+
+// 关键词下拉框项
+message Keyword{   
+    uint64 id = 1;
+    string value = 2;
+}
+
+// 商品分类
+message Category {
+    uint64 category_id = 1;
+    string category_name = 2;
+    uint64 parent_id = 3;
+    repeated Category children = 4;
+}

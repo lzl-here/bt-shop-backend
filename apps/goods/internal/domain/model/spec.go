@@ -6,10 +6,8 @@ import (
 
 // 规格
 type Spec struct {
-	ID    uint64 `gorm:"column:id"`
+	ID    uint64 `gorm:"column:id"`		// ID
 	Name  string `gorm:"column:name"`   // 规格名称
-	Value string 
 	SpuID uint64 `gorm:"column:spu_id"` // spu id
 	model.BaseModel
 }
-

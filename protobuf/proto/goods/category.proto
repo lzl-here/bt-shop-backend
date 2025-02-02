@@ -4,6 +4,8 @@ package goods;
 
 option go_package = "goods";
 
+import "goods/common.proto";
+
 message GetCategoryListReq {
 
 }
@@ -15,11 +17,7 @@ message GetCategoryListRsp {
     GetCategoryListRspData data = 4;
 
     message GetCategoryListRspData {
-        repeated CategoryInfo category_list = 1;
+        repeated Category category_list = 1;
     }
-    message CategoryInfo {
-        uint64 category_id = 1;
-        string category_name = 2;
-        uint64 parent_id = 3;
-    }
+
 }

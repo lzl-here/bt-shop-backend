@@ -106,58 +106,13 @@ ReadFieldError:
 }
 
 func (x *GetCategoryListRsp_GetCategoryListRspData) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	var v GetCategoryListRsp_CategoryInfo
+	var v Category
 	offset, err = fastpb.ReadMessage(buf, _type, &v)
 	if err != nil {
 		return offset, err
 	}
 	x.CategoryList = append(x.CategoryList, &v)
 	return offset, nil
-}
-
-func (x *GetCategoryListRsp_CategoryInfo) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
-	switch number {
-	case 1:
-		offset, err = x.fastReadField1(buf, _type)
-		if err != nil {
-			goto ReadFieldError
-		}
-	case 2:
-		offset, err = x.fastReadField2(buf, _type)
-		if err != nil {
-			goto ReadFieldError
-		}
-	case 3:
-		offset, err = x.fastReadField3(buf, _type)
-		if err != nil {
-			goto ReadFieldError
-		}
-	default:
-		offset, err = fastpb.Skip(buf, _type, number)
-		if err != nil {
-			goto SkipFieldError
-		}
-	}
-	return offset, nil
-SkipFieldError:
-	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
-ReadFieldError:
-	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_GetCategoryListRsp_CategoryInfo[number], err)
-}
-
-func (x *GetCategoryListRsp_CategoryInfo) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	x.CategoryId, offset, err = fastpb.ReadUint64(buf, _type)
-	return offset, err
-}
-
-func (x *GetCategoryListRsp_CategoryInfo) fastReadField2(buf []byte, _type int8) (offset int, err error) {
-	x.CategoryName, offset, err = fastpb.ReadString(buf, _type)
-	return offset, err
-}
-
-func (x *GetCategoryListRsp_CategoryInfo) fastReadField3(buf []byte, _type int8) (offset int, err error) {
-	x.ParentId, offset, err = fastpb.ReadUint64(buf, _type)
-	return offset, err
 }
 
 func (x *GetCategoryListReq) FastWrite(buf []byte) (offset int) {
@@ -225,40 +180,6 @@ func (x *GetCategoryListRsp_GetCategoryListRspData) fastWriteField1(buf []byte) 
 	for i := range x.GetCategoryList() {
 		offset += fastpb.WriteMessage(buf[offset:], 1, x.GetCategoryList()[i])
 	}
-	return offset
-}
-
-func (x *GetCategoryListRsp_CategoryInfo) FastWrite(buf []byte) (offset int) {
-	if x == nil {
-		return offset
-	}
-	offset += x.fastWriteField1(buf[offset:])
-	offset += x.fastWriteField2(buf[offset:])
-	offset += x.fastWriteField3(buf[offset:])
-	return offset
-}
-
-func (x *GetCategoryListRsp_CategoryInfo) fastWriteField1(buf []byte) (offset int) {
-	if x.CategoryId == 0 {
-		return offset
-	}
-	offset += fastpb.WriteUint64(buf[offset:], 1, x.GetCategoryId())
-	return offset
-}
-
-func (x *GetCategoryListRsp_CategoryInfo) fastWriteField2(buf []byte) (offset int) {
-	if x.CategoryName == "" {
-		return offset
-	}
-	offset += fastpb.WriteString(buf[offset:], 2, x.GetCategoryName())
-	return offset
-}
-
-func (x *GetCategoryListRsp_CategoryInfo) fastWriteField3(buf []byte) (offset int) {
-	if x.ParentId == 0 {
-		return offset
-	}
-	offset += fastpb.WriteUint64(buf[offset:], 3, x.GetParentId())
 	return offset
 }
 
@@ -330,40 +251,6 @@ func (x *GetCategoryListRsp_GetCategoryListRspData) sizeField1() (n int) {
 	return n
 }
 
-func (x *GetCategoryListRsp_CategoryInfo) Size() (n int) {
-	if x == nil {
-		return n
-	}
-	n += x.sizeField1()
-	n += x.sizeField2()
-	n += x.sizeField3()
-	return n
-}
-
-func (x *GetCategoryListRsp_CategoryInfo) sizeField1() (n int) {
-	if x.CategoryId == 0 {
-		return n
-	}
-	n += fastpb.SizeUint64(1, x.GetCategoryId())
-	return n
-}
-
-func (x *GetCategoryListRsp_CategoryInfo) sizeField2() (n int) {
-	if x.CategoryName == "" {
-		return n
-	}
-	n += fastpb.SizeString(2, x.GetCategoryName())
-	return n
-}
-
-func (x *GetCategoryListRsp_CategoryInfo) sizeField3() (n int) {
-	if x.ParentId == 0 {
-		return n
-	}
-	n += fastpb.SizeUint64(3, x.GetParentId())
-	return n
-}
-
 var fieldIDToName_GetCategoryListReq = map[int32]string{}
 
 var fieldIDToName_GetCategoryListRsp = map[int32]string{
@@ -375,10 +262,4 @@ var fieldIDToName_GetCategoryListRsp = map[int32]string{
 
 var fieldIDToName_GetCategoryListRsp_GetCategoryListRspData = map[int32]string{
 	1: "CategoryList",
-}
-
-var fieldIDToName_GetCategoryListRsp_CategoryInfo = map[int32]string{
-	1: "CategoryId",
-	2: "CategoryName",
-	3: "ParentId",
 }

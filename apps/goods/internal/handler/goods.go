@@ -3,11 +3,16 @@ package handler
 import (
 	"context"
 	"encoding/json"
+	"strconv"
 
 	"github.com/lzl-here/bt-shop-backend/apps/goods/internal/domain/model"
 	ggen "github.com/lzl-here/bt-shop-backend/kitex_gen/goods"
+	"gorm.io/gorm"
 )
 
+/**
+ * 获取商品列表
+ */
 func (h *GoodsHandler) GetGoodsList(ctx context.Context, req *ggen.GetGoodsListReq) (*ggen.GetGoodsListRsp, error) {
 	spus, err := h.rep.GetSpuListByIDs(ctx, req.SpuIds)
 	if err != nil {
@@ -53,8 +58,7 @@ func buildRsp(spus []*model.GoodsSpu, skus []*model.GoodsSku, specs []*model.Spe
 			SpuName:         spu.SpuName,
 			SpuDesc:         spu.SpuDesc,
 			SpuImgUrl:       spu.SpuImgUrl,
-			SpuMinAmount:    spu.MinAmount,
-			SpuMaxAmount:    spu.MaxAmount,
+			SpuPrice:        spu.Price,
 			SpuCategoryId:   spu.CategoryID,
 			SpuCategoryName: spu.CategoryName,
 			BrandId:         spu.BrandID,
@@ -102,11 +106,139 @@ func buildSpecList(specValueStr string) []*ggen.SpecValueInfo {
 	return rsp
 }
 
-
+/**
+ * 获取商品详情
+ */
 func (h *GoodsHandler) GetGoodsDetail(ctx context.Context, req *ggen.GetGoodsDetailReq) (*ggen.GetGoodsDetailRsp, error) {
-	return nil, nil
+	listRsp, err := h.GetGoodsList(ctx, &ggen.GetGoodsListReq{
+		SpuIds: []uint64{req.SpuId},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return &ggen.GetGoodsDetailRsp{
+		Code: 1,
+		Msg:  "success",
+		Data: &ggen.GetGoodsDetailRsp_GetGoodsDetailRspData{
+			SpuInfo: listRsp.Data.SpuList[0],
+		},
+	}, nil
 }
 
+/**
+ * 发布商品
+ * 1. 发布参数
+ * 2. 发布规格
+ * 3. 发布spu 和 sku
+ */
 func (h *GoodsHandler) PublishGoods(ctx context.Context, req *ggen.PublishGoodsReq) (*ggen.PublishGoodsRsp, error) {
-	return &ggen.PublishGoodsRsp{}, nil
+	var err error
+	var spuID uint64
+	err = h.rep.Transaction(ctx, func(ctx context.Context, tx *gorm.DB) error {
+		// 存储属性
+		attrs := make([]*model.Attribute, 0)
+		for _, a := range req.AttributeInfoList {
+			attrs = append(attrs, &model.Attribute{
+				Name:  a.AttributeName,
+				Value: a.AttributeValue,
+			})
+		}
+		attrs, err = h.rep.CreateAttributes(ctx, attrs)
+		if err != nil {
+			return err
+		}
+		// 存储规格
+		specValues := make([]*model.SpecValue, 0)
+		for _, sku := range req.SkuInfoList {
+			for _, s := range sku.SpecKeyValue {
+				specValues = append(specValues, &model.SpecValue{
+					Name:   s.SpecName,
+					Value:  s.SpecValue,
+					SpecID: 0,
+				})
+			}
+		}
+		specs := make([]*model.Spec, 0)
+		specMap := make(map[string]struct{})
+		for _, s := range specValues {
+			if _, ok := specMap[s.Name]; !ok {
+				specMap[s.Name] = struct{}{}
+			}
+		}
+		for n := range specMap {
+			specs = append(specs, &model.Spec{
+				Name: n,
+			})
+		}
+
+		if specs, err = h.rep.CreateSpecs(ctx, specs); err != nil {
+			return err
+		}
+		for _, s := range specs {
+			for _, v := range specValues {
+				if s.Name == v.Name {
+					v.SpecID = s.ID
+				}
+			}
+		}
+		if err = h.rep.CreateSpecValues(ctx, specValues); err != nil {
+			return err
+		}
+
+		// 存储spu
+		specIDs := ""
+		attrIDs := ""
+		for _, s := range specs {
+			specIDs += "," + strconv.FormatUint(s.ID, 10)
+		}
+		for _, a := range attrs {
+			attrIDs += "," + strconv.FormatUint(a.ID, 10)
+		}
+		spu := &model.GoodsSpu{
+			SpuName:      req.SpuName,
+			SpuDesc:      req.SpuDesc,
+			SpuImgUrl:    req.SpuImgUrl,
+			Price:        req.SpuPrice,
+			CategoryID:   req.CategoryId,
+			CategoryName: req.CategoryName,
+			BrandID:      req.BrandId,
+			BrandName:    req.BrandName,
+			Enabled:      true,
+			AttributeIDs: attrIDs,
+			SpecIDs:      specIDs,
+		}
+		if spu, err = h.rep.CreateSpu(ctx, spu); err != nil {
+			return err
+		}
+		spuID = spu.ID
+		// 存储sku
+		skus := make([]*model.GoodsSku, 0)
+		for _, s := range req.SkuInfoList {
+			bytes, err := json.Marshal(s.SpecKeyValue)
+			if err != nil {
+				return err
+			}
+			sku := model.GoodsSku{
+				SpuID:      spu.ID,
+				StockNum:   s.StockNum,
+				SpecValues: string(bytes),
+				Enabled:    true,
+			}
+			skus = append(skus, &sku)
+		}
+		if err = h.rep.CreateSkus(ctx, skus); err != nil {
+			return err
+		}
+		return nil
+	})
+	if err != nil {
+		return nil, err
+	}
+	return &ggen.PublishGoodsRsp{
+		Code: 1,
+		Msg:  "success",
+		Data: &ggen.PublishGoodsRsp_PublishGoodsRspData{
+			SpuId: spuID,
+		},
+	}, nil
 }
