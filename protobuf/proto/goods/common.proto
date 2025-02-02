@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package goods;
+
+option go_package = "goods";
+
+
+// spu信息
+message SpuInfo {
+    uint64 spu_id = 1;
+    string spu_name = 2;
+    string spu_desc = 3;
+    string spu_img_url = 4;
+    string spu_min_amount = 5;
+    string spu_max_amount = 6;
+    uint64 spu_category_id = 7;
+    string spu_category_name = 8;
+    uint64 brand_id = 9;
+    string brand_name = 10;
+    repeated SkuInfo sku_list = 11;
+    repeated SpecInfo spec_list = 12;   // 可选规格
+    repeated SpecValueInfo spec_value_list = 13; // 可选规格值
+}
+
+// sku信息
+message SkuInfo {
+    uint64 sku_id = 1;
+    uint64 spu_id = 2;
+    uint64 stock_num = 3;
+    string sku_amount = 4;
+    string sku_name = 5;
+    string spec_str = 6;
+}
+
+//规格信息，查询商品信息时使用
+message SpecInfo {
+    uint64 spec_id = 1;
+    string spec_name = 2;
+    uint64 spu_id = 3;
+}
+
+// 规格值信息，查询商品信息时使用
+message SpecValueInfo {
+    uint64 spec_value_id = 1;
+    string spec_name = 2;
+    string spec_value = 3;
+}
+
+// 规格项列表， 需要新增规格时使用
+message SpecKeyValue {
+    string spec_key = 7;
+    string spec_value = 8;
+}
+

@@ -99,7 +99,7 @@ func (h *OrderHandler) checkParam(ctx context.Context, req *ogen.CreateTradeReq)
 		return bizerr.ErrDownStream
 	}
 	// 后端存的数据
-	itemSkuIDMap := make(map[uint64]*ggen.GetGoodsListRsp_SkuInfo)
+	itemSkuIDMap := make(map[uint64]*ggen.SkuInfo)
 	for _, spu := range goodsRsp.Data.SpuList {
 		for _, sku := range spu.SkuList {
 			itemSkuIDMap[sku.SkuId] = sku

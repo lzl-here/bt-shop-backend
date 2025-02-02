@@ -13,6 +13,8 @@ type GoodsSpu struct {
 	MinAmount    string `gorm:"column:max_amount"`    // 最低价
 	MaxAmount    string `gorm:"column:max_amount"`    // 最高价
 	Enabled      uint64 `gorm:"column:enabled"`       // 是否上架
-	SpuImgUrl       string `gorm:"column:img_url"`       // 图片地址
+	SpuImgUrl    string `gorm:"column:img_url"`       // 图片地址
+	Attributes   string `gorm:"column:attributes"`    // 属性id列表 ,隔开 不额外用一张表存关系
+	Specs        string `gorm:"column:specs"`         // 规格id列表 ,隔开 不额外用一张表存关系
 	model.BaseModel
 }

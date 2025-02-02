@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package goods;
+
+option go_package = "goods";
+
+message GetCategoryListReq {
+
+}
+
+message GetCategoryListRsp {
+    int32 code = 1;
+    string msg = 2;
+    string log_id = 3;
+    GetCategoryListRspData data = 4;
+
+    message GetCategoryListRspData {
+        repeated CategoryInfo category_list = 1;
+    }
+    message CategoryInfo {
+        uint64 category_id = 1;
+        string category_name = 2;
+        uint64 parent_id = 3;
+    }
+}

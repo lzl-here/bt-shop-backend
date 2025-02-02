@@ -11,7 +11,13 @@ import (
 
 // Client is designed to provide IDL-compatible methods with call-option parameter for kitex framework.
 type Client interface {
+	GetKeywordDownList(ctx context.Context, Req *goods.GetKeywordDownListReq, callOptions ...callopt.Option) (r *goods.GetKeywordDownListRsp, err error)
+	SearchSpuList(ctx context.Context, Req *goods.SearchSpuListReq, callOptions ...callopt.Option) (r *goods.SearchSpuListRsp, err error)
+	GetGoodsDetail(ctx context.Context, Req *goods.GetGoodsDetailReq, callOptions ...callopt.Option) (r *goods.GetGoodsDetailRsp, err error)
 	GetGoodsList(ctx context.Context, Req *goods.GetGoodsListReq, callOptions ...callopt.Option) (r *goods.GetGoodsListRsp, err error)
+	GetCategoryList(ctx context.Context, Req *goods.GetCategoryListReq, callOptions ...callopt.Option) (r *goods.GetCategoryListRsp, err error)
+	AddToCart(ctx context.Context, Req *goods.AddToCartReq, callOptions ...callopt.Option) (r *goods.AddToCartRsp, err error)
+	PublishGoods(ctx context.Context, Req *goods.PublishGoodsReq, callOptions ...callopt.Option) (r *goods.PublishGoodsRsp, err error)
 }
 
 // NewClient creates a client for the service defined in IDL.
@@ -43,7 +49,37 @@ type kGoodsServiceClient struct {
 	*kClient
 }
 
+func (p *kGoodsServiceClient) GetKeywordDownList(ctx context.Context, Req *goods.GetKeywordDownListReq, callOptions ...callopt.Option) (r *goods.GetKeywordDownListRsp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.GetKeywordDownList(ctx, Req)
+}
+
+func (p *kGoodsServiceClient) SearchSpuList(ctx context.Context, Req *goods.SearchSpuListReq, callOptions ...callopt.Option) (r *goods.SearchSpuListRsp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.SearchSpuList(ctx, Req)
+}
+
+func (p *kGoodsServiceClient) GetGoodsDetail(ctx context.Context, Req *goods.GetGoodsDetailReq, callOptions ...callopt.Option) (r *goods.GetGoodsDetailRsp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.GetGoodsDetail(ctx, Req)
+}
+
 func (p *kGoodsServiceClient) GetGoodsList(ctx context.Context, Req *goods.GetGoodsListReq, callOptions ...callopt.Option) (r *goods.GetGoodsListRsp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
 	return p.kClient.GetGoodsList(ctx, Req)
+}
+
+func (p *kGoodsServiceClient) GetCategoryList(ctx context.Context, Req *goods.GetCategoryListReq, callOptions ...callopt.Option) (r *goods.GetCategoryListRsp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.GetCategoryList(ctx, Req)
+}
+
+func (p *kGoodsServiceClient) AddToCart(ctx context.Context, Req *goods.AddToCartReq, callOptions ...callopt.Option) (r *goods.AddToCartRsp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.AddToCart(ctx, Req)
+}
+
+func (p *kGoodsServiceClient) PublishGoods(ctx context.Context, Req *goods.PublishGoodsReq, callOptions ...callopt.Option) (r *goods.PublishGoodsRsp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.PublishGoods(ctx, Req)
 }

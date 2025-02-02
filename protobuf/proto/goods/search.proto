@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package goods;
+
+option go_package = "goods";
+
+// TODO 
+// 获取关键词下拉列表
+message GetKeywordDownListReq {
+    string prefix = 1;
+}
+
+message GetKeywordDownListRsp {
+    int32 code = 1;
+    string msg = 2;
+    string log_id = 3;
+    GetKeyDownListRspData data = 4;
+    message GetKeyDownListRspData {
+        repeated KeywordDown key_down_list = 1;
+    }
+
+    // 关键词下拉框项
+    message KeywordDown{   
+        uint64 id = 1;
+        string value = 2;
+    }
+}
+
+// 搜索商品列表
+message SearchSpuListReq {
+    string keyword = 1; // 关键词
+    
+    repeated uint64 category_ids = 2;//分类id
+    repeated uint64 brand_ids = 3; // 品牌id
+
+    repeated uint64 id = 4; //参数id
+}
+
+message SearchSpuListRsp {
+    int32 code = 1;
+    string msg = 2;
+    string log_id = 3;
+    SearchSpuListRspData data = 4;
+    message SearchSpuListRspData {
+        repeated SpuInfo spu_list = 1;
+    }
+    message SpuInfo {
+        uint64 spu_id = 1;
+        string spu_name= 2;
+    }
+
+}

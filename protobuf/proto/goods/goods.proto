@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package goods;
+
+option go_package = "goods";
+
+import "goods/common.proto";
+
+
+
+//根据id获取商品列表
+message GetGoodsListReq {
+    repeated uint64 spu_ids = 1;
+}
+
+message GetGoodsListRsp {
+    int32 code = 1;
+    string msg = 2;
+    string log_id = 3;
+    GetGoodsListRspData data = 4;
+    message GetGoodsListRspData {
+        repeated SpuInfo spu_list = 1;
+    }
+}
+
+// 商品详情页
+message GetGoodsDetailReq{
+    uint64 spu_id = 1;
+}
+
+message GetGoodsDetailRsp{
+    int32 code = 1;
+    string msg = 2;
+    string log_id = 3;
+    GetGoodsDetailRspData data = 4;
+    message GetGoodsDetailRspData {
+        SpuInfo spu_info = 1;
+    }
+}   
+
+
+
+// 发布商品
+message PublishGoodsReq{
+    uint64 category_id = 1;
+    uint64 brand_id = 2;
+    string spu_name = 3;
+    string spu_desc = 4;
+    string spu_price = 5;
+    string spu_img_url = 6;
+
+    // 规格
+    repeated SpecKeyValue spec_key_value_list = 7;
+}
+
+
+
+message PublishGoodsRsp {
+    int32 code = 1;
+    string msg = 2;
+    string log_id = 3;
+    PublishGoodsRspData data = 4;
+    message PublishGoodsRspData {
+        uint64 spu_id = 1;
+    }
+}

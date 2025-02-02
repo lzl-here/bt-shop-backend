@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package goods;
+
+option go_package = "goods";
+
+message AddToCartReq {
+    
+}
+
+message AddToCartRsp {
+    
+}
