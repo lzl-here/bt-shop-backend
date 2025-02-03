@@ -11,8 +11,38 @@ import (
 * @Description: 搜索商品
  */
 func (h *GoodsHandler) SearchSpuList(ctx context.Context, req *ggen.SearchSpuListReq) (*ggen.SearchSpuListRsp, error) {
-	// TODO es
-	return nil, nil
+	if req.PageNo < 1 {
+		req.PageNo = 1
+	}
+	if req.PageSize > 100 {
+		req.PageSize = 100
+	}
+	spus, err := h.rep.SearchSpu(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+	// TODO 查询attr
+	return buildSearchRsp(spus, req.PageSize, req.PageNo), nil
+}
+
+func buildSearchRsp(spus []*model.GoodsSpu, pageSize int32, pageNo int32) *ggen.SearchSpuListRsp {
+	spusRsp := make([]*ggen.SpuInfo, 0)
+	for _, s := range spus {
+		spusRsp = append(spusRsp, &ggen.SpuInfo{
+			SpuId:   s.ID,
+			SpuName: s.SpuName,
+		})
+	}
+
+	return &ggen.SearchSpuListRsp{
+		Code: 1,
+		Msg:  "success",
+		Data: &ggen.SearchSpuListRsp_SearchSpuListRspData{
+			PageSize: pageSize,
+			PageNo:   pageNo,
+			SpuList:  spusRsp,
+		},
+	}
 }
 
 /**
@@ -20,6 +50,7 @@ func (h *GoodsHandler) SearchSpuList(ctx context.Context, req *ggen.SearchSpuLis
  */
 func (h *GoodsHandler) GetKeywordDownList(ctx context.Context, req *ggen.GetKeywordDownListReq) (*ggen.GetKeywordDownListRsp, error) {
 	// 异步增加搜索关键词次数
+	// TODO 写聚合
 	go func() {
 		h.rep.UpdateOrSaveKeywordTimes(ctx, req.Prefix)
 	}()

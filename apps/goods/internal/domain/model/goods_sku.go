@@ -10,3 +10,7 @@ type GoodsSku struct {
 	Enabled    bool   `gorm:"column:enabled"`     // 是否上架
 	model.BaseModel
 }
+
+func (*GoodsSku) TableName() string {
+	return "goods_sku"
+}

@@ -11,3 +11,7 @@ type SpecValue struct {
 	Name   string `gorm:"column:name"`    // 规格名称（冗余存储）
 	model.BaseModel
 }
+
+func (*SpecValue) TableName() string {
+	return "spec_value"
+}

@@ -12,6 +12,7 @@ import "goods/goods.proto";
 import "goods/search.proto";
 import "goods/cart.proto";
 import "goods/category.proto";
+import "goods/brand.proto";
 
 service GoodsService {
 
@@ -29,6 +30,9 @@ service GoodsService {
 
     // 获取商品分类
     rpc GetCategoryList(GetCategoryListReq) returns (GetCategoryListRsp){}
+
+    // 获取品牌列表
+    rpc GetBrandList(GetBrandListReq) returns (GetBBrandListRsp){}
 
     // 添加到购物车
     rpc AddToCart(AddToCartReq) returns (AddToCartRsp){}

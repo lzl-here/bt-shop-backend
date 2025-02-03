@@ -7,6 +7,7 @@ import (
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/cloudwego/kitex/transport"
+	"github.com/elastic/go-elasticsearch/v8"
 	etcd "github.com/kitex-contrib/registry-etcd"
 	"github.com/redis/go-redis/v9"
 	"gorm.io/driver/mysql"
@@ -45,6 +46,15 @@ func (a *AppServiceConfig) ConnectCache(ctx context.Context) (*redis.Client, err
 	}
 	klog.Infof("连接到redis成功, pong: %s", pong)
 	return rdb, nil
+}
+
+func (a *AppServiceConfig) ConnectES(ctx context.Context) (*elasticsearch.TypedClient, error) {
+	cfg := elasticsearch.Config{
+		Addresses: []string{
+			a.ESHost,
+		},
+	}
+	return elasticsearch.NewTypedClient(cfg)
 }
 
 func (a *AppServiceConfig) ConnectGrpcClient() (pc.Client, gc.Client, oc.Client, uc.Client) {

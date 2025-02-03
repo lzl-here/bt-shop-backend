@@ -1,22 +1,35 @@
-2025/01/28 16:08:36.310678 load.go:20: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
-2025/01/28 16:09:48.621129 load.go:20: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
-2025/01/28 16:09:48.654394 load.go:38: [Info] 连接到redis成功, pong: PONG
-2025/01/28 16:09:48.654621 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9091
-2025/01/28 16:09:49.669259 etcd_registry.go:299: [Info] start keepalive lease 694d947f0143bf9e for etcd registry
-2025/01/28 16:09:53.995801 etcd_registry.go:216: [Info] stop keep register service kitex/registry-etcd/goods/127.0.0.1:9091
-2025/01/28 16:09:53.995825 server_handler.go:384: [Info] KITEX: gRPC GracefulShutdown starts
-2025/01/28 16:09:54.046466 server_handler.go:386: [Info] KITEX: gRPC GracefulShutdown ends
-2025/01/28 16:16:30.449016 load.go:20: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
-2025/01/28 16:16:30.461171 load.go:38: [Info] 连接到redis成功, pong: PONG
-2025/01/28 16:16:30.461366 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9091
-2025/01/28 16:16:31.470268 etcd_registry.go:299: [Info] start keepalive lease 694d947f0143bfa7 for etcd registry
-2025/01/28 16:16:54.234542 etcd_registry.go:216: [Info] stop keep register service kitex/registry-etcd/goods/127.0.0.1:9091
-2025/01/28 16:16:54.234655 server_handler.go:384: [Info] KITEX: gRPC GracefulShutdown starts
-2025/01/28 16:16:54.286233 server_handler.go:386: [Info] KITEX: gRPC GracefulShutdown ends
-2025/02/01 19:50:08.535787 load.go:20: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
-2025/02/01 19:50:08.560773 load.go:38: [Info] 连接到redis成功, pong: PONG
-2025/02/01 19:50:08.629132 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9093
-2025/02/01 19:50:09.641844 etcd_registry.go:299: [Info] start keepalive lease 694d94afa265432a for etcd registry
-2025/02/01 19:51:26.703221 etcd_registry.go:216: [Info] stop keep register service kitex/registry-etcd/goods/127.0.0.1:9093
-2025/02/01 19:51:26.703328 server_handler.go:384: [Info] KITEX: gRPC GracefulShutdown starts
-2025/02/01 19:51:26.754721 server_handler.go:386: [Info] KITEX: gRPC GracefulShutdown ends
+2025/02/03 11:57:01.403404 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/03 11:57:01.536903 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/03 11:57:01.652769 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9093
+2025/02/03 11:57:02.665785 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f34b08 for etcd registry
+2025/02/03 12:01:21.482171 etcd_registry.go:216: [Info] stop keep register service kitex/registry-etcd/goods/127.0.0.1:9093
+2025/02/03 12:01:21.482267 server_handler.go:384: [Info] KITEX: gRPC GracefulShutdown starts
+2025/02/03 12:01:21.534227 server_handler.go:386: [Info] KITEX: gRPC GracefulShutdown ends
+2025/02/03 12:01:47.629046 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/03 12:01:47.640680 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/03 12:01:47.753968 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9093
+2025/02/03 12:01:48.761959 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f34b1a for etcd registry
+2025/02/03 12:03:46.587877 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:56123, 请求体: &{Stream:0x14001b86680}
+2025/02/03 12:04:05.912426 error_md.go:21: [Error] biz error: an error happened during the Search query execution: unsupported protocol scheme "localhost"
+2025/02/03 12:04:05.913861 error_md.go:26: [Error] biz error: code=10002, msg=服务端内部异常
+2025/02/03 12:04:05.914042 log_md.go:36: [Info] 响应体: <nil>, 耗时: 19326ms
+2025/02/03 12:04:33.483717 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:56123, 请求体: &{Stream:0x14001e94140}
+2025/02/03 12:06:11.500792 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/03 12:06:11.512413 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/03 12:06:11.625564 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9093
+2025/02/03 12:06:12.633205 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f34b2a for etcd registry
+2025/02/03 12:06:17.190084 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:56237, 请求体: &{Stream:0x14001c3a160}
+2025/02/03 12:06:19.529310 error_md.go:21: [Error] biz error: status: 404, failed: [index_not_found_exception], reason: no such index [goods_spu]
+2025/02/03 12:06:19.529441 error_md.go:26: [Error] biz error: code=10002, msg=服务端内部异常
+2025/02/03 12:06:19.529480 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2339ms
+2025/02/03 12:23:20.552131 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/03 12:23:20.571240 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/03 12:23:20.691123 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9093
+2025/02/03 12:23:21.699399 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f34b36 for etcd registry
+2025/02/03 12:23:27.807795 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:56872, 请求体: &{Stream:0x14001d86220}
+2025/02/03 12:23:34.599820 error_md.go:33: [Error] <nil>
+2025/02/03 12:23:34.599974 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6792ms
+2025/02/03 12:23:49.699089 log_md.go:25: [Info] 请求路径: GoodsService.GetGoodsDetail, 请求地址: 127.0.0.1:56872, 请求体: &{Stream:0x14001d04360}
+2025/02/03 12:23:49.755303 error_md.go:21: [Error] biz error: Error 1146 (42S02): Table 'bt-shop-goods.goods_spu' doesn't exist
+2025/02/03 12:23:49.755463 error_md.go:26: [Error] biz error: code=10002, msg=服务端内部异常
+2025/02/03 12:23:49.755533 log_md.go:36: [Info] 响应体: <nil>, 耗时: 56ms

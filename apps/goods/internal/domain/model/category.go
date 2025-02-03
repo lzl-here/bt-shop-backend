@@ -9,3 +9,7 @@ type Category struct {
 	Level    int32  `gorm:"column:level"`     // 第几层
 	model.BaseModel
 }
+
+func (*Category) TableName() string {
+	return "category"
+}

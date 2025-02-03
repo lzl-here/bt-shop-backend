@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"strconv"
 
+	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/lzl-here/bt-shop-backend/apps/goods/internal/domain/model"
 	ggen "github.com/lzl-here/bt-shop-backend/kitex_gen/goods"
 	"gorm.io/gorm"
@@ -107,7 +108,7 @@ func buildSpecList(specValueStr string) []*ggen.SpecValueInfo {
 }
 
 /**
- * 获取商品详情
+ * 获取商品详情，直接复用列表接口
  */
 func (h *GoodsHandler) GetGoodsDetail(ctx context.Context, req *ggen.GetGoodsDetailReq) (*ggen.GetGoodsDetailRsp, error) {
 	listRsp, err := h.GetGoodsList(ctx, &ggen.GetGoodsListReq{
@@ -131,9 +132,11 @@ func (h *GoodsHandler) GetGoodsDetail(ctx context.Context, req *ggen.GetGoodsDet
  * 2. 发布规格
  * 3. 发布spu 和 sku
  */
+//TODO (mysql 和 es 都存一份, es中用和desc和name做keyword的模糊匹配, categoryID和brandID做强匹配)
 func (h *GoodsHandler) PublishGoods(ctx context.Context, req *ggen.PublishGoodsReq) (*ggen.PublishGoodsRsp, error) {
 	var err error
-	var spuID uint64
+	var spu *model.GoodsSpu
+
 	err = h.rep.Transaction(ctx, func(ctx context.Context, tx *gorm.DB) error {
 		// 存储属性
 		attrs := make([]*model.Attribute, 0)
@@ -194,7 +197,7 @@ func (h *GoodsHandler) PublishGoods(ctx context.Context, req *ggen.PublishGoodsR
 		for _, a := range attrs {
 			attrIDs += "," + strconv.FormatUint(a.ID, 10)
 		}
-		spu := &model.GoodsSpu{
+		spu = &model.GoodsSpu{
 			SpuName:      req.SpuName,
 			SpuDesc:      req.SpuDesc,
 			SpuImgUrl:    req.SpuImgUrl,
@@ -210,7 +213,6 @@ func (h *GoodsHandler) PublishGoods(ctx context.Context, req *ggen.PublishGoodsR
 		if spu, err = h.rep.CreateSpu(ctx, spu); err != nil {
 			return err
 		}
-		spuID = spu.ID
 		// 存储sku
 		skus := make([]*model.GoodsSku, 0)
 		for _, s := range req.SkuInfoList {
@@ -234,11 +236,20 @@ func (h *GoodsHandler) PublishGoods(ctx context.Context, req *ggen.PublishGoodsR
 	if err != nil {
 		return nil, err
 	}
+
+	//	SPU 添加到es
+	go func() {
+		err = h.rep.AddSpuToES(ctx, spu)
+		if err != nil {
+			klog.Error("add spu to es error", err)
+		}
+	}()
+
 	return &ggen.PublishGoodsRsp{
 		Code: 1,
 		Msg:  "success",
 		Data: &ggen.PublishGoodsRsp_PublishGoodsRspData{
-			SpuId: spuID,
+			SpuId: spu.ID,
 		},
 	}, nil
 }

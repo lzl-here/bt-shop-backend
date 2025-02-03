@@ -50,6 +50,13 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingUnary),
 	),
+	"GetBrandList": kitex.NewMethodInfo(
+		getBrandListHandler,
+		newGetBrandListArgs,
+		newGetBrandListResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingUnary),
+	),
 	"AddToCart": kitex.NewMethodInfo(
 		addToCartHandler,
 		newAddToCartArgs,
@@ -895,6 +902,159 @@ func (p *GetCategoryListResult) GetResult() interface{} {
 	return p.Success
 }
 
+func getBrandListHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	switch s := arg.(type) {
+	case *streaming.Args:
+		st := s.Stream
+		req := new(goods.GetBrandListReq)
+		if err := st.RecvMsg(req); err != nil {
+			return err
+		}
+		resp, err := handler.(goods.GoodsService).GetBrandList(ctx, req)
+		if err != nil {
+			return err
+		}
+		return st.SendMsg(resp)
+	case *GetBrandListArgs:
+		success, err := handler.(goods.GoodsService).GetBrandList(ctx, s.Req)
+		if err != nil {
+			return err
+		}
+		realResult := result.(*GetBrandListResult)
+		realResult.Success = success
+		return nil
+	default:
+		return errInvalidMessageType
+	}
+}
+func newGetBrandListArgs() interface{} {
+	return &GetBrandListArgs{}
+}
+
+func newGetBrandListResult() interface{} {
+	return &GetBrandListResult{}
+}
+
+type GetBrandListArgs struct {
+	Req *goods.GetBrandListReq
+}
+
+func (p *GetBrandListArgs) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
+	if !p.IsSetReq() {
+		p.Req = new(goods.GetBrandListReq)
+	}
+	return p.Req.FastRead(buf, _type, number)
+}
+
+func (p *GetBrandListArgs) FastWrite(buf []byte) (n int) {
+	if !p.IsSetReq() {
+		return 0
+	}
+	return p.Req.FastWrite(buf)
+}
+
+func (p *GetBrandListArgs) Size() (n int) {
+	if !p.IsSetReq() {
+		return 0
+	}
+	return p.Req.Size()
+}
+
+func (p *GetBrandListArgs) Marshal(out []byte) ([]byte, error) {
+	if !p.IsSetReq() {
+		return out, nil
+	}
+	return proto.Marshal(p.Req)
+}
+
+func (p *GetBrandListArgs) Unmarshal(in []byte) error {
+	msg := new(goods.GetBrandListReq)
+	if err := proto.Unmarshal(in, msg); err != nil {
+		return err
+	}
+	p.Req = msg
+	return nil
+}
+
+var GetBrandListArgs_Req_DEFAULT *goods.GetBrandListReq
+
+func (p *GetBrandListArgs) GetReq() *goods.GetBrandListReq {
+	if !p.IsSetReq() {
+		return GetBrandListArgs_Req_DEFAULT
+	}
+	return p.Req
+}
+
+func (p *GetBrandListArgs) IsSetReq() bool {
+	return p.Req != nil
+}
+
+func (p *GetBrandListArgs) GetFirstArgument() interface{} {
+	return p.Req
+}
+
+type GetBrandListResult struct {
+	Success *goods.GetBBrandListRsp
+}
+
+var GetBrandListResult_Success_DEFAULT *goods.GetBBrandListRsp
+
+func (p *GetBrandListResult) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
+	if !p.IsSetSuccess() {
+		p.Success = new(goods.GetBBrandListRsp)
+	}
+	return p.Success.FastRead(buf, _type, number)
+}
+
+func (p *GetBrandListResult) FastWrite(buf []byte) (n int) {
+	if !p.IsSetSuccess() {
+		return 0
+	}
+	return p.Success.FastWrite(buf)
+}
+
+func (p *GetBrandListResult) Size() (n int) {
+	if !p.IsSetSuccess() {
+		return 0
+	}
+	return p.Success.Size()
+}
+
+func (p *GetBrandListResult) Marshal(out []byte) ([]byte, error) {
+	if !p.IsSetSuccess() {
+		return out, nil
+	}
+	return proto.Marshal(p.Success)
+}
+
+func (p *GetBrandListResult) Unmarshal(in []byte) error {
+	msg := new(goods.GetBBrandListRsp)
+	if err := proto.Unmarshal(in, msg); err != nil {
+		return err
+	}
+	p.Success = msg
+	return nil
+}
+
+func (p *GetBrandListResult) GetSuccess() *goods.GetBBrandListRsp {
+	if !p.IsSetSuccess() {
+		return GetBrandListResult_Success_DEFAULT
+	}
+	return p.Success
+}
+
+func (p *GetBrandListResult) SetSuccess(x interface{}) {
+	p.Success = x.(*goods.GetBBrandListRsp)
+}
+
+func (p *GetBrandListResult) IsSetSuccess() bool {
+	return p.Success != nil
+}
+
+func (p *GetBrandListResult) GetResult() interface{} {
+	return p.Success
+}
+
 func addToCartHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
 	switch s := arg.(type) {
 	case *streaming.Args:
@@ -1256,6 +1416,16 @@ func (p *kClient) GetCategoryList(ctx context.Context, Req *goods.GetCategoryLis
 	_args.Req = Req
 	var _result GetCategoryListResult
 	if err = p.c.Call(ctx, "GetCategoryList", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) GetBrandList(ctx context.Context, Req *goods.GetBrandListReq) (r *goods.GetBBrandListRsp, err error) {
+	var _args GetBrandListArgs
+	_args.Req = Req
+	var _result GetBrandListResult
+	if err = p.c.Call(ctx, "GetBrandList", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil

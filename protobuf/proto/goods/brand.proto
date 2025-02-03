@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package goods;
+
+option go_package = "goods";
+
+import "goods/common.proto";
+
+message GetBrandListReq {
+    
+}
+
+message GetBBrandListRsp {
+    int32 code = 1;
+    string msg = 2;
+    string log_id = 3;
+    GetBBrandListDataRsp data = 4;
+    message GetBBrandListDataRsp {
+        repeated Brand brand_list = 1;
+    }
+}

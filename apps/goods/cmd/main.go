@@ -89,8 +89,13 @@ func newRepo(ctx context.Context) *repo.Repo {
 	if err != nil {
 		panic(err)
 	}
+
+	es, err := config.AppConfig.ConnectES(ctx)
+	if err != nil {
+		panic(err)
+	}
 	// grpc client
 	payClient, goodsClient, orderClient, userClient := config.AppConfig.ConnectGrpcClient()
 
-	return repo.NewRepo(db, cache, payClient, goodsClient, orderClient, userClient)
+	return repo.NewRepo(db, cache, es, payClient, goodsClient, orderClient, userClient)
 }

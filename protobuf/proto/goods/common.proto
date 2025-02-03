@@ -52,8 +52,9 @@ message SpecKeyValue {
 }
 
 message AttributeInfo {
-    string attribute_name = 1;
-    string attribute_value = 2;
+    uint64 id = 1;
+    string attribute_name = 2;
+    string attribute_value = 3;
 }
 
 // 关键词下拉框项
@@ -68,4 +69,9 @@ message Category {
     string category_name = 2;
     uint64 parent_id = 3;
     repeated Category children = 4;
+}
+
+message Brand{
+    uint64 brand_id = 1;
+    string brand_name = 2;
 }

@@ -8,3 +8,7 @@ type Brand struct {
 	IconUrl string `gorm:"column:icon_url"` // 品牌图标
 	model.BaseModel
 }
+
+func (*Brand) TableName() string {
+	return "brand"
+}

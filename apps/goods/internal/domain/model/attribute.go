@@ -9,3 +9,7 @@ type Attribute struct {
 	Value string `gorm:"column:value;" json:"value"` // 属性值
 	model.BaseModel
 }
+
+func (*Attribute) TableName() string {
+	return "attribute"
+}

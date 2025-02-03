@@ -33,6 +33,9 @@ func LoadService(cfgFile string) *AppServiceConfig {
 				CacheMaxActive:    GetIntEnvOrDefault("CACHE_MAX_ACTIVE", 12000),
 				CacheIdleTimeout:  GetIntEnvOrDefault("CACHE_IDLE_TIMEOUT", 180),
 			},
+			&ESRepoConfig{
+				ESHost: GetStrEnvOrDefault("ES_HOST", "http://localhost:9200"),
+			},
 		},
 		&ServiceConfig{
 			ServiceAddress: GetStrEnvOrDefault("SERVICE_ADDRESS", "localhost:9090"),

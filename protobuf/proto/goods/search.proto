@@ -23,14 +23,19 @@ message GetKeywordDownListRsp {
 
 }
 
-// 搜索商品列表
+// 分页搜索商品列表
 message SearchSpuListReq {
-    string keyword = 1; // 关键词
     
-    repeated uint64 category_ids = 2;//分类id
-    repeated uint64 brand_ids = 3; // 品牌id
+    int32 page_size = 1;
+    int32 page_no = 2;
 
-    repeated uint64 id = 4; //参数id
+    string keyword = 3; // 关键词
+
+    repeated uint64 category_ids = 4;//分类id
+    repeated uint64 brand_ids = 5; // 品牌id
+
+    repeated uint64 attr_ids = 6; //参数id
+
 }
 
 message SearchSpuListRsp {
@@ -40,10 +45,9 @@ message SearchSpuListRsp {
     SearchSpuListRspData data = 4;
     message SearchSpuListRspData {
         repeated SpuInfo spu_list = 1;
+        int32 page_size = 2;
+        int32 page_no = 3;
+        
+        repeated AttributeInfo attr_list = 5;
     }
-    message SpuInfo {
-        uint64 spu_id = 1;
-        string spu_name= 2;
-    }
-
 }

@@ -374,6 +374,11 @@ func (x *AttributeInfo) FastRead(buf []byte, _type int8, number int32) (offset i
 		if err != nil {
 			goto ReadFieldError
 		}
+	case 3:
+		offset, err = x.fastReadField3(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
 	default:
 		offset, err = fastpb.Skip(buf, _type, number)
 		if err != nil {
@@ -388,11 +393,16 @@ ReadFieldError:
 }
 
 func (x *AttributeInfo) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	x.AttributeName, offset, err = fastpb.ReadString(buf, _type)
+	x.Id, offset, err = fastpb.ReadUint64(buf, _type)
 	return offset, err
 }
 
 func (x *AttributeInfo) fastReadField2(buf []byte, _type int8) (offset int, err error) {
+	x.AttributeName, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
+func (x *AttributeInfo) fastReadField3(buf []byte, _type int8) (offset int, err error) {
 	x.AttributeValue, offset, err = fastpb.ReadString(buf, _type)
 	return offset, err
 }
@@ -490,6 +500,41 @@ func (x *Category) fastReadField4(buf []byte, _type int8) (offset int, err error
 	}
 	x.Children = append(x.Children, &v)
 	return offset, nil
+}
+
+func (x *Brand) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
+	switch number {
+	case 1:
+		offset, err = x.fastReadField1(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 2:
+		offset, err = x.fastReadField2(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	default:
+		offset, err = fastpb.Skip(buf, _type, number)
+		if err != nil {
+			goto SkipFieldError
+		}
+	}
+	return offset, nil
+SkipFieldError:
+	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
+ReadFieldError:
+	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_Brand[number], err)
+}
+
+func (x *Brand) fastReadField1(buf []byte, _type int8) (offset int, err error) {
+	x.BrandId, offset, err = fastpb.ReadUint64(buf, _type)
+	return offset, err
+}
+
+func (x *Brand) fastReadField2(buf []byte, _type int8) (offset int, err error) {
+	x.BrandName, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
 }
 
 func (x *SpuInfo) FastWrite(buf []byte) (offset int) {
@@ -773,22 +818,31 @@ func (x *AttributeInfo) FastWrite(buf []byte) (offset int) {
 	}
 	offset += x.fastWriteField1(buf[offset:])
 	offset += x.fastWriteField2(buf[offset:])
+	offset += x.fastWriteField3(buf[offset:])
 	return offset
 }
 
 func (x *AttributeInfo) fastWriteField1(buf []byte) (offset int) {
-	if x.AttributeName == "" {
+	if x.Id == 0 {
 		return offset
 	}
-	offset += fastpb.WriteString(buf[offset:], 1, x.GetAttributeName())
+	offset += fastpb.WriteUint64(buf[offset:], 1, x.GetId())
 	return offset
 }
 
 func (x *AttributeInfo) fastWriteField2(buf []byte) (offset int) {
+	if x.AttributeName == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 2, x.GetAttributeName())
+	return offset
+}
+
+func (x *AttributeInfo) fastWriteField3(buf []byte) (offset int) {
 	if x.AttributeValue == "" {
 		return offset
 	}
-	offset += fastpb.WriteString(buf[offset:], 2, x.GetAttributeValue())
+	offset += fastpb.WriteString(buf[offset:], 3, x.GetAttributeValue())
 	return offset
 }
 
@@ -859,6 +913,31 @@ func (x *Category) fastWriteField4(buf []byte) (offset int) {
 	for i := range x.GetChildren() {
 		offset += fastpb.WriteMessage(buf[offset:], 4, x.GetChildren()[i])
 	}
+	return offset
+}
+
+func (x *Brand) FastWrite(buf []byte) (offset int) {
+	if x == nil {
+		return offset
+	}
+	offset += x.fastWriteField1(buf[offset:])
+	offset += x.fastWriteField2(buf[offset:])
+	return offset
+}
+
+func (x *Brand) fastWriteField1(buf []byte) (offset int) {
+	if x.BrandId == 0 {
+		return offset
+	}
+	offset += fastpb.WriteUint64(buf[offset:], 1, x.GetBrandId())
+	return offset
+}
+
+func (x *Brand) fastWriteField2(buf []byte) (offset int) {
+	if x.BrandName == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 2, x.GetBrandName())
 	return offset
 }
 
@@ -1143,22 +1222,31 @@ func (x *AttributeInfo) Size() (n int) {
 	}
 	n += x.sizeField1()
 	n += x.sizeField2()
+	n += x.sizeField3()
 	return n
 }
 
 func (x *AttributeInfo) sizeField1() (n int) {
-	if x.AttributeName == "" {
+	if x.Id == 0 {
 		return n
 	}
-	n += fastpb.SizeString(1, x.GetAttributeName())
+	n += fastpb.SizeUint64(1, x.GetId())
 	return n
 }
 
 func (x *AttributeInfo) sizeField2() (n int) {
+	if x.AttributeName == "" {
+		return n
+	}
+	n += fastpb.SizeString(2, x.GetAttributeName())
+	return n
+}
+
+func (x *AttributeInfo) sizeField3() (n int) {
 	if x.AttributeValue == "" {
 		return n
 	}
-	n += fastpb.SizeString(2, x.GetAttributeValue())
+	n += fastpb.SizeString(3, x.GetAttributeValue())
 	return n
 }
 
@@ -1232,6 +1320,31 @@ func (x *Category) sizeField4() (n int) {
 	return n
 }
 
+func (x *Brand) Size() (n int) {
+	if x == nil {
+		return n
+	}
+	n += x.sizeField1()
+	n += x.sizeField2()
+	return n
+}
+
+func (x *Brand) sizeField1() (n int) {
+	if x.BrandId == 0 {
+		return n
+	}
+	n += fastpb.SizeUint64(1, x.GetBrandId())
+	return n
+}
+
+func (x *Brand) sizeField2() (n int) {
+	if x.BrandName == "" {
+		return n
+	}
+	n += fastpb.SizeString(2, x.GetBrandName())
+	return n
+}
+
 var fieldIDToName_SpuInfo = map[int32]string{
 	1:  "SpuId",
 	2:  "SpuName",
@@ -1274,8 +1387,9 @@ var fieldIDToName_SpecKeyValue = map[int32]string{
 }
 
 var fieldIDToName_AttributeInfo = map[int32]string{
-	1: "AttributeName",
-	2: "AttributeValue",
+	1: "Id",
+	2: "AttributeName",
+	3: "AttributeValue",
 }
 
 var fieldIDToName_Keyword = map[int32]string{
@@ -1288,4 +1402,9 @@ var fieldIDToName_Category = map[int32]string{
 	2: "CategoryName",
 	3: "ParentId",
 	4: "Children",
+}
+
+var fieldIDToName_Brand = map[int32]string{
+	1: "BrandId",
+	2: "BrandName",
 }

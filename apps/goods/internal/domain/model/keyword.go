@@ -8,3 +8,7 @@ type Keyword struct {
 	SearchTimes uint64 `gorm:"column:search_times"` // 搜索次数
 	model.BaseModel
 }
+
+func (*Keyword) TableName() string {
+	return "keyword"
+}

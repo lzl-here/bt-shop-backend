@@ -16,6 +16,7 @@ type Client interface {
 	GetGoodsDetail(ctx context.Context, Req *goods.GetGoodsDetailReq, callOptions ...callopt.Option) (r *goods.GetGoodsDetailRsp, err error)
 	GetGoodsList(ctx context.Context, Req *goods.GetGoodsListReq, callOptions ...callopt.Option) (r *goods.GetGoodsListRsp, err error)
 	GetCategoryList(ctx context.Context, Req *goods.GetCategoryListReq, callOptions ...callopt.Option) (r *goods.GetCategoryListRsp, err error)
+	GetBrandList(ctx context.Context, Req *goods.GetBrandListReq, callOptions ...callopt.Option) (r *goods.GetBBrandListRsp, err error)
 	AddToCart(ctx context.Context, Req *goods.AddToCartReq, callOptions ...callopt.Option) (r *goods.AddToCartRsp, err error)
 	PublishGoods(ctx context.Context, Req *goods.PublishGoodsReq, callOptions ...callopt.Option) (r *goods.PublishGoodsRsp, err error)
 }
@@ -72,6 +73,11 @@ func (p *kGoodsServiceClient) GetGoodsList(ctx context.Context, Req *goods.GetGo
 func (p *kGoodsServiceClient) GetCategoryList(ctx context.Context, Req *goods.GetCategoryListReq, callOptions ...callopt.Option) (r *goods.GetCategoryListRsp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
 	return p.kClient.GetCategoryList(ctx, Req)
+}
+
+func (p *kGoodsServiceClient) GetBrandList(ctx context.Context, Req *goods.GetBrandListReq, callOptions ...callopt.Option) (r *goods.GetBBrandListRsp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.GetBrandList(ctx, Req)
 }
 
 func (p *kGoodsServiceClient) AddToCart(ctx context.Context, Req *goods.AddToCartReq, callOptions ...callopt.Option) (r *goods.AddToCartRsp, err error) {

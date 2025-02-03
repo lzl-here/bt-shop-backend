@@ -3,6 +3,7 @@ package config
 type RepoConfig struct {
 	*DBRepoConfig
 	*CacheRepoConfig
+	*ESRepoConfig
 }
 
 type DBRepoConfig struct {
@@ -18,7 +19,11 @@ type CacheRepoConfig struct {
 	CachePass         string
 	CacheReadTimeout  int
 	CacheWriteTimeout int
-	CacheMaxIdle           int // 100
-	CacheMaxActive         int //12000
-	CacheIdleTimeout       int // 180
+	CacheMaxIdle      int // 100
+	CacheMaxActive    int //12000
+	CacheIdleTimeout  int // 180
+}
+
+type ESRepoConfig struct {
+	ESHost string
 }

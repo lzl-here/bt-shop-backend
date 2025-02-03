@@ -4,7 +4,7 @@ import "github.com/lzl-here/bt-shop-backend/pkg/model"
 
 type GoodsSpu struct {
 	ID           uint64 `gorm:"column:id"`            //ID
-	SpuName      string `gorm:"column:name"`          // spu名称
+	SpuName      string `gorm:"column:spu_name"`          // spu名称
 	SpuDesc      string `gorm:"column:spu_desc"`      //描述
 	CategoryID   uint64 `gorm:"column:category_id"`   // 分类id
 	CategoryName string `gorm:"column:category_name"` // 分类名称
@@ -16,4 +16,8 @@ type GoodsSpu struct {
 	AttributeIDs string `gorm:"column:attribute_ids"` // 属性id列表 ,隔开 不额外用一张表存关系
 	SpecIDs      string `gorm:"column:spec_ids"`      // 规格id列表 ,隔开 不额外用一张表存关系
 	model.BaseModel
+}
+
+func (*GoodsSpu) TableName() string {
+	return "goods_spu"
 }
