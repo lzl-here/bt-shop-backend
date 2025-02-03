@@ -132,7 +132,6 @@ func (h *GoodsHandler) GetGoodsDetail(ctx context.Context, req *ggen.GetGoodsDet
  * 2. 发布规格
  * 3. 发布spu 和 sku
  */
-//TODO (mysql 和 es 都存一份, es中用和desc和name做keyword的模糊匹配, categoryID和brandID做强匹配)
 func (h *GoodsHandler) PublishGoods(ctx context.Context, req *ggen.PublishGoodsReq) (*ggen.PublishGoodsRsp, error) {
 	var err error
 	var spu *model.GoodsSpu
@@ -189,14 +188,7 @@ func (h *GoodsHandler) PublishGoods(ctx context.Context, req *ggen.PublishGoodsR
 		}
 
 		// 存储spu
-		specIDs := ""
-		attrIDs := ""
-		for _, s := range specs {
-			specIDs += "," + strconv.FormatUint(s.ID, 10)
-		}
-		for _, a := range attrs {
-			attrIDs += "," + strconv.FormatUint(a.ID, 10)
-		}
+		attrIDs, specIDs := getIDs(specs, attrs)
 		spu = &model.GoodsSpu{
 			SpuName:      req.SpuName,
 			SpuDesc:      req.SpuDesc,
@@ -238,12 +230,12 @@ func (h *GoodsHandler) PublishGoods(ctx context.Context, req *ggen.PublishGoodsR
 	}
 
 	//	SPU 添加到es
-	go func() {
-		err = h.rep.AddSpuToES(ctx, spu)
-		if err != nil {
-			klog.Error("add spu to es error", err)
-		}
-	}()
+	// go func() {
+	err = h.rep.AddSpuToES(ctx, spu)
+	if err != nil {
+		klog.Error("add spu to es error", err)
+	}
+	// }()
 
 	return &ggen.PublishGoodsRsp{
 		Code: 1,
@@ -252,4 +244,22 @@ func (h *GoodsHandler) PublishGoods(ctx context.Context, req *ggen.PublishGoodsR
 			SpuId: spu.ID,
 		},
 	}, nil
+}
+
+func getIDs(specs []*model.Spec, attrs []*model.Attribute) (string, string) {
+	specIDs := ""
+	attrIDs := ""
+	if len(specs) > 0 {
+		specIDs = strconv.FormatUint(specs[0].ID, 10)
+		for i := 1; i < len(specs); i++ {
+			specIDs += "," + strconv.FormatUint(specs[i].ID, 10)
+		}
+	}
+	if len(attrs) > 0 {
+		attrIDs = strconv.FormatUint(attrs[0].ID, 10)
+		for i := 1; i < len(attrs); i++ {
+			attrIDs += "," + strconv.FormatUint(attrs[i].ID, 10)
+		}
+	}
+	return specIDs, attrIDs
 }

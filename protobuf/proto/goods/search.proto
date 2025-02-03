@@ -19,8 +19,6 @@ message GetKeywordDownListRsp {
     message GetKeyDownListRspData {
         repeated Keyword keyword_list = 1;
     }
-
-
 }
 
 // 分页搜索商品列表
@@ -33,9 +31,6 @@ message SearchSpuListReq {
 
     repeated uint64 category_ids = 4;//分类id
     repeated uint64 brand_ids = 5; // 品牌id
-
-    repeated uint64 attr_ids = 6; //参数id
-
 }
 
 message SearchSpuListRsp {
@@ -44,10 +39,8 @@ message SearchSpuListRsp {
     string log_id = 3;
     SearchSpuListRspData data = 4;
     message SearchSpuListRspData {
-        repeated SpuInfo spu_list = 1;
+        repeated BaseSpuInfo spu_list = 1;
         int32 page_size = 2;
         int32 page_no = 3;
-        
-        repeated AttributeInfo attr_list = 5;
     }
 }

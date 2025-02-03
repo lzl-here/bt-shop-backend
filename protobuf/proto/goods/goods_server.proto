@@ -13,32 +13,41 @@ import "goods/search.proto";
 import "goods/cart.proto";
 import "goods/category.proto";
 import "goods/brand.proto";
+import "goods/stock.proto";
 
 service GoodsService {
 
-    // 获取关键词下拉列表
+    // 获取关键词下拉列表 对外
     rpc GetKeywordDownList(GetKeywordDownListReq) returns(GetKeywordDownListRsp){}
 
-    // 根据 关键词 和 搜索参数 和 过滤参数 搜索
+    // 根据 关键词 和 搜索参数进行搜索 对外
     rpc SearchSpuList(SearchSpuListReq) returns (SearchSpuListRsp){}
 
-    // 获取单个商品详情 sku + spu
+    // 获取单个商品详情 sku + spu 对外
     rpc GetGoodsDetail(GetGoodsDetailReq) returns (GetGoodsDetailRsp){} 
 
-    // 获取商品列表详情 sku + spu
+    // 获取商品列表详情 sku + spu 对外
     rpc GetGoodsList(GetGoodsListReq) returns (GetGoodsListRsp){}
 
-    // 获取商品分类
+    // 获取商品分类 对外
     rpc GetCategoryList(GetCategoryListReq) returns (GetCategoryListRsp){}
 
-    // 获取品牌列表
+    // 获取品牌列表 对外
     rpc GetBrandList(GetBrandListReq) returns (GetBBrandListRsp){}
 
-    // 添加到购物车
+    // 添加到购物车 对外
     rpc AddToCart(AddToCartReq) returns (AddToCartRsp){}
 
-    // 发布商品 
+    // 发布商品 对外
     rpc PublishGoods(PublishGoodsReq) returns (PublishGoodsRsp){}
+
+
+
+    // 扣减库存，对内
+    rpc StockReduce(StockReduceReq) returns (StockReduceRsp) {}
+
+    // 扣减库存回滚，对内
+    rpc StockReduceRollback(StockReduceRollbackReq) returns (StockReduceRollbackRsp) {}
 
 }
 

@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package goods;
+
+option go_package = "goods";
+
+import "goods/common.proto";
+
+// 扣减库存
+message StockReduceReq {
+
+}
+
+message StockReduceRsp {
+
+}
+
+// 扣减库存回滚
+message StockReduceRollbackReq{
+
+}
+
+message StockReduceRollbackRsp {
+
+}

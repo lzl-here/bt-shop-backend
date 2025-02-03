@@ -12,6 +12,111 @@ var (
 	_ = fastpb.Skip
 )
 
+func (x *BaseSpuInfo) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
+	switch number {
+	case 1:
+		offset, err = x.fastReadField1(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 2:
+		offset, err = x.fastReadField2(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 3:
+		offset, err = x.fastReadField3(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 4:
+		offset, err = x.fastReadField4(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 5:
+		offset, err = x.fastReadField5(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 7:
+		offset, err = x.fastReadField7(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 8:
+		offset, err = x.fastReadField8(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 9:
+		offset, err = x.fastReadField9(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 10:
+		offset, err = x.fastReadField10(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	default:
+		offset, err = fastpb.Skip(buf, _type, number)
+		if err != nil {
+			goto SkipFieldError
+		}
+	}
+	return offset, nil
+SkipFieldError:
+	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
+ReadFieldError:
+	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_BaseSpuInfo[number], err)
+}
+
+func (x *BaseSpuInfo) fastReadField1(buf []byte, _type int8) (offset int, err error) {
+	x.SpuId, offset, err = fastpb.ReadUint64(buf, _type)
+	return offset, err
+}
+
+func (x *BaseSpuInfo) fastReadField2(buf []byte, _type int8) (offset int, err error) {
+	x.SpuName, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
+func (x *BaseSpuInfo) fastReadField3(buf []byte, _type int8) (offset int, err error) {
+	x.SpuDesc, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
+func (x *BaseSpuInfo) fastReadField4(buf []byte, _type int8) (offset int, err error) {
+	x.SpuImgUrl, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
+func (x *BaseSpuInfo) fastReadField5(buf []byte, _type int8) (offset int, err error) {
+	x.SpuPrice, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
+func (x *BaseSpuInfo) fastReadField7(buf []byte, _type int8) (offset int, err error) {
+	x.SpuCategoryId, offset, err = fastpb.ReadUint64(buf, _type)
+	return offset, err
+}
+
+func (x *BaseSpuInfo) fastReadField8(buf []byte, _type int8) (offset int, err error) {
+	x.SpuCategoryName, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
+func (x *BaseSpuInfo) fastReadField9(buf []byte, _type int8) (offset int, err error) {
+	x.BrandId, offset, err = fastpb.ReadUint64(buf, _type)
+	return offset, err
+}
+
+func (x *BaseSpuInfo) fastReadField10(buf []byte, _type int8) (offset int, err error) {
+	x.BrandName, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
 func (x *SpuInfo) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
 	switch number {
 	case 1:
@@ -379,6 +484,11 @@ func (x *AttributeInfo) FastRead(buf []byte, _type int8, number int32) (offset i
 		if err != nil {
 			goto ReadFieldError
 		}
+	case 4:
+		offset, err = x.fastReadField4(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
 	default:
 		offset, err = fastpb.Skip(buf, _type, number)
 		if err != nil {
@@ -398,11 +508,16 @@ func (x *AttributeInfo) fastReadField1(buf []byte, _type int8) (offset int, err 
 }
 
 func (x *AttributeInfo) fastReadField2(buf []byte, _type int8) (offset int, err error) {
-	x.AttributeName, offset, err = fastpb.ReadString(buf, _type)
+	x.SpuId, offset, err = fastpb.ReadUint64(buf, _type)
 	return offset, err
 }
 
 func (x *AttributeInfo) fastReadField3(buf []byte, _type int8) (offset int, err error) {
+	x.AttributeName, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
+func (x *AttributeInfo) fastReadField4(buf []byte, _type int8) (offset int, err error) {
 	x.AttributeValue, offset, err = fastpb.ReadString(buf, _type)
 	return offset, err
 }
@@ -464,6 +579,11 @@ func (x *Category) FastRead(buf []byte, _type int8, number int32) (offset int, e
 		if err != nil {
 			goto ReadFieldError
 		}
+	case 5:
+		offset, err = x.fastReadField5(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
 	default:
 		offset, err = fastpb.Skip(buf, _type, number)
 		if err != nil {
@@ -493,6 +613,11 @@ func (x *Category) fastReadField3(buf []byte, _type int8) (offset int, err error
 }
 
 func (x *Category) fastReadField4(buf []byte, _type int8) (offset int, err error) {
+	x.Level, offset, err = fastpb.ReadInt32(buf, _type)
+	return offset, err
+}
+
+func (x *Category) fastReadField5(buf []byte, _type int8) (offset int, err error) {
 	var v Category
 	offset, err = fastpb.ReadMessage(buf, _type, &v)
 	if err != nil {
@@ -535,6 +660,94 @@ func (x *Brand) fastReadField1(buf []byte, _type int8) (offset int, err error) {
 func (x *Brand) fastReadField2(buf []byte, _type int8) (offset int, err error) {
 	x.BrandName, offset, err = fastpb.ReadString(buf, _type)
 	return offset, err
+}
+
+func (x *BaseSpuInfo) FastWrite(buf []byte) (offset int) {
+	if x == nil {
+		return offset
+	}
+	offset += x.fastWriteField1(buf[offset:])
+	offset += x.fastWriteField2(buf[offset:])
+	offset += x.fastWriteField3(buf[offset:])
+	offset += x.fastWriteField4(buf[offset:])
+	offset += x.fastWriteField5(buf[offset:])
+	offset += x.fastWriteField7(buf[offset:])
+	offset += x.fastWriteField8(buf[offset:])
+	offset += x.fastWriteField9(buf[offset:])
+	offset += x.fastWriteField10(buf[offset:])
+	return offset
+}
+
+func (x *BaseSpuInfo) fastWriteField1(buf []byte) (offset int) {
+	if x.SpuId == 0 {
+		return offset
+	}
+	offset += fastpb.WriteUint64(buf[offset:], 1, x.GetSpuId())
+	return offset
+}
+
+func (x *BaseSpuInfo) fastWriteField2(buf []byte) (offset int) {
+	if x.SpuName == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 2, x.GetSpuName())
+	return offset
+}
+
+func (x *BaseSpuInfo) fastWriteField3(buf []byte) (offset int) {
+	if x.SpuDesc == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 3, x.GetSpuDesc())
+	return offset
+}
+
+func (x *BaseSpuInfo) fastWriteField4(buf []byte) (offset int) {
+	if x.SpuImgUrl == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 4, x.GetSpuImgUrl())
+	return offset
+}
+
+func (x *BaseSpuInfo) fastWriteField5(buf []byte) (offset int) {
+	if x.SpuPrice == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 5, x.GetSpuPrice())
+	return offset
+}
+
+func (x *BaseSpuInfo) fastWriteField7(buf []byte) (offset int) {
+	if x.SpuCategoryId == 0 {
+		return offset
+	}
+	offset += fastpb.WriteUint64(buf[offset:], 7, x.GetSpuCategoryId())
+	return offset
+}
+
+func (x *BaseSpuInfo) fastWriteField8(buf []byte) (offset int) {
+	if x.SpuCategoryName == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 8, x.GetSpuCategoryName())
+	return offset
+}
+
+func (x *BaseSpuInfo) fastWriteField9(buf []byte) (offset int) {
+	if x.BrandId == 0 {
+		return offset
+	}
+	offset += fastpb.WriteUint64(buf[offset:], 9, x.GetBrandId())
+	return offset
+}
+
+func (x *BaseSpuInfo) fastWriteField10(buf []byte) (offset int) {
+	if x.BrandName == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 10, x.GetBrandName())
+	return offset
 }
 
 func (x *SpuInfo) FastWrite(buf []byte) (offset int) {
@@ -819,6 +1032,7 @@ func (x *AttributeInfo) FastWrite(buf []byte) (offset int) {
 	offset += x.fastWriteField1(buf[offset:])
 	offset += x.fastWriteField2(buf[offset:])
 	offset += x.fastWriteField3(buf[offset:])
+	offset += x.fastWriteField4(buf[offset:])
 	return offset
 }
 
@@ -831,18 +1045,26 @@ func (x *AttributeInfo) fastWriteField1(buf []byte) (offset int) {
 }
 
 func (x *AttributeInfo) fastWriteField2(buf []byte) (offset int) {
-	if x.AttributeName == "" {
+	if x.SpuId == 0 {
 		return offset
 	}
-	offset += fastpb.WriteString(buf[offset:], 2, x.GetAttributeName())
+	offset += fastpb.WriteUint64(buf[offset:], 2, x.GetSpuId())
 	return offset
 }
 
 func (x *AttributeInfo) fastWriteField3(buf []byte) (offset int) {
+	if x.AttributeName == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 3, x.GetAttributeName())
+	return offset
+}
+
+func (x *AttributeInfo) fastWriteField4(buf []byte) (offset int) {
 	if x.AttributeValue == "" {
 		return offset
 	}
-	offset += fastpb.WriteString(buf[offset:], 3, x.GetAttributeValue())
+	offset += fastpb.WriteString(buf[offset:], 4, x.GetAttributeValue())
 	return offset
 }
 
@@ -879,6 +1101,7 @@ func (x *Category) FastWrite(buf []byte) (offset int) {
 	offset += x.fastWriteField2(buf[offset:])
 	offset += x.fastWriteField3(buf[offset:])
 	offset += x.fastWriteField4(buf[offset:])
+	offset += x.fastWriteField5(buf[offset:])
 	return offset
 }
 
@@ -907,11 +1130,19 @@ func (x *Category) fastWriteField3(buf []byte) (offset int) {
 }
 
 func (x *Category) fastWriteField4(buf []byte) (offset int) {
+	if x.Level == 0 {
+		return offset
+	}
+	offset += fastpb.WriteInt32(buf[offset:], 4, x.GetLevel())
+	return offset
+}
+
+func (x *Category) fastWriteField5(buf []byte) (offset int) {
 	if x.Children == nil {
 		return offset
 	}
 	for i := range x.GetChildren() {
-		offset += fastpb.WriteMessage(buf[offset:], 4, x.GetChildren()[i])
+		offset += fastpb.WriteMessage(buf[offset:], 5, x.GetChildren()[i])
 	}
 	return offset
 }
@@ -939,6 +1170,94 @@ func (x *Brand) fastWriteField2(buf []byte) (offset int) {
 	}
 	offset += fastpb.WriteString(buf[offset:], 2, x.GetBrandName())
 	return offset
+}
+
+func (x *BaseSpuInfo) Size() (n int) {
+	if x == nil {
+		return n
+	}
+	n += x.sizeField1()
+	n += x.sizeField2()
+	n += x.sizeField3()
+	n += x.sizeField4()
+	n += x.sizeField5()
+	n += x.sizeField7()
+	n += x.sizeField8()
+	n += x.sizeField9()
+	n += x.sizeField10()
+	return n
+}
+
+func (x *BaseSpuInfo) sizeField1() (n int) {
+	if x.SpuId == 0 {
+		return n
+	}
+	n += fastpb.SizeUint64(1, x.GetSpuId())
+	return n
+}
+
+func (x *BaseSpuInfo) sizeField2() (n int) {
+	if x.SpuName == "" {
+		return n
+	}
+	n += fastpb.SizeString(2, x.GetSpuName())
+	return n
+}
+
+func (x *BaseSpuInfo) sizeField3() (n int) {
+	if x.SpuDesc == "" {
+		return n
+	}
+	n += fastpb.SizeString(3, x.GetSpuDesc())
+	return n
+}
+
+func (x *BaseSpuInfo) sizeField4() (n int) {
+	if x.SpuImgUrl == "" {
+		return n
+	}
+	n += fastpb.SizeString(4, x.GetSpuImgUrl())
+	return n
+}
+
+func (x *BaseSpuInfo) sizeField5() (n int) {
+	if x.SpuPrice == "" {
+		return n
+	}
+	n += fastpb.SizeString(5, x.GetSpuPrice())
+	return n
+}
+
+func (x *BaseSpuInfo) sizeField7() (n int) {
+	if x.SpuCategoryId == 0 {
+		return n
+	}
+	n += fastpb.SizeUint64(7, x.GetSpuCategoryId())
+	return n
+}
+
+func (x *BaseSpuInfo) sizeField8() (n int) {
+	if x.SpuCategoryName == "" {
+		return n
+	}
+	n += fastpb.SizeString(8, x.GetSpuCategoryName())
+	return n
+}
+
+func (x *BaseSpuInfo) sizeField9() (n int) {
+	if x.BrandId == 0 {
+		return n
+	}
+	n += fastpb.SizeUint64(9, x.GetBrandId())
+	return n
+}
+
+func (x *BaseSpuInfo) sizeField10() (n int) {
+	if x.BrandName == "" {
+		return n
+	}
+	n += fastpb.SizeString(10, x.GetBrandName())
+	return n
 }
 
 func (x *SpuInfo) Size() (n int) {
@@ -1223,6 +1542,7 @@ func (x *AttributeInfo) Size() (n int) {
 	n += x.sizeField1()
 	n += x.sizeField2()
 	n += x.sizeField3()
+	n += x.sizeField4()
 	return n
 }
 
@@ -1235,18 +1555,26 @@ func (x *AttributeInfo) sizeField1() (n int) {
 }
 
 func (x *AttributeInfo) sizeField2() (n int) {
-	if x.AttributeName == "" {
+	if x.SpuId == 0 {
 		return n
 	}
-	n += fastpb.SizeString(2, x.GetAttributeName())
+	n += fastpb.SizeUint64(2, x.GetSpuId())
 	return n
 }
 
 func (x *AttributeInfo) sizeField3() (n int) {
+	if x.AttributeName == "" {
+		return n
+	}
+	n += fastpb.SizeString(3, x.GetAttributeName())
+	return n
+}
+
+func (x *AttributeInfo) sizeField4() (n int) {
 	if x.AttributeValue == "" {
 		return n
 	}
-	n += fastpb.SizeString(3, x.GetAttributeValue())
+	n += fastpb.SizeString(4, x.GetAttributeValue())
 	return n
 }
 
@@ -1283,6 +1611,7 @@ func (x *Category) Size() (n int) {
 	n += x.sizeField2()
 	n += x.sizeField3()
 	n += x.sizeField4()
+	n += x.sizeField5()
 	return n
 }
 
@@ -1311,11 +1640,19 @@ func (x *Category) sizeField3() (n int) {
 }
 
 func (x *Category) sizeField4() (n int) {
+	if x.Level == 0 {
+		return n
+	}
+	n += fastpb.SizeInt32(4, x.GetLevel())
+	return n
+}
+
+func (x *Category) sizeField5() (n int) {
 	if x.Children == nil {
 		return n
 	}
 	for i := range x.GetChildren() {
-		n += fastpb.SizeMessage(4, x.GetChildren()[i])
+		n += fastpb.SizeMessage(5, x.GetChildren()[i])
 	}
 	return n
 }
@@ -1343,6 +1680,18 @@ func (x *Brand) sizeField2() (n int) {
 	}
 	n += fastpb.SizeString(2, x.GetBrandName())
 	return n
+}
+
+var fieldIDToName_BaseSpuInfo = map[int32]string{
+	1:  "SpuId",
+	2:  "SpuName",
+	3:  "SpuDesc",
+	4:  "SpuImgUrl",
+	5:  "SpuPrice",
+	7:  "SpuCategoryId",
+	8:  "SpuCategoryName",
+	9:  "BrandId",
+	10: "BrandName",
 }
 
 var fieldIDToName_SpuInfo = map[int32]string{
@@ -1388,8 +1737,9 @@ var fieldIDToName_SpecKeyValue = map[int32]string{
 
 var fieldIDToName_AttributeInfo = map[int32]string{
 	1: "Id",
-	2: "AttributeName",
-	3: "AttributeValue",
+	2: "SpuId",
+	3: "AttributeName",
+	4: "AttributeValue",
 }
 
 var fieldIDToName_Keyword = map[int32]string{
@@ -1401,7 +1751,8 @@ var fieldIDToName_Category = map[int32]string{
 	1: "CategoryId",
 	2: "CategoryName",
 	3: "ParentId",
-	4: "Children",
+	4: "Level",
+	5: "Children",
 }
 
 var fieldIDToName_Brand = map[int32]string{

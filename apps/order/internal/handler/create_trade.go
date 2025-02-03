@@ -18,8 +18,9 @@ import (
 
 // 1. 校验商品信息合法性
 // 2. 创建交易、订单、订单项
-// 3. 拉起支付
-// 4. 返回支付页面给前端
+// 3. 扣减库存
+// 4. 拉起支付
+// 5. 返回支付页面给前端
 func (h *OrderHandler) CreateTrade(ctx context.Context, req *ogen.CreateTradeReq) (res *ogen.CreateTradeRsp, err error) {
 	// 幂等处理
 	ok, cleaner, _, err := utils.NoDuplicate(ctx, h.rep.GetCache(), "order", req.Token, 30*time.Second)
@@ -64,9 +65,10 @@ func (h *OrderHandler) CreateTrade(ctx context.Context, req *ogen.CreateTradeReq
 	if err != nil {
 		return nil, err
 	}
-	// 3. 拉起支付
+	// TODO 扣减库存
+	// 4. 拉起支付
 	payRsp, err := h.rep.Pay(ctx, &pgen.PayReq{
-		Subject:     "这是支付的标题",
+		Subject:     "这是一个支付的标题~~~~",
 		TotalAmount: req.TradeInfo.TradeAmount,
 		TradeNo:     tradeNo,
 	})
@@ -76,7 +78,7 @@ func (h *OrderHandler) CreateTrade(ctx context.Context, req *ogen.CreateTradeReq
 	if payRsp.Code != 1 {
 		return nil, bizerr.ErrPayFailed
 	}
-	// 4. 返回支付页面url
+	// 5. 返回支付页面url
 	return &ogen.CreateTradeRsp{
 		Code: 1,
 		Msg:  "success",

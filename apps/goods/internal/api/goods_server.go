@@ -60,3 +60,13 @@ func (s *GoodsServer) AddToCart(ctx context.Context, req *ggen.AddToCartReq) (re
 func (s *GoodsServer) PublishGoods(ctx context.Context, req *ggen.PublishGoodsReq) (res *ggen.PublishGoodsRsp, err error) {
 	return handler.NewGoodsHandler(s.rep).PublishGoods(ctx, req)
 }
+
+// 减少库存
+func (s *GoodsServer) StockReduce(ctx context.Context, req *ggen.StockReduceReq) (*ggen.StockReduceRsp, error) {
+	return handler.NewGoodsHandler(s.rep).StockReduce(ctx, req)
+}
+
+// 库存回滚
+func (s *GoodsServer) StockReduceRollback(ctx context.Context, req *ggen.StockReduceRollbackReq) (res *ggen.StockReduceRollbackRsp, err error) {
+	return handler.NewGoodsHandler(s.rep).StockReduceRollback(ctx, req)
+}

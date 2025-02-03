@@ -19,6 +19,8 @@ type Client interface {
 	GetBrandList(ctx context.Context, Req *goods.GetBrandListReq, callOptions ...callopt.Option) (r *goods.GetBBrandListRsp, err error)
 	AddToCart(ctx context.Context, Req *goods.AddToCartReq, callOptions ...callopt.Option) (r *goods.AddToCartRsp, err error)
 	PublishGoods(ctx context.Context, Req *goods.PublishGoodsReq, callOptions ...callopt.Option) (r *goods.PublishGoodsRsp, err error)
+	StockReduce(ctx context.Context, Req *goods.StockReduceReq, callOptions ...callopt.Option) (r *goods.StockReduceRsp, err error)
+	StockReduceRollback(ctx context.Context, Req *goods.StockReduceRollbackReq, callOptions ...callopt.Option) (r *goods.StockReduceRollbackRsp, err error)
 }
 
 // NewClient creates a client for the service defined in IDL.
@@ -88,4 +90,14 @@ func (p *kGoodsServiceClient) AddToCart(ctx context.Context, Req *goods.AddToCar
 func (p *kGoodsServiceClient) PublishGoods(ctx context.Context, Req *goods.PublishGoodsReq, callOptions ...callopt.Option) (r *goods.PublishGoodsRsp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
 	return p.kClient.PublishGoods(ctx, Req)
+}
+
+func (p *kGoodsServiceClient) StockReduce(ctx context.Context, Req *goods.StockReduceReq, callOptions ...callopt.Option) (r *goods.StockReduceRsp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.StockReduce(ctx, Req)
+}
+
+func (p *kGoodsServiceClient) StockReduceRollback(ctx context.Context, Req *goods.StockReduceRollbackReq, callOptions ...callopt.Option) (r *goods.StockReduceRollbackRsp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.StockReduceRollback(ctx, Req)
 }

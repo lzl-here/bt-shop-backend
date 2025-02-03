@@ -19,7 +19,7 @@ func (h *GoodsHandler) GetCategoryList(ctx context.Context, req *ggen.GetCategor
 }
 
 func buildCategoryListRsp(categoryList []*model.Category) *ggen.GetCategoryListRsp {
-	categoryTree := buildCategoryTree(categoryList)
+	categoryTree := buildTreeList(categoryList)
 
 	rsp := &ggen.GetCategoryListRsp{
 		Code: 1,
@@ -31,30 +31,58 @@ func buildCategoryListRsp(categoryList []*model.Category) *ggen.GetCategoryListR
 	return rsp
 }
 
-// 列表转树状结构
-func buildCategoryTree(categories []*model.Category) []*ggen.Category {
+// 构建目录树列表
+func buildTreeList(categories []*model.Category) []*ggen.Category {
 	// 创建一个map来快速查找子类别
 	childrenMap := make(map[uint64][]*model.Category)
+	rootCategory := make([]*model.Category, 0)
 	for _, category := range categories {
 		childrenMap[category.ParentID] = append(childrenMap[category.ParentID], category)
-	}
-
-	// 递归构建树结构
-	var buildTree func(parentID uint64) []*ggen.Category
-	buildTree = func(parentID uint64) []*ggen.Category {
-		var tree []*ggen.Category
-		for _, category := range childrenMap[parentID] {
-			protoCategory := &ggen.Category{
-				CategoryId:   category.ID,
-				CategoryName: category.Name,
-				ParentId:     category.ParentID,
-				Children:     buildTree(category.ID),
-			}
-			tree = append(tree, protoCategory)
+		if category.Level == 0 {
+			rootCategory = append(rootCategory, category)
 		}
-		return tree
 	}
 
-	// 从根节点开始构建树
-	return buildTree(0) // 假设根节点的ParentID为0
+	// 构建目录树列表
+	res := make([]*ggen.Category, 0)
+	for _, c := range rootCategory {
+		res = append(res, buildTree(c, childrenMap))
+	}
+	return res
+}
+
+// 根据一个根节点，构建一个目录树
+func buildTree(rootCategory *model.Category, childrenMap map[uint64][]*model.Category) *ggen.Category {
+	categoryRsp := &ggen.Category{
+		CategoryId:   rootCategory.ID,
+		CategoryName: rootCategory.Name,
+		ParentId:     rootCategory.ParentID,
+	}
+	tree := make([]*ggen.Category, 0)
+	rootID := rootCategory.ID
+	for _, category := range childrenMap[rootID] {
+		protoCategory := &ggen.Category{
+			CategoryId:   category.ID,
+			CategoryName: category.Name,
+			ParentId:     category.ParentID,
+			Children:     buildTreeChild(category, childrenMap),
+		}
+		tree = append(tree, protoCategory)
+	}
+	categoryRsp.Children = tree
+	return categoryRsp
+}
+
+func buildTreeChild(rootCategory *model.Category, childrenMap map[uint64][]*model.Category) []*ggen.Category {
+	children := make([]*ggen.Category, 0)
+	for _, category := range childrenMap[rootCategory.ID] {
+		rsp := &ggen.Category{
+			CategoryId:   category.ID,
+			CategoryName: category.Name,
+			ParentId:     category.ParentID,
+			Children:     buildTreeChild(category, childrenMap),
+		}
+		children = append(children, rsp)
+	}
+	return children
 }

@@ -6,6 +6,19 @@ option go_package = "goods";
 
 
 // spu信息
+message BaseSpuInfo {
+    uint64 spu_id = 1;
+    string spu_name = 2;
+    string spu_desc = 3;
+    string spu_img_url = 4;
+    string spu_price = 5;
+    uint64 spu_category_id = 7;
+    string spu_category_name = 8;
+    uint64 brand_id = 9;
+    string brand_name = 10;
+}
+
+// 详细的spu信息，加上了 sku 
 message SpuInfo {
     uint64 spu_id = 1;
     string spu_name = 2;
@@ -51,10 +64,13 @@ message SpecKeyValue {
     string spec_value = 2;
 }
 
+// 属性
 message AttributeInfo {
     uint64 id = 1;
-    string attribute_name = 2;
-    string attribute_value = 3;
+    uint64 spu_id = 2;
+    string attribute_name = 3;
+    string attribute_value = 4;
+
 }
 
 // 关键词下拉框项
@@ -68,7 +84,8 @@ message Category {
     uint64 category_id = 1;
     string category_name = 2;
     uint64 parent_id = 3;
-    repeated Category children = 4;
+    int32 level = 4;
+    repeated Category children = 5;
 }
 
 message Brand{

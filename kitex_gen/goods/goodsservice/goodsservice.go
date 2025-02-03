@@ -71,6 +71,20 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingUnary),
 	),
+	"StockReduce": kitex.NewMethodInfo(
+		stockReduceHandler,
+		newStockReduceArgs,
+		newStockReduceResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingUnary),
+	),
+	"StockReduceRollback": kitex.NewMethodInfo(
+		stockReduceRollbackHandler,
+		newStockReduceRollbackArgs,
+		newStockReduceRollbackResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingUnary),
+	),
 }
 
 var (
@@ -1361,6 +1375,312 @@ func (p *PublishGoodsResult) GetResult() interface{} {
 	return p.Success
 }
 
+func stockReduceHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	switch s := arg.(type) {
+	case *streaming.Args:
+		st := s.Stream
+		req := new(goods.StockReduceReq)
+		if err := st.RecvMsg(req); err != nil {
+			return err
+		}
+		resp, err := handler.(goods.GoodsService).StockReduce(ctx, req)
+		if err != nil {
+			return err
+		}
+		return st.SendMsg(resp)
+	case *StockReduceArgs:
+		success, err := handler.(goods.GoodsService).StockReduce(ctx, s.Req)
+		if err != nil {
+			return err
+		}
+		realResult := result.(*StockReduceResult)
+		realResult.Success = success
+		return nil
+	default:
+		return errInvalidMessageType
+	}
+}
+func newStockReduceArgs() interface{} {
+	return &StockReduceArgs{}
+}
+
+func newStockReduceResult() interface{} {
+	return &StockReduceResult{}
+}
+
+type StockReduceArgs struct {
+	Req *goods.StockReduceReq
+}
+
+func (p *StockReduceArgs) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
+	if !p.IsSetReq() {
+		p.Req = new(goods.StockReduceReq)
+	}
+	return p.Req.FastRead(buf, _type, number)
+}
+
+func (p *StockReduceArgs) FastWrite(buf []byte) (n int) {
+	if !p.IsSetReq() {
+		return 0
+	}
+	return p.Req.FastWrite(buf)
+}
+
+func (p *StockReduceArgs) Size() (n int) {
+	if !p.IsSetReq() {
+		return 0
+	}
+	return p.Req.Size()
+}
+
+func (p *StockReduceArgs) Marshal(out []byte) ([]byte, error) {
+	if !p.IsSetReq() {
+		return out, nil
+	}
+	return proto.Marshal(p.Req)
+}
+
+func (p *StockReduceArgs) Unmarshal(in []byte) error {
+	msg := new(goods.StockReduceReq)
+	if err := proto.Unmarshal(in, msg); err != nil {
+		return err
+	}
+	p.Req = msg
+	return nil
+}
+
+var StockReduceArgs_Req_DEFAULT *goods.StockReduceReq
+
+func (p *StockReduceArgs) GetReq() *goods.StockReduceReq {
+	if !p.IsSetReq() {
+		return StockReduceArgs_Req_DEFAULT
+	}
+	return p.Req
+}
+
+func (p *StockReduceArgs) IsSetReq() bool {
+	return p.Req != nil
+}
+
+func (p *StockReduceArgs) GetFirstArgument() interface{} {
+	return p.Req
+}
+
+type StockReduceResult struct {
+	Success *goods.StockReduceRsp
+}
+
+var StockReduceResult_Success_DEFAULT *goods.StockReduceRsp
+
+func (p *StockReduceResult) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
+	if !p.IsSetSuccess() {
+		p.Success = new(goods.StockReduceRsp)
+	}
+	return p.Success.FastRead(buf, _type, number)
+}
+
+func (p *StockReduceResult) FastWrite(buf []byte) (n int) {
+	if !p.IsSetSuccess() {
+		return 0
+	}
+	return p.Success.FastWrite(buf)
+}
+
+func (p *StockReduceResult) Size() (n int) {
+	if !p.IsSetSuccess() {
+		return 0
+	}
+	return p.Success.Size()
+}
+
+func (p *StockReduceResult) Marshal(out []byte) ([]byte, error) {
+	if !p.IsSetSuccess() {
+		return out, nil
+	}
+	return proto.Marshal(p.Success)
+}
+
+func (p *StockReduceResult) Unmarshal(in []byte) error {
+	msg := new(goods.StockReduceRsp)
+	if err := proto.Unmarshal(in, msg); err != nil {
+		return err
+	}
+	p.Success = msg
+	return nil
+}
+
+func (p *StockReduceResult) GetSuccess() *goods.StockReduceRsp {
+	if !p.IsSetSuccess() {
+		return StockReduceResult_Success_DEFAULT
+	}
+	return p.Success
+}
+
+func (p *StockReduceResult) SetSuccess(x interface{}) {
+	p.Success = x.(*goods.StockReduceRsp)
+}
+
+func (p *StockReduceResult) IsSetSuccess() bool {
+	return p.Success != nil
+}
+
+func (p *StockReduceResult) GetResult() interface{} {
+	return p.Success
+}
+
+func stockReduceRollbackHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	switch s := arg.(type) {
+	case *streaming.Args:
+		st := s.Stream
+		req := new(goods.StockReduceRollbackReq)
+		if err := st.RecvMsg(req); err != nil {
+			return err
+		}
+		resp, err := handler.(goods.GoodsService).StockReduceRollback(ctx, req)
+		if err != nil {
+			return err
+		}
+		return st.SendMsg(resp)
+	case *StockReduceRollbackArgs:
+		success, err := handler.(goods.GoodsService).StockReduceRollback(ctx, s.Req)
+		if err != nil {
+			return err
+		}
+		realResult := result.(*StockReduceRollbackResult)
+		realResult.Success = success
+		return nil
+	default:
+		return errInvalidMessageType
+	}
+}
+func newStockReduceRollbackArgs() interface{} {
+	return &StockReduceRollbackArgs{}
+}
+
+func newStockReduceRollbackResult() interface{} {
+	return &StockReduceRollbackResult{}
+}
+
+type StockReduceRollbackArgs struct {
+	Req *goods.StockReduceRollbackReq
+}
+
+func (p *StockReduceRollbackArgs) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
+	if !p.IsSetReq() {
+		p.Req = new(goods.StockReduceRollbackReq)
+	}
+	return p.Req.FastRead(buf, _type, number)
+}
+
+func (p *StockReduceRollbackArgs) FastWrite(buf []byte) (n int) {
+	if !p.IsSetReq() {
+		return 0
+	}
+	return p.Req.FastWrite(buf)
+}
+
+func (p *StockReduceRollbackArgs) Size() (n int) {
+	if !p.IsSetReq() {
+		return 0
+	}
+	return p.Req.Size()
+}
+
+func (p *StockReduceRollbackArgs) Marshal(out []byte) ([]byte, error) {
+	if !p.IsSetReq() {
+		return out, nil
+	}
+	return proto.Marshal(p.Req)
+}
+
+func (p *StockReduceRollbackArgs) Unmarshal(in []byte) error {
+	msg := new(goods.StockReduceRollbackReq)
+	if err := proto.Unmarshal(in, msg); err != nil {
+		return err
+	}
+	p.Req = msg
+	return nil
+}
+
+var StockReduceRollbackArgs_Req_DEFAULT *goods.StockReduceRollbackReq
+
+func (p *StockReduceRollbackArgs) GetReq() *goods.StockReduceRollbackReq {
+	if !p.IsSetReq() {
+		return StockReduceRollbackArgs_Req_DEFAULT
+	}
+	return p.Req
+}
+
+func (p *StockReduceRollbackArgs) IsSetReq() bool {
+	return p.Req != nil
+}
+
+func (p *StockReduceRollbackArgs) GetFirstArgument() interface{} {
+	return p.Req
+}
+
+type StockReduceRollbackResult struct {
+	Success *goods.StockReduceRollbackRsp
+}
+
+var StockReduceRollbackResult_Success_DEFAULT *goods.StockReduceRollbackRsp
+
+func (p *StockReduceRollbackResult) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
+	if !p.IsSetSuccess() {
+		p.Success = new(goods.StockReduceRollbackRsp)
+	}
+	return p.Success.FastRead(buf, _type, number)
+}
+
+func (p *StockReduceRollbackResult) FastWrite(buf []byte) (n int) {
+	if !p.IsSetSuccess() {
+		return 0
+	}
+	return p.Success.FastWrite(buf)
+}
+
+func (p *StockReduceRollbackResult) Size() (n int) {
+	if !p.IsSetSuccess() {
+		return 0
+	}
+	return p.Success.Size()
+}
+
+func (p *StockReduceRollbackResult) Marshal(out []byte) ([]byte, error) {
+	if !p.IsSetSuccess() {
+		return out, nil
+	}
+	return proto.Marshal(p.Success)
+}
+
+func (p *StockReduceRollbackResult) Unmarshal(in []byte) error {
+	msg := new(goods.StockReduceRollbackRsp)
+	if err := proto.Unmarshal(in, msg); err != nil {
+		return err
+	}
+	p.Success = msg
+	return nil
+}
+
+func (p *StockReduceRollbackResult) GetSuccess() *goods.StockReduceRollbackRsp {
+	if !p.IsSetSuccess() {
+		return StockReduceRollbackResult_Success_DEFAULT
+	}
+	return p.Success
+}
+
+func (p *StockReduceRollbackResult) SetSuccess(x interface{}) {
+	p.Success = x.(*goods.StockReduceRollbackRsp)
+}
+
+func (p *StockReduceRollbackResult) IsSetSuccess() bool {
+	return p.Success != nil
+}
+
+func (p *StockReduceRollbackResult) GetResult() interface{} {
+	return p.Success
+}
+
 type kClient struct {
 	c client.Client
 }
@@ -1446,6 +1766,26 @@ func (p *kClient) PublishGoods(ctx context.Context, Req *goods.PublishGoodsReq) 
 	_args.Req = Req
 	var _result PublishGoodsResult
 	if err = p.c.Call(ctx, "PublishGoods", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) StockReduce(ctx context.Context, Req *goods.StockReduceReq) (r *goods.StockReduceRsp, err error) {
+	var _args StockReduceArgs
+	_args.Req = Req
+	var _result StockReduceResult
+	if err = p.c.Call(ctx, "StockReduce", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) StockReduceRollback(ctx context.Context, Req *goods.StockReduceRollbackReq) (r *goods.StockReduceRollbackRsp, err error) {
+	var _args StockReduceRollbackArgs
+	_args.Req = Req
+	var _result StockReduceRollbackResult
+	if err = p.c.Call(ctx, "StockReduceRollback", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil

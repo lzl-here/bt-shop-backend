@@ -1,0 +1,46 @@
+{
+    "category_id": 3,
+    "category_name": "旗舰机",
+    "brand_id": 1,
+    "brand_name": "华为",
+    "spu_name": "华为mate60",
+    "spu_desc": "华为就是牛",
+    "spu_price": "6000.00",
+    "spu_img_url": "test-url",
+    "sku_info_list": [
+        {
+            "stock_num": 1000,
+            "sku_price": "6000",
+            "spec_key_value": [
+                {
+                    "spec_name": "内存",
+                    "spec_value": "16g"
+                },
+                {
+                    "spec_name": "存储",
+                    "spec_value": "512g"
+                }
+            ]
+        },
+        {
+            "stock_num": 500,
+            "sku_price": "7500",
+            "spec_key_value": [
+                {
+                    "spec_name": "内存",
+                    "spec_value": "32g"
+                },
+                {
+                    "spec_name": "存储",
+                    "spec_value": "1t"
+                }
+            ]
+        }
+    ],
+    "attribute_info_list": [
+        {
+            "attribute_name": "屏幕大小",
+            "attribute_value": "6寸"
+        }
+    ]
+}

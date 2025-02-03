@@ -27,6 +27,7 @@ service OrderService {
     
     // 支付取消通知 对内
     rpc PayCancelToOrder(PayCancelToOrderReq) returns (PayCancelToOrderRsp) {}
+
     
 }
 

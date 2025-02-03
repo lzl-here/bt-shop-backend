@@ -21,16 +21,22 @@ func (h *GoodsHandler) SearchSpuList(ctx context.Context, req *ggen.SearchSpuLis
 	if err != nil {
 		return nil, err
 	}
-	// TODO 查询attr
 	return buildSearchRsp(spus, req.PageSize, req.PageNo), nil
 }
 
 func buildSearchRsp(spus []*model.GoodsSpu, pageSize int32, pageNo int32) *ggen.SearchSpuListRsp {
-	spusRsp := make([]*ggen.SpuInfo, 0)
+	spusRsp := make([]*ggen.BaseSpuInfo, 0)
 	for _, s := range spus {
-		spusRsp = append(spusRsp, &ggen.SpuInfo{
-			SpuId:   s.ID,
-			SpuName: s.SpuName,
+		spusRsp = append(spusRsp, &ggen.BaseSpuInfo{
+			SpuId:           s.ID,
+			SpuName:         s.SpuName,
+			SpuDesc:         s.SpuDesc,
+			SpuImgUrl:       s.SpuImgUrl,
+			SpuPrice:        s.Price,
+			SpuCategoryId:   s.CategoryID,
+			SpuCategoryName: s.CategoryName,
+			BrandId:         s.BrandID,
+			BrandName:       s.BrandName,
 		})
 	}
 

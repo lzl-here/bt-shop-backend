@@ -124,11 +124,6 @@ func (x *SearchSpuListReq) FastRead(buf []byte, _type int8, number int32) (offse
 		if err != nil {
 			goto ReadFieldError
 		}
-	case 6:
-		offset, err = x.fastReadField6(buf, _type)
-		if err != nil {
-			goto ReadFieldError
-		}
 	default:
 		offset, err = fastpb.Skip(buf, _type, number)
 		if err != nil {
@@ -180,20 +175,6 @@ func (x *SearchSpuListReq) fastReadField5(buf []byte, _type int8) (offset int, e
 				return offset, err
 			}
 			x.BrandIds = append(x.BrandIds, v)
-			return offset, err
-		})
-	return offset, err
-}
-
-func (x *SearchSpuListReq) fastReadField6(buf []byte, _type int8) (offset int, err error) {
-	offset, err = fastpb.ReadList(buf, _type,
-		func(buf []byte, _type int8) (n int, err error) {
-			var v uint64
-			v, offset, err = fastpb.ReadUint64(buf, _type)
-			if err != nil {
-				return offset, err
-			}
-			x.AttrIds = append(x.AttrIds, v)
 			return offset, err
 		})
 	return offset, err
@@ -306,11 +287,6 @@ func (x *SearchSpuListRsp_SearchSpuListRspData) FastRead(buf []byte, _type int8,
 		if err != nil {
 			goto ReadFieldError
 		}
-	case 5:
-		offset, err = x.fastReadField5(buf, _type)
-		if err != nil {
-			goto ReadFieldError
-		}
 	default:
 		offset, err = fastpb.Skip(buf, _type, number)
 		if err != nil {
@@ -325,7 +301,7 @@ ReadFieldError:
 }
 
 func (x *SearchSpuListRsp_SearchSpuListRspData) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	var v SpuInfo
+	var v BaseSpuInfo
 	offset, err = fastpb.ReadMessage(buf, _type, &v)
 	if err != nil {
 		return offset, err
@@ -342,16 +318,6 @@ func (x *SearchSpuListRsp_SearchSpuListRspData) fastReadField2(buf []byte, _type
 func (x *SearchSpuListRsp_SearchSpuListRspData) fastReadField3(buf []byte, _type int8) (offset int, err error) {
 	x.PageNo, offset, err = fastpb.ReadInt32(buf, _type)
 	return offset, err
-}
-
-func (x *SearchSpuListRsp_SearchSpuListRspData) fastReadField5(buf []byte, _type int8) (offset int, err error) {
-	var v AttributeInfo
-	offset, err = fastpb.ReadMessage(buf, _type, &v)
-	if err != nil {
-		return offset, err
-	}
-	x.AttrList = append(x.AttrList, &v)
-	return offset, nil
 }
 
 func (x *GetKeywordDownListReq) FastWrite(buf []byte) (offset int) {
@@ -422,7 +388,6 @@ func (x *SearchSpuListReq) FastWrite(buf []byte) (offset int) {
 	offset += x.fastWriteField3(buf[offset:])
 	offset += x.fastWriteField4(buf[offset:])
 	offset += x.fastWriteField5(buf[offset:])
-	offset += x.fastWriteField6(buf[offset:])
 	return offset
 }
 
@@ -471,19 +436,6 @@ func (x *SearchSpuListReq) fastWriteField5(buf []byte) (offset int) {
 		func(buf []byte, numTagOrKey, numIdxOrVal int32) int {
 			offset := 0
 			offset += fastpb.WriteUint64(buf[offset:], numTagOrKey, x.GetBrandIds()[numIdxOrVal])
-			return offset
-		})
-	return offset
-}
-
-func (x *SearchSpuListReq) fastWriteField6(buf []byte) (offset int) {
-	if len(x.AttrIds) == 0 {
-		return offset
-	}
-	offset += fastpb.WriteListPacked(buf[offset:], 6, len(x.GetAttrIds()),
-		func(buf []byte, numTagOrKey, numIdxOrVal int32) int {
-			offset := 0
-			offset += fastpb.WriteUint64(buf[offset:], numTagOrKey, x.GetAttrIds()[numIdxOrVal])
 			return offset
 		})
 	return offset
@@ -557,7 +509,6 @@ func (x *SearchSpuListRsp_SearchSpuListRspData) FastWrite(buf []byte) (offset in
 	offset += x.fastWriteField1(buf[offset:])
 	offset += x.fastWriteField2(buf[offset:])
 	offset += x.fastWriteField3(buf[offset:])
-	offset += x.fastWriteField5(buf[offset:])
 	return offset
 }
 
@@ -584,16 +535,6 @@ func (x *SearchSpuListRsp_SearchSpuListRspData) fastWriteField3(buf []byte) (off
 		return offset
 	}
 	offset += fastpb.WriteInt32(buf[offset:], 3, x.GetPageNo())
-	return offset
-}
-
-func (x *SearchSpuListRsp_SearchSpuListRspData) fastWriteField5(buf []byte) (offset int) {
-	if x.AttrList == nil {
-		return offset
-	}
-	for i := range x.GetAttrList() {
-		offset += fastpb.WriteMessage(buf[offset:], 5, x.GetAttrList()[i])
-	}
 	return offset
 }
 
@@ -665,7 +606,6 @@ func (x *SearchSpuListReq) Size() (n int) {
 	n += x.sizeField3()
 	n += x.sizeField4()
 	n += x.sizeField5()
-	n += x.sizeField6()
 	return n
 }
 
@@ -714,19 +654,6 @@ func (x *SearchSpuListReq) sizeField5() (n int) {
 		func(numTagOrKey, numIdxOrVal int32) int {
 			n := 0
 			n += fastpb.SizeUint64(numTagOrKey, x.GetBrandIds()[numIdxOrVal])
-			return n
-		})
-	return n
-}
-
-func (x *SearchSpuListReq) sizeField6() (n int) {
-	if len(x.AttrIds) == 0 {
-		return n
-	}
-	n += fastpb.SizeListPacked(6, len(x.GetAttrIds()),
-		func(numTagOrKey, numIdxOrVal int32) int {
-			n := 0
-			n += fastpb.SizeUint64(numTagOrKey, x.GetAttrIds()[numIdxOrVal])
 			return n
 		})
 	return n
@@ -800,7 +727,6 @@ func (x *SearchSpuListRsp_SearchSpuListRspData) Size() (n int) {
 	n += x.sizeField1()
 	n += x.sizeField2()
 	n += x.sizeField3()
-	n += x.sizeField5()
 	return n
 }
 
@@ -830,16 +756,6 @@ func (x *SearchSpuListRsp_SearchSpuListRspData) sizeField3() (n int) {
 	return n
 }
 
-func (x *SearchSpuListRsp_SearchSpuListRspData) sizeField5() (n int) {
-	if x.AttrList == nil {
-		return n
-	}
-	for i := range x.GetAttrList() {
-		n += fastpb.SizeMessage(5, x.GetAttrList()[i])
-	}
-	return n
-}
-
 var fieldIDToName_GetKeywordDownListReq = map[int32]string{
 	1: "Prefix",
 }
@@ -857,7 +773,6 @@ var fieldIDToName_SearchSpuListReq = map[int32]string{
 	3: "Keyword",
 	4: "CategoryIds",
 	5: "BrandIds",
-	6: "AttrIds",
 }
 
 var fieldIDToName_SearchSpuListRsp = map[int32]string{
@@ -875,5 +790,4 @@ var fieldIDToName_SearchSpuListRsp_SearchSpuListRspData = map[int32]string{
 	1: "SpuList",
 	2: "PageSize",
 	3: "PageNo",
-	5: "AttrList",
 }

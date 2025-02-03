@@ -54,12 +54,17 @@ message PublishGoodsReq{
     // 规格
     repeated PublishSkuInfo sku_info_list = 9;
     // 属性
-    repeated AttributeInfo attribute_info_list = 10;
+    repeated PublishAttributeInfo attribute_info_list = 10;
 
     message PublishSkuInfo {
     uint64 stock_num = 1;
     string sku_price = 2;
     repeated SpecKeyValue spec_key_value = 3;
+    }
+
+    message PublishAttributeInfo{
+        string attribute_name = 1;
+        string attribute_value = 2;
     }
 }
 
