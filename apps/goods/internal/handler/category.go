@@ -32,7 +32,7 @@ func buildCategoryListRsp(categoryList []*model.Category) *ggen.GetCategoryListR
 }
 
 // 构建目录树列表
-func buildTreeList(categories []*model.Category) []*ggen.Category {
+func buildTreeList(categories []*model.Category) []*ggen.BaseCategory {
 	// 创建一个map来快速查找子类别
 	childrenMap := make(map[uint64][]*model.Category)
 	rootCategory := make([]*model.Category, 0)
@@ -44,7 +44,7 @@ func buildTreeList(categories []*model.Category) []*ggen.Category {
 	}
 
 	// 构建目录树列表
-	res := make([]*ggen.Category, 0)
+	res := make([]*ggen.BaseCategory, 0)
 	for _, c := range rootCategory {
 		res = append(res, buildTree(c, childrenMap))
 	}
@@ -52,16 +52,16 @@ func buildTreeList(categories []*model.Category) []*ggen.Category {
 }
 
 // 根据一个根节点，构建一个目录树
-func buildTree(rootCategory *model.Category, childrenMap map[uint64][]*model.Category) *ggen.Category {
-	categoryRsp := &ggen.Category{
+func buildTree(rootCategory *model.Category, childrenMap map[uint64][]*model.Category) *ggen.BaseCategory {
+	categoryRsp := &ggen.BaseCategory{
 		CategoryId:   rootCategory.ID,
 		CategoryName: rootCategory.Name,
 		ParentId:     rootCategory.ParentID,
 	}
-	tree := make([]*ggen.Category, 0)
+	tree := make([]*ggen.BaseCategory, 0)
 	rootID := rootCategory.ID
 	for _, category := range childrenMap[rootID] {
-		protoCategory := &ggen.Category{
+		protoCategory := &ggen.BaseCategory{
 			CategoryId:   category.ID,
 			CategoryName: category.Name,
 			ParentId:     category.ParentID,
@@ -73,10 +73,10 @@ func buildTree(rootCategory *model.Category, childrenMap map[uint64][]*model.Cat
 	return categoryRsp
 }
 
-func buildTreeChild(rootCategory *model.Category, childrenMap map[uint64][]*model.Category) []*ggen.Category {
-	children := make([]*ggen.Category, 0)
+func buildTreeChild(rootCategory *model.Category, childrenMap map[uint64][]*model.Category) []*ggen.BaseCategory {
+	children := make([]*ggen.BaseCategory, 0)
 	for _, category := range childrenMap[rootCategory.ID] {
-		rsp := &ggen.Category{
+		rsp := &ggen.BaseCategory{
 			CategoryId:   category.ID,
 			CategoryName: category.Name,
 			ParentId:     category.ParentID,

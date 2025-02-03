@@ -7,7 +7,6 @@ option go_package = "goods";
 import "goods/common.proto";
 
 
-
 //根据id获取商品列表
 message GetGoodsListReq {
     repeated uint64 spu_ids = 1;
@@ -19,7 +18,7 @@ message GetGoodsListRsp {
     string log_id = 3;
     GetGoodsListRspData data = 4;
     message GetGoodsListRspData {
-        repeated SpuInfo spu_list = 1;
+        repeated GoodsSpu spu_list = 1;
     }
 }
 
@@ -34,8 +33,9 @@ message GetGoodsDetailRsp{
     string log_id = 3;
     GetGoodsDetailRspData data = 4;
     message GetGoodsDetailRspData {
-        SpuInfo spu_info = 1;
+        GoodsSpu spu = 1;
     }
+
 }   
 
 
@@ -52,23 +52,26 @@ message PublishGoodsReq{
     string spu_img_url = 8;
 
     // 规格
-    repeated PublishSkuInfo sku_info_list = 9;
+    repeated PublishSku sku_list = 9;
     // 属性
-    repeated PublishAttributeInfo attribute_info_list = 10;
+    repeated PublishAttribute attribute_list = 10;
 
-    message PublishSkuInfo {
+    message PublishSku {
     uint64 stock_num = 1;
     string sku_price = 2;
-    repeated SpecKeyValue spec_key_value = 3;
+    repeated PublishSpecValue spec_key_value = 3;
     }
 
-    message PublishAttributeInfo{
+    message PublishAttribute{
         string attribute_name = 1;
         string attribute_value = 2;
     }
+
+    message PublishSpecValue {
+        string spec_name = 1;
+        string spec_value = 2;
+    }
 }
-
-
 
 message PublishGoodsRsp {
     int32 code = 1;
@@ -78,4 +81,17 @@ message PublishGoodsRsp {
     message PublishGoodsRspData {
         uint64 spu_id = 1;
     }
+}
+
+// 详细的spu信息，加上了 sku 和 规格项
+message GoodsSpu {
+    BaseSpu spu = 1;
+    repeated GoodsSku sku_list = 2;
+    repeated BaseSpec spec_list = 3;   // 可选规格项
+}
+
+// sku信息
+message GoodsSku {
+    BaseSku sku = 1;
+    repeated BaseSpecValue spec_value_list = 6; // 可选规格值
 }

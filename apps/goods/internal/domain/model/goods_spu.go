@@ -10,9 +10,9 @@ type GoodsSpu struct {
 	CategoryName string `gorm:"column:category_name" json:"category_name"` // 分类名称
 	BrandID      uint64 `gorm:"column:brand_id" json:"brand_id"`           // 品牌ID
 	BrandName    string `gorm:"column:brand_name" json:"brand_name"`       // 品牌名称
-	Price        string `gorm:"column:price" json:"price"`                 // 价格，展示使用，不用于交易
+	SpuPrice     string `gorm:"column:spu_price" json:"spu_price"`         // 价格，展示使用，不用于交易
 	Enabled      bool   `gorm:"column:enabled" json:"enabled"`             // 是否上架
-	SpuImgUrl    string `gorm:"column:spu_img_url" json:"spu_img_url"`         // 图片地址
+	SpuImgUrl    string `gorm:"column:spu_img_url" json:"spu_img_url"`     // 图片地址
 	AttributeIDs string `gorm:"column:attribute_ids" json:"attribute_ids"` // 属性id列表 ,隔开 不额外用一张表存关系
 	SpecIDs      string `gorm:"column:spec_ids" json:"spec_ids"`           // 规格id列表 ,隔开 不额外用一张表存关系
 	model.BaseModel

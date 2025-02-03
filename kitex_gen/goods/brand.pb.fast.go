@@ -106,7 +106,7 @@ ReadFieldError:
 }
 
 func (x *GetBBrandListRsp_GetBBrandListDataRsp) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	var v Brand
+	var v BaseBrand
 	offset, err = fastpb.ReadMessage(buf, _type, &v)
 	if err != nil {
 		return offset, err

@@ -5,67 +5,45 @@ package goods;
 option go_package = "goods";
 
 
-// spu信息
-message BaseSpuInfo {
-    uint64 spu_id = 1;
+// 基础的spu信息，没有规格和属性
+message BaseSpu {
+    uint64 id = 1;
     string spu_name = 2;
     string spu_desc = 3;
-    string spu_img_url = 4;
-    string spu_price = 5;
-    uint64 spu_category_id = 7;
-    string spu_category_name = 8;
-    uint64 brand_id = 9;
-    string brand_name = 10;
-}
-
-// 详细的spu信息，加上了 sku 
-message SpuInfo {
-    uint64 spu_id = 1;
-    string spu_name = 2;
-    string spu_desc = 3;
-    string spu_img_url = 4;
-    string spu_price = 5;
-    uint64 spu_category_id = 7;
-    string spu_category_name = 8;
-    uint64 brand_id = 9;
-    string brand_name = 10;
-    repeated SkuInfo sku_list = 11;
-    repeated SpecInfo spec_list = 12;   // 可选规格
-    repeated SpecValueInfo spec_value_list = 13; // 可选规格值
+    uint64 category_id = 4;
+    string category_name = 5;
+    uint64 brand_id = 6;
+    string brand_name = 7;
+    string spu_price = 8;
+    bool enabled = 9;
+    string spu_img_url = 10;
 }
 
 // sku信息
-message SkuInfo {
-    uint64 sku_id = 1;
+message BaseSku {
+    uint64 id = 1;
     uint64 spu_id = 2;
     uint64 stock_num = 3;
-    string sku_amount = 4;
-    string sku_name = 5;
-    string spec_str = 6;
+    string sku_price = 4;
 }
 
-//规格信息，查询商品信息时使用
-message SpecInfo {
-    uint64 spec_id = 1;
+//规格项
+message BaseSpec {
+    uint64 id = 1;
     string spec_name = 2;
     uint64 spu_id = 3;
 }
 
-// 规格值信息，查询商品信息时使用
-message SpecValueInfo {
-    uint64 spec_value_id = 1;
-    string spec_name = 2;
-    string spec_value = 3;
-}
-
-// 规格项列表， 需要新增规格时使用
-message SpecKeyValue {
-    string spec_name = 1;
-    string spec_value = 2;
+// 规格值信息
+message BaseSpecValue {
+    uint64 id = 1;
+    uint64 spec_id = 2;
+    string spec_name = 3;
+    string spec_value = 4;
 }
 
 // 属性
-message AttributeInfo {
+message BaseAttribute {
     uint64 id = 1;
     uint64 spu_id = 2;
     string attribute_name = 3;
@@ -74,21 +52,21 @@ message AttributeInfo {
 }
 
 // 关键词下拉框项
-message Keyword{   
+message BaseKeyword{   
     uint64 id = 1;
     string value = 2;
 }
 
 // 商品分类
-message Category {
+message BaseCategory {
     uint64 category_id = 1;
     string category_name = 2;
     uint64 parent_id = 3;
     int32 level = 4;
-    repeated Category children = 5;
+    repeated BaseCategory children = 5;
 }
 
-message Brand{
+message BaseBrand{
     uint64 brand_id = 1;
     string brand_name = 2;
 }

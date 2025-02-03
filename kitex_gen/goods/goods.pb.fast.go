@@ -297,22 +297,22 @@ func (x *PublishGoodsReq) fastReadField8(buf []byte, _type int8) (offset int, er
 }
 
 func (x *PublishGoodsReq) fastReadField9(buf []byte, _type int8) (offset int, err error) {
-	var v PublishGoodsReq_PublishSkuInfo
+	var v PublishGoodsReq_PublishSku
 	offset, err = fastpb.ReadMessage(buf, _type, &v)
 	if err != nil {
 		return offset, err
 	}
-	x.SkuInfoList = append(x.SkuInfoList, &v)
+	x.SkuList = append(x.SkuList, &v)
 	return offset, nil
 }
 
 func (x *PublishGoodsReq) fastReadField10(buf []byte, _type int8) (offset int, err error) {
-	var v PublishGoodsReq_PublishAttributeInfo
+	var v PublishGoodsReq_PublishAttribute
 	offset, err = fastpb.ReadMessage(buf, _type, &v)
 	if err != nil {
 		return offset, err
 	}
-	x.AttributeInfoList = append(x.AttributeInfoList, &v)
+	x.AttributeList = append(x.AttributeList, &v)
 	return offset, nil
 }
 
@@ -376,6 +376,111 @@ func (x *PublishGoodsRsp) fastReadField4(buf []byte, _type int8) (offset int, er
 	return offset, nil
 }
 
+func (x *GoodsSpu) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
+	switch number {
+	case 1:
+		offset, err = x.fastReadField1(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 2:
+		offset, err = x.fastReadField2(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 3:
+		offset, err = x.fastReadField3(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	default:
+		offset, err = fastpb.Skip(buf, _type, number)
+		if err != nil {
+			goto SkipFieldError
+		}
+	}
+	return offset, nil
+SkipFieldError:
+	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
+ReadFieldError:
+	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_GoodsSpu[number], err)
+}
+
+func (x *GoodsSpu) fastReadField1(buf []byte, _type int8) (offset int, err error) {
+	var v BaseSpu
+	offset, err = fastpb.ReadMessage(buf, _type, &v)
+	if err != nil {
+		return offset, err
+	}
+	x.Spu = &v
+	return offset, nil
+}
+
+func (x *GoodsSpu) fastReadField2(buf []byte, _type int8) (offset int, err error) {
+	var v GoodsSku
+	offset, err = fastpb.ReadMessage(buf, _type, &v)
+	if err != nil {
+		return offset, err
+	}
+	x.SkuList = append(x.SkuList, &v)
+	return offset, nil
+}
+
+func (x *GoodsSpu) fastReadField3(buf []byte, _type int8) (offset int, err error) {
+	var v BaseSpec
+	offset, err = fastpb.ReadMessage(buf, _type, &v)
+	if err != nil {
+		return offset, err
+	}
+	x.SpecList = append(x.SpecList, &v)
+	return offset, nil
+}
+
+func (x *GoodsSku) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
+	switch number {
+	case 1:
+		offset, err = x.fastReadField1(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 6:
+		offset, err = x.fastReadField6(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	default:
+		offset, err = fastpb.Skip(buf, _type, number)
+		if err != nil {
+			goto SkipFieldError
+		}
+	}
+	return offset, nil
+SkipFieldError:
+	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
+ReadFieldError:
+	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_GoodsSku[number], err)
+}
+
+func (x *GoodsSku) fastReadField1(buf []byte, _type int8) (offset int, err error) {
+	var v BaseSku
+	offset, err = fastpb.ReadMessage(buf, _type, &v)
+	if err != nil {
+		return offset, err
+	}
+	x.Sku = &v
+	return offset, nil
+}
+
+func (x *GoodsSku) fastReadField6(buf []byte, _type int8) (offset int, err error) {
+	var v BaseSpecValue
+	offset, err = fastpb.ReadMessage(buf, _type, &v)
+	if err != nil {
+		return offset, err
+	}
+	x.SpecValueList = append(x.SpecValueList, &v)
+	return offset, nil
+}
+
 func (x *GetGoodsListRsp_GetGoodsListRspData) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
 	switch number {
 	case 1:
@@ -397,7 +502,7 @@ ReadFieldError:
 }
 
 func (x *GetGoodsListRsp_GetGoodsListRspData) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	var v SpuInfo
+	var v GoodsSpu
 	offset, err = fastpb.ReadMessage(buf, _type, &v)
 	if err != nil {
 		return offset, err
@@ -427,16 +532,16 @@ ReadFieldError:
 }
 
 func (x *GetGoodsDetailRsp_GetGoodsDetailRspData) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	var v SpuInfo
+	var v GoodsSpu
 	offset, err = fastpb.ReadMessage(buf, _type, &v)
 	if err != nil {
 		return offset, err
 	}
-	x.SpuInfo = &v
+	x.Spu = &v
 	return offset, nil
 }
 
-func (x *PublishGoodsReq_PublishSkuInfo) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
+func (x *PublishGoodsReq_PublishSku) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
 	switch number {
 	case 1:
 		offset, err = x.fastReadField1(buf, _type)
@@ -463,21 +568,21 @@ func (x *PublishGoodsReq_PublishSkuInfo) FastRead(buf []byte, _type int8, number
 SkipFieldError:
 	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
 ReadFieldError:
-	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_PublishGoodsReq_PublishSkuInfo[number], err)
+	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_PublishGoodsReq_PublishSku[number], err)
 }
 
-func (x *PublishGoodsReq_PublishSkuInfo) fastReadField1(buf []byte, _type int8) (offset int, err error) {
+func (x *PublishGoodsReq_PublishSku) fastReadField1(buf []byte, _type int8) (offset int, err error) {
 	x.StockNum, offset, err = fastpb.ReadUint64(buf, _type)
 	return offset, err
 }
 
-func (x *PublishGoodsReq_PublishSkuInfo) fastReadField2(buf []byte, _type int8) (offset int, err error) {
+func (x *PublishGoodsReq_PublishSku) fastReadField2(buf []byte, _type int8) (offset int, err error) {
 	x.SkuPrice, offset, err = fastpb.ReadString(buf, _type)
 	return offset, err
 }
 
-func (x *PublishGoodsReq_PublishSkuInfo) fastReadField3(buf []byte, _type int8) (offset int, err error) {
-	var v SpecKeyValue
+func (x *PublishGoodsReq_PublishSku) fastReadField3(buf []byte, _type int8) (offset int, err error) {
+	var v PublishGoodsReq_PublishSpecValue
 	offset, err = fastpb.ReadMessage(buf, _type, &v)
 	if err != nil {
 		return offset, err
@@ -486,7 +591,7 @@ func (x *PublishGoodsReq_PublishSkuInfo) fastReadField3(buf []byte, _type int8) 
 	return offset, nil
 }
 
-func (x *PublishGoodsReq_PublishAttributeInfo) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
+func (x *PublishGoodsReq_PublishAttribute) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
 	switch number {
 	case 1:
 		offset, err = x.fastReadField1(buf, _type)
@@ -508,16 +613,51 @@ func (x *PublishGoodsReq_PublishAttributeInfo) FastRead(buf []byte, _type int8, 
 SkipFieldError:
 	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
 ReadFieldError:
-	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_PublishGoodsReq_PublishAttributeInfo[number], err)
+	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_PublishGoodsReq_PublishAttribute[number], err)
 }
 
-func (x *PublishGoodsReq_PublishAttributeInfo) fastReadField1(buf []byte, _type int8) (offset int, err error) {
+func (x *PublishGoodsReq_PublishAttribute) fastReadField1(buf []byte, _type int8) (offset int, err error) {
 	x.AttributeName, offset, err = fastpb.ReadString(buf, _type)
 	return offset, err
 }
 
-func (x *PublishGoodsReq_PublishAttributeInfo) fastReadField2(buf []byte, _type int8) (offset int, err error) {
+func (x *PublishGoodsReq_PublishAttribute) fastReadField2(buf []byte, _type int8) (offset int, err error) {
 	x.AttributeValue, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
+func (x *PublishGoodsReq_PublishSpecValue) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
+	switch number {
+	case 1:
+		offset, err = x.fastReadField1(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 2:
+		offset, err = x.fastReadField2(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	default:
+		offset, err = fastpb.Skip(buf, _type, number)
+		if err != nil {
+			goto SkipFieldError
+		}
+	}
+	return offset, nil
+SkipFieldError:
+	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
+ReadFieldError:
+	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_PublishGoodsReq_PublishSpecValue[number], err)
+}
+
+func (x *PublishGoodsReq_PublishSpecValue) fastReadField1(buf []byte, _type int8) (offset int, err error) {
+	x.SpecName, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
+func (x *PublishGoodsReq_PublishSpecValue) fastReadField2(buf []byte, _type int8) (offset int, err error) {
+	x.SpecValue, offset, err = fastpb.ReadString(buf, _type)
 	return offset, err
 }
 
@@ -751,21 +891,21 @@ func (x *PublishGoodsReq) fastWriteField8(buf []byte) (offset int) {
 }
 
 func (x *PublishGoodsReq) fastWriteField9(buf []byte) (offset int) {
-	if x.SkuInfoList == nil {
+	if x.SkuList == nil {
 		return offset
 	}
-	for i := range x.GetSkuInfoList() {
-		offset += fastpb.WriteMessage(buf[offset:], 9, x.GetSkuInfoList()[i])
+	for i := range x.GetSkuList() {
+		offset += fastpb.WriteMessage(buf[offset:], 9, x.GetSkuList()[i])
 	}
 	return offset
 }
 
 func (x *PublishGoodsReq) fastWriteField10(buf []byte) (offset int) {
-	if x.AttributeInfoList == nil {
+	if x.AttributeList == nil {
 		return offset
 	}
-	for i := range x.GetAttributeInfoList() {
-		offset += fastpb.WriteMessage(buf[offset:], 10, x.GetAttributeInfoList()[i])
+	for i := range x.GetAttributeList() {
+		offset += fastpb.WriteMessage(buf[offset:], 10, x.GetAttributeList()[i])
 	}
 	return offset
 }
@@ -813,6 +953,71 @@ func (x *PublishGoodsRsp) fastWriteField4(buf []byte) (offset int) {
 	return offset
 }
 
+func (x *GoodsSpu) FastWrite(buf []byte) (offset int) {
+	if x == nil {
+		return offset
+	}
+	offset += x.fastWriteField1(buf[offset:])
+	offset += x.fastWriteField2(buf[offset:])
+	offset += x.fastWriteField3(buf[offset:])
+	return offset
+}
+
+func (x *GoodsSpu) fastWriteField1(buf []byte) (offset int) {
+	if x.Spu == nil {
+		return offset
+	}
+	offset += fastpb.WriteMessage(buf[offset:], 1, x.GetSpu())
+	return offset
+}
+
+func (x *GoodsSpu) fastWriteField2(buf []byte) (offset int) {
+	if x.SkuList == nil {
+		return offset
+	}
+	for i := range x.GetSkuList() {
+		offset += fastpb.WriteMessage(buf[offset:], 2, x.GetSkuList()[i])
+	}
+	return offset
+}
+
+func (x *GoodsSpu) fastWriteField3(buf []byte) (offset int) {
+	if x.SpecList == nil {
+		return offset
+	}
+	for i := range x.GetSpecList() {
+		offset += fastpb.WriteMessage(buf[offset:], 3, x.GetSpecList()[i])
+	}
+	return offset
+}
+
+func (x *GoodsSku) FastWrite(buf []byte) (offset int) {
+	if x == nil {
+		return offset
+	}
+	offset += x.fastWriteField1(buf[offset:])
+	offset += x.fastWriteField6(buf[offset:])
+	return offset
+}
+
+func (x *GoodsSku) fastWriteField1(buf []byte) (offset int) {
+	if x.Sku == nil {
+		return offset
+	}
+	offset += fastpb.WriteMessage(buf[offset:], 1, x.GetSku())
+	return offset
+}
+
+func (x *GoodsSku) fastWriteField6(buf []byte) (offset int) {
+	if x.SpecValueList == nil {
+		return offset
+	}
+	for i := range x.GetSpecValueList() {
+		offset += fastpb.WriteMessage(buf[offset:], 6, x.GetSpecValueList()[i])
+	}
+	return offset
+}
+
 func (x *GetGoodsListRsp_GetGoodsListRspData) FastWrite(buf []byte) (offset int) {
 	if x == nil {
 		return offset
@@ -840,14 +1045,14 @@ func (x *GetGoodsDetailRsp_GetGoodsDetailRspData) FastWrite(buf []byte) (offset 
 }
 
 func (x *GetGoodsDetailRsp_GetGoodsDetailRspData) fastWriteField1(buf []byte) (offset int) {
-	if x.SpuInfo == nil {
+	if x.Spu == nil {
 		return offset
 	}
-	offset += fastpb.WriteMessage(buf[offset:], 1, x.GetSpuInfo())
+	offset += fastpb.WriteMessage(buf[offset:], 1, x.GetSpu())
 	return offset
 }
 
-func (x *PublishGoodsReq_PublishSkuInfo) FastWrite(buf []byte) (offset int) {
+func (x *PublishGoodsReq_PublishSku) FastWrite(buf []byte) (offset int) {
 	if x == nil {
 		return offset
 	}
@@ -857,7 +1062,7 @@ func (x *PublishGoodsReq_PublishSkuInfo) FastWrite(buf []byte) (offset int) {
 	return offset
 }
 
-func (x *PublishGoodsReq_PublishSkuInfo) fastWriteField1(buf []byte) (offset int) {
+func (x *PublishGoodsReq_PublishSku) fastWriteField1(buf []byte) (offset int) {
 	if x.StockNum == 0 {
 		return offset
 	}
@@ -865,7 +1070,7 @@ func (x *PublishGoodsReq_PublishSkuInfo) fastWriteField1(buf []byte) (offset int
 	return offset
 }
 
-func (x *PublishGoodsReq_PublishSkuInfo) fastWriteField2(buf []byte) (offset int) {
+func (x *PublishGoodsReq_PublishSku) fastWriteField2(buf []byte) (offset int) {
 	if x.SkuPrice == "" {
 		return offset
 	}
@@ -873,7 +1078,7 @@ func (x *PublishGoodsReq_PublishSkuInfo) fastWriteField2(buf []byte) (offset int
 	return offset
 }
 
-func (x *PublishGoodsReq_PublishSkuInfo) fastWriteField3(buf []byte) (offset int) {
+func (x *PublishGoodsReq_PublishSku) fastWriteField3(buf []byte) (offset int) {
 	if x.SpecKeyValue == nil {
 		return offset
 	}
@@ -883,7 +1088,7 @@ func (x *PublishGoodsReq_PublishSkuInfo) fastWriteField3(buf []byte) (offset int
 	return offset
 }
 
-func (x *PublishGoodsReq_PublishAttributeInfo) FastWrite(buf []byte) (offset int) {
+func (x *PublishGoodsReq_PublishAttribute) FastWrite(buf []byte) (offset int) {
 	if x == nil {
 		return offset
 	}
@@ -892,7 +1097,7 @@ func (x *PublishGoodsReq_PublishAttributeInfo) FastWrite(buf []byte) (offset int
 	return offset
 }
 
-func (x *PublishGoodsReq_PublishAttributeInfo) fastWriteField1(buf []byte) (offset int) {
+func (x *PublishGoodsReq_PublishAttribute) fastWriteField1(buf []byte) (offset int) {
 	if x.AttributeName == "" {
 		return offset
 	}
@@ -900,11 +1105,36 @@ func (x *PublishGoodsReq_PublishAttributeInfo) fastWriteField1(buf []byte) (offs
 	return offset
 }
 
-func (x *PublishGoodsReq_PublishAttributeInfo) fastWriteField2(buf []byte) (offset int) {
+func (x *PublishGoodsReq_PublishAttribute) fastWriteField2(buf []byte) (offset int) {
 	if x.AttributeValue == "" {
 		return offset
 	}
 	offset += fastpb.WriteString(buf[offset:], 2, x.GetAttributeValue())
+	return offset
+}
+
+func (x *PublishGoodsReq_PublishSpecValue) FastWrite(buf []byte) (offset int) {
+	if x == nil {
+		return offset
+	}
+	offset += x.fastWriteField1(buf[offset:])
+	offset += x.fastWriteField2(buf[offset:])
+	return offset
+}
+
+func (x *PublishGoodsReq_PublishSpecValue) fastWriteField1(buf []byte) (offset int) {
+	if x.SpecName == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 1, x.GetSpecName())
+	return offset
+}
+
+func (x *PublishGoodsReq_PublishSpecValue) fastWriteField2(buf []byte) (offset int) {
+	if x.SpecValue == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 2, x.GetSpecValue())
 	return offset
 }
 
@@ -1129,21 +1359,21 @@ func (x *PublishGoodsReq) sizeField8() (n int) {
 }
 
 func (x *PublishGoodsReq) sizeField9() (n int) {
-	if x.SkuInfoList == nil {
+	if x.SkuList == nil {
 		return n
 	}
-	for i := range x.GetSkuInfoList() {
-		n += fastpb.SizeMessage(9, x.GetSkuInfoList()[i])
+	for i := range x.GetSkuList() {
+		n += fastpb.SizeMessage(9, x.GetSkuList()[i])
 	}
 	return n
 }
 
 func (x *PublishGoodsReq) sizeField10() (n int) {
-	if x.AttributeInfoList == nil {
+	if x.AttributeList == nil {
 		return n
 	}
-	for i := range x.GetAttributeInfoList() {
-		n += fastpb.SizeMessage(10, x.GetAttributeInfoList()[i])
+	for i := range x.GetAttributeList() {
+		n += fastpb.SizeMessage(10, x.GetAttributeList()[i])
 	}
 	return n
 }
@@ -1191,6 +1421,71 @@ func (x *PublishGoodsRsp) sizeField4() (n int) {
 	return n
 }
 
+func (x *GoodsSpu) Size() (n int) {
+	if x == nil {
+		return n
+	}
+	n += x.sizeField1()
+	n += x.sizeField2()
+	n += x.sizeField3()
+	return n
+}
+
+func (x *GoodsSpu) sizeField1() (n int) {
+	if x.Spu == nil {
+		return n
+	}
+	n += fastpb.SizeMessage(1, x.GetSpu())
+	return n
+}
+
+func (x *GoodsSpu) sizeField2() (n int) {
+	if x.SkuList == nil {
+		return n
+	}
+	for i := range x.GetSkuList() {
+		n += fastpb.SizeMessage(2, x.GetSkuList()[i])
+	}
+	return n
+}
+
+func (x *GoodsSpu) sizeField3() (n int) {
+	if x.SpecList == nil {
+		return n
+	}
+	for i := range x.GetSpecList() {
+		n += fastpb.SizeMessage(3, x.GetSpecList()[i])
+	}
+	return n
+}
+
+func (x *GoodsSku) Size() (n int) {
+	if x == nil {
+		return n
+	}
+	n += x.sizeField1()
+	n += x.sizeField6()
+	return n
+}
+
+func (x *GoodsSku) sizeField1() (n int) {
+	if x.Sku == nil {
+		return n
+	}
+	n += fastpb.SizeMessage(1, x.GetSku())
+	return n
+}
+
+func (x *GoodsSku) sizeField6() (n int) {
+	if x.SpecValueList == nil {
+		return n
+	}
+	for i := range x.GetSpecValueList() {
+		n += fastpb.SizeMessage(6, x.GetSpecValueList()[i])
+	}
+	return n
+}
+
 func (x *GetGoodsListRsp_GetGoodsListRspData) Size() (n int) {
 	if x == nil {
 		return n
@@ -1218,14 +1513,14 @@ func (x *GetGoodsDetailRsp_GetGoodsDetailRspData) Size() (n int) {
 }
 
 func (x *GetGoodsDetailRsp_GetGoodsDetailRspData) sizeField1() (n int) {
-	if x.SpuInfo == nil {
+	if x.Spu == nil {
 		return n
 	}
-	n += fastpb.SizeMessage(1, x.GetSpuInfo())
+	n += fastpb.SizeMessage(1, x.GetSpu())
 	return n
 }
 
-func (x *PublishGoodsReq_PublishSkuInfo) Size() (n int) {
+func (x *PublishGoodsReq_PublishSku) Size() (n int) {
 	if x == nil {
 		return n
 	}
@@ -1235,7 +1530,7 @@ func (x *PublishGoodsReq_PublishSkuInfo) Size() (n int) {
 	return n
 }
 
-func (x *PublishGoodsReq_PublishSkuInfo) sizeField1() (n int) {
+func (x *PublishGoodsReq_PublishSku) sizeField1() (n int) {
 	if x.StockNum == 0 {
 		return n
 	}
@@ -1243,7 +1538,7 @@ func (x *PublishGoodsReq_PublishSkuInfo) sizeField1() (n int) {
 	return n
 }
 
-func (x *PublishGoodsReq_PublishSkuInfo) sizeField2() (n int) {
+func (x *PublishGoodsReq_PublishSku) sizeField2() (n int) {
 	if x.SkuPrice == "" {
 		return n
 	}
@@ -1251,7 +1546,7 @@ func (x *PublishGoodsReq_PublishSkuInfo) sizeField2() (n int) {
 	return n
 }
 
-func (x *PublishGoodsReq_PublishSkuInfo) sizeField3() (n int) {
+func (x *PublishGoodsReq_PublishSku) sizeField3() (n int) {
 	if x.SpecKeyValue == nil {
 		return n
 	}
@@ -1261,7 +1556,7 @@ func (x *PublishGoodsReq_PublishSkuInfo) sizeField3() (n int) {
 	return n
 }
 
-func (x *PublishGoodsReq_PublishAttributeInfo) Size() (n int) {
+func (x *PublishGoodsReq_PublishAttribute) Size() (n int) {
 	if x == nil {
 		return n
 	}
@@ -1270,7 +1565,7 @@ func (x *PublishGoodsReq_PublishAttributeInfo) Size() (n int) {
 	return n
 }
 
-func (x *PublishGoodsReq_PublishAttributeInfo) sizeField1() (n int) {
+func (x *PublishGoodsReq_PublishAttribute) sizeField1() (n int) {
 	if x.AttributeName == "" {
 		return n
 	}
@@ -1278,11 +1573,36 @@ func (x *PublishGoodsReq_PublishAttributeInfo) sizeField1() (n int) {
 	return n
 }
 
-func (x *PublishGoodsReq_PublishAttributeInfo) sizeField2() (n int) {
+func (x *PublishGoodsReq_PublishAttribute) sizeField2() (n int) {
 	if x.AttributeValue == "" {
 		return n
 	}
 	n += fastpb.SizeString(2, x.GetAttributeValue())
+	return n
+}
+
+func (x *PublishGoodsReq_PublishSpecValue) Size() (n int) {
+	if x == nil {
+		return n
+	}
+	n += x.sizeField1()
+	n += x.sizeField2()
+	return n
+}
+
+func (x *PublishGoodsReq_PublishSpecValue) sizeField1() (n int) {
+	if x.SpecName == "" {
+		return n
+	}
+	n += fastpb.SizeString(1, x.GetSpecName())
+	return n
+}
+
+func (x *PublishGoodsReq_PublishSpecValue) sizeField2() (n int) {
+	if x.SpecValue == "" {
+		return n
+	}
+	n += fastpb.SizeString(2, x.GetSpecValue())
 	return n
 }
 
@@ -1333,8 +1653,8 @@ var fieldIDToName_PublishGoodsReq = map[int32]string{
 	6:  "SpuDesc",
 	7:  "SpuPrice",
 	8:  "SpuImgUrl",
-	9:  "SkuInfoList",
-	10: "AttributeInfoList",
+	9:  "SkuList",
+	10: "AttributeList",
 }
 
 var fieldIDToName_PublishGoodsRsp = map[int32]string{
@@ -1344,23 +1664,39 @@ var fieldIDToName_PublishGoodsRsp = map[int32]string{
 	4: "Data",
 }
 
+var fieldIDToName_GoodsSpu = map[int32]string{
+	1: "Spu",
+	2: "SkuList",
+	3: "SpecList",
+}
+
+var fieldIDToName_GoodsSku = map[int32]string{
+	1: "Sku",
+	6: "SpecValueList",
+}
+
 var fieldIDToName_GetGoodsListRsp_GetGoodsListRspData = map[int32]string{
 	1: "SpuList",
 }
 
 var fieldIDToName_GetGoodsDetailRsp_GetGoodsDetailRspData = map[int32]string{
-	1: "SpuInfo",
+	1: "Spu",
 }
 
-var fieldIDToName_PublishGoodsReq_PublishSkuInfo = map[int32]string{
+var fieldIDToName_PublishGoodsReq_PublishSku = map[int32]string{
 	1: "StockNum",
 	2: "SkuPrice",
 	3: "SpecKeyValue",
 }
 
-var fieldIDToName_PublishGoodsReq_PublishAttributeInfo = map[int32]string{
+var fieldIDToName_PublishGoodsReq_PublishAttribute = map[int32]string{
 	1: "AttributeName",
 	2: "AttributeValue",
+}
+
+var fieldIDToName_PublishGoodsReq_PublishSpecValue = map[int32]string{
+	1: "SpecName",
+	2: "SpecValue",
 }
 
 var fieldIDToName_PublishGoodsRsp_PublishGoodsRspData = map[int32]string{

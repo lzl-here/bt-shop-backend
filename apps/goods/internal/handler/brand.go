@@ -19,9 +19,9 @@ func (h *GoodsHandler) GetBrandList(ctx context.Context, req *ggen.GetBrandListR
 }
 
 func buildBrandRsp(brands []*model.Brand) *ggen.GetBBrandListRsp {
-	brandRsp := make([]*ggen.Brand, 0)
+	brandRsp := make([]*ggen.BaseBrand, 0)
 	for _, b := range brands {
-		brandRsp = append(brandRsp, &ggen.Brand{
+		brandRsp = append(brandRsp, &ggen.BaseBrand{
 			BrandId:   b.ID,
 			BrandName: b.Name,
 		})

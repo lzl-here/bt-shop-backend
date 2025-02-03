@@ -7,7 +7,7 @@
     "spu_desc": "华为就是牛",
     "spu_price": "6000.00",
     "spu_img_url": "test-url",
-    "sku_info_list": [
+    "sku_list": [
         {
             "stock_num": 1000,
             "sku_price": "6000",
@@ -37,7 +37,7 @@
             ]
         }
     ],
-    "attribute_info_list": [
+    "attribute_list": [
         {
             "attribute_name": "屏幕大小",
             "attribute_value": "6寸"

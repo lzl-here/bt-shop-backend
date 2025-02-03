@@ -17,7 +17,7 @@ message GetCategoryListRsp {
     GetCategoryListRspData data = 4;
 
     message GetCategoryListRspData {
-        repeated Category category_list = 1;
+        repeated BaseCategory category_list = 1;
     }
 
 }

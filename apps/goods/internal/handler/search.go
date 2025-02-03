@@ -17,6 +17,11 @@ func (h *GoodsHandler) SearchSpuList(ctx context.Context, req *ggen.SearchSpuLis
 	if req.PageSize > 100 {
 		req.PageSize = 100
 	}
+	// 异步增加搜索关键词次数
+	// TODO 写聚合
+	go func() {
+		h.rep.UpdateOrSaveKeywordTimes(ctx, req.Keyword)
+	}()
 	spus, err := h.rep.SearchSpu(ctx, req)
 	if err != nil {
 		return nil, err
@@ -25,18 +30,18 @@ func (h *GoodsHandler) SearchSpuList(ctx context.Context, req *ggen.SearchSpuLis
 }
 
 func buildSearchRsp(spus []*model.GoodsSpu, pageSize int32, pageNo int32) *ggen.SearchSpuListRsp {
-	spusRsp := make([]*ggen.BaseSpuInfo, 0)
+	spusRsp := make([]*ggen.BaseSpu, 0)
 	for _, s := range spus {
-		spusRsp = append(spusRsp, &ggen.BaseSpuInfo{
-			SpuId:           s.ID,
-			SpuName:         s.SpuName,
-			SpuDesc:         s.SpuDesc,
-			SpuImgUrl:       s.SpuImgUrl,
-			SpuPrice:        s.Price,
-			SpuCategoryId:   s.CategoryID,
-			SpuCategoryName: s.CategoryName,
-			BrandId:         s.BrandID,
-			BrandName:       s.BrandName,
+		spusRsp = append(spusRsp, &ggen.BaseSpu{
+			Id:           s.ID,
+			SpuName:      s.SpuName,
+			SpuDesc:      s.SpuDesc,
+			SpuImgUrl:    s.SpuImgUrl,
+			SpuPrice:     s.SpuPrice,
+			CategoryId:   s.CategoryID,
+			CategoryName: s.CategoryName,
+			BrandId:      s.BrandID,
+			BrandName:    s.BrandName,
 		})
 	}
 
@@ -47,6 +52,7 @@ func buildSearchRsp(spus []*model.GoodsSpu, pageSize int32, pageNo int32) *ggen.
 			PageSize: pageSize,
 			PageNo:   pageNo,
 			SpuList:  spusRsp,
+			Count:    int32(len(spus)),
 		},
 	}
 }
@@ -55,11 +61,6 @@ func buildSearchRsp(spus []*model.GoodsSpu, pageSize int32, pageNo int32) *ggen.
 * @Description: 获取搜索关键词列表, 同时增加搜索关键词次数
  */
 func (h *GoodsHandler) GetKeywordDownList(ctx context.Context, req *ggen.GetKeywordDownListReq) (*ggen.GetKeywordDownListRsp, error) {
-	// 异步增加搜索关键词次数
-	// TODO 写聚合
-	go func() {
-		h.rep.UpdateOrSaveKeywordTimes(ctx, req.Prefix)
-	}()
 
 	list, err := h.rep.GetKeywordDownList(ctx, req.Prefix, 10)
 	if err != nil {
@@ -73,11 +74,11 @@ func buildKeyDownListRsp(list []*model.Keyword) *ggen.GetKeywordDownListRsp {
 		Code: 1,
 		Msg:  "success",
 		Data: &ggen.GetKeywordDownListRsp_GetKeyDownListRspData{
-			KeywordList: make([]*ggen.Keyword, 0),
+			KeywordList: make([]*ggen.BaseKeyword, 0),
 		},
 	}
 	for _, keyword := range list {
-		rsp.Data.KeywordList = append(rsp.Data.KeywordList, &ggen.Keyword{
+		rsp.Data.KeywordList = append(rsp.Data.KeywordList, &ggen.BaseKeyword{
 			Id:    keyword.ID,
 			Value: keyword.Value,
 		})

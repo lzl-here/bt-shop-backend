@@ -78,7 +78,7 @@ func (r *Repo) Transaction(ctx context.Context, f func(ctx context.Context, tx *
 
 func (r *Repo) GetSpuListByIDs(ctx context.Context, IDs []uint64) ([]*model.GoodsSpu, error) {
 	var spus []*model.GoodsSpu
-	err := r.DB.Model(&model.GoodsSpu{}).Where("id in ?", IDs).Find(spus).Error
+	err := r.DB.Model(&model.GoodsSpu{}).Where("id in ?", IDs).Find(&spus).Error
 	if err != nil {
 		return nil, err
 	}
@@ -87,7 +87,7 @@ func (r *Repo) GetSpuListByIDs(ctx context.Context, IDs []uint64) ([]*model.Good
 
 func (r *Repo) GetSkuListBySpuIDs(ctx context.Context, SpuIDs []uint64) ([]*model.GoodsSku, error) {
 	var skus []*model.GoodsSku
-	err := r.DB.Model(&model.GoodsSku{}).Where("spu_id in ?", SpuIDs).Find(skus).Error
+	err := r.DB.Model(&model.GoodsSku{}).Where("spu_id in ?", SpuIDs).Find(&skus).Error
 	if err != nil {
 		return nil, err
 	}
@@ -96,7 +96,7 @@ func (r *Repo) GetSkuListBySpuIDs(ctx context.Context, SpuIDs []uint64) ([]*mode
 
 func (r *Repo) GetSpecBySpuIDs(ctx context.Context, SpuIDs []uint64) ([]*model.Spec, error) {
 	var specs []*model.Spec
-	err := r.DB.Model(&model.Spec{}).Where("spu_id in ?", SpuIDs).Find(specs).Error
+	err := r.DB.Model(&model.Spec{}).Where("spu_id in ?", SpuIDs).Find(&specs).Error
 	if err != nil {
 		return nil, err
 	}
