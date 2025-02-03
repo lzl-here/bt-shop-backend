@@ -3,6 +3,7 @@ package handler
 import (
 	"context"
 
+	"github.com/cloudwego/hertz/pkg/common/json"
 	"github.com/lzl-here/bt-shop-backend/apps/order/internal/domain/model"
 	ogen "github.com/lzl-here/bt-shop-backend/kitex_gen/order"
 )
@@ -13,24 +14,29 @@ func (h *OrderHandler) GetOrderItems(ctx context.Context, req *ogen.GetOrderItem
 		return nil, err
 	}
 
-	itemRsp := make([]*ogen.OrderItem, 0)
+	itemRsp := make([]*ogen.BaseOrderItem, 0)
 	for _, item := range items {
-		itemRsp = append(itemRsp, &ogen.OrderItem{
-			SpuId:        item.SpuID,
-			SkuId:        item.SkuID,
-			SpuName:      item.SpuName,
-			CategoryId:   item.CategoryID,
-			CategoryName: item.CategoryName,
-			BrandId:      item.BrandID,
-			BrandName:    item.BrandName,
-			SkuImgUrl:    item.ItemImgUrl,
-			SpecValues:   item.SpecValues,
-			SkuAmount:    item.SkuAmount,
-			TradeNo:      item.TradeNo,
-			OrderNo:      item.OrderNo,
-			ShopId:       item.ShopID,
-			SellerId:     item.SellerID,
-			BuyerId:      item.BuyerID,
+		specValues := make([]*ogen.BaseSpecValue, 0)
+		err = json.Unmarshal([]byte(item.SpecValues), &specValues)
+		if err != nil {
+			return nil, err
+		}
+		itemRsp = append(itemRsp, &ogen.BaseOrderItem{
+			SpuId:         item.SpuID,
+			SkuId:         item.SkuID,
+			SpuName:       item.SpuName,
+			CategoryId:    item.CategoryID,
+			CategoryName:  item.CategoryName,
+			BrandId:       item.BrandID,
+			BrandName:     item.BrandName,
+			SkuImgUrl:     item.ItemImgUrl,
+			SpecValueList: specValues,
+			SkuAmount:     item.SkuAmount,
+			TradeNo:       item.TradeNo,
+			OrderNo:       item.OrderNo,
+			ShopId:        item.ShopID,
+			SellerId:      item.SellerID,
+			BuyerId:       item.BuyerID,
 		})
 	}
 	return &ogen.GetOrderItemsRsp{

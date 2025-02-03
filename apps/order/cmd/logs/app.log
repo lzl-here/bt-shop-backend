@@ -1,0 +1,32 @@
+2025/02/03 21:58:12.325893 log_md.go:25: [Info] 请求路径: OrderService.CreateTrade, 请求地址: 127.0.0.1:51533, 请求体: &{Stream:0x14001d90da0}
+2025/02/03 21:58:12.384886 error_md.go:33: [Error] <nil>
+2025/02/03 21:58:12.384910 log_md.go:36: [Info] 响应体: <nil>, 耗时: 59ms
+2025/02/03 21:58:37.293008 log_md.go:25: [Info] 请求路径: OrderService.GetOrderItems, 请求地址: 127.0.0.1:51580, 请求体: &{Stream:0x1400013a460}
+2025/02/03 21:58:37.301592 error_md.go:33: [Error] <nil>
+2025/02/03 21:58:37.301636 log_md.go:36: [Info] 响应体: <nil>, 耗时: 8ms
+2025/02/03 22:00:36.799899 http2_client.go:262: [Error] KITEX: grpc client loopyWriter.run returning, error=connection error: desc = "error reading from server, remoteAddress=127.0.0.1:9091, error=EOF peer close"
+2025/02/03 22:00:36.799925 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/03 22:01:37.176951 log_md.go:25: [Info] 请求路径: OrderService.CreateTrade, 请求地址: 127.0.0.1:51533, 请求体: &{Stream:0x14001b98060}
+2025/02/03 22:01:37.206855 error_md.go:33: [Error] <nil>
+2025/02/03 22:01:37.206926 log_md.go:36: [Info] 响应体: <nil>, 耗时: 30ms
+2025/02/03 22:02:48.760805 log_md.go:25: [Info] 请求路径: OrderService.GetOrderItems, 请求地址: 127.0.0.1:51863, 请求体: &{Stream:0x1400013a2a0}
+2025/02/03 22:02:48.768843 error_md.go:33: [Error] <nil>
+2025/02/03 22:02:48.768878 log_md.go:36: [Info] 响应体: <nil>, 耗时: 8ms
+2025/02/03 22:03:40.738294 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/03 22:03:40.738321 http2_client.go:262: [Error] KITEX: grpc client loopyWriter.run returning, error=connection error: desc = "error reading from server, remoteAddress=127.0.0.1:9091, error=EOF peer close"
+2025/02/03 22:05:18.151258 log_md.go:25: [Info] 请求路径: OrderService.CreateTrade, 请求地址: 127.0.0.1:51533, 请求体: &{Stream:0x14001d900a0}
+2025/02/03 22:05:18.185713 error_md.go:33: [Error] <nil>
+2025/02/03 22:05:18.185805 log_md.go:36: [Info] 响应体: <nil>, 耗时: 34ms
+2025/02/03 22:05:46.703756 http2_client.go:262: [Error] KITEX: grpc client loopyWriter.run returning, error=connection error: desc = "error reading from server, remoteAddress=127.0.0.1:9091, error=EOF peer close"
+2025/02/03 22:05:59.981911 log_md.go:25: [Info] 请求路径: OrderService.CreateTrade, 请求地址: 127.0.0.1:51533, 请求体: &{Stream:0x14001c88160}
+2025/02/03 22:06:13.979029 error_md.go:33: [Error] <nil>
+2025/02/03 22:06:13.979514 log_md.go:36: [Info] 响应体: <nil>, 耗时: 13997ms
+2025/02/03 22:07:41.817128 log_md.go:25: [Info] 请求路径: OrderService.CreateTrade, 请求地址: 127.0.0.1:51533, 请求体: &{Stream:0x14002025480}
+2025/02/03 22:07:50.876598 error_md.go:33: [Error] <nil>
+2025/02/03 22:07:50.876801 log_md.go:36: [Info] 响应体: <nil>, 耗时: 9059ms
+2025/02/03 22:11:05.209516 log_md.go:25: [Info] 请求路径: OrderService.CreateTrade, 请求地址: 127.0.0.1:51533, 请求体: &{Stream:0x14001d900e0}
+2025/02/03 22:11:07.130751 error_md.go:33: [Error] <nil>
+2025/02/03 22:11:07.130830 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1921ms
+2025/02/03 22:11:34.754811 http2_client.go:262: [Error] KITEX: grpc client loopyWriter.run returning, error=connection error: desc = "error reading from server, remoteAddress=127.0.0.1:9091, error=EOF peer close"
+2025/02/03 22:11:34.754810 http2_client.go:262: [Error] KITEX: grpc client loopyWriter.run returning, error=connection error: desc = "error reading from server, remoteAddress=127.0.0.1:9091, error=EOF peer close"
+2025/02/03 22:11:34.754818 http2_client.go:262: [Error] KITEX: grpc client loopyWriter.run returning, error=connection error: desc = "error reading from server, remoteAddress=127.0.0.1:9091, error=EOF peer close"

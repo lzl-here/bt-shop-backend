@@ -11,16 +11,9 @@ import "order/common.proto";
 // 创建交易
 message CreateTradeReq{
     string token = 1;
-    TradeInfo trade_info = 2;
-    string pay_type = 3; // 支付类型
-
-    message TradeInfo {
-        repeated TradeOrderInfo order_info_list = 1;   
-        string trade_amount = 2;
-    }    
-
-
+    TradeTrade trade = 2;
 }
+
 
 message CreateTradeRsp{
     int32 code = 1; 
@@ -47,4 +40,14 @@ message CancelTradeRsp{
     message CancelTradeRspData {
         string trade_no = 1; // 电商交易号
     }
+}
+
+message TradeTrade{
+    BaseTrade trade = 1;
+    repeated TradeOrder order_list = 2;
+}
+
+message TradeOrder {
+    BaseOrder order = 1;
+    repeated BaseOrderItem order_item_list = 2;
 }

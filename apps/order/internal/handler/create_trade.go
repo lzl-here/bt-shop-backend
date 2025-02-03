@@ -2,18 +2,18 @@ package handler
 
 import (
 	"context"
+	"encoding/json"
 	"time"
 
 	"github.com/lzl-here/bt-shop-backend/apps/order/internal/common"
 	"github.com/lzl-here/bt-shop-backend/apps/order/internal/constant"
 	"github.com/lzl-here/bt-shop-backend/apps/order/internal/domain/model"
-	"github.com/lzl-here/bt-shop-backend/pkg/utils"
-	"gorm.io/gorm"
-
 	ggen "github.com/lzl-here/bt-shop-backend/kitex_gen/goods"
 	ogen "github.com/lzl-here/bt-shop-backend/kitex_gen/order"
 	pgen "github.com/lzl-here/bt-shop-backend/kitex_gen/pay"
 	bizerr "github.com/lzl-here/bt-shop-backend/pkg/err"
+	"github.com/lzl-here/bt-shop-backend/pkg/utils"
+	"gorm.io/gorm"
 )
 
 // 1. 校验商品信息合法性
@@ -33,10 +33,10 @@ func (h *OrderHandler) CreateTrade(ctx context.Context, req *ogen.CreateTradeReq
 	}
 
 	// 1. 校验商品信息
-	if err := h.checkParam(ctx, req); err != nil {
-		cleaner(5)
-		return nil, err
-	}
+	// if err := h.checkParam(ctx, req); err != nil {
+	// 	cleaner(5)
+	// 	return nil, err
+	// }
 	// 2. 创建交易、订单、订单项
 	var tradeNo string
 	err = h.rep.GetDB().Transaction(func(tx *gorm.DB) error {
@@ -44,7 +44,10 @@ func (h *OrderHandler) CreateTrade(ctx context.Context, req *ogen.CreateTradeReq
 		var trade *model.Trade
 		var orders []*model.Order
 		var orderItems []*model.OrderItem
-		trade, orders, orderItems, tradeNo = buildModels(req)
+		trade, orders, orderItems, tradeNo, err = buildModels(req)
+		if err != nil {
+			return err
+		}
 		// 创建交易
 		err = h.rep.CreateTrade(ctx, trade)
 		if err != nil {
@@ -65,13 +68,20 @@ func (h *OrderHandler) CreateTrade(ctx context.Context, req *ogen.CreateTradeReq
 	if err != nil {
 		return nil, err
 	}
-	// TODO 扣减库存
+	// TODO 3, 扣减库存
+	// rsp, err := h.rep.ReduceStock(ctx, &ggen.StockReduceReq{})
+	// TODO 扣减失败需要进行补偿
+	if err != nil {
+		return nil, err
+	}
+
 	// 4. 拉起支付
 	payRsp, err := h.rep.Pay(ctx, &pgen.PayReq{
-		Subject:     "这是一个支付的标题~~~~",
-		TotalAmount: req.TradeInfo.TradeAmount,
+		Subject:     "这是一个支付的标题",
+		TotalAmount: req.Trade.Trade.TradeAmount,
 		TradeNo:     tradeNo,
 	})
+
 	if err != nil {
 		return nil, err
 	}
@@ -93,22 +103,20 @@ func (h *OrderHandler) CreateTrade(ctx context.Context, req *ogen.CreateTradeReq
 // 1. 前端传来的sku是否存在
 // 2. 前端传来的金额是否合法
 func (h *OrderHandler) checkParam(ctx context.Context, req *ogen.CreateTradeReq) error {
+	// TODO
 	goodsRsp, err := h.rep.GetGoodsList(ctx, &ggen.GetGoodsListReq{})
 	if err != nil {
 		return nil
 	}
-	if goodsRsp.Code != 1 {
-		return bizerr.ErrDownStream
-	}
 	// 后端存的数据
-	itemSkuIDMap := make(map[uint64]*ggen.SkuInfo)
+	itemSkuIDMap := make(map[uint64]*ggen.BaseSku)
 	for _, spu := range goodsRsp.Data.SpuList {
 		for _, sku := range spu.SkuList {
-			itemSkuIDMap[sku.SkuId] = sku
+			itemSkuIDMap[sku.Sku.Id] = sku.Sku
 		}
 	}
 	// 前端传来的数据
-	for _, o := range req.TradeInfo.OrderInfoList {
+	for _, o := range req.Trade.OrderList {
 		for _, oi := range o.OrderItemList {
 			// 不存在
 			if _, ok := itemSkuIDMap[oi.SkuId]; !ok {
@@ -116,7 +124,7 @@ func (h *OrderHandler) checkParam(ctx context.Context, req *ogen.CreateTradeReq)
 			}
 			// 金额有问题
 			skuFromFront := itemSkuIDMap[oi.SkuId]
-			if skuFromFront.SkuAmount != oi.SkuAmount {
+			if skuFromFront.SkuPrice != oi.SkuAmount {
 				return bizerr.ErrGoodsNotCorrect
 			}
 		}
@@ -125,51 +133,54 @@ func (h *OrderHandler) checkParam(ctx context.Context, req *ogen.CreateTradeReq)
 	// 订单金额 = sku金额之和
 	// 交易金额 = 订单金额之和
 	totalTradeAmount := "0"
-	for _, o := range req.TradeInfo.OrderInfoList {
-		if err != nil {
-			return bizerr.ErrInvalidTradeAmount
-		}
+	for _, o := range req.Trade.OrderList {
 		totalOrderAmount := "0"
 		for _, s := range o.OrderItemList {
 			totalOrderAmount = common.AmountPlus(totalOrderAmount, s.SkuAmount)
 		}
-		if !common.AmountEqual(totalOrderAmount, o.OrderAmount) {
+		if !common.AmountEqual(totalOrderAmount, o.Order.OrderAmount) {
 			return bizerr.ErrInvalidTradeAmount
 		}
-		totalTradeAmount = common.AmountPlus(totalTradeAmount, o.OrderAmount)
+		totalTradeAmount = common.AmountPlus(totalTradeAmount, o.Order.OrderAmount)
 	}
-	if !common.AmountEqual(totalTradeAmount, req.TradeInfo.TradeAmount) {
+	if !common.AmountEqual(totalTradeAmount, req.Trade.Trade.TradeAmount) {
 		return bizerr.ErrInvalidTradeAmount
 	}
 	return nil
 }
 
 // 构建model
-func buildModels(req *ogen.CreateTradeReq) (*model.Trade, []*model.Order, []*model.OrderItem, string) {
+func buildModels(req *ogen.CreateTradeReq) (*model.Trade, []*model.Order, []*model.OrderItem, string, error) {
 	tradeNo := common.GenTradeNo()
 	orderRsp := make([]*model.Order, 0)
 	itemRSp := make([]*model.OrderItem, 0)
 	// trade
 	trade := &model.Trade{
 		TradeNo:     tradeNo,
-		TradeAmount: req.TradeInfo.TradeAmount,
+		TradeAmount: req.Trade.Trade.TradeAmount,
 		TradeStatus: constant.TradeStatusPaying,
+		BuyerID:     req.Trade.Trade.BuyerId,
+		PayType:     req.Trade.Trade.PayType,
 	}
-	reqOrders := req.TradeInfo.OrderInfoList
+	reqOrders := req.Trade.OrderList
 	// order
 	for _, o := range reqOrders {
 		orderNo := common.GenOrderNo()
 		orderRsp = append(orderRsp, &model.Order{
 			TradeNo:     tradeNo,
 			OrderNo:     orderNo,
-			OrderAmount: o.OrderAmount,
+			OrderAmount: o.Order.OrderAmount,
 			OrderStatus: constant.OrderStatusPaying,
-			SellerID:    o.SellerId,
-			BuyerID:     o.BuyerId,
-			PayType:     req.PayType,
+			SellerID:    o.Order.SellerId,
+			BuyerID:     o.Order.BuyerId,
+			PayType:     req.Trade.Trade.PayType,
 		})
 		// items
 		for _, s := range o.OrderItemList {
+			bytes, err := json.Marshal(s.SpecValueList)
+			if err != nil {
+				return nil, nil, nil, "", err
+			}
 			itemRSp = append(itemRSp, &model.OrderItem{
 				TradeNo:      tradeNo,
 				OrderNo:      orderNo,
@@ -181,7 +192,7 @@ func buildModels(req *ogen.CreateTradeReq) (*model.Trade, []*model.Order, []*mod
 				BrandID:      s.BrandId,
 				BrandName:    s.BrandName,
 				ItemImgUrl:   s.SkuImgUrl,
-				SpecValues:   s.SpecValues,
+				SpecValues:   string(bytes),
 				SkuAmount:    s.SkuAmount,
 
 				IsDelivered: false,
@@ -189,5 +200,5 @@ func buildModels(req *ogen.CreateTradeReq) (*model.Trade, []*model.Order, []*mod
 			})
 		}
 	}
-	return trade, orderRsp, itemRSp, tradeNo
+	return trade, orderRsp, itemRSp, tradeNo, nil
 }

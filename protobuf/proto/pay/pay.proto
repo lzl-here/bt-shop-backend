@@ -8,9 +8,9 @@ option go_package = "pay";
 
 
 message PayReq{
-    string subject = 1;     // 订单标题
-    string totalAmount = 2; // 订单金额
-    string trade_no = 3;    // 电商平台交易号
+    string trade_no = 1;    // 电商平台交易号
+    string subject = 2;     // 订单标题
+    string totalAmount = 3; // 订单金额
     string pay_type = 4;    // 支付类型
 }
 

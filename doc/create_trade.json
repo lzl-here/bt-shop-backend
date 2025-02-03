@@ -1,0 +1,51 @@
+{
+    "token": "1",
+    "trade": {
+        "trade": {
+            "trade_amount": "6000.00",
+            "buyer_id": 1,
+            "seller_id": 1,
+            "pay_type": "ALIPAY"
+        },
+        "order_list": [
+            {
+                "order": {
+                    "shop_id": 1,
+                    "order_amount": "6000.00",
+                    "seller_id": 1,
+                    "buyer_id": 1
+                },
+                "order_item_list": [
+                    {
+                        "spu_id": 1,
+                        "sku_id": 1,
+                        "spu_name": "华为mate60",
+                        "category_id": 3,
+                        "category_name": "旗舰机",
+                        "brand_id": 1,
+                        "brand_name": "华为",
+                        "sku_img_url": "test-url",
+                        "sku_amount": "6000",
+                        "spec_value": [
+                            {
+                                "id": 1,
+                                "spec_id": 2,
+                                "spec_value": "16g",
+                                "spec_name": "内存"
+                            },
+                            {
+                                "id": 2,
+                                "spec_id": 1,
+                                "spec_value": "512g",
+                                "spec_name": "存储"
+                            }
+                        ],
+                        "shop_id": 1,
+                        "seller_id": 1,
+                        "buyer_id": 1
+                    }
+                ]
+            }
+        ]
+    }
+}

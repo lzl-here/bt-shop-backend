@@ -8,7 +8,7 @@ import "goods/common.proto";
 
 // 扣减库存
 message StockReduceReq {
-
+    string trade_no = 1;
 }
 
 message StockReduceRsp {
@@ -16,10 +16,10 @@ message StockReduceRsp {
 }
 
 // 扣减库存回滚
-message StockReduceRollbackReq{
-
+message StockIncreaseReq{
+    string trade_no = 1;
 }
 
-message StockReduceRollbackRsp {
+message StockIncreaseRsp {
 
 }

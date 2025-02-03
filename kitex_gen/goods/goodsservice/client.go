@@ -20,7 +20,7 @@ type Client interface {
 	AddToCart(ctx context.Context, Req *goods.AddToCartReq, callOptions ...callopt.Option) (r *goods.AddToCartRsp, err error)
 	PublishGoods(ctx context.Context, Req *goods.PublishGoodsReq, callOptions ...callopt.Option) (r *goods.PublishGoodsRsp, err error)
 	StockReduce(ctx context.Context, Req *goods.StockReduceReq, callOptions ...callopt.Option) (r *goods.StockReduceRsp, err error)
-	StockReduceRollback(ctx context.Context, Req *goods.StockReduceRollbackReq, callOptions ...callopt.Option) (r *goods.StockReduceRollbackRsp, err error)
+	StockIncrease(ctx context.Context, Req *goods.StockIncreaseReq, callOptions ...callopt.Option) (r *goods.StockIncreaseRsp, err error)
 }
 
 // NewClient creates a client for the service defined in IDL.
@@ -97,7 +97,7 @@ func (p *kGoodsServiceClient) StockReduce(ctx context.Context, Req *goods.StockR
 	return p.kClient.StockReduce(ctx, Req)
 }
 
-func (p *kGoodsServiceClient) StockReduceRollback(ctx context.Context, Req *goods.StockReduceRollbackReq, callOptions ...callopt.Option) (r *goods.StockReduceRollbackRsp, err error) {
+func (p *kGoodsServiceClient) StockIncrease(ctx context.Context, Req *goods.StockIncreaseReq, callOptions ...callopt.Option) (r *goods.StockIncreaseRsp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
-	return p.kClient.StockReduceRollback(ctx, Req)
+	return p.kClient.StockIncrease(ctx, Req)
 }

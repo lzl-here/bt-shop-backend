@@ -26,6 +26,8 @@ type StockReduceReq struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
+
+	TradeNo string `protobuf:"bytes,1,opt,name=trade_no,json=tradeNo,proto3" json:"trade_no,omitempty"`
 }
 
 func (x *StockReduceReq) Reset() {
@@ -58,6 +60,13 @@ func (x *StockReduceReq) ProtoReflect() protoreflect.Message {
 // Deprecated: Use StockReduceReq.ProtoReflect.Descriptor instead.
 func (*StockReduceReq) Descriptor() ([]byte, []int) {
 	return file_goods_stock_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *StockReduceReq) GetTradeNo() string {
+	if x != nil {
+		return x.TradeNo
+	}
+	return ""
 }
 
 type StockReduceRsp struct {
@@ -99,14 +108,16 @@ func (*StockReduceRsp) Descriptor() ([]byte, []int) {
 }
 
 // 扣减库存回滚
-type StockReduceRollbackReq struct {
+type StockIncreaseReq struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
+
+	TradeNo string `protobuf:"bytes,1,opt,name=trade_no,json=tradeNo,proto3" json:"trade_no,omitempty"`
 }
 
-func (x *StockReduceRollbackReq) Reset() {
-	*x = StockReduceRollbackReq{}
+func (x *StockIncreaseReq) Reset() {
+	*x = StockIncreaseReq{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_goods_stock_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -114,13 +125,13 @@ func (x *StockReduceRollbackReq) Reset() {
 	}
 }
 
-func (x *StockReduceRollbackReq) String() string {
+func (x *StockIncreaseReq) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*StockReduceRollbackReq) ProtoMessage() {}
+func (*StockIncreaseReq) ProtoMessage() {}
 
-func (x *StockReduceRollbackReq) ProtoReflect() protoreflect.Message {
+func (x *StockIncreaseReq) ProtoReflect() protoreflect.Message {
 	mi := &file_goods_stock_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -132,19 +143,26 @@ func (x *StockReduceRollbackReq) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use StockReduceRollbackReq.ProtoReflect.Descriptor instead.
-func (*StockReduceRollbackReq) Descriptor() ([]byte, []int) {
+// Deprecated: Use StockIncreaseReq.ProtoReflect.Descriptor instead.
+func (*StockIncreaseReq) Descriptor() ([]byte, []int) {
 	return file_goods_stock_proto_rawDescGZIP(), []int{2}
 }
 
-type StockReduceRollbackRsp struct {
+func (x *StockIncreaseReq) GetTradeNo() string {
+	if x != nil {
+		return x.TradeNo
+	}
+	return ""
+}
+
+type StockIncreaseRsp struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *StockReduceRollbackRsp) Reset() {
-	*x = StockReduceRollbackRsp{}
+func (x *StockIncreaseRsp) Reset() {
+	*x = StockIncreaseRsp{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_goods_stock_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -152,13 +170,13 @@ func (x *StockReduceRollbackRsp) Reset() {
 	}
 }
 
-func (x *StockReduceRollbackRsp) String() string {
+func (x *StockIncreaseRsp) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*StockReduceRollbackRsp) ProtoMessage() {}
+func (*StockIncreaseRsp) ProtoMessage() {}
 
-func (x *StockReduceRollbackRsp) ProtoReflect() protoreflect.Message {
+func (x *StockIncreaseRsp) ProtoReflect() protoreflect.Message {
 	mi := &file_goods_stock_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -170,8 +188,8 @@ func (x *StockReduceRollbackRsp) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use StockReduceRollbackRsp.ProtoReflect.Descriptor instead.
-func (*StockReduceRollbackRsp) Descriptor() ([]byte, []int) {
+// Deprecated: Use StockIncreaseRsp.ProtoReflect.Descriptor instead.
+func (*StockIncreaseRsp) Descriptor() ([]byte, []int) {
 	return file_goods_stock_proto_rawDescGZIP(), []int{3}
 }
 
@@ -180,17 +198,19 @@ var File_goods_stock_proto protoreflect.FileDescriptor
 var file_goods_stock_proto_rawDesc = []byte{
 	0x0a, 0x11, 0x67, 0x6f, 0x6f, 0x64, 0x73, 0x2f, 0x73, 0x74, 0x6f, 0x63, 0x6b, 0x2e, 0x70, 0x72,
 	0x6f, 0x74, 0x6f, 0x12, 0x05, 0x67, 0x6f, 0x6f, 0x64, 0x73, 0x1a, 0x12, 0x67, 0x6f, 0x6f, 0x64,
-	0x73, 0x2f, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x10,
+	0x73, 0x2f, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x2b,
 	0x0a, 0x0e, 0x53, 0x74, 0x6f, 0x63, 0x6b, 0x52, 0x65, 0x64, 0x75, 0x63, 0x65, 0x52, 0x65, 0x71,
-	0x22, 0x10, 0x0a, 0x0e, 0x53, 0x74, 0x6f, 0x63, 0x6b, 0x52, 0x65, 0x64, 0x75, 0x63, 0x65, 0x52,
-	0x73, 0x70, 0x22, 0x18, 0x0a, 0x16, 0x53, 0x74, 0x6f, 0x63, 0x6b, 0x52, 0x65, 0x64, 0x75, 0x63,
-	0x65, 0x52, 0x6f, 0x6c, 0x6c, 0x62, 0x61, 0x63, 0x6b, 0x52, 0x65, 0x71, 0x22, 0x18, 0x0a, 0x16,
-	0x53, 0x74, 0x6f, 0x63, 0x6b, 0x52, 0x65, 0x64, 0x75, 0x63, 0x65, 0x52, 0x6f, 0x6c, 0x6c, 0x62,
-	0x61, 0x63, 0x6b, 0x52, 0x73, 0x70, 0x42, 0x35, 0x5a, 0x33, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62,
-	0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x6c, 0x7a, 0x6c, 0x2d, 0x68, 0x65, 0x72, 0x65, 0x2f, 0x62, 0x74,
-	0x2d, 0x73, 0x68, 0x6f, 0x70, 0x2d, 0x62, 0x61, 0x63, 0x6b, 0x65, 0x6e, 0x64, 0x2f, 0x6b, 0x69,
-	0x74, 0x65, 0x78, 0x5f, 0x67, 0x65, 0x6e, 0x2f, 0x67, 0x6f, 0x6f, 0x64, 0x73, 0x62, 0x06, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x12, 0x19, 0x0a, 0x08, 0x74, 0x72, 0x61, 0x64, 0x65, 0x5f, 0x6e, 0x6f, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x07, 0x74, 0x72, 0x61, 0x64, 0x65, 0x4e, 0x6f, 0x22, 0x10, 0x0a, 0x0e, 0x53,
+	0x74, 0x6f, 0x63, 0x6b, 0x52, 0x65, 0x64, 0x75, 0x63, 0x65, 0x52, 0x73, 0x70, 0x22, 0x2d, 0x0a,
+	0x10, 0x53, 0x74, 0x6f, 0x63, 0x6b, 0x49, 0x6e, 0x63, 0x72, 0x65, 0x61, 0x73, 0x65, 0x52, 0x65,
+	0x71, 0x12, 0x19, 0x0a, 0x08, 0x74, 0x72, 0x61, 0x64, 0x65, 0x5f, 0x6e, 0x6f, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x07, 0x74, 0x72, 0x61, 0x64, 0x65, 0x4e, 0x6f, 0x22, 0x12, 0x0a, 0x10,
+	0x53, 0x74, 0x6f, 0x63, 0x6b, 0x49, 0x6e, 0x63, 0x72, 0x65, 0x61, 0x73, 0x65, 0x52, 0x73, 0x70,
+	0x42, 0x35, 0x5a, 0x33, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x6c,
+	0x7a, 0x6c, 0x2d, 0x68, 0x65, 0x72, 0x65, 0x2f, 0x62, 0x74, 0x2d, 0x73, 0x68, 0x6f, 0x70, 0x2d,
+	0x62, 0x61, 0x63, 0x6b, 0x65, 0x6e, 0x64, 0x2f, 0x6b, 0x69, 0x74, 0x65, 0x78, 0x5f, 0x67, 0x65,
+	0x6e, 0x2f, 0x67, 0x6f, 0x6f, 0x64, 0x73, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -207,10 +227,10 @@ func file_goods_stock_proto_rawDescGZIP() []byte {
 
 var file_goods_stock_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_goods_stock_proto_goTypes = []interface{}{
-	(*StockReduceReq)(nil),         // 0: goods.StockReduceReq
-	(*StockReduceRsp)(nil),         // 1: goods.StockReduceRsp
-	(*StockReduceRollbackReq)(nil), // 2: goods.StockReduceRollbackReq
-	(*StockReduceRollbackRsp)(nil), // 3: goods.StockReduceRollbackRsp
+	(*StockReduceReq)(nil),   // 0: goods.StockReduceReq
+	(*StockReduceRsp)(nil),   // 1: goods.StockReduceRsp
+	(*StockIncreaseReq)(nil), // 2: goods.StockIncreaseReq
+	(*StockIncreaseRsp)(nil), // 3: goods.StockIncreaseRsp
 }
 var file_goods_stock_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
@@ -252,7 +272,7 @@ func file_goods_stock_proto_init() {
 			}
 		}
 		file_goods_stock_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*StockReduceRollbackReq); i {
+			switch v := v.(*StockIncreaseReq); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -264,7 +284,7 @@ func file_goods_stock_proto_init() {
 			}
 		}
 		file_goods_stock_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*StockReduceRollbackRsp); i {
+			switch v := v.(*StockIncreaseRsp); i {
 			case 0:
 				return &v.state
 			case 1:

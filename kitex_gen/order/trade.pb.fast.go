@@ -24,11 +24,6 @@ func (x *CreateTradeReq) FastRead(buf []byte, _type int8, number int32) (offset 
 		if err != nil {
 			goto ReadFieldError
 		}
-	case 3:
-		offset, err = x.fastReadField3(buf, _type)
-		if err != nil {
-			goto ReadFieldError
-		}
 	default:
 		offset, err = fastpb.Skip(buf, _type, number)
 		if err != nil {
@@ -48,18 +43,13 @@ func (x *CreateTradeReq) fastReadField1(buf []byte, _type int8) (offset int, err
 }
 
 func (x *CreateTradeReq) fastReadField2(buf []byte, _type int8) (offset int, err error) {
-	var v CreateTradeReq_TradeInfo
+	var v TradeTrade
 	offset, err = fastpb.ReadMessage(buf, _type, &v)
 	if err != nil {
 		return offset, err
 	}
-	x.TradeInfo = &v
+	x.Trade = &v
 	return offset, nil
-}
-
-func (x *CreateTradeReq) fastReadField3(buf []byte, _type int8) (offset int, err error) {
-	x.PayType, offset, err = fastpb.ReadString(buf, _type)
-	return offset, err
 }
 
 func (x *CreateTradeRsp) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
@@ -207,7 +197,7 @@ func (x *CancelTradeRsp) fastReadField4(buf []byte, _type int8) (offset int, err
 	return offset, nil
 }
 
-func (x *CreateTradeReq_TradeInfo) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
+func (x *TradeTrade) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
 	switch number {
 	case 1:
 		offset, err = x.fastReadField1(buf, _type)
@@ -229,22 +219,72 @@ func (x *CreateTradeReq_TradeInfo) FastRead(buf []byte, _type int8, number int32
 SkipFieldError:
 	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
 ReadFieldError:
-	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_CreateTradeReq_TradeInfo[number], err)
+	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_TradeTrade[number], err)
 }
 
-func (x *CreateTradeReq_TradeInfo) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	var v TradeOrderInfo
+func (x *TradeTrade) fastReadField1(buf []byte, _type int8) (offset int, err error) {
+	var v BaseTrade
 	offset, err = fastpb.ReadMessage(buf, _type, &v)
 	if err != nil {
 		return offset, err
 	}
-	x.OrderInfoList = append(x.OrderInfoList, &v)
+	x.Trade = &v
 	return offset, nil
 }
 
-func (x *CreateTradeReq_TradeInfo) fastReadField2(buf []byte, _type int8) (offset int, err error) {
-	x.TradeAmount, offset, err = fastpb.ReadString(buf, _type)
-	return offset, err
+func (x *TradeTrade) fastReadField2(buf []byte, _type int8) (offset int, err error) {
+	var v TradeOrder
+	offset, err = fastpb.ReadMessage(buf, _type, &v)
+	if err != nil {
+		return offset, err
+	}
+	x.OrderList = append(x.OrderList, &v)
+	return offset, nil
+}
+
+func (x *TradeOrder) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
+	switch number {
+	case 1:
+		offset, err = x.fastReadField1(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 2:
+		offset, err = x.fastReadField2(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	default:
+		offset, err = fastpb.Skip(buf, _type, number)
+		if err != nil {
+			goto SkipFieldError
+		}
+	}
+	return offset, nil
+SkipFieldError:
+	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
+ReadFieldError:
+	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_TradeOrder[number], err)
+}
+
+func (x *TradeOrder) fastReadField1(buf []byte, _type int8) (offset int, err error) {
+	var v BaseOrder
+	offset, err = fastpb.ReadMessage(buf, _type, &v)
+	if err != nil {
+		return offset, err
+	}
+	x.Order = &v
+	return offset, nil
+}
+
+func (x *TradeOrder) fastReadField2(buf []byte, _type int8) (offset int, err error) {
+	var v BaseOrderItem
+	offset, err = fastpb.ReadMessage(buf, _type, &v)
+	if err != nil {
+		return offset, err
+	}
+	x.OrderItemList = append(x.OrderItemList, &v)
+	return offset, nil
 }
 
 func (x *CreateTradeRsp_CreateTradeRspData) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
@@ -313,7 +353,6 @@ func (x *CreateTradeReq) FastWrite(buf []byte) (offset int) {
 	}
 	offset += x.fastWriteField1(buf[offset:])
 	offset += x.fastWriteField2(buf[offset:])
-	offset += x.fastWriteField3(buf[offset:])
 	return offset
 }
 
@@ -326,18 +365,10 @@ func (x *CreateTradeReq) fastWriteField1(buf []byte) (offset int) {
 }
 
 func (x *CreateTradeReq) fastWriteField2(buf []byte) (offset int) {
-	if x.TradeInfo == nil {
+	if x.Trade == nil {
 		return offset
 	}
-	offset += fastpb.WriteMessage(buf[offset:], 2, x.GetTradeInfo())
-	return offset
-}
-
-func (x *CreateTradeReq) fastWriteField3(buf []byte) (offset int) {
-	if x.PayType == "" {
-		return offset
-	}
-	offset += fastpb.WriteString(buf[offset:], 3, x.GetPayType())
+	offset += fastpb.WriteMessage(buf[offset:], 2, x.GetTrade())
 	return offset
 }
 
@@ -443,7 +474,7 @@ func (x *CancelTradeRsp) fastWriteField4(buf []byte) (offset int) {
 	return offset
 }
 
-func (x *CreateTradeReq_TradeInfo) FastWrite(buf []byte) (offset int) {
+func (x *TradeTrade) FastWrite(buf []byte) (offset int) {
 	if x == nil {
 		return offset
 	}
@@ -452,21 +483,48 @@ func (x *CreateTradeReq_TradeInfo) FastWrite(buf []byte) (offset int) {
 	return offset
 }
 
-func (x *CreateTradeReq_TradeInfo) fastWriteField1(buf []byte) (offset int) {
-	if x.OrderInfoList == nil {
+func (x *TradeTrade) fastWriteField1(buf []byte) (offset int) {
+	if x.Trade == nil {
 		return offset
 	}
-	for i := range x.GetOrderInfoList() {
-		offset += fastpb.WriteMessage(buf[offset:], 1, x.GetOrderInfoList()[i])
+	offset += fastpb.WriteMessage(buf[offset:], 1, x.GetTrade())
+	return offset
+}
+
+func (x *TradeTrade) fastWriteField2(buf []byte) (offset int) {
+	if x.OrderList == nil {
+		return offset
+	}
+	for i := range x.GetOrderList() {
+		offset += fastpb.WriteMessage(buf[offset:], 2, x.GetOrderList()[i])
 	}
 	return offset
 }
 
-func (x *CreateTradeReq_TradeInfo) fastWriteField2(buf []byte) (offset int) {
-	if x.TradeAmount == "" {
+func (x *TradeOrder) FastWrite(buf []byte) (offset int) {
+	if x == nil {
 		return offset
 	}
-	offset += fastpb.WriteString(buf[offset:], 2, x.GetTradeAmount())
+	offset += x.fastWriteField1(buf[offset:])
+	offset += x.fastWriteField2(buf[offset:])
+	return offset
+}
+
+func (x *TradeOrder) fastWriteField1(buf []byte) (offset int) {
+	if x.Order == nil {
+		return offset
+	}
+	offset += fastpb.WriteMessage(buf[offset:], 1, x.GetOrder())
+	return offset
+}
+
+func (x *TradeOrder) fastWriteField2(buf []byte) (offset int) {
+	if x.OrderItemList == nil {
+		return offset
+	}
+	for i := range x.GetOrderItemList() {
+		offset += fastpb.WriteMessage(buf[offset:], 2, x.GetOrderItemList()[i])
+	}
 	return offset
 }
 
@@ -517,7 +575,6 @@ func (x *CreateTradeReq) Size() (n int) {
 	}
 	n += x.sizeField1()
 	n += x.sizeField2()
-	n += x.sizeField3()
 	return n
 }
 
@@ -530,18 +587,10 @@ func (x *CreateTradeReq) sizeField1() (n int) {
 }
 
 func (x *CreateTradeReq) sizeField2() (n int) {
-	if x.TradeInfo == nil {
+	if x.Trade == nil {
 		return n
 	}
-	n += fastpb.SizeMessage(2, x.GetTradeInfo())
-	return n
-}
-
-func (x *CreateTradeReq) sizeField3() (n int) {
-	if x.PayType == "" {
-		return n
-	}
-	n += fastpb.SizeString(3, x.GetPayType())
+	n += fastpb.SizeMessage(2, x.GetTrade())
 	return n
 }
 
@@ -647,7 +696,7 @@ func (x *CancelTradeRsp) sizeField4() (n int) {
 	return n
 }
 
-func (x *CreateTradeReq_TradeInfo) Size() (n int) {
+func (x *TradeTrade) Size() (n int) {
 	if x == nil {
 		return n
 	}
@@ -656,21 +705,48 @@ func (x *CreateTradeReq_TradeInfo) Size() (n int) {
 	return n
 }
 
-func (x *CreateTradeReq_TradeInfo) sizeField1() (n int) {
-	if x.OrderInfoList == nil {
+func (x *TradeTrade) sizeField1() (n int) {
+	if x.Trade == nil {
 		return n
 	}
-	for i := range x.GetOrderInfoList() {
-		n += fastpb.SizeMessage(1, x.GetOrderInfoList()[i])
+	n += fastpb.SizeMessage(1, x.GetTrade())
+	return n
+}
+
+func (x *TradeTrade) sizeField2() (n int) {
+	if x.OrderList == nil {
+		return n
+	}
+	for i := range x.GetOrderList() {
+		n += fastpb.SizeMessage(2, x.GetOrderList()[i])
 	}
 	return n
 }
 
-func (x *CreateTradeReq_TradeInfo) sizeField2() (n int) {
-	if x.TradeAmount == "" {
+func (x *TradeOrder) Size() (n int) {
+	if x == nil {
 		return n
 	}
-	n += fastpb.SizeString(2, x.GetTradeAmount())
+	n += x.sizeField1()
+	n += x.sizeField2()
+	return n
+}
+
+func (x *TradeOrder) sizeField1() (n int) {
+	if x.Order == nil {
+		return n
+	}
+	n += fastpb.SizeMessage(1, x.GetOrder())
+	return n
+}
+
+func (x *TradeOrder) sizeField2() (n int) {
+	if x.OrderItemList == nil {
+		return n
+	}
+	for i := range x.GetOrderItemList() {
+		n += fastpb.SizeMessage(2, x.GetOrderItemList()[i])
+	}
 	return n
 }
 
@@ -717,8 +793,7 @@ func (x *CancelTradeRsp_CancelTradeRspData) sizeField1() (n int) {
 
 var fieldIDToName_CreateTradeReq = map[int32]string{
 	1: "Token",
-	2: "TradeInfo",
-	3: "PayType",
+	2: "Trade",
 }
 
 var fieldIDToName_CreateTradeRsp = map[int32]string{
@@ -739,9 +814,14 @@ var fieldIDToName_CancelTradeRsp = map[int32]string{
 	4: "Data",
 }
 
-var fieldIDToName_CreateTradeReq_TradeInfo = map[int32]string{
-	1: "OrderInfoList",
-	2: "TradeAmount",
+var fieldIDToName_TradeTrade = map[int32]string{
+	1: "Trade",
+	2: "OrderList",
+}
+
+var fieldIDToName_TradeOrder = map[int32]string{
+	1: "Order",
+	2: "OrderItemList",
 }
 
 var fieldIDToName_CreateTradeRsp_CreateTradeRspData = map[int32]string{

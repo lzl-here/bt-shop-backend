@@ -78,10 +78,10 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingUnary),
 	),
-	"StockReduceRollback": kitex.NewMethodInfo(
-		stockReduceRollbackHandler,
-		newStockReduceRollbackArgs,
-		newStockReduceRollbackResult,
+	"StockIncrease": kitex.NewMethodInfo(
+		stockIncreaseHandler,
+		newStockIncreaseArgs,
+		newStockIncreaseResult,
 		false,
 		kitex.WithStreamingMode(kitex.StreamingUnary),
 	),
@@ -1528,73 +1528,73 @@ func (p *StockReduceResult) GetResult() interface{} {
 	return p.Success
 }
 
-func stockReduceRollbackHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+func stockIncreaseHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
 	switch s := arg.(type) {
 	case *streaming.Args:
 		st := s.Stream
-		req := new(goods.StockReduceRollbackReq)
+		req := new(goods.StockIncreaseReq)
 		if err := st.RecvMsg(req); err != nil {
 			return err
 		}
-		resp, err := handler.(goods.GoodsService).StockReduceRollback(ctx, req)
+		resp, err := handler.(goods.GoodsService).StockIncrease(ctx, req)
 		if err != nil {
 			return err
 		}
 		return st.SendMsg(resp)
-	case *StockReduceRollbackArgs:
-		success, err := handler.(goods.GoodsService).StockReduceRollback(ctx, s.Req)
+	case *StockIncreaseArgs:
+		success, err := handler.(goods.GoodsService).StockIncrease(ctx, s.Req)
 		if err != nil {
 			return err
 		}
-		realResult := result.(*StockReduceRollbackResult)
+		realResult := result.(*StockIncreaseResult)
 		realResult.Success = success
 		return nil
 	default:
 		return errInvalidMessageType
 	}
 }
-func newStockReduceRollbackArgs() interface{} {
-	return &StockReduceRollbackArgs{}
+func newStockIncreaseArgs() interface{} {
+	return &StockIncreaseArgs{}
 }
 
-func newStockReduceRollbackResult() interface{} {
-	return &StockReduceRollbackResult{}
+func newStockIncreaseResult() interface{} {
+	return &StockIncreaseResult{}
 }
 
-type StockReduceRollbackArgs struct {
-	Req *goods.StockReduceRollbackReq
+type StockIncreaseArgs struct {
+	Req *goods.StockIncreaseReq
 }
 
-func (p *StockReduceRollbackArgs) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
+func (p *StockIncreaseArgs) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
 	if !p.IsSetReq() {
-		p.Req = new(goods.StockReduceRollbackReq)
+		p.Req = new(goods.StockIncreaseReq)
 	}
 	return p.Req.FastRead(buf, _type, number)
 }
 
-func (p *StockReduceRollbackArgs) FastWrite(buf []byte) (n int) {
+func (p *StockIncreaseArgs) FastWrite(buf []byte) (n int) {
 	if !p.IsSetReq() {
 		return 0
 	}
 	return p.Req.FastWrite(buf)
 }
 
-func (p *StockReduceRollbackArgs) Size() (n int) {
+func (p *StockIncreaseArgs) Size() (n int) {
 	if !p.IsSetReq() {
 		return 0
 	}
 	return p.Req.Size()
 }
 
-func (p *StockReduceRollbackArgs) Marshal(out []byte) ([]byte, error) {
+func (p *StockIncreaseArgs) Marshal(out []byte) ([]byte, error) {
 	if !p.IsSetReq() {
 		return out, nil
 	}
 	return proto.Marshal(p.Req)
 }
 
-func (p *StockReduceRollbackArgs) Unmarshal(in []byte) error {
-	msg := new(goods.StockReduceRollbackReq)
+func (p *StockIncreaseArgs) Unmarshal(in []byte) error {
+	msg := new(goods.StockIncreaseReq)
 	if err := proto.Unmarshal(in, msg); err != nil {
 		return err
 	}
@@ -1602,59 +1602,59 @@ func (p *StockReduceRollbackArgs) Unmarshal(in []byte) error {
 	return nil
 }
 
-var StockReduceRollbackArgs_Req_DEFAULT *goods.StockReduceRollbackReq
+var StockIncreaseArgs_Req_DEFAULT *goods.StockIncreaseReq
 
-func (p *StockReduceRollbackArgs) GetReq() *goods.StockReduceRollbackReq {
+func (p *StockIncreaseArgs) GetReq() *goods.StockIncreaseReq {
 	if !p.IsSetReq() {
-		return StockReduceRollbackArgs_Req_DEFAULT
+		return StockIncreaseArgs_Req_DEFAULT
 	}
 	return p.Req
 }
 
-func (p *StockReduceRollbackArgs) IsSetReq() bool {
+func (p *StockIncreaseArgs) IsSetReq() bool {
 	return p.Req != nil
 }
 
-func (p *StockReduceRollbackArgs) GetFirstArgument() interface{} {
+func (p *StockIncreaseArgs) GetFirstArgument() interface{} {
 	return p.Req
 }
 
-type StockReduceRollbackResult struct {
-	Success *goods.StockReduceRollbackRsp
+type StockIncreaseResult struct {
+	Success *goods.StockIncreaseRsp
 }
 
-var StockReduceRollbackResult_Success_DEFAULT *goods.StockReduceRollbackRsp
+var StockIncreaseResult_Success_DEFAULT *goods.StockIncreaseRsp
 
-func (p *StockReduceRollbackResult) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
+func (p *StockIncreaseResult) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
 	if !p.IsSetSuccess() {
-		p.Success = new(goods.StockReduceRollbackRsp)
+		p.Success = new(goods.StockIncreaseRsp)
 	}
 	return p.Success.FastRead(buf, _type, number)
 }
 
-func (p *StockReduceRollbackResult) FastWrite(buf []byte) (n int) {
+func (p *StockIncreaseResult) FastWrite(buf []byte) (n int) {
 	if !p.IsSetSuccess() {
 		return 0
 	}
 	return p.Success.FastWrite(buf)
 }
 
-func (p *StockReduceRollbackResult) Size() (n int) {
+func (p *StockIncreaseResult) Size() (n int) {
 	if !p.IsSetSuccess() {
 		return 0
 	}
 	return p.Success.Size()
 }
 
-func (p *StockReduceRollbackResult) Marshal(out []byte) ([]byte, error) {
+func (p *StockIncreaseResult) Marshal(out []byte) ([]byte, error) {
 	if !p.IsSetSuccess() {
 		return out, nil
 	}
 	return proto.Marshal(p.Success)
 }
 
-func (p *StockReduceRollbackResult) Unmarshal(in []byte) error {
-	msg := new(goods.StockReduceRollbackRsp)
+func (p *StockIncreaseResult) Unmarshal(in []byte) error {
+	msg := new(goods.StockIncreaseRsp)
 	if err := proto.Unmarshal(in, msg); err != nil {
 		return err
 	}
@@ -1662,22 +1662,22 @@ func (p *StockReduceRollbackResult) Unmarshal(in []byte) error {
 	return nil
 }
 
-func (p *StockReduceRollbackResult) GetSuccess() *goods.StockReduceRollbackRsp {
+func (p *StockIncreaseResult) GetSuccess() *goods.StockIncreaseRsp {
 	if !p.IsSetSuccess() {
-		return StockReduceRollbackResult_Success_DEFAULT
+		return StockIncreaseResult_Success_DEFAULT
 	}
 	return p.Success
 }
 
-func (p *StockReduceRollbackResult) SetSuccess(x interface{}) {
-	p.Success = x.(*goods.StockReduceRollbackRsp)
+func (p *StockIncreaseResult) SetSuccess(x interface{}) {
+	p.Success = x.(*goods.StockIncreaseRsp)
 }
 
-func (p *StockReduceRollbackResult) IsSetSuccess() bool {
+func (p *StockIncreaseResult) IsSetSuccess() bool {
 	return p.Success != nil
 }
 
-func (p *StockReduceRollbackResult) GetResult() interface{} {
+func (p *StockIncreaseResult) GetResult() interface{} {
 	return p.Success
 }
 
@@ -1781,11 +1781,11 @@ func (p *kClient) StockReduce(ctx context.Context, Req *goods.StockReduceReq) (r
 	return _result.GetSuccess(), nil
 }
 
-func (p *kClient) StockReduceRollback(ctx context.Context, Req *goods.StockReduceRollbackReq) (r *goods.StockReduceRollbackRsp, err error) {
-	var _args StockReduceRollbackArgs
+func (p *kClient) StockIncrease(ctx context.Context, Req *goods.StockIncreaseReq) (r *goods.StockIncreaseRsp, err error) {
+	var _args StockIncreaseArgs
 	_args.Req = Req
-	var _result StockReduceRollbackResult
-	if err = p.c.Call(ctx, "StockReduceRollback", &_args, &_result); err != nil {
+	var _result StockIncreaseResult
+	if err = p.c.Call(ctx, "StockIncrease", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil

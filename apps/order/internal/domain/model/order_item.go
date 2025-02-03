@@ -1,7 +1,9 @@
 package model
 
+import "github.com/lzl-here/bt-shop-backend/pkg/model"
+
 type OrderItem struct {
-	ID      string `gorm:"column:id"`
+	ID      uint64 `gorm:"column:id"`
 	TradeNo string `gorm:"column:trade_no"`
 	OrderNo string `gorm:"column:order_no"`
 	SpuID   uint64 `gorm:"column:spu_id"`
@@ -9,10 +11,10 @@ type OrderItem struct {
 
 	ShopID   uint64 `gorm:"column:shop_id"`
 	SellerID uint64 `gorm:"column:seller_id"`
-	BuyerID    uint64 `gorm:"column:buyer_id"`
+	BuyerID  uint64 `gorm:"column:buyer_id"`
 
 	/*冗余存储spu信息*/
-	SpuName      string `gorm:"column:name"`          // spu名称
+	SpuName      string `gorm:"column:spu_name"`      // spu名称
 	CategoryID   uint64 `gorm:"column:category_id"`   // 分类id
 	CategoryName string `gorm:"column:category_name"` // 分类名称
 	BrandID      uint64 `gorm:"column:brand_id"`      // 品牌ID
@@ -24,4 +26,10 @@ type OrderItem struct {
 
 	IsDelivered bool `gorm:"column:is_delivered"` //是否发货
 	IsConfirmed bool `gorm:"column:is_confirmed"` //是否签收
+
+	model.BaseModel
+}
+
+func (*OrderItem) TableName() string {
+	return "order_item"
 }

@@ -48,17 +48,17 @@ ReadFieldError:
 }
 
 func (x *PayReq) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	x.Subject, offset, err = fastpb.ReadString(buf, _type)
+	x.TradeNo, offset, err = fastpb.ReadString(buf, _type)
 	return offset, err
 }
 
 func (x *PayReq) fastReadField2(buf []byte, _type int8) (offset int, err error) {
-	x.TotalAmount, offset, err = fastpb.ReadString(buf, _type)
+	x.Subject, offset, err = fastpb.ReadString(buf, _type)
 	return offset, err
 }
 
 func (x *PayReq) fastReadField3(buf []byte, _type int8) (offset int, err error) {
-	x.TradeNo, offset, err = fastpb.ReadString(buf, _type)
+	x.TotalAmount, offset, err = fastpb.ReadString(buf, _type)
 	return offset, err
 }
 
@@ -174,26 +174,26 @@ func (x *PayReq) FastWrite(buf []byte) (offset int) {
 }
 
 func (x *PayReq) fastWriteField1(buf []byte) (offset int) {
-	if x.Subject == "" {
+	if x.TradeNo == "" {
 		return offset
 	}
-	offset += fastpb.WriteString(buf[offset:], 1, x.GetSubject())
+	offset += fastpb.WriteString(buf[offset:], 1, x.GetTradeNo())
 	return offset
 }
 
 func (x *PayReq) fastWriteField2(buf []byte) (offset int) {
-	if x.TotalAmount == "" {
+	if x.Subject == "" {
 		return offset
 	}
-	offset += fastpb.WriteString(buf[offset:], 2, x.GetTotalAmount())
+	offset += fastpb.WriteString(buf[offset:], 2, x.GetSubject())
 	return offset
 }
 
 func (x *PayReq) fastWriteField3(buf []byte) (offset int) {
-	if x.TradeNo == "" {
+	if x.TotalAmount == "" {
 		return offset
 	}
-	offset += fastpb.WriteString(buf[offset:], 3, x.GetTradeNo())
+	offset += fastpb.WriteString(buf[offset:], 3, x.GetTotalAmount())
 	return offset
 }
 
@@ -285,26 +285,26 @@ func (x *PayReq) Size() (n int) {
 }
 
 func (x *PayReq) sizeField1() (n int) {
-	if x.Subject == "" {
+	if x.TradeNo == "" {
 		return n
 	}
-	n += fastpb.SizeString(1, x.GetSubject())
+	n += fastpb.SizeString(1, x.GetTradeNo())
 	return n
 }
 
 func (x *PayReq) sizeField2() (n int) {
-	if x.TotalAmount == "" {
+	if x.Subject == "" {
 		return n
 	}
-	n += fastpb.SizeString(2, x.GetTotalAmount())
+	n += fastpb.SizeString(2, x.GetSubject())
 	return n
 }
 
 func (x *PayReq) sizeField3() (n int) {
-	if x.TradeNo == "" {
+	if x.TotalAmount == "" {
 		return n
 	}
-	n += fastpb.SizeString(3, x.GetTradeNo())
+	n += fastpb.SizeString(3, x.GetTotalAmount())
 	return n
 }
 
@@ -385,9 +385,9 @@ func (x *PayRsp_PayRspData) sizeField2() (n int) {
 }
 
 var fieldIDToName_PayReq = map[int32]string{
-	1: "Subject",
-	2: "TotalAmount",
-	3: "TradeNo",
+	1: "TradeNo",
+	2: "Subject",
+	3: "TotalAmount",
 	4: "PayType",
 }
 

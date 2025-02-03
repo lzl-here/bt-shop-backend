@@ -21,21 +21,21 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// 带有订单项的订单信息
-type TradeOrderInfo struct {
+// 交易基础信息 （不带有订单）
+type BaseTrade struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	OrderItemList []*OrderItem `protobuf:"bytes,1,rep,name=order_item_list,json=orderItemList,proto3" json:"order_item_list,omitempty"` // 订单项
-	ShopId        uint64       `protobuf:"varint,2,opt,name=shop_id,json=shopId,proto3" json:"shop_id,omitempty"`                       // 店铺ID
-	OrderAmount   string       `protobuf:"bytes,3,opt,name=order_amount,json=orderAmount,proto3" json:"order_amount,omitempty"`         // 订单金额
-	SellerId      uint64       `protobuf:"varint,4,opt,name=seller_id,json=sellerId,proto3" json:"seller_id,omitempty"`                 // 卖家id
-	BuyerId       uint64       `protobuf:"varint,5,opt,name=buyer_id,json=buyerId,proto3" json:"buyer_id,omitempty"`                    // 买家id
+	TradeNo     string `protobuf:"bytes,1,opt,name=trade_no,json=tradeNo,proto3" json:"trade_no,omitempty"`
+	TradeAmount string `protobuf:"bytes,2,opt,name=trade_amount,json=tradeAmount,proto3" json:"trade_amount,omitempty"`
+	BuyerId     uint64 `protobuf:"varint,3,opt,name=buyer_id,json=buyerId,proto3" json:"buyer_id,omitempty"`
+	SellerId    uint64 `protobuf:"varint,4,opt,name=seller_id,json=sellerId,proto3" json:"seller_id,omitempty"`
+	PayType     string `protobuf:"bytes,5,opt,name=pay_type,json=payType,proto3" json:"pay_type,omitempty"` // 支付类型
 }
 
-func (x *TradeOrderInfo) Reset() {
-	*x = TradeOrderInfo{}
+func (x *BaseTrade) Reset() {
+	*x = BaseTrade{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_order_common_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -43,13 +43,13 @@ func (x *TradeOrderInfo) Reset() {
 	}
 }
 
-func (x *TradeOrderInfo) String() string {
+func (x *BaseTrade) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*TradeOrderInfo) ProtoMessage() {}
+func (*BaseTrade) ProtoMessage() {}
 
-func (x *TradeOrderInfo) ProtoReflect() protoreflect.Message {
+func (x *BaseTrade) ProtoReflect() protoreflect.Message {
 	mi := &file_order_common_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -61,71 +61,62 @@ func (x *TradeOrderInfo) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use TradeOrderInfo.ProtoReflect.Descriptor instead.
-func (*TradeOrderInfo) Descriptor() ([]byte, []int) {
+// Deprecated: Use BaseTrade.ProtoReflect.Descriptor instead.
+func (*BaseTrade) Descriptor() ([]byte, []int) {
 	return file_order_common_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *TradeOrderInfo) GetOrderItemList() []*OrderItem {
+func (x *BaseTrade) GetTradeNo() string {
 	if x != nil {
-		return x.OrderItemList
-	}
-	return nil
-}
-
-func (x *TradeOrderInfo) GetShopId() uint64 {
-	if x != nil {
-		return x.ShopId
-	}
-	return 0
-}
-
-func (x *TradeOrderInfo) GetOrderAmount() string {
-	if x != nil {
-		return x.OrderAmount
+		return x.TradeNo
 	}
 	return ""
 }
 
-func (x *TradeOrderInfo) GetSellerId() uint64 {
+func (x *BaseTrade) GetTradeAmount() string {
 	if x != nil {
-		return x.SellerId
+		return x.TradeAmount
 	}
-	return 0
+	return ""
 }
 
-func (x *TradeOrderInfo) GetBuyerId() uint64 {
+func (x *BaseTrade) GetBuyerId() uint64 {
 	if x != nil {
 		return x.BuyerId
 	}
 	return 0
 }
 
-type OrderItem struct {
+func (x *BaseTrade) GetSellerId() uint64 {
+	if x != nil {
+		return x.SellerId
+	}
+	return 0
+}
+
+func (x *BaseTrade) GetPayType() string {
+	if x != nil {
+		return x.PayType
+	}
+	return ""
+}
+
+// 订单基础信息 (不带有订单项)
+type BaseOrder struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id           uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`                                        // 订单项id
-	SpuId        uint64 `protobuf:"varint,2,opt,name=spu_id,json=spuId,proto3" json:"spu_id,omitempty"`                     // spu id
-	SkuId        uint64 `protobuf:"varint,3,opt,name=sku_id,json=skuId,proto3" json:"sku_id,omitempty"`                     // sku id
-	SpuName      string `protobuf:"bytes,4,opt,name=spu_name,json=spuName,proto3" json:"spu_name,omitempty"`                // spu名称
-	CategoryId   uint64 `protobuf:"varint,5,opt,name=category_id,json=categoryId,proto3" json:"category_id,omitempty"`      // 分类id
-	CategoryName string `protobuf:"bytes,6,opt,name=category_name,json=categoryName,proto3" json:"category_name,omitempty"` // 分类名称
-	BrandId      uint64 `protobuf:"varint,7,opt,name=brand_id,json=brandId,proto3" json:"brand_id,omitempty"`               // 品牌id
-	BrandName    string `protobuf:"bytes,8,opt,name=brand_name,json=brandName,proto3" json:"brand_name,omitempty"`          // 品牌名称
-	SkuImgUrl    string `protobuf:"bytes,9,opt,name=sku_img_url,json=skuImgUrl,proto3" json:"sku_img_url,omitempty"`        // sku图片
-	SkuAmount    string `protobuf:"bytes,10,opt,name=sku_amount,json=skuAmount,proto3" json:"sku_amount,omitempty"`         // sku金额
-	SpecValues   string `protobuf:"bytes,11,opt,name=spec_values,json=specValues,proto3" json:"spec_values,omitempty"`      // 规格信息，json
-	TradeNo      string `protobuf:"bytes,12,opt,name=trade_no,json=tradeNo,proto3" json:"trade_no,omitempty"`
-	OrderNo      string `protobuf:"bytes,13,opt,name=order_no,json=orderNo,proto3" json:"order_no,omitempty"`
-	ShopId       uint64 `protobuf:"varint,14,opt,name=shop_id,json=shopId,proto3" json:"shop_id,omitempty"`
-	SellerId     uint64 `protobuf:"varint,15,opt,name=seller_id,json=sellerId,proto3" json:"seller_id,omitempty"`
-	BuyerId      uint64 `protobuf:"varint,16,opt,name=buyer_id,json=buyerId,proto3" json:"buyer_id,omitempty"`
+	OrderNo     string `protobuf:"bytes,1,opt,name=order_no,json=orderNo,proto3" json:"order_no,omitempty"`
+	TradeNo     string `protobuf:"bytes,2,opt,name=trade_no,json=tradeNo,proto3" json:"trade_no,omitempty"`
+	ShopId      uint64 `protobuf:"varint,3,opt,name=shop_id,json=shopId,proto3" json:"shop_id,omitempty"`               // 店铺ID
+	OrderAmount string `protobuf:"bytes,4,opt,name=order_amount,json=orderAmount,proto3" json:"order_amount,omitempty"` // 订单金额
+	SellerId    uint64 `protobuf:"varint,5,opt,name=seller_id,json=sellerId,proto3" json:"seller_id,omitempty"`         // 卖家id
+	BuyerId     uint64 `protobuf:"varint,6,opt,name=buyer_id,json=buyerId,proto3" json:"buyer_id,omitempty"`            // 买家id
 }
 
-func (x *OrderItem) Reset() {
-	*x = OrderItem{}
+func (x *BaseOrder) Reset() {
+	*x = BaseOrder{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_order_common_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -133,13 +124,13 @@ func (x *OrderItem) Reset() {
 	}
 }
 
-func (x *OrderItem) String() string {
+func (x *BaseOrder) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*OrderItem) ProtoMessage() {}
+func (*BaseOrder) ProtoMessage() {}
 
-func (x *OrderItem) ProtoReflect() protoreflect.Message {
+func (x *BaseOrder) ProtoReflect() protoreflect.Message {
 	mi := &file_order_common_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -151,117 +142,287 @@ func (x *OrderItem) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use OrderItem.ProtoReflect.Descriptor instead.
-func (*OrderItem) Descriptor() ([]byte, []int) {
+// Deprecated: Use BaseOrder.ProtoReflect.Descriptor instead.
+func (*BaseOrder) Descriptor() ([]byte, []int) {
 	return file_order_common_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *OrderItem) GetId() uint64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *OrderItem) GetSpuId() uint64 {
-	if x != nil {
-		return x.SpuId
-	}
-	return 0
-}
-
-func (x *OrderItem) GetSkuId() uint64 {
-	if x != nil {
-		return x.SkuId
-	}
-	return 0
-}
-
-func (x *OrderItem) GetSpuName() string {
-	if x != nil {
-		return x.SpuName
-	}
-	return ""
-}
-
-func (x *OrderItem) GetCategoryId() uint64 {
-	if x != nil {
-		return x.CategoryId
-	}
-	return 0
-}
-
-func (x *OrderItem) GetCategoryName() string {
-	if x != nil {
-		return x.CategoryName
-	}
-	return ""
-}
-
-func (x *OrderItem) GetBrandId() uint64 {
-	if x != nil {
-		return x.BrandId
-	}
-	return 0
-}
-
-func (x *OrderItem) GetBrandName() string {
-	if x != nil {
-		return x.BrandName
-	}
-	return ""
-}
-
-func (x *OrderItem) GetSkuImgUrl() string {
-	if x != nil {
-		return x.SkuImgUrl
-	}
-	return ""
-}
-
-func (x *OrderItem) GetSkuAmount() string {
-	if x != nil {
-		return x.SkuAmount
-	}
-	return ""
-}
-
-func (x *OrderItem) GetSpecValues() string {
-	if x != nil {
-		return x.SpecValues
-	}
-	return ""
-}
-
-func (x *OrderItem) GetTradeNo() string {
-	if x != nil {
-		return x.TradeNo
-	}
-	return ""
-}
-
-func (x *OrderItem) GetOrderNo() string {
+func (x *BaseOrder) GetOrderNo() string {
 	if x != nil {
 		return x.OrderNo
 	}
 	return ""
 }
 
-func (x *OrderItem) GetShopId() uint64 {
+func (x *BaseOrder) GetTradeNo() string {
+	if x != nil {
+		return x.TradeNo
+	}
+	return ""
+}
+
+func (x *BaseOrder) GetShopId() uint64 {
 	if x != nil {
 		return x.ShopId
 	}
 	return 0
 }
 
-func (x *OrderItem) GetSellerId() uint64 {
+func (x *BaseOrder) GetOrderAmount() string {
+	if x != nil {
+		return x.OrderAmount
+	}
+	return ""
+}
+
+func (x *BaseOrder) GetSellerId() uint64 {
 	if x != nil {
 		return x.SellerId
 	}
 	return 0
 }
 
-func (x *OrderItem) GetBuyerId() uint64 {
+func (x *BaseOrder) GetBuyerId() uint64 {
+	if x != nil {
+		return x.BuyerId
+	}
+	return 0
+}
+
+// 规格值信息
+type BaseSpecValue struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id        uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	SpecId    uint64 `protobuf:"varint,2,opt,name=spec_id,json=specId,proto3" json:"spec_id,omitempty"`
+	SpecName  string `protobuf:"bytes,3,opt,name=spec_name,json=specName,proto3" json:"spec_name,omitempty"`
+	SpecValue string `protobuf:"bytes,4,opt,name=spec_value,json=specValue,proto3" json:"spec_value,omitempty"`
+}
+
+func (x *BaseSpecValue) Reset() {
+	*x = BaseSpecValue{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_order_common_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *BaseSpecValue) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BaseSpecValue) ProtoMessage() {}
+
+func (x *BaseSpecValue) ProtoReflect() protoreflect.Message {
+	mi := &file_order_common_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BaseSpecValue.ProtoReflect.Descriptor instead.
+func (*BaseSpecValue) Descriptor() ([]byte, []int) {
+	return file_order_common_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *BaseSpecValue) GetId() uint64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *BaseSpecValue) GetSpecId() uint64 {
+	if x != nil {
+		return x.SpecId
+	}
+	return 0
+}
+
+func (x *BaseSpecValue) GetSpecName() string {
+	if x != nil {
+		return x.SpecName
+	}
+	return ""
+}
+
+func (x *BaseSpecValue) GetSpecValue() string {
+	if x != nil {
+		return x.SpecValue
+	}
+	return ""
+}
+
+// 订单项基础信息
+type BaseOrderItem struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id            uint64           `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`                                              // 订单项id
+	SpuId         uint64           `protobuf:"varint,2,opt,name=spu_id,json=spuId,proto3" json:"spu_id,omitempty"`                           // spu id
+	SkuId         uint64           `protobuf:"varint,3,opt,name=sku_id,json=skuId,proto3" json:"sku_id,omitempty"`                           // sku id
+	SpuName       string           `protobuf:"bytes,4,opt,name=spu_name,json=spuName,proto3" json:"spu_name,omitempty"`                      // spu名称
+	CategoryId    uint64           `protobuf:"varint,5,opt,name=category_id,json=categoryId,proto3" json:"category_id,omitempty"`            // 分类id
+	CategoryName  string           `protobuf:"bytes,6,opt,name=category_name,json=categoryName,proto3" json:"category_name,omitempty"`       // 分类名称
+	BrandId       uint64           `protobuf:"varint,7,opt,name=brand_id,json=brandId,proto3" json:"brand_id,omitempty"`                     // 品牌id
+	BrandName     string           `protobuf:"bytes,8,opt,name=brand_name,json=brandName,proto3" json:"brand_name,omitempty"`                // 品牌名称
+	SkuImgUrl     string           `protobuf:"bytes,9,opt,name=sku_img_url,json=skuImgUrl,proto3" json:"sku_img_url,omitempty"`              // sku图片
+	SkuAmount     string           `protobuf:"bytes,10,opt,name=sku_amount,json=skuAmount,proto3" json:"sku_amount,omitempty"`               // sku金额
+	SpecValueList []*BaseSpecValue `protobuf:"bytes,11,rep,name=spec_value_list,json=specValueList,proto3" json:"spec_value_list,omitempty"` // 规格信息
+	TradeNo       string           `protobuf:"bytes,12,opt,name=trade_no,json=tradeNo,proto3" json:"trade_no,omitempty"`
+	OrderNo       string           `protobuf:"bytes,13,opt,name=order_no,json=orderNo,proto3" json:"order_no,omitempty"`
+	ShopId        uint64           `protobuf:"varint,14,opt,name=shop_id,json=shopId,proto3" json:"shop_id,omitempty"`
+	SellerId      uint64           `protobuf:"varint,15,opt,name=seller_id,json=sellerId,proto3" json:"seller_id,omitempty"`
+	BuyerId       uint64           `protobuf:"varint,16,opt,name=buyer_id,json=buyerId,proto3" json:"buyer_id,omitempty"`
+}
+
+func (x *BaseOrderItem) Reset() {
+	*x = BaseOrderItem{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_order_common_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *BaseOrderItem) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BaseOrderItem) ProtoMessage() {}
+
+func (x *BaseOrderItem) ProtoReflect() protoreflect.Message {
+	mi := &file_order_common_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BaseOrderItem.ProtoReflect.Descriptor instead.
+func (*BaseOrderItem) Descriptor() ([]byte, []int) {
+	return file_order_common_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *BaseOrderItem) GetId() uint64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *BaseOrderItem) GetSpuId() uint64 {
+	if x != nil {
+		return x.SpuId
+	}
+	return 0
+}
+
+func (x *BaseOrderItem) GetSkuId() uint64 {
+	if x != nil {
+		return x.SkuId
+	}
+	return 0
+}
+
+func (x *BaseOrderItem) GetSpuName() string {
+	if x != nil {
+		return x.SpuName
+	}
+	return ""
+}
+
+func (x *BaseOrderItem) GetCategoryId() uint64 {
+	if x != nil {
+		return x.CategoryId
+	}
+	return 0
+}
+
+func (x *BaseOrderItem) GetCategoryName() string {
+	if x != nil {
+		return x.CategoryName
+	}
+	return ""
+}
+
+func (x *BaseOrderItem) GetBrandId() uint64 {
+	if x != nil {
+		return x.BrandId
+	}
+	return 0
+}
+
+func (x *BaseOrderItem) GetBrandName() string {
+	if x != nil {
+		return x.BrandName
+	}
+	return ""
+}
+
+func (x *BaseOrderItem) GetSkuImgUrl() string {
+	if x != nil {
+		return x.SkuImgUrl
+	}
+	return ""
+}
+
+func (x *BaseOrderItem) GetSkuAmount() string {
+	if x != nil {
+		return x.SkuAmount
+	}
+	return ""
+}
+
+func (x *BaseOrderItem) GetSpecValueList() []*BaseSpecValue {
+	if x != nil {
+		return x.SpecValueList
+	}
+	return nil
+}
+
+func (x *BaseOrderItem) GetTradeNo() string {
+	if x != nil {
+		return x.TradeNo
+	}
+	return ""
+}
+
+func (x *BaseOrderItem) GetOrderNo() string {
+	if x != nil {
+		return x.OrderNo
+	}
+	return ""
+}
+
+func (x *BaseOrderItem) GetShopId() uint64 {
+	if x != nil {
+		return x.ShopId
+	}
+	return 0
+}
+
+func (x *BaseOrderItem) GetSellerId() uint64 {
+	if x != nil {
+		return x.SellerId
+	}
+	return 0
+}
+
+func (x *BaseOrderItem) GetBuyerId() uint64 {
 	if x != nil {
 		return x.BuyerId
 	}
@@ -272,20 +433,37 @@ var File_order_common_proto protoreflect.FileDescriptor
 
 var file_order_common_proto_rawDesc = []byte{
 	0x0a, 0x12, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x2f, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x12, 0x05, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x22, 0xbe, 0x01, 0x0a, 0x0e,
-	0x54, 0x72, 0x61, 0x64, 0x65, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x38,
-	0x0a, 0x0f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x5f, 0x69, 0x74, 0x65, 0x6d, 0x5f, 0x6c, 0x69, 0x73,
-	0x74, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x10, 0x2e, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x2e,
-	0x4f, 0x72, 0x64, 0x65, 0x72, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x0d, 0x6f, 0x72, 0x64, 0x65, 0x72,
-	0x49, 0x74, 0x65, 0x6d, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x73, 0x68, 0x6f, 0x70,
-	0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x06, 0x73, 0x68, 0x6f, 0x70, 0x49,
-	0x64, 0x12, 0x21, 0x0a, 0x0c, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x5f, 0x61, 0x6d, 0x6f, 0x75, 0x6e,
-	0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x41, 0x6d,
-	0x6f, 0x75, 0x6e, 0x74, 0x12, 0x1b, 0x0a, 0x09, 0x73, 0x65, 0x6c, 0x6c, 0x65, 0x72, 0x5f, 0x69,
-	0x64, 0x18, 0x04, 0x20, 0x01, 0x28, 0x04, 0x52, 0x08, 0x73, 0x65, 0x6c, 0x6c, 0x65, 0x72, 0x49,
-	0x64, 0x12, 0x19, 0x0a, 0x08, 0x62, 0x75, 0x79, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x05, 0x20,
-	0x01, 0x28, 0x04, 0x52, 0x07, 0x62, 0x75, 0x79, 0x65, 0x72, 0x49, 0x64, 0x22, 0xcb, 0x03, 0x0a,
-	0x09, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x49, 0x74, 0x65, 0x6d, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64,
+	0x72, 0x6f, 0x74, 0x6f, 0x12, 0x05, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x22, 0x9c, 0x01, 0x0a, 0x09,
+	0x42, 0x61, 0x73, 0x65, 0x54, 0x72, 0x61, 0x64, 0x65, 0x12, 0x19, 0x0a, 0x08, 0x74, 0x72, 0x61,
+	0x64, 0x65, 0x5f, 0x6e, 0x6f, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x74, 0x72, 0x61,
+	0x64, 0x65, 0x4e, 0x6f, 0x12, 0x21, 0x0a, 0x0c, 0x74, 0x72, 0x61, 0x64, 0x65, 0x5f, 0x61, 0x6d,
+	0x6f, 0x75, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x74, 0x72, 0x61, 0x64,
+	0x65, 0x41, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x19, 0x0a, 0x08, 0x62, 0x75, 0x79, 0x65, 0x72,
+	0x5f, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x07, 0x62, 0x75, 0x79, 0x65, 0x72,
+	0x49, 0x64, 0x12, 0x1b, 0x0a, 0x09, 0x73, 0x65, 0x6c, 0x6c, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18,
+	0x04, 0x20, 0x01, 0x28, 0x04, 0x52, 0x08, 0x73, 0x65, 0x6c, 0x6c, 0x65, 0x72, 0x49, 0x64, 0x12,
+	0x19, 0x0a, 0x08, 0x70, 0x61, 0x79, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x07, 0x70, 0x61, 0x79, 0x54, 0x79, 0x70, 0x65, 0x22, 0xb5, 0x01, 0x0a, 0x09, 0x42,
+	0x61, 0x73, 0x65, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x19, 0x0a, 0x08, 0x6f, 0x72, 0x64, 0x65,
+	0x72, 0x5f, 0x6e, 0x6f, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6f, 0x72, 0x64, 0x65,
+	0x72, 0x4e, 0x6f, 0x12, 0x19, 0x0a, 0x08, 0x74, 0x72, 0x61, 0x64, 0x65, 0x5f, 0x6e, 0x6f, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x74, 0x72, 0x61, 0x64, 0x65, 0x4e, 0x6f, 0x12, 0x17,
+	0x0a, 0x07, 0x73, 0x68, 0x6f, 0x70, 0x5f, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52,
+	0x06, 0x73, 0x68, 0x6f, 0x70, 0x49, 0x64, 0x12, 0x21, 0x0a, 0x0c, 0x6f, 0x72, 0x64, 0x65, 0x72,
+	0x5f, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x6f,
+	0x72, 0x64, 0x65, 0x72, 0x41, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x1b, 0x0a, 0x09, 0x73, 0x65,
+	0x6c, 0x6c, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x05, 0x20, 0x01, 0x28, 0x04, 0x52, 0x08, 0x73,
+	0x65, 0x6c, 0x6c, 0x65, 0x72, 0x49, 0x64, 0x12, 0x19, 0x0a, 0x08, 0x62, 0x75, 0x79, 0x65, 0x72,
+	0x5f, 0x69, 0x64, 0x18, 0x06, 0x20, 0x01, 0x28, 0x04, 0x52, 0x07, 0x62, 0x75, 0x79, 0x65, 0x72,
+	0x49, 0x64, 0x22, 0x74, 0x0a, 0x0d, 0x42, 0x61, 0x73, 0x65, 0x53, 0x70, 0x65, 0x63, 0x56, 0x61,
+	0x6c, 0x75, 0x65, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52,
+	0x02, 0x69, 0x64, 0x12, 0x17, 0x0a, 0x07, 0x73, 0x70, 0x65, 0x63, 0x5f, 0x69, 0x64, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x04, 0x52, 0x06, 0x73, 0x70, 0x65, 0x63, 0x49, 0x64, 0x12, 0x1b, 0x0a, 0x09,
+	0x73, 0x70, 0x65, 0x63, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x08, 0x73, 0x70, 0x65, 0x63, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x1d, 0x0a, 0x0a, 0x73, 0x70, 0x65,
+	0x63, 0x5f, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x73,
+	0x70, 0x65, 0x63, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x22, 0xec, 0x03, 0x0a, 0x0d, 0x42, 0x61, 0x73,
+	0x65, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x49, 0x74, 0x65, 0x6d, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64,
 	0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64, 0x12, 0x15, 0x0a, 0x06, 0x73, 0x70,
 	0x75, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x05, 0x73, 0x70, 0x75, 0x49,
 	0x64, 0x12, 0x15, 0x0a, 0x06, 0x73, 0x6b, 0x75, 0x5f, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28,
@@ -303,21 +481,23 @@ var file_order_common_proto_rawDesc = []byte{
 	0x72, 0x6c, 0x18, 0x09, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x73, 0x6b, 0x75, 0x49, 0x6d, 0x67,
 	0x55, 0x72, 0x6c, 0x12, 0x1d, 0x0a, 0x0a, 0x73, 0x6b, 0x75, 0x5f, 0x61, 0x6d, 0x6f, 0x75, 0x6e,
 	0x74, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x73, 0x6b, 0x75, 0x41, 0x6d, 0x6f, 0x75,
-	0x6e, 0x74, 0x12, 0x1f, 0x0a, 0x0b, 0x73, 0x70, 0x65, 0x63, 0x5f, 0x76, 0x61, 0x6c, 0x75, 0x65,
-	0x73, 0x18, 0x0b, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x73, 0x70, 0x65, 0x63, 0x56, 0x61, 0x6c,
-	0x75, 0x65, 0x73, 0x12, 0x19, 0x0a, 0x08, 0x74, 0x72, 0x61, 0x64, 0x65, 0x5f, 0x6e, 0x6f, 0x18,
-	0x0c, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x74, 0x72, 0x61, 0x64, 0x65, 0x4e, 0x6f, 0x12, 0x19,
-	0x0a, 0x08, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x5f, 0x6e, 0x6f, 0x18, 0x0d, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x07, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x4e, 0x6f, 0x12, 0x17, 0x0a, 0x07, 0x73, 0x68, 0x6f,
-	0x70, 0x5f, 0x69, 0x64, 0x18, 0x0e, 0x20, 0x01, 0x28, 0x04, 0x52, 0x06, 0x73, 0x68, 0x6f, 0x70,
-	0x49, 0x64, 0x12, 0x1b, 0x0a, 0x09, 0x73, 0x65, 0x6c, 0x6c, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18,
-	0x0f, 0x20, 0x01, 0x28, 0x04, 0x52, 0x08, 0x73, 0x65, 0x6c, 0x6c, 0x65, 0x72, 0x49, 0x64, 0x12,
-	0x19, 0x0a, 0x08, 0x62, 0x75, 0x79, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x10, 0x20, 0x01, 0x28,
-	0x04, 0x52, 0x07, 0x62, 0x75, 0x79, 0x65, 0x72, 0x49, 0x64, 0x42, 0x35, 0x5a, 0x33, 0x67, 0x69,
-	0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x6c, 0x7a, 0x6c, 0x2d, 0x68, 0x65, 0x72,
-	0x65, 0x2f, 0x62, 0x74, 0x2d, 0x73, 0x68, 0x6f, 0x70, 0x2d, 0x62, 0x61, 0x63, 0x6b, 0x65, 0x6e,
-	0x64, 0x2f, 0x6b, 0x69, 0x74, 0x65, 0x78, 0x5f, 0x67, 0x65, 0x6e, 0x2f, 0x6f, 0x72, 0x64, 0x65,
-	0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6e, 0x74, 0x12, 0x3c, 0x0a, 0x0f, 0x73, 0x70, 0x65, 0x63, 0x5f, 0x76, 0x61, 0x6c, 0x75, 0x65,
+	0x5f, 0x6c, 0x69, 0x73, 0x74, 0x18, 0x0b, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x6f, 0x72,
+	0x64, 0x65, 0x72, 0x2e, 0x42, 0x61, 0x73, 0x65, 0x53, 0x70, 0x65, 0x63, 0x56, 0x61, 0x6c, 0x75,
+	0x65, 0x52, 0x0d, 0x73, 0x70, 0x65, 0x63, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x4c, 0x69, 0x73, 0x74,
+	0x12, 0x19, 0x0a, 0x08, 0x74, 0x72, 0x61, 0x64, 0x65, 0x5f, 0x6e, 0x6f, 0x18, 0x0c, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x07, 0x74, 0x72, 0x61, 0x64, 0x65, 0x4e, 0x6f, 0x12, 0x19, 0x0a, 0x08, 0x6f,
+	0x72, 0x64, 0x65, 0x72, 0x5f, 0x6e, 0x6f, 0x18, 0x0d, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6f,
+	0x72, 0x64, 0x65, 0x72, 0x4e, 0x6f, 0x12, 0x17, 0x0a, 0x07, 0x73, 0x68, 0x6f, 0x70, 0x5f, 0x69,
+	0x64, 0x18, 0x0e, 0x20, 0x01, 0x28, 0x04, 0x52, 0x06, 0x73, 0x68, 0x6f, 0x70, 0x49, 0x64, 0x12,
+	0x1b, 0x0a, 0x09, 0x73, 0x65, 0x6c, 0x6c, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x0f, 0x20, 0x01,
+	0x28, 0x04, 0x52, 0x08, 0x73, 0x65, 0x6c, 0x6c, 0x65, 0x72, 0x49, 0x64, 0x12, 0x19, 0x0a, 0x08,
+	0x62, 0x75, 0x79, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x10, 0x20, 0x01, 0x28, 0x04, 0x52, 0x07,
+	0x62, 0x75, 0x79, 0x65, 0x72, 0x49, 0x64, 0x42, 0x35, 0x5a, 0x33, 0x67, 0x69, 0x74, 0x68, 0x75,
+	0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x6c, 0x7a, 0x6c, 0x2d, 0x68, 0x65, 0x72, 0x65, 0x2f, 0x62,
+	0x74, 0x2d, 0x73, 0x68, 0x6f, 0x70, 0x2d, 0x62, 0x61, 0x63, 0x6b, 0x65, 0x6e, 0x64, 0x2f, 0x6b,
+	0x69, 0x74, 0x65, 0x78, 0x5f, 0x67, 0x65, 0x6e, 0x2f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x62, 0x06,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -332,13 +512,15 @@ func file_order_common_proto_rawDescGZIP() []byte {
 	return file_order_common_proto_rawDescData
 }
 
-var file_order_common_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_order_common_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_order_common_proto_goTypes = []interface{}{
-	(*TradeOrderInfo)(nil), // 0: order.TradeOrderInfo
-	(*OrderItem)(nil),      // 1: order.OrderItem
+	(*BaseTrade)(nil),     // 0: order.BaseTrade
+	(*BaseOrder)(nil),     // 1: order.BaseOrder
+	(*BaseSpecValue)(nil), // 2: order.BaseSpecValue
+	(*BaseOrderItem)(nil), // 3: order.BaseOrderItem
 }
 var file_order_common_proto_depIdxs = []int32{
-	1, // 0: order.TradeOrderInfo.order_item_list:type_name -> order.OrderItem
+	2, // 0: order.BaseOrderItem.spec_value_list:type_name -> order.BaseSpecValue
 	1, // [1:1] is the sub-list for method output_type
 	1, // [1:1] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
@@ -353,7 +535,7 @@ func file_order_common_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_order_common_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*TradeOrderInfo); i {
+			switch v := v.(*BaseTrade); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -365,7 +547,31 @@ func file_order_common_proto_init() {
 			}
 		}
 		file_order_common_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*OrderItem); i {
+			switch v := v.(*BaseOrder); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_order_common_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*BaseSpecValue); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_order_common_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*BaseOrderItem); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -383,7 +589,7 @@ func file_order_common_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_order_common_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

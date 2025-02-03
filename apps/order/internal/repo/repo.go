@@ -7,12 +7,12 @@ import (
 	"gorm.io/gorm"
 
 	"github.com/lzl-here/bt-shop-backend/apps/order/internal/domain/model"
-	gc "github.com/lzl-here/bt-shop-backend/kitex_gen/goods/goodsservice"
 	oc "github.com/lzl-here/bt-shop-backend/kitex_gen/order/orderservice"
 	pc "github.com/lzl-here/bt-shop-backend/kitex_gen/pay/payservice"
 	uc "github.com/lzl-here/bt-shop-backend/kitex_gen/user/userservice"
 
 	ggen "github.com/lzl-here/bt-shop-backend/kitex_gen/goods"
+	gc "github.com/lzl-here/bt-shop-backend/kitex_gen/goods/goodsservice"
 	pgen "github.com/lzl-here/bt-shop-backend/kitex_gen/pay"
 )
 
@@ -29,6 +29,8 @@ type RepoInterface interface {
 	GetOrderItems(ctx context.Context, where *model.OrderItem) ([]*model.OrderItem, error)
 	UpdateTrade(ctx context.Context, where, update *model.Trade) error
 	UpdateOrder(ctx context.Context, where, update *model.Order) error
+
+	ReduceStock(ctx context.Context, req *ggen.StockReduceReq) (*ggen.StockReduceRsp, error) // 扣减库存
 }
 
 var _ RepoInterface = (*Repo)(nil)
@@ -84,7 +86,7 @@ func (r *Repo) Pay(ctx context.Context, req *pgen.PayReq) (*pgen.PayRsp, error) 
 
 func (r *Repo) GetOrderItems(ctx context.Context, where *model.OrderItem) ([]*model.OrderItem, error) {
 	var items []*model.OrderItem
-	err := r.DB.Model(&model.OrderItem{}).Where(where).Find(items).Error
+	err := r.DB.Model(&model.OrderItem{}).Where(where).Find(&items).Error
 	return items, err
 }
 
@@ -93,4 +95,8 @@ func (r *Repo) UpdateTrade(ctx context.Context, where, update *model.Trade) erro
 }
 func (r *Repo) UpdateOrder(ctx context.Context, where, update *model.Order) error {
 	return r.DB.Model(&model.Order{}).Where(where).Updates(update).Error
+}
+
+func (r *Repo) ReduceStock(ctx context.Context, req *ggen.StockReduceReq) (*ggen.StockReduceRsp, error) {
+	return r.GoodsClient.StockReduce(ctx, req)
 }

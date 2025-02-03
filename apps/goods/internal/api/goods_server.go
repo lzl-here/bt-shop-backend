@@ -67,6 +67,6 @@ func (s *GoodsServer) StockReduce(ctx context.Context, req *ggen.StockReduceReq)
 }
 
 // 库存回滚
-func (s *GoodsServer) StockReduceRollback(ctx context.Context, req *ggen.StockReduceRollbackReq) (res *ggen.StockReduceRollbackRsp, err error) {
-	return handler.NewGoodsHandler(s.rep).StockReduceRollback(ctx, req)
+func (s *GoodsServer) StockIncrease(ctx context.Context, req *ggen.StockIncreaseReq) (res *ggen.StockIncreaseRsp, err error) {
+	return handler.NewGoodsHandler(s.rep).StockIncrease(ctx, req)
 }

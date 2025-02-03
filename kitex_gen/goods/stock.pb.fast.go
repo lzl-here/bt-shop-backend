@@ -14,6 +14,11 @@ var (
 
 func (x *StockReduceReq) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
 	switch number {
+	case 1:
+		offset, err = x.fastReadField1(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
 	default:
 		offset, err = fastpb.Skip(buf, _type, number)
 		if err != nil {
@@ -23,6 +28,13 @@ func (x *StockReduceReq) FastRead(buf []byte, _type int8, number int32) (offset 
 	return offset, nil
 SkipFieldError:
 	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
+ReadFieldError:
+	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_StockReduceReq[number], err)
+}
+
+func (x *StockReduceReq) fastReadField1(buf []byte, _type int8) (offset int, err error) {
+	x.TradeNo, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
 }
 
 func (x *StockReduceRsp) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
@@ -38,8 +50,13 @@ SkipFieldError:
 	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
 }
 
-func (x *StockReduceRollbackReq) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
+func (x *StockIncreaseReq) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
 	switch number {
+	case 1:
+		offset, err = x.fastReadField1(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
 	default:
 		offset, err = fastpb.Skip(buf, _type, number)
 		if err != nil {
@@ -49,9 +66,16 @@ func (x *StockReduceRollbackReq) FastRead(buf []byte, _type int8, number int32) 
 	return offset, nil
 SkipFieldError:
 	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
+ReadFieldError:
+	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_StockIncreaseReq[number], err)
 }
 
-func (x *StockReduceRollbackRsp) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
+func (x *StockIncreaseReq) fastReadField1(buf []byte, _type int8) (offset int, err error) {
+	x.TradeNo, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
+func (x *StockIncreaseRsp) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
 	switch number {
 	default:
 		offset, err = fastpb.Skip(buf, _type, number)
@@ -68,6 +92,15 @@ func (x *StockReduceReq) FastWrite(buf []byte) (offset int) {
 	if x == nil {
 		return offset
 	}
+	offset += x.fastWriteField1(buf[offset:])
+	return offset
+}
+
+func (x *StockReduceReq) fastWriteField1(buf []byte) (offset int) {
+	if x.TradeNo == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 1, x.GetTradeNo())
 	return offset
 }
 
@@ -78,14 +111,23 @@ func (x *StockReduceRsp) FastWrite(buf []byte) (offset int) {
 	return offset
 }
 
-func (x *StockReduceRollbackReq) FastWrite(buf []byte) (offset int) {
+func (x *StockIncreaseReq) FastWrite(buf []byte) (offset int) {
 	if x == nil {
 		return offset
 	}
+	offset += x.fastWriteField1(buf[offset:])
 	return offset
 }
 
-func (x *StockReduceRollbackRsp) FastWrite(buf []byte) (offset int) {
+func (x *StockIncreaseReq) fastWriteField1(buf []byte) (offset int) {
+	if x.TradeNo == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 1, x.GetTradeNo())
+	return offset
+}
+
+func (x *StockIncreaseRsp) FastWrite(buf []byte) (offset int) {
 	if x == nil {
 		return offset
 	}
@@ -96,6 +138,15 @@ func (x *StockReduceReq) Size() (n int) {
 	if x == nil {
 		return n
 	}
+	n += x.sizeField1()
+	return n
+}
+
+func (x *StockReduceReq) sizeField1() (n int) {
+	if x.TradeNo == "" {
+		return n
+	}
+	n += fastpb.SizeString(1, x.GetTradeNo())
 	return n
 }
 
@@ -106,24 +157,37 @@ func (x *StockReduceRsp) Size() (n int) {
 	return n
 }
 
-func (x *StockReduceRollbackReq) Size() (n int) {
+func (x *StockIncreaseReq) Size() (n int) {
+	if x == nil {
+		return n
+	}
+	n += x.sizeField1()
+	return n
+}
+
+func (x *StockIncreaseReq) sizeField1() (n int) {
+	if x.TradeNo == "" {
+		return n
+	}
+	n += fastpb.SizeString(1, x.GetTradeNo())
+	return n
+}
+
+func (x *StockIncreaseRsp) Size() (n int) {
 	if x == nil {
 		return n
 	}
 	return n
 }
 
-func (x *StockReduceRollbackRsp) Size() (n int) {
-	if x == nil {
-		return n
-	}
-	return n
+var fieldIDToName_StockReduceReq = map[int32]string{
+	1: "TradeNo",
 }
-
-var fieldIDToName_StockReduceReq = map[int32]string{}
 
 var fieldIDToName_StockReduceRsp = map[int32]string{}
 
-var fieldIDToName_StockReduceRollbackReq = map[int32]string{}
+var fieldIDToName_StockIncreaseReq = map[int32]string{
+	1: "TradeNo",
+}
 
-var fieldIDToName_StockReduceRollbackRsp = map[int32]string{}
+var fieldIDToName_StockIncreaseRsp = map[int32]string{}

@@ -89,3 +89,18 @@
 2025/02/03 19:55:43.903174 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:59745, 请求体: &{Stream:0x14001c593e0}
 2025/02/03 19:55:43.906009 error_md.go:33: [Error] <nil>
 2025/02/03 19:55:43.906046 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/03 21:34:53.096367 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/03 21:34:53.103895 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/03 21:34:53.169322 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9093
+2025/02/03 21:34:54.181425 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f34f3c for etcd registry
+2025/02/03 21:35:15.056933 log_md.go:25: [Info] 请求路径: GoodsService.GetGoodsList, 请求地址: 127.0.0.1:49813, 请求体: &{Stream:0x14001d8a9a0}
+2025/02/03 21:35:15.067535 error_md.go:33: [Error] <nil>
+2025/02/03 21:35:15.067633 log_md.go:36: [Info] 响应体: <nil>, 耗时: 10ms
+2025/02/03 21:35:53.063046 log_md.go:25: [Info] 请求路径: GoodsService.GetGoodsList, 请求地址: 127.0.0.1:49868, 请求体: &{Stream:0x140001ac180}
+2025/02/03 21:35:53.071725 error_md.go:33: [Error] <nil>
+2025/02/03 21:35:53.071780 log_md.go:36: [Info] 响应体: <nil>, 耗时: 8ms
+2025/02/03 21:36:00.677462 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/03 21:36:00.677460 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/03 23:03:51.005261 etcd_registry.go:216: [Info] stop keep register service kitex/registry-etcd/goods/127.0.0.1:9093
+2025/02/03 23:03:51.006517 server_handler.go:384: [Info] KITEX: gRPC GracefulShutdown starts
+2025/02/03 23:03:51.058560 server_handler.go:386: [Info] KITEX: gRPC GracefulShutdown ends

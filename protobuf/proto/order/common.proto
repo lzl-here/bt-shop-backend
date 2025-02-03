@@ -4,18 +4,35 @@ package order;
 
 option go_package = "order";
 
-
-// 带有订单项的订单信息
-message TradeOrderInfo {
-    repeated OrderItem order_item_list = 1; // 订单项
-    uint64 shop_id = 2;                     // 店铺ID
-    string order_amount = 3;                // 订单金额
-    uint64 seller_id = 4;                   // 卖家id
-    uint64 buyer_id = 5;                    // 买家id
+// 交易基础信息 （不带有订单）
+message BaseTrade {
+    string trade_no = 1;
+    string trade_amount = 2;
+    uint64 buyer_id = 3;
+    uint64 seller_id = 4;
+    string pay_type = 5; // 支付类型
 }
 
+// 订单基础信息 (不带有订单项)
+message BaseOrder {
+    string order_no = 1;
+    string trade_no = 2;
+    uint64 shop_id = 3;                     // 店铺ID
+    string order_amount = 4;                // 订单金额
+    uint64 seller_id = 5;                   // 卖家id
+    uint64 buyer_id = 6;                    // 买家id
+}
 
-message OrderItem {
+// 规格值信息
+message BaseSpecValue {
+    uint64 id = 1;
+    uint64 spec_id = 2;
+    string spec_name = 3;
+    string spec_value = 4;
+}
+
+// 订单项基础信息
+message BaseOrderItem {
     uint64 id  = 1;                     // 订单项id
     uint64 spu_id = 2;                  // spu id
     uint64 sku_id = 3;                  // sku id
@@ -26,7 +43,7 @@ message OrderItem {
     string brand_name = 8;              // 品牌名称
     string sku_img_url = 9;             // sku图片
     string sku_amount = 10;              // sku金额
-    string spec_values = 11;            // 规格信息，json
+    repeated BaseSpecValue spec_value_list = 11;            // 规格信息
 
     string trade_no = 12;
     string order_no = 13;
@@ -34,3 +51,4 @@ message OrderItem {
     uint64 seller_id = 15;
     uint64 buyer_id = 16;
 }
+

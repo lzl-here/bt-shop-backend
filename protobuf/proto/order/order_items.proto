@@ -18,6 +18,6 @@ message GetOrderItemsRsp {
     GetOrderItemsRspData data = 4;
 
     message GetOrderItemsRspData {
-        repeated OrderItem order_item_list = 1;
+        repeated BaseOrderItem order_item_list = 1;
     }
 }

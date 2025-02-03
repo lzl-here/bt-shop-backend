@@ -66,6 +66,7 @@ func (h *PayHandler) paySuccess(ctx context.Context, req *pgen.AlipayWebhookReq)
 			ShopID:        i.ShopId,
 			SellerID:      i.SellerId,
 			BuyerID:       i.BuyerId,
+			PayType: constant.PayTypeAlipay,
 		}
 		payFlows = append(payFlows, p)
 	}

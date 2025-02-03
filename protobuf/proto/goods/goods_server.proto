@@ -47,7 +47,7 @@ service GoodsService {
     rpc StockReduce(StockReduceReq) returns (StockReduceRsp) {}
 
     // 扣减库存回滚，对内
-    rpc StockReduceRollback(StockReduceRollbackReq) returns (StockReduceRollbackRsp) {}
+    rpc StockIncrease(StockIncreaseReq) returns (StockIncreaseRsp) {}
 
 }
 

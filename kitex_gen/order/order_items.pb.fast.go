@@ -118,7 +118,7 @@ ReadFieldError:
 }
 
 func (x *GetOrderItemsRsp_GetOrderItemsRspData) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	var v OrderItem
+	var v BaseOrderItem
 	offset, err = fastpb.ReadMessage(buf, _type, &v)
 	if err != nil {
 		return offset, err

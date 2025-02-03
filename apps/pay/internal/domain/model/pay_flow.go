@@ -24,13 +24,13 @@ type PayFlow struct {
 	ShopID        uint64 `gorm:"column:shop_id"`         // 店铺id
 	SellerID      uint64 `gorm:"column:seller_id"`       //	卖家id
 	BuyerID       uint64 `gorm:"column:buyer_id"`        //	买家id
-	PayType       string `gorm:"column:pay_type"`        // 支付方式：1.支付宝 2.微信 3.银行卡 4.其他
+	PayType       string `gorm:"column:pay_type"`        // 支付方式
 
 	model.BaseModel
 }
 
 func (p *PayFlow) TableName() string {
-	return "t_pay_flow"
+	return "pay_flow"
 }
 
 func (u *PayFlow) MarshalBinary() ([]byte, error) {

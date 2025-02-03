@@ -18,7 +18,6 @@ message BaseSpu {
     bool enabled = 9;
     string spu_img_url = 10;
 }
-
 // sku信息
 message BaseSku {
     uint64 id = 1;
