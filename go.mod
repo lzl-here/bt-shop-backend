@@ -8,14 +8,12 @@ require (
 	github.com/cloudwego/kitex v0.12.1
 	github.com/elastic/go-elasticsearch v0.0.0
 	github.com/elastic/go-elasticsearch/v8 v8.17.0
-	github.com/hertz-contrib/swagger v0.1.0
 	github.com/joho/godotenv v1.5.1
 	github.com/kitex-contrib/registry-etcd v0.2.5
 	github.com/redis/go-redis/v9 v9.7.0
 	github.com/shopspring/decimal v1.4.0
 	github.com/smartwalle/alipay/v3 v3.2.24
 	github.com/smartwalle/xid v1.0.7
-	github.com/swaggo/files v1.0.1
 	github.com/swaggo/swag v1.16.4
 	golang.org/x/sync v0.10.0
 	google.golang.org/protobuf v1.36.2
@@ -69,6 +67,7 @@ require (
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/nyaruka/phonenumbers v1.0.55 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
+	github.com/rogpeppe/go-internal v1.11.0 // indirect
 	github.com/smartwalle/ncrypto v1.0.4 // indirect
 	github.com/smartwalle/ngx v1.0.9 // indirect
 	github.com/smartwalle/nsign v1.0.9 // indirect

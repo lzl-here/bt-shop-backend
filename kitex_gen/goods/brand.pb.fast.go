@@ -25,7 +25,7 @@ SkipFieldError:
 	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
 }
 
-func (x *GetBBrandListRsp) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
+func (x *GetBrandListRsp) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
 	switch number {
 	case 1:
 		offset, err = x.fastReadField1(buf, _type)
@@ -57,26 +57,26 @@ func (x *GetBBrandListRsp) FastRead(buf []byte, _type int8, number int32) (offse
 SkipFieldError:
 	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
 ReadFieldError:
-	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_GetBBrandListRsp[number], err)
+	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_GetBrandListRsp[number], err)
 }
 
-func (x *GetBBrandListRsp) fastReadField1(buf []byte, _type int8) (offset int, err error) {
+func (x *GetBrandListRsp) fastReadField1(buf []byte, _type int8) (offset int, err error) {
 	x.Code, offset, err = fastpb.ReadInt32(buf, _type)
 	return offset, err
 }
 
-func (x *GetBBrandListRsp) fastReadField2(buf []byte, _type int8) (offset int, err error) {
+func (x *GetBrandListRsp) fastReadField2(buf []byte, _type int8) (offset int, err error) {
 	x.Msg, offset, err = fastpb.ReadString(buf, _type)
 	return offset, err
 }
 
-func (x *GetBBrandListRsp) fastReadField3(buf []byte, _type int8) (offset int, err error) {
+func (x *GetBrandListRsp) fastReadField3(buf []byte, _type int8) (offset int, err error) {
 	x.LogId, offset, err = fastpb.ReadString(buf, _type)
 	return offset, err
 }
 
-func (x *GetBBrandListRsp) fastReadField4(buf []byte, _type int8) (offset int, err error) {
-	var v GetBBrandListRsp_GetBBrandListDataRsp
+func (x *GetBrandListRsp) fastReadField4(buf []byte, _type int8) (offset int, err error) {
+	var v GetBrandListRsp_GetBrandListDataRsp
 	offset, err = fastpb.ReadMessage(buf, _type, &v)
 	if err != nil {
 		return offset, err
@@ -85,7 +85,7 @@ func (x *GetBBrandListRsp) fastReadField4(buf []byte, _type int8) (offset int, e
 	return offset, nil
 }
 
-func (x *GetBBrandListRsp_GetBBrandListDataRsp) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
+func (x *GetBrandListRsp_GetBrandListDataRsp) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
 	switch number {
 	case 1:
 		offset, err = x.fastReadField1(buf, _type)
@@ -102,10 +102,10 @@ func (x *GetBBrandListRsp_GetBBrandListDataRsp) FastRead(buf []byte, _type int8,
 SkipFieldError:
 	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
 ReadFieldError:
-	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_GetBBrandListRsp_GetBBrandListDataRsp[number], err)
+	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_GetBrandListRsp_GetBrandListDataRsp[number], err)
 }
 
-func (x *GetBBrandListRsp_GetBBrandListDataRsp) fastReadField1(buf []byte, _type int8) (offset int, err error) {
+func (x *GetBrandListRsp_GetBrandListDataRsp) fastReadField1(buf []byte, _type int8) (offset int, err error) {
 	var v BaseBrand
 	offset, err = fastpb.ReadMessage(buf, _type, &v)
 	if err != nil {
@@ -122,7 +122,7 @@ func (x *GetBrandListReq) FastWrite(buf []byte) (offset int) {
 	return offset
 }
 
-func (x *GetBBrandListRsp) FastWrite(buf []byte) (offset int) {
+func (x *GetBrandListRsp) FastWrite(buf []byte) (offset int) {
 	if x == nil {
 		return offset
 	}
@@ -133,7 +133,7 @@ func (x *GetBBrandListRsp) FastWrite(buf []byte) (offset int) {
 	return offset
 }
 
-func (x *GetBBrandListRsp) fastWriteField1(buf []byte) (offset int) {
+func (x *GetBrandListRsp) fastWriteField1(buf []byte) (offset int) {
 	if x.Code == 0 {
 		return offset
 	}
@@ -141,7 +141,7 @@ func (x *GetBBrandListRsp) fastWriteField1(buf []byte) (offset int) {
 	return offset
 }
 
-func (x *GetBBrandListRsp) fastWriteField2(buf []byte) (offset int) {
+func (x *GetBrandListRsp) fastWriteField2(buf []byte) (offset int) {
 	if x.Msg == "" {
 		return offset
 	}
@@ -149,7 +149,7 @@ func (x *GetBBrandListRsp) fastWriteField2(buf []byte) (offset int) {
 	return offset
 }
 
-func (x *GetBBrandListRsp) fastWriteField3(buf []byte) (offset int) {
+func (x *GetBrandListRsp) fastWriteField3(buf []byte) (offset int) {
 	if x.LogId == "" {
 		return offset
 	}
@@ -157,7 +157,7 @@ func (x *GetBBrandListRsp) fastWriteField3(buf []byte) (offset int) {
 	return offset
 }
 
-func (x *GetBBrandListRsp) fastWriteField4(buf []byte) (offset int) {
+func (x *GetBrandListRsp) fastWriteField4(buf []byte) (offset int) {
 	if x.Data == nil {
 		return offset
 	}
@@ -165,7 +165,7 @@ func (x *GetBBrandListRsp) fastWriteField4(buf []byte) (offset int) {
 	return offset
 }
 
-func (x *GetBBrandListRsp_GetBBrandListDataRsp) FastWrite(buf []byte) (offset int) {
+func (x *GetBrandListRsp_GetBrandListDataRsp) FastWrite(buf []byte) (offset int) {
 	if x == nil {
 		return offset
 	}
@@ -173,7 +173,7 @@ func (x *GetBBrandListRsp_GetBBrandListDataRsp) FastWrite(buf []byte) (offset in
 	return offset
 }
 
-func (x *GetBBrandListRsp_GetBBrandListDataRsp) fastWriteField1(buf []byte) (offset int) {
+func (x *GetBrandListRsp_GetBrandListDataRsp) fastWriteField1(buf []byte) (offset int) {
 	if x.BrandList == nil {
 		return offset
 	}
@@ -190,7 +190,7 @@ func (x *GetBrandListReq) Size() (n int) {
 	return n
 }
 
-func (x *GetBBrandListRsp) Size() (n int) {
+func (x *GetBrandListRsp) Size() (n int) {
 	if x == nil {
 		return n
 	}
@@ -201,7 +201,7 @@ func (x *GetBBrandListRsp) Size() (n int) {
 	return n
 }
 
-func (x *GetBBrandListRsp) sizeField1() (n int) {
+func (x *GetBrandListRsp) sizeField1() (n int) {
 	if x.Code == 0 {
 		return n
 	}
@@ -209,7 +209,7 @@ func (x *GetBBrandListRsp) sizeField1() (n int) {
 	return n
 }
 
-func (x *GetBBrandListRsp) sizeField2() (n int) {
+func (x *GetBrandListRsp) sizeField2() (n int) {
 	if x.Msg == "" {
 		return n
 	}
@@ -217,7 +217,7 @@ func (x *GetBBrandListRsp) sizeField2() (n int) {
 	return n
 }
 
-func (x *GetBBrandListRsp) sizeField3() (n int) {
+func (x *GetBrandListRsp) sizeField3() (n int) {
 	if x.LogId == "" {
 		return n
 	}
@@ -225,7 +225,7 @@ func (x *GetBBrandListRsp) sizeField3() (n int) {
 	return n
 }
 
-func (x *GetBBrandListRsp) sizeField4() (n int) {
+func (x *GetBrandListRsp) sizeField4() (n int) {
 	if x.Data == nil {
 		return n
 	}
@@ -233,7 +233,7 @@ func (x *GetBBrandListRsp) sizeField4() (n int) {
 	return n
 }
 
-func (x *GetBBrandListRsp_GetBBrandListDataRsp) Size() (n int) {
+func (x *GetBrandListRsp_GetBrandListDataRsp) Size() (n int) {
 	if x == nil {
 		return n
 	}
@@ -241,7 +241,7 @@ func (x *GetBBrandListRsp_GetBBrandListDataRsp) Size() (n int) {
 	return n
 }
 
-func (x *GetBBrandListRsp_GetBBrandListDataRsp) sizeField1() (n int) {
+func (x *GetBrandListRsp_GetBrandListDataRsp) sizeField1() (n int) {
 	if x.BrandList == nil {
 		return n
 	}
@@ -253,13 +253,13 @@ func (x *GetBBrandListRsp_GetBBrandListDataRsp) sizeField1() (n int) {
 
 var fieldIDToName_GetBrandListReq = map[int32]string{}
 
-var fieldIDToName_GetBBrandListRsp = map[int32]string{
+var fieldIDToName_GetBrandListRsp = map[int32]string{
 	1: "Code",
 	2: "Msg",
 	3: "LogId",
 	4: "Data",
 }
 
-var fieldIDToName_GetBBrandListRsp_GetBBrandListDataRsp = map[int32]string{
+var fieldIDToName_GetBrandListRsp_GetBrandListDataRsp = map[int32]string{
 	1: "BrandList",
 }

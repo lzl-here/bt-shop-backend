@@ -7,13 +7,15 @@ package example;
 option go_package = "example";
 
 // 导入需要使用的文件，package/文件名
+import "api.proto";
 import "example/ping.proto";
 import "example/person.proto";
 
 
 // rpc服务
 service ExampleService {
-  rpc PingPong(PingReq) returns (PingRsp) {}
+  rpc PingPong(PingReq) returns (PingRsp) {
+  }
   rpc GetPerson(GetPersonReq) returns (GetPersonRsp){}
 }
 

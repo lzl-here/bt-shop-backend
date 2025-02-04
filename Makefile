@@ -14,13 +14,6 @@ gen:
 	@ kitex -module $(MODULE_NAME) -type=protobuf -I $(PROTO_PATH) $(PROTO_PATH)/order/order_server.proto
 	@ kitex -module $(MODULE_NAME) -type=protobuf -I $(PROTO_PATH) $(PROTO_PATH)/goods/goods_server.proto
 
-
-
-
-	@ cd apps/gateway  && hz update -I ../../$(API_PATH) -idl ../../$(API_PATH)/user/user.proto
-	@ cd apps/gateway  && hz update -I ../../$(API_PATH) -idl ../../$(API_PATH)/pay/api_pay_server.proto
-
-
 	@ go mod tidy
 
 # 清空proto代码
@@ -28,3 +21,10 @@ clean:
 	@ rm -rf $(GEN_PATH)/*
 
 .PHONY: gen clean
+
+api: 
+	@ cd apps/gateway  && hz update -I ../../$(PROTO_PATH) -idl ../../$(PROTO_PATH)/order/order_server.proto
+	@ cd apps/gateway  && hz update -I ../../$(PROTO_PATH) -idl ../../$(PROTO_PATH)/goods/goods_server.proto
+	@ cd apps/gateway  && hz update -I ../../$(PROTO_PATH) -idl ../../$(PROTO_PATH)/pay/pay_server.proto
+
+	@ go mod tidy

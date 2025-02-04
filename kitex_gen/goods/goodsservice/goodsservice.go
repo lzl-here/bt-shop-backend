@@ -1008,14 +1008,14 @@ func (p *GetBrandListArgs) GetFirstArgument() interface{} {
 }
 
 type GetBrandListResult struct {
-	Success *goods.GetBBrandListRsp
+	Success *goods.GetBrandListRsp
 }
 
-var GetBrandListResult_Success_DEFAULT *goods.GetBBrandListRsp
+var GetBrandListResult_Success_DEFAULT *goods.GetBrandListRsp
 
 func (p *GetBrandListResult) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
 	if !p.IsSetSuccess() {
-		p.Success = new(goods.GetBBrandListRsp)
+		p.Success = new(goods.GetBrandListRsp)
 	}
 	return p.Success.FastRead(buf, _type, number)
 }
@@ -1042,7 +1042,7 @@ func (p *GetBrandListResult) Marshal(out []byte) ([]byte, error) {
 }
 
 func (p *GetBrandListResult) Unmarshal(in []byte) error {
-	msg := new(goods.GetBBrandListRsp)
+	msg := new(goods.GetBrandListRsp)
 	if err := proto.Unmarshal(in, msg); err != nil {
 		return err
 	}
@@ -1050,7 +1050,7 @@ func (p *GetBrandListResult) Unmarshal(in []byte) error {
 	return nil
 }
 
-func (p *GetBrandListResult) GetSuccess() *goods.GetBBrandListRsp {
+func (p *GetBrandListResult) GetSuccess() *goods.GetBrandListRsp {
 	if !p.IsSetSuccess() {
 		return GetBrandListResult_Success_DEFAULT
 	}
@@ -1058,7 +1058,7 @@ func (p *GetBrandListResult) GetSuccess() *goods.GetBBrandListRsp {
 }
 
 func (p *GetBrandListResult) SetSuccess(x interface{}) {
-	p.Success = x.(*goods.GetBBrandListRsp)
+	p.Success = x.(*goods.GetBrandListRsp)
 }
 
 func (p *GetBrandListResult) IsSetSuccess() bool {
@@ -1741,7 +1741,7 @@ func (p *kClient) GetCategoryList(ctx context.Context, Req *goods.GetCategoryLis
 	return _result.GetSuccess(), nil
 }
 
-func (p *kClient) GetBrandList(ctx context.Context, Req *goods.GetBrandListReq) (r *goods.GetBBrandListRsp, err error) {
+func (p *kClient) GetBrandList(ctx context.Context, Req *goods.GetBrandListReq) (r *goods.GetBrandListRsp, err error) {
 	var _args GetBrandListArgs
 	_args.Req = Req
 	var _result GetBrandListResult

@@ -12,14 +12,16 @@ import (
 	"github.com/elastic/go-elasticsearch/v8/typedapi/types"
 	"github.com/lzl-here/bt-shop-backend/apps/goods/internal/constant"
 	"github.com/lzl-here/bt-shop-backend/apps/goods/internal/domain/model"
+
+	"github.com/redis/go-redis/v9"
+	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
+
 	ggen "github.com/lzl-here/bt-shop-backend/kitex_gen/goods"
 	gc "github.com/lzl-here/bt-shop-backend/kitex_gen/goods/goodsservice"
 	oc "github.com/lzl-here/bt-shop-backend/kitex_gen/order/orderservice"
 	pc "github.com/lzl-here/bt-shop-backend/kitex_gen/pay/payservice"
 	uc "github.com/lzl-here/bt-shop-backend/kitex_gen/user/userservice"
-	"github.com/redis/go-redis/v9"
-	"gorm.io/gorm"
-	"gorm.io/gorm/clause"
 )
 
 var _ (RepoInterface) = (*Repo)(nil)

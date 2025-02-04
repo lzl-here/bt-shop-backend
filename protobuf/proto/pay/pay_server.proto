@@ -7,6 +7,7 @@ package pay;
 option go_package = "pay";
 
 // 导入需要使用的文件，package/文件名
+import "api.proto";
 import "pay/pay.proto";
 import "pay/webhook.proto";
 import "pay/close_pay.proto";
@@ -16,15 +17,23 @@ import "pay/refund_pay.proto";
 // rpc服务
 service PayService {
     // 支付 
-    rpc Pay(PayReq) returns (PayRsp) {}
+    rpc Pay(PayReq) returns (PayRsp) {
+        option (api.post) = "/pay/pay";
+    }
 
     // 支付宝异步回调
-    rpc AlipayWebhook(AlipayWebhookReq) returns (AlipayWebhookRsp) {}
+    rpc AlipayWebhook(AlipayWebhookReq) returns (AlipayWebhookRsp) {
+        option (api.post) = "/pay/alipay/webhook";
+    }
 
     // 取消支付
-    rpc ClosePay(ClosePayReq) returns (ClosePayRsp) {}
+    rpc ClosePay(ClosePayReq) returns (ClosePayRsp) {
+        option (api.post) = "/pay/close_pay";
+    }
 
     // 退款
-    rpc RefundPay(RefundPayReq) returns (RefundPayRsp) {}
+    rpc RefundPay(RefundPayReq) returns (RefundPayRsp) {
+        option (api.post) = "/pay/refund_pay";
+    }
 }
 
