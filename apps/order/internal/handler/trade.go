@@ -28,15 +28,15 @@ func (h *OrderHandler) CreateTrade(ctx context.Context, req *ogen.CreateTradeReq
 		return nil, bizerr.ErrDuplicateReq
 	}
 	if err != nil {
-		cleaner(5)
+		cleaner()
 		return nil, err
 	}
 
 	// 1. 校验商品信息
-	// if err := h.checkParam(ctx, req); err != nil {
-	// 	cleaner(5)
-	// 	return nil, err
-	// }
+	if err := h.checkParam(ctx, req); err != nil {
+		cleaner()
+		return nil, err
+	}
 	// 2. 创建交易、订单、订单项
 	var tradeNo string
 	err = h.rep.GetDB().Transaction(func(tx *gorm.DB) error {
@@ -49,17 +49,17 @@ func (h *OrderHandler) CreateTrade(ctx context.Context, req *ogen.CreateTradeReq
 			return err
 		}
 		// 创建交易
-		err = h.rep.CreateTrade(ctx, trade)
+		err = h.rep.CreateTrade(ctx, h.rep.GetDB(), trade)
 		if err != nil {
 			return err
 		}
 		// 创建订单
-		err = h.rep.CreateOrders(ctx, orders)
+		err = h.rep.CreateOrders(ctx, h.rep.GetDB(), orders)
 		if err != nil {
 			return err
 		}
 		// 创建订单项
-		err = h.rep.CreateOrderItems(ctx, orderItems)
+		err = h.rep.CreateOrderItems(ctx, h.rep.GetDB(), orderItems)
 		if err != nil {
 			return err
 		}
@@ -69,8 +69,8 @@ func (h *OrderHandler) CreateTrade(ctx context.Context, req *ogen.CreateTradeReq
 		return nil, err
 	}
 	// TODO 3, 扣减库存
+	// 扣减失败进行订单的状态修改
 	// rsp, err := h.rep.ReduceStock(ctx, &ggen.StockReduceReq{})
-	// TODO 扣减失败需要进行补偿
 	if err != nil {
 		return nil, err
 	}
@@ -103,8 +103,15 @@ func (h *OrderHandler) CreateTrade(ctx context.Context, req *ogen.CreateTradeReq
 // 1. 前端传来的sku是否存在
 // 2. 前端传来的金额是否合法
 func (h *OrderHandler) checkParam(ctx context.Context, req *ogen.CreateTradeReq) error {
-	// TODO
-	goodsRsp, err := h.rep.GetGoodsList(ctx, &ggen.GetGoodsListReq{})
+	spuIDs := make([]uint64, 0)
+	for _, o := range req.Trade.OrderList {
+		for _, s := range o.OrderItemList {
+			spuIDs = append(spuIDs, s.SpuId)
+		}
+	}
+	goodsRsp, err := h.rep.GetGoodsList(ctx, &ggen.GetGoodsListReq{
+		SpuIds: spuIDs,
+	})
 	if err != nil {
 		return nil
 	}
@@ -201,4 +208,8 @@ func buildModels(req *ogen.CreateTradeReq) (*model.Trade, []*model.Order, []*mod
 		}
 	}
 	return trade, orderRsp, itemRSp, tradeNo, nil
+}
+
+func (h *OrderHandler) CancelTrade(ctx context.Context, req *ogen.CancelTradeReq) (res *ogen.CancelTradeRsp, err error) {
+	return nil, nil
 }

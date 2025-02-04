@@ -25,7 +25,7 @@ func (h *PayHandler) Pay(ctx context.Context, req *pgen.PayReq) (res *pgen.PayRs
 	param.TotalAmount = req.TotalAmount
 	url, err := h.rep.AlipayPay(param)
 	if err != nil {
-		cleaner(5)
+		cleaner()
 		return nil, err
 	}
 	return &pgen.PayRsp{

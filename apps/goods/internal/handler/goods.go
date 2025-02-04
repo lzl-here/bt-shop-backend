@@ -228,7 +228,7 @@ func (h *GoodsHandler) PublishGoods(ctx context.Context, req *ggen.PublishGoodsR
 				Value: a.AttributeValue,
 			})
 		}
-		attrs, err = h.rep.CreateAttributes(ctx, attrs)
+		attrs, err = h.rep.CreateAttributes(ctx, h.rep.GetDB(), attrs)
 		if err != nil {
 			return err
 		}
@@ -238,6 +238,13 @@ func (h *GoodsHandler) PublishGoods(ctx context.Context, req *ggen.PublishGoodsR
 			return err
 		}
 		if spu, err = h.storeSpuAndSkus(ctx, req, specs, specValues, attrs); err != nil {
+			return err
+		}
+		specIDs := make([]uint64, 0, len(specs))
+		for _, s := range specs {
+			specIDs = append(specIDs, s.ID)
+		}
+		if err = h.rep.UpdateSpecs(ctx, h.rep.GetDB(), specIDs, &model.Spec{SpuID: spu.ID}); err != nil {
 			return err
 		}
 		return nil
@@ -307,7 +314,7 @@ func (h *GoodsHandler) storeSpecsAndValues(ctx context.Context, req *ggen.Publis
 		})
 	}
 
-	if specs, err = h.rep.CreateSpecs(ctx, specs); err != nil {
+	if specs, err = h.rep.CreateSpecs(ctx, h.rep.GetDB(), specs); err != nil {
 		return nil, nil, err
 	}
 	for _, s := range specs {
@@ -317,7 +324,7 @@ func (h *GoodsHandler) storeSpecsAndValues(ctx context.Context, req *ggen.Publis
 			}
 		}
 	}
-	if err = h.rep.CreateSpecValues(ctx, specValues); err != nil {
+	if err = h.rep.CreateSpecValues(ctx, h.rep.GetDB(), specValues); err != nil {
 		return nil, nil, err
 	}
 	return specs, specValues, nil
@@ -341,7 +348,7 @@ func (h *GoodsHandler) storeSpuAndSkus(ctx context.Context, req *ggen.PublishGoo
 		AttributeIDs: attrIDs,
 		SpecIDs:      specIDs,
 	}
-	if spu, err = h.rep.CreateSpu(ctx, spu); err != nil {
+	if spu, err = h.rep.CreateSpu(ctx, h.rep.GetDB(), spu); err != nil {
 		return nil, err
 	}
 	// 存储sku
@@ -370,7 +377,7 @@ func (h *GoodsHandler) storeSpuAndSkus(ctx context.Context, req *ggen.PublishGoo
 		}
 		skus = append(skus, &sku)
 	}
-	if err = h.rep.CreateSkus(ctx, skus); err != nil {
+	if err = h.rep.CreateSkus(ctx, h.rep.GetDB(), skus); err != nil {
 		return nil, err
 	}
 	return spu, nil

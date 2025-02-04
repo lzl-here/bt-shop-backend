@@ -20,7 +20,7 @@ import (
 // 同样的请求不能重复执行（有超时时间）
 
 // 业务逻辑产生异常记得调用cleaner
-func NoDuplicate(ctx context.Context, redisCli *redis.Client, prefix string, value any, ttl time.Duration) (ok bool, cleaner func(int) (int64, error), key string, err error) {
+func NoDuplicate(ctx context.Context, redisCli *redis.Client, prefix string, value any, ttl time.Duration) (ok bool, cleaner func() error, key string, err error) {
 	// no panic guaranteed
 	defer func() {
 		if r := recover(); r != nil {
@@ -29,7 +29,7 @@ func NoDuplicate(ctx context.Context, redisCli *redis.Client, prefix string, val
 	}()
 
 	// always return a non-nil cleaner
-	cleaner = func(int) (int64, error) { return 0, nil }
+	cleaner = func() error { return nil }
 
 	// security check
 	if redisCli == nil {
@@ -59,15 +59,14 @@ func NoDuplicate(ctx context.Context, redisCli *redis.Client, prefix string, val
 
 	// set cleaner to be a non-empty function, if SetNX succeeds
 	if ok {
-		cleaner = func(retry int) (int64, error) { return delKey(ctx, redisCli, key, retry) }
+		cleaner = func() error { return delKey(ctx, redisCli, key, 5) }
 	}
 
 	return ok, cleaner, key, nil
 }
 
-
 // 删除key，由cleaner调用
-func delKey(ctx context.Context, redisCli *redis.Client, key string, retry int) (count int64, err error) {
+func delKey(ctx context.Context, redisCli *redis.Client, key string, retry int) (err error) {
 	// no panic guaranteed
 	defer func() {
 		if r := recover(); r != nil {
@@ -77,17 +76,17 @@ func delKey(ctx context.Context, redisCli *redis.Client, key string, retry int) 
 
 	// abort directly for safety
 	if retry < 1 {
-		return 0, fmt.Errorf("retry must be at least 1")
+		return fmt.Errorf("retry must be at least 1")
 	}
 
 	// retry loop
 	for i := 0; i < retry; i++ {
-		count, err = redisCli.Del(ctx, key).Result()
+		_, err = redisCli.Del(ctx, key).Result()
 		if err == nil {
-			return count, nil
+			return nil
 		}
 	}
 
 	// return the err from the last retry loop
-	return 0, fmt.Errorf("failed to delete key after %d retries: %w", retry, err)
+	return fmt.Errorf("failed to delete key after %d retries: %w", retry, err)
 }

@@ -26,6 +26,9 @@ var _ (RepoInterface) = (*Repo)(nil)
 
 // 在mock数据时，在newServer的时候替换成mockImpl
 type RepoInterface interface {
+	GetDB() *gorm.DB
+	GetCache() *redis.Client
+	GetES() *elasticsearch.TypedClient
 	Transaction(ctx context.Context, f func(ctx context.Context, tx *gorm.DB) error) error
 	GetSpuListByIDs(ctx context.Context, IDs []uint64) ([]*model.GoodsSpu, error)
 	GetSkuListBySpuIDs(ctx context.Context, SpuIDs []uint64) ([]*model.GoodsSku, error)
@@ -34,17 +37,23 @@ type RepoInterface interface {
 	GetAllCategoryList(ctx context.Context) ([]*model.Category, error)
 	GetAllBrandList(ctx context.Context) ([]*model.Brand, error)
 
-	CreateSpu(ctx context.Context, spu *model.GoodsSpu) (*model.GoodsSpu, error)
-	CreateSkus(ctx context.Context, skus []*model.GoodsSku) error
-	CreateSpecs(ctx context.Context, specs []*model.Spec) ([]*model.Spec, error)
-	CreateSpecValues(ctx context.Context, specValues []*model.SpecValue) error
-	CreateAttributes(ctx context.Context, attributes []*model.Attribute) ([]*model.Attribute, error)
+	CreateSpu(ctx context.Context, tx *gorm.DB, spu *model.GoodsSpu) (*model.GoodsSpu, error)
+	CreateSkus(ctx context.Context, tx *gorm.DB, skus []*model.GoodsSku) error
+	CreateSpecs(ctx context.Context, tx *gorm.DB, specs []*model.Spec) ([]*model.Spec, error)
+	CreateSpecValues(ctx context.Context, tx *gorm.DB, specValues []*model.SpecValue) error
+	CreateAttributes(ctx context.Context, tx *gorm.DB, attributes []*model.Attribute) ([]*model.Attribute, error)
 
-	UpdateOrSaveKeywordTimes(ctx context.Context, keyword string) error // 增加搜索关键词搜索次数
+	UpdateOrSaveKeywordTimes(ctx context.Context, tx *gorm.DB, keyword string) error // 增加搜索关键词搜索次数
 
 	AddSpuToES(ctx context.Context, spu *model.GoodsSpu) error // 添加spu到es
 	SearchSpu(ctx context.Context, req *ggen.SearchSpuListReq) ([]*model.GoodsSpu, error)
 	SearchAttr(ctx context.Context, req *ggen.SearchSpuListReq) ([]*model.Attribute, error)
+
+	UpdateSpecs(ctx context.Context, tx *gorm.DB, IDs []uint64, update *model.Spec) error
+
+	ReduceStock(ctx context.Context, tx *gorm.DB, skuID uint64, num int32) (bool, error)
+	IncreaseStock(ctx context.Context, tx *gorm.DB, skuID uint64, num int32) error
+	CreateStockRecord(ctx context.Context, tx *gorm.DB, record *model.StockOpRecord) error
 }
 
 // 数据访问层实现了RepoInterface
@@ -70,9 +79,22 @@ func NewRepo(db *gorm.DB, cache *redis.Client, es *elasticsearch.TypedClient, pa
 	}
 }
 
+func (r *Repo) GetDB() *gorm.DB {
+	return r.DB
+}
+
+func (r *Repo) GetCache() *redis.Client {
+	return r.Cache
+}
+
+func (r *Repo) GetES() *elasticsearch.TypedClient {
+	return r.ES
+}
+
 func (r *Repo) Transaction(ctx context.Context, f func(ctx context.Context, tx *gorm.DB) error) error {
 	return r.DB.Transaction(func(tx *gorm.DB) error {
-		return f(ctx, tx)
+		err := f(ctx, tx)
+		return err
 	})
 }
 
@@ -126,33 +148,33 @@ func (r *Repo) GetAllBrandList(ctx context.Context) ([]*model.Brand, error) {
 	return res, err
 }
 
-func (r *Repo) CreateSpu(ctx context.Context, spu *model.GoodsSpu) (*model.GoodsSpu, error) {
-	err := r.DB.Model(&model.GoodsSpu{}).Clauses(clause.Returning{}).Create(spu).Error
+func (r *Repo) CreateSpu(ctx context.Context, tx *gorm.DB, spu *model.GoodsSpu) (*model.GoodsSpu, error) {
+	err := tx.Model(&model.GoodsSpu{}).Clauses(clause.Returning{}).Create(spu).Error
 	return spu, err
 }
 
-func (r *Repo) CreateSkus(ctx context.Context, skus []*model.GoodsSku) error {
-	return r.DB.Create(skus).Error
+func (r *Repo) CreateSkus(ctx context.Context, tx *gorm.DB, skus []*model.GoodsSku) error {
+	return tx.Create(skus).Error
 }
-func (r *Repo) CreateSpecs(ctx context.Context, specs []*model.Spec) ([]*model.Spec, error) {
-	err := r.DB.Model(&model.Spec{}).Clauses(clause.Returning{}).Create(&specs).Error
+func (r *Repo) CreateSpecs(ctx context.Context, tx *gorm.DB, specs []*model.Spec) ([]*model.Spec, error) {
+	err := tx.Model(&model.Spec{}).Clauses(clause.Returning{}).Create(&specs).Error
 	return specs, err
 }
 
-func (r *Repo) CreateSpecValues(ctx context.Context, specValues []*model.SpecValue) error {
-	return r.DB.Create(specValues).Error
+func (r *Repo) CreateSpecValues(ctx context.Context, tx *gorm.DB, specValues []*model.SpecValue) error {
+	return tx.Create(specValues).Error
 }
 
-func (r *Repo) CreateAttributes(ctx context.Context, attributes []*model.Attribute) ([]*model.Attribute, error) {
-	err := r.DB.Model(&model.Attribute{}).Clauses(clause.Returning{}).Create(&attributes).Error
+func (r *Repo) CreateAttributes(ctx context.Context, tx *gorm.DB, attributes []*model.Attribute) ([]*model.Attribute, error) {
+	err := tx.Model(&model.Attribute{}).Clauses(clause.Returning{}).Create(&attributes).Error
 	return attributes, err
 }
 
-func (r *Repo) UpdateOrSaveKeywordTimes(ctx context.Context, keyword string) error {
+func (r *Repo) UpdateOrSaveKeywordTimes(ctx context.Context, tx *gorm.DB, keyword string) error {
 	keywordModel := &model.Keyword{Value: keyword, SearchTimes: 1}
 
 	// 使用 FirstOrCreate 来查找或创建记录
-	result := r.DB.Where(&model.Keyword{Value: keyword}).FirstOrCreate(keywordModel)
+	result := tx.Where(&model.Keyword{Value: keyword}).FirstOrCreate(keywordModel)
 	if result.Error != nil {
 		return result.Error
 	}
@@ -160,7 +182,7 @@ func (r *Repo) UpdateOrSaveKeywordTimes(ctx context.Context, keyword string) err
 	// 如果记录已经存在，则更新 search_times
 	if result.RowsAffected == 0 {
 		// 记录已经存在，更新 search_times
-		return r.DB.Model(&model.Keyword{}).Where("value = ?", keyword).Update("search_times", gorm.Expr("search_times + ?", 1)).Error
+		return tx.Model(&model.Keyword{}).Where("value = ?", keyword).Update("search_times", gorm.Expr("search_times + ?", 1)).Error
 	}
 	return nil
 }
@@ -272,4 +294,27 @@ func (r *Repo) SearchSpu(ctx context.Context, req *ggen.SearchSpuListReq) ([]*mo
 		spus = append(spus, &spu)
 	}
 	return spus, nil
+}
+
+func (r *Repo) UpdateSpecs(ctx context.Context, tx *gorm.DB, IDs []uint64, update *model.Spec) error {
+	return tx.Model(&model.Spec{}).Where("id in ?", IDs).Updates(update).Error
+}
+
+func (r *Repo) ReduceStock(ctx context.Context, tx *gorm.DB, skuID uint64, num int32) (bool, error) {
+	res := tx.Model(&model.GoodsSku{}).Where("id = ? AND stock_num >= ?", skuID, num).Update("stock_num", gorm.Expr("stock_num - ?", num))
+	if res.Error != nil {
+		return false, res.Error
+	}
+	if res.RowsAffected == 0 {
+		return false, nil
+	}
+	return true, nil
+}
+
+func (r *Repo) IncreaseStock(ctx context.Context, tx *gorm.DB, skuID uint64, num int32) error {
+	return tx.Model(&model.GoodsSku{}).Where("id = ?", skuID).Update("stock_num", gorm.Expr("stock_num + ?", num)).Error
+}
+
+func (r *Repo) CreateStockRecord(ctx context.Context, tx *gorm.DB, record *model.StockOpRecord) error {
+	return tx.Model(&model.StockOpRecord{}).Create(record).Error
 }

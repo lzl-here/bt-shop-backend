@@ -20,7 +20,7 @@ func (h *GoodsHandler) SearchSpuList(ctx context.Context, req *ggen.SearchSpuLis
 	// 异步增加搜索关键词次数
 	// TODO 写聚合
 	go func() {
-		h.rep.UpdateOrSaveKeywordTimes(ctx, req.Keyword)
+		h.rep.UpdateOrSaveKeywordTimes(ctx, h.rep.GetDB(), req.Keyword)
 	}()
 	spus, err := h.rep.SearchSpu(ctx, req)
 	if err != nil {

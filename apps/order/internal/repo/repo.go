@@ -20,17 +20,19 @@ import (
 type RepoInterface interface {
 	GetCache() *redis.Client
 	GetDB() *gorm.DB
+
 	GetGoodsList(ctx context.Context, req *ggen.GetGoodsListReq) (*ggen.GetGoodsListRsp, error) // 商品列表
-	Pay(ctx context.Context, req *pgen.PayReq) (*pgen.PayRsp, error)                            //支付
+	ReduceStock(ctx context.Context, req *ggen.StockReduceReq) (*ggen.StockReduceRsp, error)    // 扣减库存
 
-	CreateTrade(ctx context.Context, create *model.Trade) error
-	CreateOrders(ctx context.Context, create []*model.Order) error
-	CreateOrderItems(ctx context.Context, create []*model.OrderItem) error
+	Pay(ctx context.Context, req *pgen.PayReq) (*pgen.PayRsp, error) //支付
+
+	CreateTrade(ctx context.Context, tx *gorm.DB, create *model.Trade) error
+	CreateOrders(ctx context.Context, tx *gorm.DB, create []*model.Order) error
+	CreateOrderItems(ctx context.Context, tx *gorm.DB, create []*model.OrderItem) error
+	UpdateTrade(ctx context.Context, tx *gorm.DB, where, update *model.Trade) error
+	UpdateOrder(ctx context.Context, tx *gorm.DB, where, update *model.Order) error
+
 	GetOrderItems(ctx context.Context, where *model.OrderItem) ([]*model.OrderItem, error)
-	UpdateTrade(ctx context.Context, where, update *model.Trade) error
-	UpdateOrder(ctx context.Context, where, update *model.Order) error
-
-	ReduceStock(ctx context.Context, req *ggen.StockReduceReq) (*ggen.StockReduceRsp, error) // 扣减库存
 }
 
 var _ RepoInterface = (*Repo)(nil)
@@ -68,16 +70,16 @@ func (r *Repo) GetGoodsList(ctx context.Context, req *ggen.GetGoodsListReq) (*gg
 	return r.GoodsClient.GetGoodsList(ctx, req)
 }
 
-func (r *Repo) CreateTrade(ctx context.Context, create *model.Trade) error {
+func (r *Repo) CreateTrade(ctx context.Context, tx *gorm.DB, create *model.Trade) error {
 	t := new(model.Trade)
-	return r.DB.Model(t).Create(create).Error
+	return tx.Model(t).Create(create).Error
 }
 
-func (r *Repo) CreateOrders(ctx context.Context, create []*model.Order) error {
-	return r.DB.Model(&model.Order{}).Create(create).Error
+func (r *Repo) CreateOrders(ctx context.Context, tx *gorm.DB, create []*model.Order) error {
+	return tx.Model(&model.Order{}).Create(create).Error
 }
-func (r *Repo) CreateOrderItems(ctx context.Context, create []*model.OrderItem) error {
-	return r.DB.Model(&model.OrderItem{}).Create(create).Error
+func (r *Repo) CreateOrderItems(ctx context.Context, tx *gorm.DB, create []*model.OrderItem) error {
+	return tx.Model(&model.OrderItem{}).Create(create).Error
 }
 
 func (r *Repo) Pay(ctx context.Context, req *pgen.PayReq) (*pgen.PayRsp, error) {
@@ -90,11 +92,11 @@ func (r *Repo) GetOrderItems(ctx context.Context, where *model.OrderItem) ([]*mo
 	return items, err
 }
 
-func (r *Repo) UpdateTrade(ctx context.Context, where, update *model.Trade) error {
-	return r.DB.Model(&model.Trade{}).Where(where).Updates(update).Error
+func (r *Repo) UpdateTrade(ctx context.Context, tx *gorm.DB, where, update *model.Trade) error {
+	return tx.Model(&model.Trade{}).Where(where).Updates(update).Error
 }
-func (r *Repo) UpdateOrder(ctx context.Context, where, update *model.Order) error {
-	return r.DB.Model(&model.Order{}).Where(where).Updates(update).Error
+func (r *Repo) UpdateOrder(ctx context.Context, tx *gorm.DB, where, update *model.Order) error {
+	return tx.Model(&model.Order{}).Where(where).Updates(update).Error
 }
 
 func (r *Repo) ReduceStock(ctx context.Context, req *ggen.StockReduceReq) (*ggen.StockReduceRsp, error) {

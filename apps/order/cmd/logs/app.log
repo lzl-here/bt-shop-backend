@@ -30,3 +30,33 @@
 2025/02/03 22:11:34.754811 http2_client.go:262: [Error] KITEX: grpc client loopyWriter.run returning, error=connection error: desc = "error reading from server, remoteAddress=127.0.0.1:9091, error=EOF peer close"
 2025/02/03 22:11:34.754810 http2_client.go:262: [Error] KITEX: grpc client loopyWriter.run returning, error=connection error: desc = "error reading from server, remoteAddress=127.0.0.1:9091, error=EOF peer close"
 2025/02/03 22:11:34.754818 http2_client.go:262: [Error] KITEX: grpc client loopyWriter.run returning, error=connection error: desc = "error reading from server, remoteAddress=127.0.0.1:9091, error=EOF peer close"
+2025/02/04 10:07:31.554894 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-order?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/04 10:07:31.663298 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/04 10:07:31.950806 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9092
+2025/02/04 10:07:32.986158 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f351ae for etcd registry
+2025/02/04 10:08:24.430793 log_md.go:25: [Info] 请求路径: OrderService.CreateTrade, 请求地址: 127.0.0.1:60712, 请求体: &{Stream:0x14001aa4360}
+2025/02/04 10:10:28.406299 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-order?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/04 10:10:28.420012 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/04 10:10:28.532537 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9092
+2025/02/04 10:10:29.543366 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f351d5 for etcd registry
+2025/02/04 10:10:47.430481 log_md.go:25: [Info] 请求路径: OrderService.CreateTrade, 请求地址: 127.0.0.1:60802, 请求体: &{Stream:0x140020982a0}
+2025/02/04 10:11:52.361651 etcd_registry.go:225: [Warn] keep register get kitex/registry-etcd/order/127.0.0.1:9092 failed with err: context deadline exceeded
+2025/02/04 10:11:52.413252 error_md.go:33: [Error] <nil>
+2025/02/04 10:11:52.413287 log_md.go:36: [Info] 响应体: <nil>, 耗时: 64982ms
+2025/02/04 10:14:24.263143 log_md.go:25: [Info] 请求路径: OrderService.CreateTrade, 请求地址: 127.0.0.1:60802, 请求体: &{Stream:0x14001e74340}
+2025/02/04 10:15:18.895172 etcd_registry.go:225: [Warn] keep register get kitex/registry-etcd/order/127.0.0.1:9092 failed with err: context deadline exceeded
+2025/02/04 10:15:20.731909 error_md.go:33: [Error] <nil>
+2025/02/04 10:15:20.731961 log_md.go:36: [Info] 响应体: <nil>, 耗时: 56468ms
+2025/02/04 10:15:30.723083 etcd_registry.go:232: [Info] keep register service kitex/registry-etcd/order/127.0.0.1:9092
+2025/02/04 10:15:30.730439 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f3520c for etcd registry
+2025/02/04 10:15:50.504765 log_md.go:25: [Info] 请求路径: OrderService.CreateTrade, 请求地址: 127.0.0.1:60802, 请求体: &{Stream:0x14001c00cc0}
+2025/02/04 10:16:57.798976 error_md.go:33: [Error] <nil>
+2025/02/04 10:16:57.799156 log_md.go:36: [Info] 响应体: <nil>, 耗时: 67294ms
+2025/02/04 10:17:08.670736 log_md.go:25: [Info] 请求路径: OrderService.CreateTrade, 请求地址: 127.0.0.1:60802, 请求体: &{Stream:0x14001b5e9e0}
+2025/02/04 10:19:31.110611 http2_client.go:262: [Error] KITEX: grpc client loopyWriter.run returning, error=connection error: desc = "error reading from server, remoteAddress=127.0.0.1:9093, error=EOF peer close"
+2025/02/04 10:19:31.110681 http2_client.go:262: [Error] KITEX: grpc client loopyWriter.run returning, error=connection error: desc = "error reading from server, remoteAddress=127.0.0.1:9093, error=EOF peer close"
+2025/02/04 10:19:31.110708 http2_client.go:262: [Error] KITEX: grpc client loopyWriter.run returning, error=connection error: desc = "error reading from server, remoteAddress=127.0.0.1:9093, error=EOF peer close"
+2025/02/04 10:19:31.110639 http2_client.go:262: [Error] KITEX: grpc client loopyWriter.run returning, error=connection error: desc = "error reading from server, remoteAddress=127.0.0.1:9093, error=EOF peer close"
+2025/02/04 10:19:31.156458 error_md.go:33: [Error] <nil>
+2025/02/04 10:19:31.156510 log_md.go:36: [Info] 响应体: <nil>, 耗时: 142484ms
+2025/02/04 10:24:41.035200 server_handler.go:372: [Error] KITEX: processing gRPC request error, remoteAddr=127.0.0.1:60802, error=unknown service GoodsService

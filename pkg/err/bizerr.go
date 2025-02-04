@@ -21,4 +21,5 @@ var (
 	ErrGoodsNotExist      = kerrors.NewBizStatusError(30001, "商品不存在")
 	ErrGoodsNotCorrect    = kerrors.NewBizStatusError(30002, "商品信息不符")
 	ErrInvalidTradeAmount = kerrors.NewBizStatusError(30003, "交易金额有误")
+	ErrStockNotEnough     = kerrors.NewBizStatusError(30004, "库存不足")
 )

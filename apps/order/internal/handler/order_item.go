@@ -8,6 +8,9 @@ import (
 	ogen "github.com/lzl-here/bt-shop-backend/kitex_gen/order"
 )
 
+/**
+* @description: 获取订单项列表
+ */
 func (h *OrderHandler) GetOrderItems(ctx context.Context, req *ogen.GetOrderItemsReq) (*ogen.GetOrderItemsRsp, error) {
 	items, err := h.rep.GetOrderItems(ctx, &model.OrderItem{TradeNo: req.TradeNo})
 	if err != nil {

@@ -9,17 +9,36 @@ import "goods/common.proto";
 // 扣减库存
 message StockReduceReq {
     string trade_no = 1;
+    repeated StockReduceItem items = 2;
 }
 
 message StockReduceRsp {
+    int32 code = 1;
+    string msg = 2;
+    string log_id = 3;
+    StockReduceRspData data = 4;
+    message StockReduceRspData{
 
+    }    
 }
 
 // 扣减库存回滚
 message StockIncreaseReq{
     string trade_no = 1;
+    repeated StockReduceItem items = 2;
 }
 
-message StockIncreaseRsp {
+message StockIncreaseRsp { int32 code = 1;
+    string msg = 2;
+    string log_id = 3;
+    StockIncreaseRspData data = 4;
+    message StockIncreaseRspData{
 
+    } 
+
+}
+
+message StockReduceItem {
+    uint64 sku_id = 1;
+    int32 stock_num = 2;
 }

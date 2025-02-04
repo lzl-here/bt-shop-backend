@@ -19,6 +19,11 @@ func (x *StockReduceReq) FastRead(buf []byte, _type int8, number int32) (offset 
 		if err != nil {
 			goto ReadFieldError
 		}
+	case 2:
+		offset, err = x.fastReadField2(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
 	default:
 		offset, err = fastpb.Skip(buf, _type, number)
 		if err != nil {
@@ -37,8 +42,38 @@ func (x *StockReduceReq) fastReadField1(buf []byte, _type int8) (offset int, err
 	return offset, err
 }
 
+func (x *StockReduceReq) fastReadField2(buf []byte, _type int8) (offset int, err error) {
+	var v StockReduceItem
+	offset, err = fastpb.ReadMessage(buf, _type, &v)
+	if err != nil {
+		return offset, err
+	}
+	x.Items = append(x.Items, &v)
+	return offset, nil
+}
+
 func (x *StockReduceRsp) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
 	switch number {
+	case 1:
+		offset, err = x.fastReadField1(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 2:
+		offset, err = x.fastReadField2(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 3:
+		offset, err = x.fastReadField3(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 4:
+		offset, err = x.fastReadField4(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
 	default:
 		offset, err = fastpb.Skip(buf, _type, number)
 		if err != nil {
@@ -48,12 +83,44 @@ func (x *StockReduceRsp) FastRead(buf []byte, _type int8, number int32) (offset 
 	return offset, nil
 SkipFieldError:
 	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
+ReadFieldError:
+	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_StockReduceRsp[number], err)
+}
+
+func (x *StockReduceRsp) fastReadField1(buf []byte, _type int8) (offset int, err error) {
+	x.Code, offset, err = fastpb.ReadInt32(buf, _type)
+	return offset, err
+}
+
+func (x *StockReduceRsp) fastReadField2(buf []byte, _type int8) (offset int, err error) {
+	x.Msg, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
+func (x *StockReduceRsp) fastReadField3(buf []byte, _type int8) (offset int, err error) {
+	x.LogId, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
+func (x *StockReduceRsp) fastReadField4(buf []byte, _type int8) (offset int, err error) {
+	var v StockReduceRsp_StockReduceRspData
+	offset, err = fastpb.ReadMessage(buf, _type, &v)
+	if err != nil {
+		return offset, err
+	}
+	x.Data = &v
+	return offset, nil
 }
 
 func (x *StockIncreaseReq) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
 	switch number {
 	case 1:
 		offset, err = x.fastReadField1(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 2:
+		offset, err = x.fastReadField2(buf, _type)
 		if err != nil {
 			goto ReadFieldError
 		}
@@ -75,7 +142,125 @@ func (x *StockIncreaseReq) fastReadField1(buf []byte, _type int8) (offset int, e
 	return offset, err
 }
 
+func (x *StockIncreaseReq) fastReadField2(buf []byte, _type int8) (offset int, err error) {
+	var v StockReduceItem
+	offset, err = fastpb.ReadMessage(buf, _type, &v)
+	if err != nil {
+		return offset, err
+	}
+	x.Items = append(x.Items, &v)
+	return offset, nil
+}
+
 func (x *StockIncreaseRsp) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
+	switch number {
+	case 1:
+		offset, err = x.fastReadField1(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 2:
+		offset, err = x.fastReadField2(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 3:
+		offset, err = x.fastReadField3(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 4:
+		offset, err = x.fastReadField4(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	default:
+		offset, err = fastpb.Skip(buf, _type, number)
+		if err != nil {
+			goto SkipFieldError
+		}
+	}
+	return offset, nil
+SkipFieldError:
+	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
+ReadFieldError:
+	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_StockIncreaseRsp[number], err)
+}
+
+func (x *StockIncreaseRsp) fastReadField1(buf []byte, _type int8) (offset int, err error) {
+	x.Code, offset, err = fastpb.ReadInt32(buf, _type)
+	return offset, err
+}
+
+func (x *StockIncreaseRsp) fastReadField2(buf []byte, _type int8) (offset int, err error) {
+	x.Msg, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
+func (x *StockIncreaseRsp) fastReadField3(buf []byte, _type int8) (offset int, err error) {
+	x.LogId, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
+func (x *StockIncreaseRsp) fastReadField4(buf []byte, _type int8) (offset int, err error) {
+	var v StockIncreaseRsp_StockIncreaseRspData
+	offset, err = fastpb.ReadMessage(buf, _type, &v)
+	if err != nil {
+		return offset, err
+	}
+	x.Data = &v
+	return offset, nil
+}
+
+func (x *StockReduceItem) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
+	switch number {
+	case 1:
+		offset, err = x.fastReadField1(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 2:
+		offset, err = x.fastReadField2(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	default:
+		offset, err = fastpb.Skip(buf, _type, number)
+		if err != nil {
+			goto SkipFieldError
+		}
+	}
+	return offset, nil
+SkipFieldError:
+	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
+ReadFieldError:
+	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_StockReduceItem[number], err)
+}
+
+func (x *StockReduceItem) fastReadField1(buf []byte, _type int8) (offset int, err error) {
+	x.SkuId, offset, err = fastpb.ReadUint64(buf, _type)
+	return offset, err
+}
+
+func (x *StockReduceItem) fastReadField2(buf []byte, _type int8) (offset int, err error) {
+	x.StockNum, offset, err = fastpb.ReadInt32(buf, _type)
+	return offset, err
+}
+
+func (x *StockReduceRsp_StockReduceRspData) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
+	switch number {
+	default:
+		offset, err = fastpb.Skip(buf, _type, number)
+		if err != nil {
+			goto SkipFieldError
+		}
+	}
+	return offset, nil
+SkipFieldError:
+	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
+}
+
+func (x *StockIncreaseRsp_StockIncreaseRspData) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
 	switch number {
 	default:
 		offset, err = fastpb.Skip(buf, _type, number)
@@ -93,6 +278,7 @@ func (x *StockReduceReq) FastWrite(buf []byte) (offset int) {
 		return offset
 	}
 	offset += x.fastWriteField1(buf[offset:])
+	offset += x.fastWriteField2(buf[offset:])
 	return offset
 }
 
@@ -104,10 +290,56 @@ func (x *StockReduceReq) fastWriteField1(buf []byte) (offset int) {
 	return offset
 }
 
+func (x *StockReduceReq) fastWriteField2(buf []byte) (offset int) {
+	if x.Items == nil {
+		return offset
+	}
+	for i := range x.GetItems() {
+		offset += fastpb.WriteMessage(buf[offset:], 2, x.GetItems()[i])
+	}
+	return offset
+}
+
 func (x *StockReduceRsp) FastWrite(buf []byte) (offset int) {
 	if x == nil {
 		return offset
 	}
+	offset += x.fastWriteField1(buf[offset:])
+	offset += x.fastWriteField2(buf[offset:])
+	offset += x.fastWriteField3(buf[offset:])
+	offset += x.fastWriteField4(buf[offset:])
+	return offset
+}
+
+func (x *StockReduceRsp) fastWriteField1(buf []byte) (offset int) {
+	if x.Code == 0 {
+		return offset
+	}
+	offset += fastpb.WriteInt32(buf[offset:], 1, x.GetCode())
+	return offset
+}
+
+func (x *StockReduceRsp) fastWriteField2(buf []byte) (offset int) {
+	if x.Msg == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 2, x.GetMsg())
+	return offset
+}
+
+func (x *StockReduceRsp) fastWriteField3(buf []byte) (offset int) {
+	if x.LogId == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 3, x.GetLogId())
+	return offset
+}
+
+func (x *StockReduceRsp) fastWriteField4(buf []byte) (offset int) {
+	if x.Data == nil {
+		return offset
+	}
+	offset += fastpb.WriteMessage(buf[offset:], 4, x.GetData())
 	return offset
 }
 
@@ -116,6 +348,7 @@ func (x *StockIncreaseReq) FastWrite(buf []byte) (offset int) {
 		return offset
 	}
 	offset += x.fastWriteField1(buf[offset:])
+	offset += x.fastWriteField2(buf[offset:])
 	return offset
 }
 
@@ -127,7 +360,92 @@ func (x *StockIncreaseReq) fastWriteField1(buf []byte) (offset int) {
 	return offset
 }
 
+func (x *StockIncreaseReq) fastWriteField2(buf []byte) (offset int) {
+	if x.Items == nil {
+		return offset
+	}
+	for i := range x.GetItems() {
+		offset += fastpb.WriteMessage(buf[offset:], 2, x.GetItems()[i])
+	}
+	return offset
+}
+
 func (x *StockIncreaseRsp) FastWrite(buf []byte) (offset int) {
+	if x == nil {
+		return offset
+	}
+	offset += x.fastWriteField1(buf[offset:])
+	offset += x.fastWriteField2(buf[offset:])
+	offset += x.fastWriteField3(buf[offset:])
+	offset += x.fastWriteField4(buf[offset:])
+	return offset
+}
+
+func (x *StockIncreaseRsp) fastWriteField1(buf []byte) (offset int) {
+	if x.Code == 0 {
+		return offset
+	}
+	offset += fastpb.WriteInt32(buf[offset:], 1, x.GetCode())
+	return offset
+}
+
+func (x *StockIncreaseRsp) fastWriteField2(buf []byte) (offset int) {
+	if x.Msg == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 2, x.GetMsg())
+	return offset
+}
+
+func (x *StockIncreaseRsp) fastWriteField3(buf []byte) (offset int) {
+	if x.LogId == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 3, x.GetLogId())
+	return offset
+}
+
+func (x *StockIncreaseRsp) fastWriteField4(buf []byte) (offset int) {
+	if x.Data == nil {
+		return offset
+	}
+	offset += fastpb.WriteMessage(buf[offset:], 4, x.GetData())
+	return offset
+}
+
+func (x *StockReduceItem) FastWrite(buf []byte) (offset int) {
+	if x == nil {
+		return offset
+	}
+	offset += x.fastWriteField1(buf[offset:])
+	offset += x.fastWriteField2(buf[offset:])
+	return offset
+}
+
+func (x *StockReduceItem) fastWriteField1(buf []byte) (offset int) {
+	if x.SkuId == 0 {
+		return offset
+	}
+	offset += fastpb.WriteUint64(buf[offset:], 1, x.GetSkuId())
+	return offset
+}
+
+func (x *StockReduceItem) fastWriteField2(buf []byte) (offset int) {
+	if x.StockNum == 0 {
+		return offset
+	}
+	offset += fastpb.WriteInt32(buf[offset:], 2, x.GetStockNum())
+	return offset
+}
+
+func (x *StockReduceRsp_StockReduceRspData) FastWrite(buf []byte) (offset int) {
+	if x == nil {
+		return offset
+	}
+	return offset
+}
+
+func (x *StockIncreaseRsp_StockIncreaseRspData) FastWrite(buf []byte) (offset int) {
 	if x == nil {
 		return offset
 	}
@@ -139,6 +457,7 @@ func (x *StockReduceReq) Size() (n int) {
 		return n
 	}
 	n += x.sizeField1()
+	n += x.sizeField2()
 	return n
 }
 
@@ -150,10 +469,56 @@ func (x *StockReduceReq) sizeField1() (n int) {
 	return n
 }
 
+func (x *StockReduceReq) sizeField2() (n int) {
+	if x.Items == nil {
+		return n
+	}
+	for i := range x.GetItems() {
+		n += fastpb.SizeMessage(2, x.GetItems()[i])
+	}
+	return n
+}
+
 func (x *StockReduceRsp) Size() (n int) {
 	if x == nil {
 		return n
 	}
+	n += x.sizeField1()
+	n += x.sizeField2()
+	n += x.sizeField3()
+	n += x.sizeField4()
+	return n
+}
+
+func (x *StockReduceRsp) sizeField1() (n int) {
+	if x.Code == 0 {
+		return n
+	}
+	n += fastpb.SizeInt32(1, x.GetCode())
+	return n
+}
+
+func (x *StockReduceRsp) sizeField2() (n int) {
+	if x.Msg == "" {
+		return n
+	}
+	n += fastpb.SizeString(2, x.GetMsg())
+	return n
+}
+
+func (x *StockReduceRsp) sizeField3() (n int) {
+	if x.LogId == "" {
+		return n
+	}
+	n += fastpb.SizeString(3, x.GetLogId())
+	return n
+}
+
+func (x *StockReduceRsp) sizeField4() (n int) {
+	if x.Data == nil {
+		return n
+	}
+	n += fastpb.SizeMessage(4, x.GetData())
 	return n
 }
 
@@ -162,6 +527,7 @@ func (x *StockIncreaseReq) Size() (n int) {
 		return n
 	}
 	n += x.sizeField1()
+	n += x.sizeField2()
 	return n
 }
 
@@ -173,7 +539,92 @@ func (x *StockIncreaseReq) sizeField1() (n int) {
 	return n
 }
 
+func (x *StockIncreaseReq) sizeField2() (n int) {
+	if x.Items == nil {
+		return n
+	}
+	for i := range x.GetItems() {
+		n += fastpb.SizeMessage(2, x.GetItems()[i])
+	}
+	return n
+}
+
 func (x *StockIncreaseRsp) Size() (n int) {
+	if x == nil {
+		return n
+	}
+	n += x.sizeField1()
+	n += x.sizeField2()
+	n += x.sizeField3()
+	n += x.sizeField4()
+	return n
+}
+
+func (x *StockIncreaseRsp) sizeField1() (n int) {
+	if x.Code == 0 {
+		return n
+	}
+	n += fastpb.SizeInt32(1, x.GetCode())
+	return n
+}
+
+func (x *StockIncreaseRsp) sizeField2() (n int) {
+	if x.Msg == "" {
+		return n
+	}
+	n += fastpb.SizeString(2, x.GetMsg())
+	return n
+}
+
+func (x *StockIncreaseRsp) sizeField3() (n int) {
+	if x.LogId == "" {
+		return n
+	}
+	n += fastpb.SizeString(3, x.GetLogId())
+	return n
+}
+
+func (x *StockIncreaseRsp) sizeField4() (n int) {
+	if x.Data == nil {
+		return n
+	}
+	n += fastpb.SizeMessage(4, x.GetData())
+	return n
+}
+
+func (x *StockReduceItem) Size() (n int) {
+	if x == nil {
+		return n
+	}
+	n += x.sizeField1()
+	n += x.sizeField2()
+	return n
+}
+
+func (x *StockReduceItem) sizeField1() (n int) {
+	if x.SkuId == 0 {
+		return n
+	}
+	n += fastpb.SizeUint64(1, x.GetSkuId())
+	return n
+}
+
+func (x *StockReduceItem) sizeField2() (n int) {
+	if x.StockNum == 0 {
+		return n
+	}
+	n += fastpb.SizeInt32(2, x.GetStockNum())
+	return n
+}
+
+func (x *StockReduceRsp_StockReduceRspData) Size() (n int) {
+	if x == nil {
+		return n
+	}
+	return n
+}
+
+func (x *StockIncreaseRsp_StockIncreaseRspData) Size() (n int) {
 	if x == nil {
 		return n
 	}
@@ -182,12 +633,33 @@ func (x *StockIncreaseRsp) Size() (n int) {
 
 var fieldIDToName_StockReduceReq = map[int32]string{
 	1: "TradeNo",
+	2: "Items",
 }
 
-var fieldIDToName_StockReduceRsp = map[int32]string{}
+var fieldIDToName_StockReduceRsp = map[int32]string{
+	1: "Code",
+	2: "Msg",
+	3: "LogId",
+	4: "Data",
+}
 
 var fieldIDToName_StockIncreaseReq = map[int32]string{
 	1: "TradeNo",
+	2: "Items",
 }
 
-var fieldIDToName_StockIncreaseRsp = map[int32]string{}
+var fieldIDToName_StockIncreaseRsp = map[int32]string{
+	1: "Code",
+	2: "Msg",
+	3: "LogId",
+	4: "Data",
+}
+
+var fieldIDToName_StockReduceItem = map[int32]string{
+	1: "SkuId",
+	2: "StockNum",
+}
+
+var fieldIDToName_StockReduceRsp_StockReduceRspData = map[int32]string{}
+
+var fieldIDToName_StockIncreaseRsp_StockIncreaseRspData = map[int32]string{}

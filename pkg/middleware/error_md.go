@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/cloudwego/kitex/pkg/endpoint"
+	"github.com/cloudwego/kitex/pkg/kerrors"
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	bizerr "github.com/lzl-here/bt-shop-backend/pkg/err"
@@ -19,7 +20,7 @@ func ErrorMiddleWare(next endpoint.Endpoint) endpoint.Endpoint {
 		err := next(ctx, req, resp)
 		if err != nil {
 			klog.Error(err)
-			bizErr := bizerr.ErrInternal
+			bizErr := kerrors.NewBizStatusError(bizerr.ErrInternal.BizStatusCode(), err.Error())
 			ri := rpcinfo.GetRPCInfo(ctx)
 			if setter, ok := ri.Invocation().(rpcinfo.InvocationSetter); ok {
 				setter.SetBizStatusErr(bizErr)

@@ -1,106 +1,26 @@
-2025/02/03 19:43:14.914815 log_md.go:25: [Info] 请求路径: GoodsService.PublishGoods, 请求地址: 127.0.0.1:59257, 请求体: &{Stream:0x14001d08440}
-2025/02/03 19:43:14.936944 error_md.go:21: [Error] biz error: Error 1054 (42S22): Unknown column 'price' in 'field list'
-2025/02/03 19:43:14.936972 error_md.go:26: [Error] biz error: code=10002, msg=服务端内部异常
-2025/02/03 19:43:14.936982 log_md.go:36: [Info] 响应体: <nil>, 耗时: 22ms
-2025/02/03 19:44:25.489343 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
-2025/02/03 19:44:25.496537 load.go:47: [Info] 连接到redis成功, pong: PONG
-2025/02/03 19:44:25.563345 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9093
-2025/02/03 19:44:26.571331 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f34e06 for etcd registry
-2025/02/03 19:44:34.642078 log_md.go:25: [Info] 请求路径: GoodsService.PublishGoods, 请求地址: 127.0.0.1:59295, 请求体: &{Stream:0x14001d042e0}
-2025/02/03 19:44:34.861255 error_md.go:33: [Error] <nil>
-2025/02/03 19:44:34.861362 log_md.go:36: [Info] 响应体: <nil>, 耗时: 219ms
-2025/02/03 19:44:43.024446 log_md.go:25: [Info] 请求路径: GoodsService.GetGoodsDetail, 请求地址: 127.0.0.1:59295, 请求体: &{Stream:0x14001b22580}
-2025/02/03 19:44:43.031242 error_md.go:33: [Error] <nil>
-2025/02/03 19:44:43.031281 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
-2025/02/03 19:45:16.432882 log_md.go:25: [Info] 请求路径: GoodsService.GetGoodsDetail, 请求地址: 127.0.0.1:59295, 请求体: &{Stream:0x14001e0e240}
-2025/02/03 19:47:00.067321 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
-2025/02/03 19:47:00.076197 load.go:47: [Info] 连接到redis成功, pong: PONG
-2025/02/03 19:47:00.142243 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9093
-2025/02/03 19:47:01.157935 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f34e12 for etcd registry
-2025/02/03 19:47:03.944189 log_md.go:25: [Info] 请求路径: GoodsService.GetGoodsDetail, 请求地址: 127.0.0.1:59370, 请求体: &{Stream:0x140001b4520}
-2025/02/03 19:47:03.957506 error_md.go:33: [Error] <nil>
-2025/02/03 19:47:03.957616 log_md.go:36: [Info] 响应体: <nil>, 耗时: 13ms
-2025/02/03 19:48:18.810086 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
-2025/02/03 19:48:18.815351 load.go:47: [Info] 连接到redis成功, pong: PONG
-2025/02/03 19:48:18.881003 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9093
-2025/02/03 19:48:19.909866 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f34e1d for etcd registry
-2025/02/03 19:49:01.328523 log_md.go:25: [Info] 请求路径: GoodsService.PublishGoods, 请求地址: 127.0.0.1:59452, 请求体: &{Stream:0x14001d8c180}
-2025/02/03 19:49:01.366101 error_md.go:33: [Error] <nil>
-2025/02/03 19:49:01.366139 log_md.go:36: [Info] 响应体: <nil>, 耗时: 37ms
-2025/02/03 19:49:10.546946 log_md.go:25: [Info] 请求路径: GoodsService.GetGoodsDetail, 请求地址: 127.0.0.1:59452, 请求体: &{Stream:0x14001b19300}
-2025/02/03 19:49:10.557363 error_md.go:33: [Error] <nil>
-2025/02/03 19:49:10.557401 log_md.go:36: [Info] 响应体: <nil>, 耗时: 10ms
-2025/02/03 19:49:27.953379 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:59452, 请求体: &{Stream:0x14001d8cb00}
-2025/02/03 19:49:27.982100 error_md.go:33: [Error] <nil>
-2025/02/03 19:49:27.982151 log_md.go:36: [Info] 响应体: <nil>, 耗时: 28ms
-2025/02/03 19:51:28.266837 log_md.go:25: [Info] 请求路径: GoodsService.PublishGoods, 请求地址: 127.0.0.1:59452, 请求体: &{Stream:0x14001b18340}
-2025/02/03 19:51:28.294163 error_md.go:33: [Error] <nil>
-2025/02/03 19:51:28.294247 log_md.go:36: [Info] 响应体: <nil>, 耗时: 27ms
-2025/02/03 19:51:35.005153 log_md.go:25: [Info] 请求路径: GoodsService.GetGoodsDetail, 请求地址: 127.0.0.1:59452, 请求体: &{Stream:0x14001c462a0}
-2025/02/03 19:51:35.010540 error_md.go:33: [Error] <nil>
-2025/02/03 19:51:35.010627 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
-2025/02/03 19:51:39.079108 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:59452, 请求体: &{Stream:0x14001b186c0}
-2025/02/03 19:51:39.089772 error_md.go:33: [Error] <nil>
-2025/02/03 19:51:39.089875 log_md.go:36: [Info] 响应体: <nil>, 耗时: 10ms
-2025/02/03 19:51:52.646636 log_md.go:25: [Info] 请求路径: GoodsService.GetGoodsList, 请求地址: 127.0.0.1:59452, 请求体: &{Stream:0x14001b18900}
-2025/02/03 19:51:52.652382 error_md.go:33: [Error] <nil>
-2025/02/03 19:51:52.652488 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
-2025/02/03 19:52:56.933774 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
-2025/02/03 19:52:56.942615 load.go:47: [Info] 连接到redis成功, pong: PONG
-2025/02/03 19:52:57.128885 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9093
-2025/02/03 19:52:58.135533 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f34e2f for etcd registry
-2025/02/03 19:53:14.561296 log_md.go:25: [Info] 请求路径: GoodsService.GetGoodsList, 请求地址: 127.0.0.1:59688, 请求体: &{Stream:0x14001c5a480}
-2025/02/03 19:53:14.577681 error_md.go:33: [Error] <nil>
-2025/02/03 19:53:14.577979 log_md.go:36: [Info] 响应体: <nil>, 耗时: 16ms
-2025/02/03 19:53:20.676208 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:59688, 请求体: &{Stream:0x14001b8e4c0}
-2025/02/03 19:53:20.681137 error_md.go:33: [Error] <nil>
-2025/02/03 19:53:20.681760 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
-2025/02/03 19:53:23.905023 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:59688, 请求体: &{Stream:0x14001e1c260}
-2025/02/03 19:53:23.908077 error_md.go:33: [Error] <nil>
-2025/02/03 19:53:23.908189 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
-2025/02/03 19:53:26.859973 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:59688, 请求体: &{Stream:0x140001b4340}
-2025/02/03 19:53:26.866585 error_md.go:33: [Error] <nil>
-2025/02/03 19:53:26.866704 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
-2025/02/03 19:53:45.041185 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:59688, 请求体: &{Stream:0x14001e1c4a0}
-2025/02/03 19:53:45.050291 error_md.go:33: [Error] <nil>
-2025/02/03 19:53:45.050345 log_md.go:36: [Info] 响应体: <nil>, 耗时: 9ms
-2025/02/03 19:53:47.747889 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:59688, 请求体: &{Stream:0x14001b8efc0}
-2025/02/03 19:53:47.749681 error_md.go:33: [Error] <nil>
-2025/02/03 19:53:47.749809 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
-2025/02/03 19:53:51.626881 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:59688, 请求体: &{Stream:0x140001b4ea0}
-2025/02/03 19:53:51.631006 error_md.go:33: [Error] <nil>
-2025/02/03 19:53:51.631142 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
-2025/02/03 19:53:57.718484 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:59688, 请求体: &{Stream:0x14001c5b0e0}
-2025/02/03 19:53:57.722058 error_md.go:33: [Error] <nil>
-2025/02/03 19:53:57.722185 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
-2025/02/03 19:53:59.377797 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:59688, 请求体: &{Stream:0x14001b8f2c0}
-2025/02/03 19:53:59.379489 error_md.go:33: [Error] <nil>
-2025/02/03 19:53:59.379577 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
-2025/02/03 19:55:13.220469 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
-2025/02/03 19:55:13.230039 load.go:47: [Info] 连接到redis成功, pong: PONG
-2025/02/03 19:55:13.298392 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9093
-2025/02/03 19:55:14.309193 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f34e3c for etcd registry
-2025/02/03 19:55:25.326387 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:59745, 请求体: &{Stream:0x14001c58cc0}
-2025/02/03 19:55:25.331257 error_md.go:33: [Error] <nil>
-2025/02/03 19:55:25.331299 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
-2025/02/03 19:55:38.941035 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:59745, 请求体: &{Stream:0x14001e16040}
-2025/02/03 19:55:38.957179 error_md.go:33: [Error] <nil>
-2025/02/03 19:55:38.957239 log_md.go:36: [Info] 响应体: <nil>, 耗时: 16ms
-2025/02/03 19:55:43.903174 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:59745, 请求体: &{Stream:0x14001c593e0}
-2025/02/03 19:55:43.906009 error_md.go:33: [Error] <nil>
-2025/02/03 19:55:43.906046 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
-2025/02/03 21:34:53.096367 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
-2025/02/03 21:34:53.103895 load.go:47: [Info] 连接到redis成功, pong: PONG
-2025/02/03 21:34:53.169322 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9093
-2025/02/03 21:34:54.181425 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f34f3c for etcd registry
-2025/02/03 21:35:15.056933 log_md.go:25: [Info] 请求路径: GoodsService.GetGoodsList, 请求地址: 127.0.0.1:49813, 请求体: &{Stream:0x14001d8a9a0}
-2025/02/03 21:35:15.067535 error_md.go:33: [Error] <nil>
-2025/02/03 21:35:15.067633 log_md.go:36: [Info] 响应体: <nil>, 耗时: 10ms
-2025/02/03 21:35:53.063046 log_md.go:25: [Info] 请求路径: GoodsService.GetGoodsList, 请求地址: 127.0.0.1:49868, 请求体: &{Stream:0x140001ac180}
-2025/02/03 21:35:53.071725 error_md.go:33: [Error] <nil>
-2025/02/03 21:35:53.071780 log_md.go:36: [Info] 响应体: <nil>, 耗时: 8ms
-2025/02/03 21:36:00.677462 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
-2025/02/03 21:36:00.677460 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
-2025/02/03 23:03:51.005261 etcd_registry.go:216: [Info] stop keep register service kitex/registry-etcd/goods/127.0.0.1:9093
-2025/02/03 23:03:51.006517 server_handler.go:384: [Info] KITEX: gRPC GracefulShutdown starts
-2025/02/03 23:03:51.058560 server_handler.go:386: [Info] KITEX: gRPC GracefulShutdown ends
+2025/02/04 12:53:11.385984 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/04 12:53:11.393077 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/04 12:53:11.458685 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9093
+2025/02/04 12:53:12.465469 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f354e2 for etcd registry
+2025/02/04 12:53:35.175635 log_md.go:25: [Info] 请求路径: GoodsService.StockReduce, 请求地址: 127.0.0.1:51346, 请求体: &{Stream:0x14001e1c2c0}
+2025/02/04 12:53:40.238072 error_md.go:33: [Error] <nil>
+2025/02/04 12:53:40.238147 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5062ms
+2025/02/04 12:54:19.484239 log_md.go:25: [Info] 请求路径: GoodsService.StockReduce, 请求地址: 127.0.0.1:51346, 请求体: &{Stream:0x14001e1cee0}
+2025/02/04 12:54:23.442888 error_md.go:21: [Error] biz error: Error 1062 (23000): Duplicate entry 'test-1-reduce' for key 'stock_op_record.stock_record_pk_trade_op'
+2025/02/04 12:54:23.442967 error_md.go:26: [Error] biz error: code=10002, msg=服务端内部异常
+2025/02/04 12:54:23.442995 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3958ms
+2025/02/04 12:58:15.364236 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/04 12:58:15.372800 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/04 12:58:15.446282 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9093
+2025/02/04 12:58:16.455375 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f35509 for etcd registry
+2025/02/04 12:58:20.205083 log_md.go:25: [Info] 请求路径: GoodsService.StockReduce, 请求地址: 127.0.0.1:51499, 请求体: &{Stream:0x14001c40040}
+2025/02/04 12:58:20.218333 error_md.go:22: [Error] biz error: Error 1062 (23000): Duplicate entry 'test-1-reduce' for key 'stock_op_record.stock_record_pk_trade_op'
+2025/02/04 12:58:20.218448 error_md.go:27: [Error] biz error: code=10002, msg=biz error: Error 1062 (23000): Duplicate entry 'test-1-reduce' for key 'stock_op_record.stock_record_pk_trade_op'
+2025/02/04 12:58:20.218513 log_md.go:36: [Info] 响应体: <nil>, 耗时: 13ms
+2025/02/04 12:59:40.604478 log_md.go:25: [Info] 请求路径: GoodsService.StockReduce, 请求地址: 127.0.0.1:51499, 请求体: &{Stream:0x14001e220c0}
+2025/02/04 12:59:40.623770 error_md.go:22: [Error] biz error: Error 1062 (23000): Duplicate entry 'test-1-reduce' for key 'stock_op_record.stock_record_pk_trade_op'
+2025/02/04 12:59:40.623894 error_md.go:27: [Error] biz error: code=10002, msg=biz error: Error 1062 (23000): Duplicate entry 'test-1-reduce' for key 'stock_op_record.stock_record_pk_trade_op'
+2025/02/04 12:59:40.623948 log_md.go:36: [Info] 响应体: <nil>, 耗时: 19ms
+2025/02/04 13:00:26.586589 log_md.go:25: [Info] 请求路径: GoodsService.StockReduce, 请求地址: 127.0.0.1:51499, 请求体: &{Stream:0x14001d880a0}
+2025/02/04 13:00:26.600753 error_md.go:34: [Error] biz error: code=30004, msg=库存不足
+2025/02/04 13:00:26.600829 log_md.go:36: [Info] 响应体: <nil>, 耗时: 14ms

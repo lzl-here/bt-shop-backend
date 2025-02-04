@@ -13,14 +13,23 @@ import (
 // 流转状态
 func (h *OrderHandler) PaySuccessToOrder(ctx context.Context, req *ogen.PaySuccessToOrderReq) (*ogen.PaySuccessToOrderRsp, error) {
 	h.rep.GetDB().Transaction(func(tx *gorm.DB) error {
-		err := h.rep.UpdateTrade(ctx, &model.Trade{TradeNo: req.TradeNo}, &model.Trade{TradeStatus: constant.TradeStatusPaid})
-		if err != nil {
-			return err
+		{
+			where := &model.Trade{TradeNo: req.TradeNo}
+			update := &model.Trade{TradeStatus: constant.TradeStatusPaid}
+			err := h.rep.UpdateTrade(ctx, h.rep.GetDB(), where, update)
+			if err != nil {
+				return err
+			}
 		}
-		err = h.rep.UpdateOrder(ctx, &model.Order{TradeNo: req.TradeNo}, &model.Order{OrderStatus: constant.OrderStatusPaid})
-		if err != nil {
-			return err
+		{
+			where := &model.Order{TradeNo: req.TradeNo}
+			update := &model.Order{OrderStatus: constant.OrderStatusPaid}
+			err := h.rep.UpdateOrder(ctx, h.rep.GetDB(), where, update)
+			if err != nil {
+				return err
+			}
 		}
+
 		return nil
 	})
 	return &ogen.PaySuccessToOrderRsp{
@@ -33,14 +42,23 @@ func (h *OrderHandler) PaySuccessToOrder(ctx context.Context, req *ogen.PaySucce
 // 流转状态
 func (h *OrderHandler) PayCancelToOrder(ctx context.Context, req *ogen.PayCancelToOrderReq) (*ogen.PayCancelToOrderRsp, error) {
 	h.rep.GetDB().Transaction(func(tx *gorm.DB) error {
-		err := h.rep.UpdateTrade(ctx, &model.Trade{TradeNo: req.TradeNo}, &model.Trade{TradeStatus: constant.TradeStatusCancel})
-		if err != nil {
-			return err
+		{
+			where := &model.Trade{TradeNo: req.TradeNo}
+			update := &model.Trade{TradeStatus: constant.TradeStatusCancel}
+			err := h.rep.UpdateTrade(ctx, h.rep.GetDB(), where, update)
+			if err != nil {
+				return err
+			}
 		}
-		err = h.rep.UpdateOrder(ctx, &model.Order{TradeNo: req.TradeNo}, &model.Order{OrderStatus: constant.OrderStatusCanceled})
-		if err != nil {
-			return err
+		{
+			where := &model.Order{TradeNo: req.TradeNo}
+			update := &model.Order{OrderStatus: constant.OrderStatusCanceled}
+			err := h.rep.UpdateOrder(ctx, h.rep.GetDB(), where, update)
+			if err != nil {
+				return err
+			}
 		}
+
 		return nil
 	})
 	return &ogen.PayCancelToOrderRsp{
