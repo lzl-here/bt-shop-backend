@@ -243,7 +243,7 @@ func (x *StockReduceItem) fastReadField1(buf []byte, _type int8) (offset int, er
 }
 
 func (x *StockReduceItem) fastReadField2(buf []byte, _type int8) (offset int, err error) {
-	x.StockNum, offset, err = fastpb.ReadInt32(buf, _type)
+	x.BuyNum, offset, err = fastpb.ReadInt32(buf, _type)
 	return offset, err
 }
 
@@ -431,10 +431,10 @@ func (x *StockReduceItem) fastWriteField1(buf []byte) (offset int) {
 }
 
 func (x *StockReduceItem) fastWriteField2(buf []byte) (offset int) {
-	if x.StockNum == 0 {
+	if x.BuyNum == 0 {
 		return offset
 	}
-	offset += fastpb.WriteInt32(buf[offset:], 2, x.GetStockNum())
+	offset += fastpb.WriteInt32(buf[offset:], 2, x.GetBuyNum())
 	return offset
 }
 
@@ -610,10 +610,10 @@ func (x *StockReduceItem) sizeField1() (n int) {
 }
 
 func (x *StockReduceItem) sizeField2() (n int) {
-	if x.StockNum == 0 {
+	if x.BuyNum == 0 {
 		return n
 	}
-	n += fastpb.SizeInt32(2, x.GetStockNum())
+	n += fastpb.SizeInt32(2, x.GetBuyNum())
 	return n
 }
 
@@ -657,7 +657,7 @@ var fieldIDToName_StockIncreaseRsp = map[int32]string{
 
 var fieldIDToName_StockReduceItem = map[int32]string{
 	1: "SkuId",
-	2: "StockNum",
+	2: "BuyNum",
 }
 
 var fieldIDToName_StockReduceRsp_StockReduceRspData = map[int32]string{}

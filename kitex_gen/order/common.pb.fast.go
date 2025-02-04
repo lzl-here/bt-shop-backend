@@ -109,6 +109,11 @@ func (x *BaseOrder) FastRead(buf []byte, _type int8, number int32) (offset int, 
 		if err != nil {
 			goto ReadFieldError
 		}
+	case 7:
+		offset, err = x.fastReadField7(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
 	default:
 		offset, err = fastpb.Skip(buf, _type, number)
 		if err != nil {
@@ -149,6 +154,11 @@ func (x *BaseOrder) fastReadField5(buf []byte, _type int8) (offset int, err erro
 
 func (x *BaseOrder) fastReadField6(buf []byte, _type int8) (offset int, err error) {
 	x.BuyerId, offset, err = fastpb.ReadUint64(buf, _type)
+	return offset, err
+}
+
+func (x *BaseOrder) fastReadField7(buf []byte, _type int8) (offset int, err error) {
+	x.BuyNum, offset, err = fastpb.ReadInt32(buf, _type)
 	return offset, err
 }
 
@@ -289,6 +299,11 @@ func (x *BaseOrderItem) FastRead(buf []byte, _type int8, number int32) (offset i
 		if err != nil {
 			goto ReadFieldError
 		}
+	case 17:
+		offset, err = x.fastReadField17(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
 	default:
 		offset, err = fastpb.Skip(buf, _type, number)
 		if err != nil {
@@ -387,6 +402,56 @@ func (x *BaseOrderItem) fastReadField16(buf []byte, _type int8) (offset int, err
 	return offset, err
 }
 
+func (x *BaseOrderItem) fastReadField17(buf []byte, _type int8) (offset int, err error) {
+	x.BuyNum, offset, err = fastpb.ReadInt32(buf, _type)
+	return offset, err
+}
+
+func (x *BaseTradeInfo) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
+	switch number {
+	case 1:
+		offset, err = x.fastReadField1(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 2:
+		offset, err = x.fastReadField2(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 3:
+		offset, err = x.fastReadField3(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	default:
+		offset, err = fastpb.Skip(buf, _type, number)
+		if err != nil {
+			goto SkipFieldError
+		}
+	}
+	return offset, nil
+SkipFieldError:
+	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
+ReadFieldError:
+	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_BaseTradeInfo[number], err)
+}
+
+func (x *BaseTradeInfo) fastReadField1(buf []byte, _type int8) (offset int, err error) {
+	x.Id, offset, err = fastpb.ReadUint64(buf, _type)
+	return offset, err
+}
+
+func (x *BaseTradeInfo) fastReadField2(buf []byte, _type int8) (offset int, err error) {
+	x.TradeNo, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
+func (x *BaseTradeInfo) fastReadField3(buf []byte, _type int8) (offset int, err error) {
+	x.PageUrl, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
 func (x *BaseTrade) FastWrite(buf []byte) (offset int) {
 	if x == nil {
 		return offset
@@ -449,6 +514,7 @@ func (x *BaseOrder) FastWrite(buf []byte) (offset int) {
 	offset += x.fastWriteField4(buf[offset:])
 	offset += x.fastWriteField5(buf[offset:])
 	offset += x.fastWriteField6(buf[offset:])
+	offset += x.fastWriteField7(buf[offset:])
 	return offset
 }
 
@@ -497,6 +563,14 @@ func (x *BaseOrder) fastWriteField6(buf []byte) (offset int) {
 		return offset
 	}
 	offset += fastpb.WriteUint64(buf[offset:], 6, x.GetBuyerId())
+	return offset
+}
+
+func (x *BaseOrder) fastWriteField7(buf []byte) (offset int) {
+	if x.BuyNum == 0 {
+		return offset
+	}
+	offset += fastpb.WriteInt32(buf[offset:], 7, x.GetBuyNum())
 	return offset
 }
 
@@ -563,6 +637,7 @@ func (x *BaseOrderItem) FastWrite(buf []byte) (offset int) {
 	offset += x.fastWriteField14(buf[offset:])
 	offset += x.fastWriteField15(buf[offset:])
 	offset += x.fastWriteField16(buf[offset:])
+	offset += x.fastWriteField17(buf[offset:])
 	return offset
 }
 
@@ -696,6 +771,48 @@ func (x *BaseOrderItem) fastWriteField16(buf []byte) (offset int) {
 	return offset
 }
 
+func (x *BaseOrderItem) fastWriteField17(buf []byte) (offset int) {
+	if x.BuyNum == 0 {
+		return offset
+	}
+	offset += fastpb.WriteInt32(buf[offset:], 17, x.GetBuyNum())
+	return offset
+}
+
+func (x *BaseTradeInfo) FastWrite(buf []byte) (offset int) {
+	if x == nil {
+		return offset
+	}
+	offset += x.fastWriteField1(buf[offset:])
+	offset += x.fastWriteField2(buf[offset:])
+	offset += x.fastWriteField3(buf[offset:])
+	return offset
+}
+
+func (x *BaseTradeInfo) fastWriteField1(buf []byte) (offset int) {
+	if x.Id == 0 {
+		return offset
+	}
+	offset += fastpb.WriteUint64(buf[offset:], 1, x.GetId())
+	return offset
+}
+
+func (x *BaseTradeInfo) fastWriteField2(buf []byte) (offset int) {
+	if x.TradeNo == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 2, x.GetTradeNo())
+	return offset
+}
+
+func (x *BaseTradeInfo) fastWriteField3(buf []byte) (offset int) {
+	if x.PageUrl == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 3, x.GetPageUrl())
+	return offset
+}
+
 func (x *BaseTrade) Size() (n int) {
 	if x == nil {
 		return n
@@ -758,6 +875,7 @@ func (x *BaseOrder) Size() (n int) {
 	n += x.sizeField4()
 	n += x.sizeField5()
 	n += x.sizeField6()
+	n += x.sizeField7()
 	return n
 }
 
@@ -806,6 +924,14 @@ func (x *BaseOrder) sizeField6() (n int) {
 		return n
 	}
 	n += fastpb.SizeUint64(6, x.GetBuyerId())
+	return n
+}
+
+func (x *BaseOrder) sizeField7() (n int) {
+	if x.BuyNum == 0 {
+		return n
+	}
+	n += fastpb.SizeInt32(7, x.GetBuyNum())
 	return n
 }
 
@@ -872,6 +998,7 @@ func (x *BaseOrderItem) Size() (n int) {
 	n += x.sizeField14()
 	n += x.sizeField15()
 	n += x.sizeField16()
+	n += x.sizeField17()
 	return n
 }
 
@@ -1005,6 +1132,48 @@ func (x *BaseOrderItem) sizeField16() (n int) {
 	return n
 }
 
+func (x *BaseOrderItem) sizeField17() (n int) {
+	if x.BuyNum == 0 {
+		return n
+	}
+	n += fastpb.SizeInt32(17, x.GetBuyNum())
+	return n
+}
+
+func (x *BaseTradeInfo) Size() (n int) {
+	if x == nil {
+		return n
+	}
+	n += x.sizeField1()
+	n += x.sizeField2()
+	n += x.sizeField3()
+	return n
+}
+
+func (x *BaseTradeInfo) sizeField1() (n int) {
+	if x.Id == 0 {
+		return n
+	}
+	n += fastpb.SizeUint64(1, x.GetId())
+	return n
+}
+
+func (x *BaseTradeInfo) sizeField2() (n int) {
+	if x.TradeNo == "" {
+		return n
+	}
+	n += fastpb.SizeString(2, x.GetTradeNo())
+	return n
+}
+
+func (x *BaseTradeInfo) sizeField3() (n int) {
+	if x.PageUrl == "" {
+		return n
+	}
+	n += fastpb.SizeString(3, x.GetPageUrl())
+	return n
+}
+
 var fieldIDToName_BaseTrade = map[int32]string{
 	1: "TradeNo",
 	2: "TradeAmount",
@@ -1020,6 +1189,7 @@ var fieldIDToName_BaseOrder = map[int32]string{
 	4: "OrderAmount",
 	5: "SellerId",
 	6: "BuyerId",
+	7: "BuyNum",
 }
 
 var fieldIDToName_BaseSpecValue = map[int32]string{
@@ -1046,4 +1216,11 @@ var fieldIDToName_BaseOrderItem = map[int32]string{
 	14: "ShopId",
 	15: "SellerId",
 	16: "BuyerId",
+	17: "BuyNum",
+}
+
+var fieldIDToName_BaseTradeInfo = map[int32]string{
+	1: "Id",
+	2: "TradeNo",
+	3: "PageUrl",
 }

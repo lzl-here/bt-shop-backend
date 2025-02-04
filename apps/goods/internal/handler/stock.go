@@ -77,7 +77,7 @@ func (h *GoodsHandler) stockOperate(ctx context.Context, tradeNo string, items [
 			if op == constant.StockOpTypeReduce {
 				// 扣减库存的情况
 				f = func() error {
-					ok, err := h.rep.ReduceStock(ctx, tx, item.SkuId, item.StockNum)
+					ok, err := h.rep.ReduceStock(ctx, tx, item.SkuId, item.BuyNum)
 					if err != nil {
 						return err
 					}
@@ -89,7 +89,7 @@ func (h *GoodsHandler) stockOperate(ctx context.Context, tradeNo string, items [
 			} else if op == constant.StockOpTypeIncrease {
 				// 释放库存的情况
 				f = func() error {
-					ok, err := h.rep.ReduceStock(ctx, tx, item.SkuId, item.StockNum)
+					ok, err := h.rep.ReduceStock(ctx, tx, item.SkuId, item.BuyNum)
 					if err != nil {
 						return err
 					}

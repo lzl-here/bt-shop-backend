@@ -17,6 +17,7 @@ require (
 	github.com/smartwalle/xid v1.0.7
 	github.com/swaggo/files v1.0.1
 	github.com/swaggo/swag v1.16.4
+	golang.org/x/sync v0.10.0
 	google.golang.org/protobuf v1.36.2
 	gorm.io/driver/mysql v1.5.7
 	gorm.io/gorm v1.25.12
@@ -86,7 +87,6 @@ require (
 	go.uber.org/zap v1.26.0 // indirect
 	golang.org/x/arch v0.2.0 // indirect
 	golang.org/x/net v0.24.0 // indirect
-	golang.org/x/sync v0.10.0 // indirect
 	golang.org/x/sys v0.24.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
 	golang.org/x/tools v0.11.0 // indirect

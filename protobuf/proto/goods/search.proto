@@ -31,6 +31,8 @@ message SearchSpuListReq {
 
     repeated uint64 category_ids = 4;//分类id
     repeated uint64 brand_ids = 5; // 品牌id
+
+    string order_by = 6;    // 排序字段
 }
 
 message SearchSpuListRsp {

@@ -377,6 +377,125 @@ func (x *TradeOrder) GetOrderItemList() []*BaseOrderItem {
 	return nil
 }
 
+// 重新拉起支付
+type ReTradeReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	TradeNo string `protobuf:"bytes,1,opt,name=trade_no,json=tradeNo,proto3" json:"trade_no,omitempty"`
+}
+
+func (x *ReTradeReq) Reset() {
+	*x = ReTradeReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_order_trade_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ReTradeReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReTradeReq) ProtoMessage() {}
+
+func (x *ReTradeReq) ProtoReflect() protoreflect.Message {
+	mi := &file_order_trade_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReTradeReq.ProtoReflect.Descriptor instead.
+func (*ReTradeReq) Descriptor() ([]byte, []int) {
+	return file_order_trade_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *ReTradeReq) GetTradeNo() string {
+	if x != nil {
+		return x.TradeNo
+	}
+	return ""
+}
+
+type ReTradeRsp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Code  int32                      `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
+	Msg   string                     `protobuf:"bytes,2,opt,name=msg,proto3" json:"msg,omitempty"`
+	LogId string                     `protobuf:"bytes,3,opt,name=log_id,json=logId,proto3" json:"log_id,omitempty"`
+	Data  *ReTradeRsp_ReTradeRspData `protobuf:"bytes,4,opt,name=data,proto3" json:"data,omitempty"`
+}
+
+func (x *ReTradeRsp) Reset() {
+	*x = ReTradeRsp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_order_trade_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ReTradeRsp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReTradeRsp) ProtoMessage() {}
+
+func (x *ReTradeRsp) ProtoReflect() protoreflect.Message {
+	mi := &file_order_trade_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReTradeRsp.ProtoReflect.Descriptor instead.
+func (*ReTradeRsp) Descriptor() ([]byte, []int) {
+	return file_order_trade_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *ReTradeRsp) GetCode() int32 {
+	if x != nil {
+		return x.Code
+	}
+	return 0
+}
+
+func (x *ReTradeRsp) GetMsg() string {
+	if x != nil {
+		return x.Msg
+	}
+	return ""
+}
+
+func (x *ReTradeRsp) GetLogId() string {
+	if x != nil {
+		return x.LogId
+	}
+	return ""
+}
+
+func (x *ReTradeRsp) GetData() *ReTradeRsp_ReTradeRspData {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
 type CreateTradeRsp_CreateTradeRspData struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -389,7 +508,7 @@ type CreateTradeRsp_CreateTradeRspData struct {
 func (x *CreateTradeRsp_CreateTradeRspData) Reset() {
 	*x = CreateTradeRsp_CreateTradeRspData{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_order_trade_proto_msgTypes[6]
+		mi := &file_order_trade_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -402,7 +521,7 @@ func (x *CreateTradeRsp_CreateTradeRspData) String() string {
 func (*CreateTradeRsp_CreateTradeRspData) ProtoMessage() {}
 
 func (x *CreateTradeRsp_CreateTradeRspData) ProtoReflect() protoreflect.Message {
-	mi := &file_order_trade_proto_msgTypes[6]
+	mi := &file_order_trade_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -443,7 +562,7 @@ type CancelTradeRsp_CancelTradeRspData struct {
 func (x *CancelTradeRsp_CancelTradeRspData) Reset() {
 	*x = CancelTradeRsp_CancelTradeRspData{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_order_trade_proto_msgTypes[7]
+		mi := &file_order_trade_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -456,7 +575,7 @@ func (x *CancelTradeRsp_CancelTradeRspData) String() string {
 func (*CancelTradeRsp_CancelTradeRspData) ProtoMessage() {}
 
 func (x *CancelTradeRsp_CancelTradeRspData) ProtoReflect() protoreflect.Message {
-	mi := &file_order_trade_proto_msgTypes[7]
+	mi := &file_order_trade_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -477,6 +596,53 @@ func (x *CancelTradeRsp_CancelTradeRspData) GetTradeNo() string {
 		return x.TradeNo
 	}
 	return ""
+}
+
+type ReTradeRsp_ReTradeRspData struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	TradeInfo *BaseTradeInfo `protobuf:"bytes,1,opt,name=trade_info,json=tradeInfo,proto3" json:"trade_info,omitempty"`
+}
+
+func (x *ReTradeRsp_ReTradeRspData) Reset() {
+	*x = ReTradeRsp_ReTradeRspData{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_order_trade_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ReTradeRsp_ReTradeRspData) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReTradeRsp_ReTradeRspData) ProtoMessage() {}
+
+func (x *ReTradeRsp_ReTradeRspData) ProtoReflect() protoreflect.Message {
+	mi := &file_order_trade_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReTradeRsp_ReTradeRspData.ProtoReflect.Descriptor instead.
+func (*ReTradeRsp_ReTradeRspData) Descriptor() ([]byte, []int) {
+	return file_order_trade_proto_rawDescGZIP(), []int{7, 0}
+}
+
+func (x *ReTradeRsp_ReTradeRspData) GetTradeInfo() *BaseTradeInfo {
+	if x != nil {
+		return x.TradeInfo
+	}
+	return nil
 }
 
 var File_order_trade_proto protoreflect.FileDescriptor
@@ -532,11 +698,26 @@ var file_order_trade_proto_rawDesc = []byte{
 	0x64, 0x65, 0x72, 0x5f, 0x69, 0x74, 0x65, 0x6d, 0x5f, 0x6c, 0x69, 0x73, 0x74, 0x18, 0x02, 0x20,
 	0x03, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x2e, 0x42, 0x61, 0x73, 0x65,
 	0x4f, 0x72, 0x64, 0x65, 0x72, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x0d, 0x6f, 0x72, 0x64, 0x65, 0x72,
-	0x49, 0x74, 0x65, 0x6d, 0x4c, 0x69, 0x73, 0x74, 0x42, 0x35, 0x5a, 0x33, 0x67, 0x69, 0x74, 0x68,
-	0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x6c, 0x7a, 0x6c, 0x2d, 0x68, 0x65, 0x72, 0x65, 0x2f,
-	0x62, 0x74, 0x2d, 0x73, 0x68, 0x6f, 0x70, 0x2d, 0x62, 0x61, 0x63, 0x6b, 0x65, 0x6e, 0x64, 0x2f,
-	0x6b, 0x69, 0x74, 0x65, 0x78, 0x5f, 0x67, 0x65, 0x6e, 0x2f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x62,
-	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x49, 0x74, 0x65, 0x6d, 0x4c, 0x69, 0x73, 0x74, 0x22, 0x27, 0x0a, 0x0a, 0x52, 0x65, 0x54, 0x72,
+	0x61, 0x64, 0x65, 0x52, 0x65, 0x71, 0x12, 0x19, 0x0a, 0x08, 0x74, 0x72, 0x61, 0x64, 0x65, 0x5f,
+	0x6e, 0x6f, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x74, 0x72, 0x61, 0x64, 0x65, 0x4e,
+	0x6f, 0x22, 0xc6, 0x01, 0x0a, 0x0a, 0x52, 0x65, 0x54, 0x72, 0x61, 0x64, 0x65, 0x52, 0x73, 0x70,
+	0x12, 0x12, 0x0a, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x04,
+	0x63, 0x6f, 0x64, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x6d, 0x73, 0x67, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x03, 0x6d, 0x73, 0x67, 0x12, 0x15, 0x0a, 0x06, 0x6c, 0x6f, 0x67, 0x5f, 0x69, 0x64,
+	0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6c, 0x6f, 0x67, 0x49, 0x64, 0x12, 0x34, 0x0a,
+	0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x20, 0x2e, 0x6f, 0x72,
+	0x64, 0x65, 0x72, 0x2e, 0x52, 0x65, 0x54, 0x72, 0x61, 0x64, 0x65, 0x52, 0x73, 0x70, 0x2e, 0x52,
+	0x65, 0x54, 0x72, 0x61, 0x64, 0x65, 0x52, 0x73, 0x70, 0x44, 0x61, 0x74, 0x61, 0x52, 0x04, 0x64,
+	0x61, 0x74, 0x61, 0x1a, 0x45, 0x0a, 0x0e, 0x52, 0x65, 0x54, 0x72, 0x61, 0x64, 0x65, 0x52, 0x73,
+	0x70, 0x44, 0x61, 0x74, 0x61, 0x12, 0x33, 0x0a, 0x0a, 0x74, 0x72, 0x61, 0x64, 0x65, 0x5f, 0x69,
+	0x6e, 0x66, 0x6f, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x6f, 0x72, 0x64, 0x65,
+	0x72, 0x2e, 0x42, 0x61, 0x73, 0x65, 0x54, 0x72, 0x61, 0x64, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x52,
+	0x09, 0x74, 0x72, 0x61, 0x64, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x42, 0x35, 0x5a, 0x33, 0x67, 0x69,
+	0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x6c, 0x7a, 0x6c, 0x2d, 0x68, 0x65, 0x72,
+	0x65, 0x2f, 0x62, 0x74, 0x2d, 0x73, 0x68, 0x6f, 0x70, 0x2d, 0x62, 0x61, 0x63, 0x6b, 0x65, 0x6e,
+	0x64, 0x2f, 0x6b, 0x69, 0x74, 0x65, 0x78, 0x5f, 0x67, 0x65, 0x6e, 0x2f, 0x6f, 0x72, 0x64, 0x65,
+	0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -551,7 +732,7 @@ func file_order_trade_proto_rawDescGZIP() []byte {
 	return file_order_trade_proto_rawDescData
 }
 
-var file_order_trade_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_order_trade_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_order_trade_proto_goTypes = []interface{}{
 	(*CreateTradeReq)(nil),                    // 0: order.CreateTradeReq
 	(*CreateTradeRsp)(nil),                    // 1: order.CreateTradeRsp
@@ -559,25 +740,31 @@ var file_order_trade_proto_goTypes = []interface{}{
 	(*CancelTradeRsp)(nil),                    // 3: order.CancelTradeRsp
 	(*TradeTrade)(nil),                        // 4: order.TradeTrade
 	(*TradeOrder)(nil),                        // 5: order.TradeOrder
-	(*CreateTradeRsp_CreateTradeRspData)(nil), // 6: order.CreateTradeRsp.CreateTradeRspData
-	(*CancelTradeRsp_CancelTradeRspData)(nil), // 7: order.CancelTradeRsp.CancelTradeRspData
-	(*BaseTrade)(nil),                         // 8: order.BaseTrade
-	(*BaseOrder)(nil),                         // 9: order.BaseOrder
-	(*BaseOrderItem)(nil),                     // 10: order.BaseOrderItem
+	(*ReTradeReq)(nil),                        // 6: order.ReTradeReq
+	(*ReTradeRsp)(nil),                        // 7: order.ReTradeRsp
+	(*CreateTradeRsp_CreateTradeRspData)(nil), // 8: order.CreateTradeRsp.CreateTradeRspData
+	(*CancelTradeRsp_CancelTradeRspData)(nil), // 9: order.CancelTradeRsp.CancelTradeRspData
+	(*ReTradeRsp_ReTradeRspData)(nil),         // 10: order.ReTradeRsp.ReTradeRspData
+	(*BaseTrade)(nil),                         // 11: order.BaseTrade
+	(*BaseOrder)(nil),                         // 12: order.BaseOrder
+	(*BaseOrderItem)(nil),                     // 13: order.BaseOrderItem
+	(*BaseTradeInfo)(nil),                     // 14: order.BaseTradeInfo
 }
 var file_order_trade_proto_depIdxs = []int32{
 	4,  // 0: order.CreateTradeReq.trade:type_name -> order.TradeTrade
-	6,  // 1: order.CreateTradeRsp.data:type_name -> order.CreateTradeRsp.CreateTradeRspData
-	7,  // 2: order.CancelTradeRsp.data:type_name -> order.CancelTradeRsp.CancelTradeRspData
-	8,  // 3: order.TradeTrade.trade:type_name -> order.BaseTrade
+	8,  // 1: order.CreateTradeRsp.data:type_name -> order.CreateTradeRsp.CreateTradeRspData
+	9,  // 2: order.CancelTradeRsp.data:type_name -> order.CancelTradeRsp.CancelTradeRspData
+	11, // 3: order.TradeTrade.trade:type_name -> order.BaseTrade
 	5,  // 4: order.TradeTrade.order_list:type_name -> order.TradeOrder
-	9,  // 5: order.TradeOrder.order:type_name -> order.BaseOrder
-	10, // 6: order.TradeOrder.order_item_list:type_name -> order.BaseOrderItem
-	7,  // [7:7] is the sub-list for method output_type
-	7,  // [7:7] is the sub-list for method input_type
-	7,  // [7:7] is the sub-list for extension type_name
-	7,  // [7:7] is the sub-list for extension extendee
-	0,  // [0:7] is the sub-list for field type_name
+	12, // 5: order.TradeOrder.order:type_name -> order.BaseOrder
+	13, // 6: order.TradeOrder.order_item_list:type_name -> order.BaseOrderItem
+	10, // 7: order.ReTradeRsp.data:type_name -> order.ReTradeRsp.ReTradeRspData
+	14, // 8: order.ReTradeRsp.ReTradeRspData.trade_info:type_name -> order.BaseTradeInfo
+	9,  // [9:9] is the sub-list for method output_type
+	9,  // [9:9] is the sub-list for method input_type
+	9,  // [9:9] is the sub-list for extension type_name
+	9,  // [9:9] is the sub-list for extension extendee
+	0,  // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_order_trade_proto_init() }
@@ -660,7 +847,7 @@ func file_order_trade_proto_init() {
 			}
 		}
 		file_order_trade_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateTradeRsp_CreateTradeRspData); i {
+			switch v := v.(*ReTradeReq); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -672,7 +859,43 @@ func file_order_trade_proto_init() {
 			}
 		}
 		file_order_trade_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ReTradeRsp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_order_trade_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateTradeRsp_CreateTradeRspData); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_order_trade_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CancelTradeRsp_CancelTradeRspData); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_order_trade_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ReTradeRsp_ReTradeRspData); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -690,7 +913,7 @@ func file_order_trade_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_order_trade_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

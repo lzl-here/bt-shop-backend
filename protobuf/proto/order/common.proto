@@ -21,6 +21,7 @@ message BaseOrder {
     string order_amount = 4;                // 订单金额
     uint64 seller_id = 5;                   // 卖家id
     uint64 buyer_id = 6;                    // 买家id
+    int32 buy_num = 7;                      // 购买数量
 }
 
 // 规格值信息
@@ -50,5 +51,14 @@ message BaseOrderItem {
     uint64 shop_id = 14;
     uint64 seller_id = 15;
     uint64 buyer_id = 16;
+
+    int32 buy_num = 17; //购买数量
 }
 
+
+// 交易详情
+message BaseTradeInfo {
+    uint64 id = 1;
+    string trade_no = 2;
+    string page_url = 3;
+}

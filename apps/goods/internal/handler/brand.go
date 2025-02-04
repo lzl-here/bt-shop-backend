@@ -8,8 +8,8 @@ import (
 )
 
 /**
-* @description: 获取全部品牌列表
- */
+ * @description: 获取全部品牌列表
+*/
 func (h *GoodsHandler) GetBrandList(ctx context.Context, req *ggen.GetBrandListReq) (*ggen.GetBBrandListRsp, error) {
 	brands, err := h.rep.GetAllBrandList(ctx)
 	if err != nil {
@@ -35,3 +35,5 @@ func buildBrandRsp(brands []*model.Brand) *ggen.GetBBrandListRsp {
 	}
 
 }
+
+

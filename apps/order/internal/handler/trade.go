@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"time"
 
+	"github.com/cloudwego/kitex/pkg/kerrors"
 	"github.com/lzl-here/bt-shop-backend/apps/order/internal/common"
 	"github.com/lzl-here/bt-shop-backend/apps/order/internal/constant"
 	"github.com/lzl-here/bt-shop-backend/apps/order/internal/domain/model"
@@ -20,7 +21,8 @@ import (
 // 2. 创建交易、订单、订单项
 // 3. 扣减库存
 // 4. 拉起支付
-// 5. 返回支付页面给前端
+// 5. 存储支付信息url
+// 6. 返回支付页面给前端
 func (h *OrderHandler) CreateTrade(ctx context.Context, req *ogen.CreateTradeReq) (res *ogen.CreateTradeRsp, err error) {
 	// 幂等处理
 	ok, cleaner, _, err := utils.NoDuplicate(ctx, h.rep.GetCache(), "order", req.Token, 30*time.Second)
@@ -68,13 +70,24 @@ func (h *OrderHandler) CreateTrade(ctx context.Context, req *ogen.CreateTradeReq
 	if err != nil {
 		return nil, err
 	}
-	// TODO 3, 扣减库存
-	// 扣减失败进行订单的状态修改
-	// rsp, err := h.rep.ReduceStock(ctx, &ggen.StockReduceReq{})
+	// 3, 扣减库存
+	// TODO 扣减失败进行订单的状态修改
+	items := make([]*ggen.StockReduceItem, 0)
+	for _, o := range req.Trade.OrderList {
+		for _, oi := range o.OrderItemList {
+			items = append(items, &ggen.StockReduceItem{
+				SkuId:  oi.SkuId,
+				BuyNum: oi.BuyNum,
+			})
+		}
+	}
+	_, err = h.rep.ReduceStock(ctx, &ggen.StockReduceReq{
+		TradeNo: tradeNo,
+		Items:   items,
+	})
 	if err != nil {
 		return nil, err
 	}
-
 	// 4. 拉起支付
 	payRsp, err := h.rep.Pay(ctx, &pgen.PayReq{
 		Subject:     "这是一个支付的标题",
@@ -85,10 +98,20 @@ func (h *OrderHandler) CreateTrade(ctx context.Context, req *ogen.CreateTradeReq
 	if err != nil {
 		return nil, err
 	}
+
 	if payRsp.Code != 1 {
-		return nil, bizerr.ErrPayFailed
+		return nil, kerrors.NewBizStatusError(payRsp.Code, payRsp.Msg)
 	}
-	// 5. 返回支付页面url
+
+	// 5. 存储支付详情
+	err = h.rep.CreateTradeInfo(ctx, h.rep.GetDB(), &model.TradeInfo{
+		TradeNo: tradeNo,
+		PageUrl: payRsp.Data.PayPageUrl,
+	})
+	if err != nil {
+		return nil, err
+	}
+	// 6. 返回支付页面url
 	return &ogen.CreateTradeRsp{
 		Code: 1,
 		Msg:  "success",
@@ -212,4 +235,25 @@ func buildModels(req *ogen.CreateTradeReq) (*model.Trade, []*model.Order, []*mod
 
 func (h *OrderHandler) CancelTrade(ctx context.Context, req *ogen.CancelTradeReq) (res *ogen.CancelTradeRsp, err error) {
 	return nil, nil
+}
+
+/**
+* @decription: 重新拉起支付 (返回url)
+ */
+func (h *OrderHandler) ReTrade(ctx context.Context, req *ogen.ReTradeReq) (*ogen.ReTradeRsp, error) {
+	tradeInfo, err := h.rep.GetTradeInfo(ctx, &model.TradeInfo{TradeNo: req.TradeNo})
+	if err != nil {
+		return nil, err
+	}
+	return &ogen.ReTradeRsp{
+		Code: 1,
+		Msg:  "success",
+		Data: &ogen.ReTradeRsp_ReTradeRspData{
+			TradeInfo: &ogen.BaseTradeInfo{
+				Id:      tradeInfo.ID,
+				TradeNo: tradeInfo.TradeNo,
+				PageUrl: tradeInfo.PageUrl,
+			},
+		},
+	}, nil
 }

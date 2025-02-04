@@ -274,6 +274,16 @@ func (r *Repo) SearchSpu(ctx context.Context, req *ggen.SearchSpuListReq) ([]*mo
 		From(int((req.PageNo - 1) * req.PageSize)).
 		Size(int(req.PageSize))
 
+		// TODO 添加排序
+	// if req.OrderBy != "" {
+	// 	switch req.OrderBy {
+	// 	case "created_at":
+	// 		searchReq = searchReq.Sort("created_at")
+	// 	case "price":
+	// 		searchReq = searchReq.Sort("spu_price")
+	// 	}
+	// }
+
 	// 执行请求
 	resp, err := searchReq.Do(ctx)
 	if err != nil {

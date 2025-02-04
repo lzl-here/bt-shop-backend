@@ -40,5 +40,5 @@ message StockIncreaseRsp { int32 code = 1;
 
 message StockReduceItem {
     uint64 sku_id = 1;
-    int32 stock_num = 2;
+    int32 buy_num = 2;
 }

@@ -29,10 +29,13 @@ type RepoInterface interface {
 	CreateTrade(ctx context.Context, tx *gorm.DB, create *model.Trade) error
 	CreateOrders(ctx context.Context, tx *gorm.DB, create []*model.Order) error
 	CreateOrderItems(ctx context.Context, tx *gorm.DB, create []*model.OrderItem) error
+	CreateTradeInfo(ctx context.Context, tx *gorm.DB, create *model.TradeInfo) error
+
 	UpdateTrade(ctx context.Context, tx *gorm.DB, where, update *model.Trade) error
 	UpdateOrder(ctx context.Context, tx *gorm.DB, where, update *model.Order) error
 
 	GetOrderItems(ctx context.Context, where *model.OrderItem) ([]*model.OrderItem, error)
+	GetTradeInfo(ctx context.Context, where *model.TradeInfo) (*model.TradeInfo, error)
 }
 
 var _ RepoInterface = (*Repo)(nil)
@@ -82,6 +85,10 @@ func (r *Repo) CreateOrderItems(ctx context.Context, tx *gorm.DB, create []*mode
 	return tx.Model(&model.OrderItem{}).Create(create).Error
 }
 
+func (r *Repo) CreateTradeInfo(ctx context.Context, tx *gorm.DB, create *model.TradeInfo) error {
+	return tx.Model(&model.TradeInfo{}).Create(create).Error
+}
+
 func (r *Repo) Pay(ctx context.Context, req *pgen.PayReq) (*pgen.PayRsp, error) {
 	return r.PayClient.Pay(ctx, req)
 }
@@ -101,4 +108,11 @@ func (r *Repo) UpdateOrder(ctx context.Context, tx *gorm.DB, where, update *mode
 
 func (r *Repo) ReduceStock(ctx context.Context, req *ggen.StockReduceReq) (*ggen.StockReduceRsp, error) {
 	return r.GoodsClient.StockReduce(ctx, req)
+}
+
+func (r *Repo) GetTradeInfo(ctx context.Context, where *model.TradeInfo) (*model.TradeInfo, error) {
+	var err error
+	res := new(model.TradeInfo)
+	err = r.DB.Model(&model.TradeInfo{}).Where(where).Find(res).Error
+	return res, err
 }

@@ -124,6 +124,11 @@ func (x *SearchSpuListReq) FastRead(buf []byte, _type int8, number int32) (offse
 		if err != nil {
 			goto ReadFieldError
 		}
+	case 6:
+		offset, err = x.fastReadField6(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
 	default:
 		offset, err = fastpb.Skip(buf, _type, number)
 		if err != nil {
@@ -177,6 +182,11 @@ func (x *SearchSpuListReq) fastReadField5(buf []byte, _type int8) (offset int, e
 			x.BrandIds = append(x.BrandIds, v)
 			return offset, err
 		})
+	return offset, err
+}
+
+func (x *SearchSpuListReq) fastReadField6(buf []byte, _type int8) (offset int, err error) {
+	x.OrderBy, offset, err = fastpb.ReadString(buf, _type)
 	return offset, err
 }
 
@@ -398,6 +408,7 @@ func (x *SearchSpuListReq) FastWrite(buf []byte) (offset int) {
 	offset += x.fastWriteField3(buf[offset:])
 	offset += x.fastWriteField4(buf[offset:])
 	offset += x.fastWriteField5(buf[offset:])
+	offset += x.fastWriteField6(buf[offset:])
 	return offset
 }
 
@@ -448,6 +459,14 @@ func (x *SearchSpuListReq) fastWriteField5(buf []byte) (offset int) {
 			offset += fastpb.WriteUint64(buf[offset:], numTagOrKey, x.GetBrandIds()[numIdxOrVal])
 			return offset
 		})
+	return offset
+}
+
+func (x *SearchSpuListReq) fastWriteField6(buf []byte) (offset int) {
+	if x.OrderBy == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 6, x.GetOrderBy())
 	return offset
 }
 
@@ -625,6 +644,7 @@ func (x *SearchSpuListReq) Size() (n int) {
 	n += x.sizeField3()
 	n += x.sizeField4()
 	n += x.sizeField5()
+	n += x.sizeField6()
 	return n
 }
 
@@ -675,6 +695,14 @@ func (x *SearchSpuListReq) sizeField5() (n int) {
 			n += fastpb.SizeUint64(numTagOrKey, x.GetBrandIds()[numIdxOrVal])
 			return n
 		})
+	return n
+}
+
+func (x *SearchSpuListReq) sizeField6() (n int) {
+	if x.OrderBy == "" {
+		return n
+	}
+	n += fastpb.SizeString(6, x.GetOrderBy())
 	return n
 }
 
@@ -801,6 +829,7 @@ var fieldIDToName_SearchSpuListReq = map[int32]string{
 	3: "Keyword",
 	4: "CategoryIds",
 	5: "BrandIds",
+	6: "OrderBy",
 }
 
 var fieldIDToName_SearchSpuListRsp = map[int32]string{
