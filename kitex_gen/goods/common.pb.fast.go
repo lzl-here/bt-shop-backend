@@ -454,6 +454,11 @@ func (x *BaseBrand) FastRead(buf []byte, _type int8, number int32) (offset int, 
 		if err != nil {
 			goto ReadFieldError
 		}
+	case 3:
+		offset, err = x.fastReadField3(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
 	default:
 		offset, err = fastpb.Skip(buf, _type, number)
 		if err != nil {
@@ -474,6 +479,11 @@ func (x *BaseBrand) fastReadField1(buf []byte, _type int8) (offset int, err erro
 
 func (x *BaseBrand) fastReadField2(buf []byte, _type int8) (offset int, err error) {
 	x.BrandName, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
+func (x *BaseBrand) fastReadField3(buf []byte, _type int8) (offset int, err error) {
+	x.IconUrl, offset, err = fastpb.ReadString(buf, _type)
 	return offset, err
 }
 
@@ -822,6 +832,7 @@ func (x *BaseBrand) FastWrite(buf []byte) (offset int) {
 	}
 	offset += x.fastWriteField1(buf[offset:])
 	offset += x.fastWriteField2(buf[offset:])
+	offset += x.fastWriteField3(buf[offset:])
 	return offset
 }
 
@@ -838,6 +849,14 @@ func (x *BaseBrand) fastWriteField2(buf []byte) (offset int) {
 		return offset
 	}
 	offset += fastpb.WriteString(buf[offset:], 2, x.GetBrandName())
+	return offset
+}
+
+func (x *BaseBrand) fastWriteField3(buf []byte) (offset int) {
+	if x.IconUrl == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 3, x.GetIconUrl())
 	return offset
 }
 
@@ -1186,6 +1205,7 @@ func (x *BaseBrand) Size() (n int) {
 	}
 	n += x.sizeField1()
 	n += x.sizeField2()
+	n += x.sizeField3()
 	return n
 }
 
@@ -1202,6 +1222,14 @@ func (x *BaseBrand) sizeField2() (n int) {
 		return n
 	}
 	n += fastpb.SizeString(2, x.GetBrandName())
+	return n
+}
+
+func (x *BaseBrand) sizeField3() (n int) {
+	if x.IconUrl == "" {
+		return n
+	}
+	n += fastpb.SizeString(3, x.GetIconUrl())
 	return n
 }
 
@@ -1261,4 +1289,5 @@ var fieldIDToName_BaseCategory = map[int32]string{
 var fieldIDToName_BaseBrand = map[int32]string{
 	1: "BrandId",
 	2: "BrandName",
+	3: "IconUrl",
 }

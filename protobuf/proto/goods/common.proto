@@ -68,4 +68,5 @@ message BaseCategory {
 message BaseBrand{
     uint64 brand_id = 1;
     string brand_name = 2;
+    string icon_url = 3;
 }

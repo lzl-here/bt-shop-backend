@@ -65,6 +65,7 @@ func buildTree(rootCategory *model.Category, childrenMap map[uint64][]*model.Cat
 			CategoryId:   category.ID,
 			CategoryName: category.Name,
 			ParentId:     category.ParentID,
+			Level:        category.Level,
 			Children:     buildTreeChild(category, childrenMap),
 		}
 		tree = append(tree, protoCategory)
@@ -80,6 +81,7 @@ func buildTreeChild(rootCategory *model.Category, childrenMap map[uint64][]*mode
 			CategoryId:   category.ID,
 			CategoryName: category.Name,
 			ParentId:     category.ParentID,
+			Level:        category.Level,
 			Children:     buildTreeChild(category, childrenMap),
 		}
 		children = append(children, rsp)

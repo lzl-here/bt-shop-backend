@@ -24,3 +24,44 @@
 2025/02/04 13:00:26.586589 log_md.go:25: [Info] 请求路径: GoodsService.StockReduce, 请求地址: 127.0.0.1:51499, 请求体: &{Stream:0x14001d880a0}
 2025/02/04 13:00:26.600753 error_md.go:34: [Error] biz error: code=30004, msg=库存不足
 2025/02/04 13:00:26.600829 log_md.go:36: [Info] 响应体: <nil>, 耗时: 14ms
+2025/02/04 14:45:58.428267 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/04 14:45:58.450249 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/04 14:45:58.519127 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9093
+2025/02/04 14:45:59.534802 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f35544 for etcd registry
+2025/02/04 14:46:23.513980 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:59026, 请求体: &{Stream:0x14001dba4e0}
+2025/02/04 14:46:23.529198 error_md.go:34: [Error] <nil>
+2025/02/04 14:46:23.529285 log_md.go:36: [Info] 响应体: <nil>, 耗时: 15ms
+2025/02/04 14:47:39.685074 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/04 14:47:39.697877 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/04 14:47:39.765194 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9093
+2025/02/04 14:47:40.775085 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f35550 for etcd registry
+2025/02/04 14:47:46.193701 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:59144, 请求体: &{Stream:0x14001da4420}
+2025/02/04 14:47:46.201671 error_md.go:34: [Error] <nil>
+2025/02/04 14:47:46.201759 log_md.go:36: [Info] 响应体: <nil>, 耗时: 8ms
+2025/02/04 14:48:01.975729 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:59144, 请求体: &{Stream:0x14001cbe1a0}
+2025/02/04 14:49:37.124358 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/04 14:49:37.147529 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/04 14:49:37.218103 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9093
+2025/02/04 14:49:38.240734 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f3555b for etcd registry
+2025/02/04 14:49:42.686995 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:59270, 请求体: &{Stream:0x14001bba260}
+2025/02/04 14:49:49.116484 error_md.go:34: [Error] <nil>
+2025/02/04 14:49:49.117000 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6430ms
+2025/02/04 14:50:02.090468 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:59270, 请求体: &{Stream:0x14001bbb180}
+2025/02/04 14:50:02.096273 error_md.go:34: [Error] <nil>
+2025/02/04 14:50:02.096365 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/04 14:50:04.542863 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:59270, 请求体: &{Stream:0x14001d04080}
+2025/02/04 14:50:04.546133 error_md.go:34: [Error] <nil>
+2025/02/04 14:50:04.546231 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/04 14:55:28.461597 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:59270, 请求体: &{Stream:0x14001bba2a0}
+2025/02/04 14:55:28.469056 error_md.go:34: [Error] <nil>
+2025/02/04 14:55:28.469170 log_md.go:36: [Info] 响应体: <nil>, 耗时: 7ms
+2025/02/04 14:56:20.760145 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:59270, 请求体: &{Stream:0x14001bba220}
+2025/02/04 14:56:20.766790 error_md.go:34: [Error] <nil>
+2025/02/04 14:56:20.767033 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/04 14:56:48.074118 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/04 14:56:48.081847 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/04 14:56:48.148818 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9093
+2025/02/04 14:56:49.160969 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f35572 for etcd registry
+2025/02/04 14:56:59.709642 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:59725, 请求体: &{Stream:0x14001e10420}
+2025/02/04 14:56:59.721518 error_md.go:34: [Error] <nil>
+2025/02/04 14:56:59.721732 log_md.go:36: [Info] 响应体: <nil>, 耗时: 12ms
