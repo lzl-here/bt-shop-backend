@@ -42,7 +42,7 @@ func (s *GoodsServer) GetCategoryList(ctx context.Context, req *ggen.GetCategory
 	return handler.NewGoodsHandler(s.rep).GetCategoryList(ctx, req)
 }
 
-func (s *GoodsServer) GetBrandList(ctx context.Context, req *ggen.GetBrandListReq) (*ggen.GetBBrandListRsp, error) {
+func (s *GoodsServer) GetBrandList(ctx context.Context, req *ggen.GetBrandListReq) (*ggen.GetBrandListRsp, error) {
 	return handler.NewGoodsHandler(s.rep).GetBrandList(ctx, req)
 }
 

@@ -10,7 +10,7 @@ import (
 /**
  * @description: 获取全部品牌列表
  */
-func (h *GoodsHandler) GetBrandList(ctx context.Context, req *ggen.GetBrandListReq) (*ggen.GetBBrandListRsp, error) {
+func (h *GoodsHandler) GetBrandList(ctx context.Context, req *ggen.GetBrandListReq) (*ggen.GetBrandListRsp, error) {
 	brands, err := h.rep.GetAllBrandList(ctx)
 	if err != nil {
 		return nil, err
@@ -18,7 +18,7 @@ func (h *GoodsHandler) GetBrandList(ctx context.Context, req *ggen.GetBrandListR
 	return buildBrandRsp(brands), nil
 }
 
-func buildBrandRsp(brands []*model.Brand) *ggen.GetBBrandListRsp {
+func buildBrandRsp(brands []*model.Brand) *ggen.GetBrandListRsp {
 	brandRsp := make([]*ggen.BaseBrand, 0)
 	for _, b := range brands {
 		brandRsp = append(brandRsp, &ggen.BaseBrand{
@@ -27,10 +27,10 @@ func buildBrandRsp(brands []*model.Brand) *ggen.GetBBrandListRsp {
 			IconUrl:   b.IconUrl,
 		})
 	}
-	return &ggen.GetBBrandListRsp{
+	return &ggen.GetBrandListRsp{
 		Code: 1,
 		Msg:  "success",
-		Data: &ggen.GetBBrandListRsp_GetBBrandListDataRsp{
+		Data: &ggen.GetBrandListRsp_GetBrandListDataRsp{
 			BrandList: brandRsp,
 		},
 	}

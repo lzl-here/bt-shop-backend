@@ -1,21 +1,18 @@
 package utils
 
 import (
-	"reflect"
+	"google.golang.org/protobuf/proto"
 )
 
-func CopyFields(src, dst interface{}) error {
-	srcVal := reflect.ValueOf(src).Elem()
-	dstVal := reflect.ValueOf(dst).Elem()
-
-	for i := 0; i < srcVal.NumField(); i++ {
-		srcField := srcVal.Field(i)
-		srcFieldName := srcVal.Type().Field(i).Name
-
-		dstField := dstVal.FieldByName(srcFieldName)
-		if dstField.IsValid() && dstField.CanSet() && srcField.Type() == dstField.Type() {
-			dstField.Set(srcField)
-		}
+// CopyFields performs a deep copy of src to dst using protobuf serialization.
+// Both src and dst must be protobuf message types.
+func CopyFields(src, dst proto.Message) error {
+	// Serialize the source message to a byte slice
+	data, err := proto.Marshal(src)
+	if err != nil {
+		return err
 	}
-	return nil
+
+	// Deserialize the byte slice into the destination message
+	return proto.Unmarshal(data, dst)
 }

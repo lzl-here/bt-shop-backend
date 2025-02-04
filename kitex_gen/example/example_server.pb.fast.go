@@ -12,4 +12,4 @@ var (
 	_ = fmt.Errorf
 	_ = fastpb.Skip
 )
-var _ = api.File_api_proto
+var _ = api.File_api_api_proto

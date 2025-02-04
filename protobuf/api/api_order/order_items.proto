@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package api_order;
+
+option go_package = "api_order";
+
+import "api_order/common.proto";
+
+
+message GetOrderItemsReq {
+    string trade_no = 1;
+}
+
+message GetOrderItemsRsp {
+    int32 code = 1;
+    string msg = 2;
+    string log_id = 3;
+    GetOrderItemsRspData data = 4;
+
+    message GetOrderItemsRspData {
+        repeated BaseOrderItem order_item_list = 1;
+    }
+}

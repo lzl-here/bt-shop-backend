@@ -1,0 +1,524 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Order Service API",
+        "version": "1.0"
+    },
+    "paths": {
+        "/order/create_trade": {
+            "post": {
+                "summary": "创建一笔交易",
+                "operationId": "CreateTrade",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateTradeReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "$ref": "#/definitions/CreateTradeRsp"
+                        }
+                    }
+                }
+            }
+        },
+        "/order/re_trade": {
+            "post": {
+                "summary": "继续支付",
+                "operationId": "ReTrade",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ReTradeReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "$ref": "#/definitions/ReTradeRsp"
+                        }
+                    }
+                }
+            }
+        },
+        "/order/cancel_trade": {
+            "post": {
+                "summary": "取消一笔交易",
+                "operationId": "CancelTrade",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CancelTradeReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "$ref": "#/definitions/CancelTradeRsp"
+                        }
+                    }
+                }
+            }
+        },
+        "/order/get_order_items": {
+            "get": {
+                "summary": "查询订单项",
+                "operationId": "GetOrderItems",
+                "parameters": [
+                    {
+                        "name": "trade_no",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "$ref": "#/definitions/GetOrderItemsRsp"
+                        }
+                    }
+                }
+            }
+        },
+        "/order/pay_success_to_order": {
+            "post": {
+                "summary": "支付成功通知",
+                "operationId": "PaySuccessToOrder",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PaySuccessToOrderReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "$ref": "#/definitions/PaySuccessToOrderRsp"
+                        }
+                    }
+                }
+            }
+        },
+        "/order/pay_cancel_to_order": {
+            "post": {
+                "summary": "支付取消通知",
+                "operationId": "PayCancelToOrder",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PayCancelToOrderReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "$ref": "#/definitions/PayCancelToOrderRsp"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "CreateTradeReq": {
+            "type": "object",
+            "properties": {
+                "token": {
+                    "type": "string"
+                },
+                "trade": {
+                    "$ref": "#/definitions/TradeTrade"
+                }
+            }
+        },
+        "CreateTradeRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "msg": {
+                    "type": "string"
+                },
+                "log_id": {
+                    "type": "string"
+                },
+                "data": {
+                    "$ref": "#/definitions/CreateTradeRspData"
+                }
+            }
+        },
+        "ReTradeReq": {
+            "type": "object",
+            "properties": {
+                "trade_no": {
+                    "type": "string"
+                }
+            }
+        },
+        "ReTradeRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "msg": {
+                    "type": "string"
+                },
+                "log_id": {
+                    "type": "string"
+                },
+                "data": {
+                    "$ref": "#/definitions/ReTradeRspData"
+                }
+            }
+        },
+        "CancelTradeReq": {
+            "type": "object",
+            "properties": {
+                "trade_no": {
+                    "type": "string"
+                }
+            }
+        },
+        "CancelTradeRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "msg": {
+                    "type": "string"
+                },
+                "log_id": {
+                    "type": "string"
+                },
+                "data": {
+                    "$ref": "#/definitions/CancelTradeRspData"
+                }
+            }
+        },
+        "GetOrderItemsRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "msg": {
+                    "type": "string"
+                },
+                "log_id": {
+                    "type": "string"
+                },
+                "data": {
+                    "$ref": "#/definitions/GetOrderItemsRspData"
+                }
+            }
+        },
+        "PaySuccessToOrderReq": {
+            "type": "object",
+            "properties": {
+                "trade_no": {
+                    "type": "string"
+                }
+            }
+        },
+        "PaySuccessToOrderRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "msg": {
+                    "type": "string"
+                },
+                "log_id": {
+                    "type": "string"
+                },
+                "data": {
+                    "$ref": "#/definitions/PaySuccessToOrderRspData"
+                }
+            }
+        },
+        "PayCancelToOrderReq": {
+            "type": "object",
+            "properties": {
+                "trade_no": {
+                    "type": "string"
+                }
+            }
+        },
+        "PayCancelToOrderRsp": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "msg": {
+                    "type": "string"
+                },
+                "log_id": {
+                    "type": "string"
+                },
+                "data": {
+                    "$ref": "#/definitions/PayCancelToOrderRspData"
+                }
+            }
+        },
+        "TradeTrade": {
+            "type": "object",
+            "properties": {
+                "trade": {
+                    "$ref": "#/definitions/BaseTrade"
+                },
+                "order_list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TradeOrder"
+                    }
+                }
+            }
+        },
+        "TradeOrder": {
+            "type": "object",
+            "properties": {
+                "order": {
+                    "$ref": "#/definitions/BaseOrder"
+                },
+                "order_item_list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/BaseOrderItem"
+                    }
+                }
+            }
+        },
+        "BaseOrder": {
+            "type": "object",
+            "properties": {
+                "order_no": {
+                    "type": "string"
+                },
+                "trade_no": {
+                    "type": "string"
+                },
+                "shop_id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "order_amount": {
+                    "type": "string"
+                },
+                "seller_id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "buyer_id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "buy_num": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        },
+        "CreateTradeRspData": {
+            "type": "object",
+            "properties": {
+                "trade_no": {
+                    "type": "string"
+                },
+                "pay_page_url": {
+                    "type": "string"
+                }
+            }
+        },
+        "ReTradeRspData": {
+            "type": "object",
+            "properties": {
+                "trade_info": {
+                    "$ref": "#/definitions/BaseTradeInfo"
+                }
+            }
+        },
+        "CancelTradeRspData": {
+            "type": "object",
+            "properties": {
+                "trade_no": {
+                    "type": "string"
+                }
+            }
+        },
+        "GetOrderItemsRspData": {
+            "type": "object",
+            "properties": {
+                "order_item_list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/BaseOrderItem"
+                    }
+                }
+            }
+        },
+        "BaseTrade": {
+            "type": "object",
+            "properties": {
+                "trade_no": {
+                    "type": "string"
+                },
+                "trade_amount": {
+                    "type": "string"
+                },
+                "buyer_id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "seller_id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "pay_type": {
+                    "type": "string"
+                }
+            }
+        },
+        "BaseTradeInfo": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "trade_no": {
+                    "type": "string"
+                },
+                "page_url": {
+                    "type": "string"
+                }
+            }
+        },
+        "BaseOrderItem": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "spu_id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "sku_id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "spu_name": {
+                    "type": "string"
+                },
+                "category_id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "category_name": {
+                    "type": "string"
+                },
+                "brand_id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "brand_name": {
+                    "type": "string"
+                },
+                "sku_img_url": {
+                    "type": "string"
+                },
+                "sku_amount": {
+                    "type": "string"
+                },
+                "spec_value_list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/BaseSpecValue"
+                    }
+                },
+                "trade_no": {
+                    "type": "string"
+                },
+                "order_no": {
+                    "type": "string"
+                },
+                "shop_id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "seller_id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "buyer_id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "buy_num": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        },
+        "BaseSpecValue": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "spec_id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "spec_name": {
+                    "type": "string"
+                },
+                "spec_value": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

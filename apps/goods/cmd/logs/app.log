@@ -65,3 +65,63 @@
 2025/02/04 14:56:59.709642 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:59725, 请求体: &{Stream:0x14001e10420}
 2025/02/04 14:56:59.721518 error_md.go:34: [Error] <nil>
 2025/02/04 14:56:59.721732 log_md.go:36: [Info] 响应体: <nil>, 耗时: 12ms
+2025/02/04 22:55:19.533192 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/04 22:55:19.567156 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/04 22:55:19.636187 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9093
+2025/02/04 22:55:20.645955 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f3565a for etcd registry
+2025/02/04 23:09:47.927110 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:57818, 请求体: &{Stream:0x14001cf42e0}
+2025/02/04 23:09:47.954512 error_md.go:34: [Error] <nil>
+2025/02/04 23:09:47.954566 log_md.go:36: [Info] 响应体: <nil>, 耗时: 27ms
+2025/02/04 23:10:09.275098 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:57823, 请求体: &{Stream:0x14001cf4600}
+2025/02/04 23:10:09.280436 error_md.go:34: [Error] <nil>
+2025/02/04 23:10:09.280561 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/04 23:11:16.877447 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:57857, 请求体: &{Stream:0x14001c3d000}
+2025/02/04 23:11:16.887138 error_md.go:34: [Error] <nil>
+2025/02/04 23:11:16.887278 log_md.go:36: [Info] 响应体: <nil>, 耗时: 9ms
+2025/02/04 23:12:02.016260 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/04 23:12:02.016176 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/04 23:12:02.016061 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/04 23:14:22.137807 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58025, 请求体: &{Stream:0x14001c3c540}
+2025/02/04 23:14:22.150302 error_md.go:34: [Error] <nil>
+2025/02/04 23:14:22.150392 log_md.go:36: [Info] 响应体: <nil>, 耗时: 12ms
+2025/02/04 23:14:37.773275 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58036, 请求体: &{Stream:0x14001d18cc0}
+2025/02/04 23:14:37.776606 error_md.go:34: [Error] <nil>
+2025/02/04 23:14:37.776699 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/04 23:15:11.015496 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/04 23:15:11.015530 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/04 23:18:03.868318 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58168, 请求体: &{Stream:0x140019c4080}
+2025/02/04 23:18:03.873869 error_md.go:34: [Error] <nil>
+2025/02/04 23:18:03.873995 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/04 23:18:19.298497 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/04 23:20:53.588121 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58248, 请求体: &{Stream:0x14001c3c440}
+2025/02/04 23:20:53.594630 error_md.go:34: [Error] <nil>
+2025/02/04 23:20:53.594741 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/04 23:22:44.864814 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/04 23:23:53.678947 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58384, 请求体: &{Stream:0x140001b4180}
+2025/02/04 23:23:53.688446 error_md.go:34: [Error] <nil>
+2025/02/04 23:23:53.688599 log_md.go:36: [Info] 响应体: <nil>, 耗时: 9ms
+2025/02/04 23:24:50.024616 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/04 23:27:39.567303 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58642, 请求体: &{Stream:0x140019c43c0}
+2025/02/04 23:27:39.575867 error_md.go:34: [Error] <nil>
+2025/02/04 23:27:39.576012 log_md.go:36: [Info] 响应体: <nil>, 耗时: 8ms
+2025/02/04 23:29:24.532696 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58741, 请求体: &{Stream:0x140001b4180}
+2025/02/04 23:29:24.539295 error_md.go:34: [Error] <nil>
+2025/02/04 23:29:24.539444 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/04 23:29:45.938152 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58761, 请求体: &{Stream:0x140001b5140}
+2025/02/04 23:29:45.941045 error_md.go:34: [Error] <nil>
+2025/02/04 23:29:45.941140 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/04 23:30:29.311008 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/04 23:30:29.311008 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/04 23:30:29.311014 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/04 23:31:43.521147 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58946, 请求体: &{Stream:0x14001cf43a0}
+2025/02/04 23:31:43.526918 error_md.go:34: [Error] <nil>
+2025/02/04 23:31:43.527015 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/04 23:32:03.308658 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58947, 请求体: &{Stream:0x140019c40e0}
+2025/02/04 23:32:03.311411 error_md.go:34: [Error] <nil>
+2025/02/04 23:32:03.311489 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/04 23:32:08.152321 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:58948, 请求体: &{Stream:0x140001b4b40}
+2025/02/04 23:32:08.160842 error_md.go:34: [Error] <nil>
+2025/02/04 23:32:08.160933 log_md.go:36: [Info] 响应体: <nil>, 耗时: 8ms
+2025/02/04 23:32:35.335784 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/04 23:32:35.335788 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/04 23:32:35.335799 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]

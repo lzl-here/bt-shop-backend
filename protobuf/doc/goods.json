@@ -1,0 +1,768 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Goods Service API",
+    "version": "1.0"
+  },
+  "paths": {
+    "/goods/get_keyword_down_list": {
+      "post": {
+        "summary": "获取关键词下拉列表",
+        "operationId": "GetKeywordDownList",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetKeywordDownListReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "$ref": "#/definitions/GetKeywordDownListRsp"
+            }
+          }
+        }
+      }
+    },
+    "/goods/search_spu_list": {
+      "post": {
+        "summary": "根据关键词和搜索参数进行搜索",
+        "operationId": "SearchSpuList",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SearchSpuListReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "$ref": "#/definitions/SearchSpuListRsp"
+            }
+          }
+        }
+      }
+    },
+    "/goods/get_goods_detail": {
+      "post": {
+        "summary": "获取单个商品详情",
+        "operationId": "GetGoodsDetail",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetGoodsDetailReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "$ref": "#/definitions/GetGoodsDetailRsp"
+            }
+          }
+        }
+      }
+    },
+    "/goods/get_goods_list": {
+      "post": {
+        "summary": "获取商品列表详情",
+        "operationId": "GetGoodsList",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetGoodsListReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "$ref": "#/definitions/GetGoodsListRsp"
+            }
+          }
+        }
+      }
+    },
+    "/goods/get_category_list": {
+      "post": {
+        "summary": "获取商品分类",
+        "operationId": "GetCategoryList",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetCategoryListReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "$ref": "#/definitions/GetCategoryListRsp"
+            }
+          }
+        }
+      }
+    },
+    "/goods/get_brand_list": {
+      "post": {
+        "summary": "获取品牌列表",
+        "operationId": "GetBrandList",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetBrandListReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "$ref": "#/definitions/GetBrandListRsp"
+            }
+          }
+        }
+      }
+    },
+    "/goods/add_to_cart": {
+      "post": {
+        "summary": "添加到购物车",
+        "operationId": "AddToCart",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddToCartReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "$ref": "#/definitions/AddToCartRsp"
+            }
+          }
+        }
+      }
+    },
+    "/goods/publish_goods": {
+      "post": {
+        "summary": "发布商品",
+        "operationId": "PublishGoods",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PublishGoodsReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "$ref": "#/definitions/PublishGoodsRsp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "GetKeywordDownListReq": {
+      "type": "object",
+      "properties": {
+        "prefix": {
+          "type": "string"
+        }
+      }
+    },
+    "GetKeywordDownListRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/GetKeyDownListRspData"
+        }
+      }
+    },
+    "SearchSpuListReq": {
+      "type": "object",
+      "properties": {
+        "page_size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "page_no": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "keyword": {
+          "type": "string"
+        },
+        "category_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "brand_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "order_by": {
+          "type": "string"
+        }
+      }
+    },
+    "SearchSpuListRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/SearchSpuListRspData"
+        }
+      }
+    },
+    "GetGoodsDetailReq": {
+      "type": "object",
+      "properties": {
+        "spu_id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "GetGoodsDetailRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/GetGoodsDetailRspData"
+        }
+      }
+    },
+    "GetGoodsListReq": {
+      "type": "object",
+      "properties": {
+        "spu_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      }
+    },
+    "GetGoodsListRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/GetGoodsListRspData"
+        }
+      }
+    },
+    "GetCategoryListReq": {
+      "type": "object"
+    },
+    "GetCategoryListRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/GetCategoryListRspData"
+        }
+      }
+    },
+    "GetBrandListReq": {
+      "type": "object"
+    },
+    "GetBrandListRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/GetBrandListDataRsp"
+        }
+      }
+    },
+    "AddToCartReq": {
+      "type": "object"
+    },
+    "AddToCartRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/AddToCartRspData"
+        }
+      }
+    },
+    "PublishGoodsReq": {
+      "type": "object",
+      "properties": {
+        "category_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "category_name": {
+          "type": "string"
+        },
+        "brand_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "brand_name": {
+          "type": "string"
+        },
+        "spu_name": {
+          "type": "string"
+        },
+        "spu_desc": {
+          "type": "string"
+        },
+        "spu_price": {
+          "type": "string"
+        },
+        "spu_img_url": {
+          "type": "string"
+        },
+        "sku_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PublishSku"
+          }
+        },
+        "attribute_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PublishAttribute"
+          }
+        }
+      }
+    },
+    "PublishGoodsRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/PublishGoodsRspData"
+        }
+      }
+    },
+    "GetKeyDownListRspData": {
+      "type": "object",
+      "properties": {
+        "keyword_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BaseKeyword"
+          }
+        }
+      }
+    },
+    "SearchSpuListRspData": {
+      "type": "object",
+      "properties": {
+        "spu_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BaseSpu"
+          }
+        },
+        "page_size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "page_no": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "GetGoodsDetailRspData": {
+      "type": "object",
+      "properties": {
+        "spu": {
+          "$ref": "#/definitions/GoodsSpu"
+        }
+      }
+    },
+    "GetGoodsListRspData": {
+      "type": "object",
+      "properties": {
+        "spu_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GoodsSpu"
+          }
+        }
+      }
+    },
+    "GetCategoryListRspData": {
+      "type": "object",
+      "properties": {
+        "category_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BaseCategory"
+          }
+        }
+      }
+    },
+    "GetBrandListDataRsp": {
+      "type": "object",
+      "properties": {
+        "brand_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BaseBrand"
+          }
+        }
+      }
+    },
+    "AddToCartRspData": {
+      "type": "object"
+    },
+    "PublishGoodsRspData": {
+      "type": "object",
+      "properties": {
+        "spu_id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "PublishSku": {
+      "type": "object",
+      "properties": {
+        "stock_num": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "sku_price": {
+          "type": "string"
+        },
+        "spec_key_value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PublishSpecValue"
+          }
+        }
+      }
+    },
+    "PublishAttribute": {
+      "type": "object",
+      "properties": {
+        "attribute_name": {
+          "type": "string"
+        },
+        "attribute_value": {
+          "type": "string"
+        }
+      }
+    },
+    "PublishSpecValue": {
+      "type": "object",
+      "properties": {
+        "spec_name": {
+          "type": "string"
+        },
+        "spec_value": {
+          "type": "string"
+        }
+      }
+    },
+    "GoodsSpu": {
+      "type": "object",
+      "properties": {
+        "spu": {
+          "$ref": "#/definitions/BaseSpu"
+        },
+        "sku_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GoodsSku"
+          }
+        },
+        "spec_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BaseSpec"
+          }
+        }
+      }
+    },
+    "GoodsSku": {
+      "type": "object",
+      "properties": {
+        "sku": {
+          "$ref": "#/definitions/BaseSku"
+        },
+        "spec_value_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BaseSpecValue"
+          }
+        }
+      }
+    },
+    "BaseSpu": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "spu_name": {
+          "type": "string"
+        },
+        "spu_desc": {
+          "type": "string"
+        },
+        "category_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "category_name": {
+          "type": "string"
+        },
+        "brand_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "brand_name": {
+          "type": "string"
+        },
+        "spu_price": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "spu_img_url": {
+          "type": "string"
+        }
+      }
+    },
+    "BaseSku": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "spu_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "stock_num": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "sku_price": {
+          "type": "string"
+        }
+      }
+    },
+    "BaseSpec": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "spec_name": {
+          "type": "string"
+        },
+        "spu_id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "BaseSpecValue": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "spec_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "spec_name": {
+          "type": "string"
+        },
+        "spec_value": {
+          "type": "string"
+        }
+      }
+    },
+    "BaseKeyword": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "BaseCategory": {
+      "type": "object",
+      "properties": {
+        "category_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "category_name": {
+          "type": "string"
+        },
+        "parent_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "level": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BaseCategory"
+          }
+        }
+      }
+    },
+    "BaseBrand": {
+      "type": "object",
+      "properties": {
+        "brand_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "brand_name": {
+          "type": "string"
+        },
+        "icon_url": {
+          "type": "string"
+        }
+      }
+    }
+  }
+} 

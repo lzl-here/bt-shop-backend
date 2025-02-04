@@ -23,8 +23,9 @@ clean:
 .PHONY: gen clean
 
 api: 
-	@ cd apps/gateway  && hz update -I ../../$(PROTO_PATH) -idl ../../$(PROTO_PATH)/order/order_server.proto
-	@ cd apps/gateway  && hz update -I ../../$(PROTO_PATH) -idl ../../$(PROTO_PATH)/goods/goods_server.proto
-	@ cd apps/gateway  && hz update -I ../../$(PROTO_PATH) -idl ../../$(PROTO_PATH)/pay/pay_server.proto
-
+	@ rm -rf apps/gateway/biz/model/*
+	@ cd apps/gateway  && hz update -I ../../$(API_PATH) -idl ../../$(API_PATH)/api_order/order_server.proto
+	@ cd apps/gateway  && hz update -I ../../$(API_PATH) -idl ../../$(API_PATH)/api_goods/goods_server.proto
+	@ cd apps/gateway  && hz update -I ../../$(API_PATH) -idl ../../$(API_PATH)/api_pay/pay_server.proto
+	
 	@ go mod tidy

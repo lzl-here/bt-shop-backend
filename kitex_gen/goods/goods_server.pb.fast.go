@@ -5,11 +5,9 @@ package goods
 import (
 	fmt "fmt"
 	fastpb "github.com/cloudwego/fastpb"
-	api "github.com/lzl-here/bt-shop-backend/kitex_gen/api"
 )
 
 var (
 	_ = fmt.Errorf
 	_ = fastpb.Skip
 )
-var _ = api.File_api_proto
