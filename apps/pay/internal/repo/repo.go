@@ -33,6 +33,8 @@ type RepoInterface interface {
 	AlipayRefund(context.Context, alipay.TradeRefund) (*alipay.TradeRefundRsp, error) // 支付宝退款
 	CreatePayFlows(payFlow []*model.PayFlow) error                                    // 创建支付流水
 	UpdatePayFlow(where, update *model.PayFlow) (*model.PayFlow, error)               // 修改支付流水
+
+	CreatePayInfo(ctx context.Context, tx *gorm.DB, payInfo *model.PayInfo) error
 }
 
 var _ RepoInterface = (*Repo)(nil)
@@ -122,4 +124,8 @@ func (r *Repo) PaySuccessToOrder(ctx context.Context, req *ogen.PaySuccessToOrde
 // 支付取消通知订单系统
 func (r *Repo) PayCancelToOrder(ctx context.Context, req *ogen.PayCancelToOrderReq) (*ogen.PayCancelToOrderRsp, error) {
 	return r.OrderClient.PayCancelToOrder(ctx, req)
+}
+
+func (r *Repo) CreatePayInfo(ctx context.Context, tx *gorm.DB, payInfo *model.PayInfo) error {
+	return tx.WithContext(ctx).Create(payInfo).Error
 }

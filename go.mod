@@ -8,6 +8,7 @@ require (
 	github.com/cloudwego/kitex v0.12.1
 	github.com/elastic/go-elasticsearch v0.0.0
 	github.com/elastic/go-elasticsearch/v8 v8.17.0
+	github.com/hertz-contrib/cors v0.1.0
 	github.com/joho/godotenv v1.5.1
 	github.com/kitex-contrib/registry-etcd v0.2.5
 	github.com/redis/go-redis/v9 v9.7.0
@@ -56,7 +57,6 @@ require (
 	github.com/google/pprof v0.0.0-20240727154555-813a5fbdbec8 // indirect
 	github.com/iancoleman/strcase v0.2.0 // indirect
 	github.com/jhump/protoreflect v1.8.2 // indirect
-	github.com/jinzhu/copier v0.4.0
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/josharian/intern v1.0.0 // indirect

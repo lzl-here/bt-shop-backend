@@ -127,7 +127,32 @@ func (x *PayRsp) fastReadField4(buf []byte, _type int8) (offset int, err error) 
 	return offset, nil
 }
 
-func (x *PayRsp_PayRspData) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
+func (x *ReTradeReq) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
+	switch number {
+	case 1:
+		offset, err = x.fastReadField1(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	default:
+		offset, err = fastpb.Skip(buf, _type, number)
+		if err != nil {
+			goto SkipFieldError
+		}
+	}
+	return offset, nil
+SkipFieldError:
+	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
+ReadFieldError:
+	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_ReTradeReq[number], err)
+}
+
+func (x *ReTradeReq) fastReadField1(buf []byte, _type int8) (offset int, err error) {
+	x.TradeNo, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
+func (x *ReTradeRsp) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
 	switch number {
 	case 1:
 		offset, err = x.fastReadField1(buf, _type)
@@ -136,6 +161,61 @@ func (x *PayRsp_PayRspData) FastRead(buf []byte, _type int8, number int32) (offs
 		}
 	case 2:
 		offset, err = x.fastReadField2(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 3:
+		offset, err = x.fastReadField3(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 4:
+		offset, err = x.fastReadField4(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	default:
+		offset, err = fastpb.Skip(buf, _type, number)
+		if err != nil {
+			goto SkipFieldError
+		}
+	}
+	return offset, nil
+SkipFieldError:
+	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
+ReadFieldError:
+	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_ReTradeRsp[number], err)
+}
+
+func (x *ReTradeRsp) fastReadField1(buf []byte, _type int8) (offset int, err error) {
+	x.Code, offset, err = fastpb.ReadInt32(buf, _type)
+	return offset, err
+}
+
+func (x *ReTradeRsp) fastReadField2(buf []byte, _type int8) (offset int, err error) {
+	x.Msg, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
+func (x *ReTradeRsp) fastReadField3(buf []byte, _type int8) (offset int, err error) {
+	x.LogId, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
+func (x *ReTradeRsp) fastReadField4(buf []byte, _type int8) (offset int, err error) {
+	var v ReTradeRsp_ReTradeRspData
+	offset, err = fastpb.ReadMessage(buf, _type, &v)
+	if err != nil {
+		return offset, err
+	}
+	x.Data = &v
+	return offset, nil
+}
+
+func (x *PayRsp_PayRspData) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
+	switch number {
+	case 1:
+		offset, err = x.fastReadField1(buf, _type)
 		if err != nil {
 			goto ReadFieldError
 		}
@@ -153,13 +233,43 @@ ReadFieldError:
 }
 
 func (x *PayRsp_PayRspData) fastReadField1(buf []byte, _type int8) (offset int, err error) {
-	x.PayPageUrl, offset, err = fastpb.ReadString(buf, _type)
-	return offset, err
+	var v BasePayInfo
+	offset, err = fastpb.ReadMessage(buf, _type, &v)
+	if err != nil {
+		return offset, err
+	}
+	x.PayInfo = &v
+	return offset, nil
 }
 
-func (x *PayRsp_PayRspData) fastReadField2(buf []byte, _type int8) (offset int, err error) {
-	x.TradeNo, offset, err = fastpb.ReadString(buf, _type)
-	return offset, err
+func (x *ReTradeRsp_ReTradeRspData) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
+	switch number {
+	case 1:
+		offset, err = x.fastReadField1(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	default:
+		offset, err = fastpb.Skip(buf, _type, number)
+		if err != nil {
+			goto SkipFieldError
+		}
+	}
+	return offset, nil
+SkipFieldError:
+	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
+ReadFieldError:
+	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_ReTradeRsp_ReTradeRspData[number], err)
+}
+
+func (x *ReTradeRsp_ReTradeRspData) fastReadField1(buf []byte, _type int8) (offset int, err error) {
+	var v BasePayInfo
+	offset, err = fastpb.ReadMessage(buf, _type, &v)
+	if err != nil {
+		return offset, err
+	}
+	x.PayInfo = &v
+	return offset, nil
 }
 
 func (x *PayReq) FastWrite(buf []byte) (offset int) {
@@ -248,28 +358,94 @@ func (x *PayRsp) fastWriteField4(buf []byte) (offset int) {
 	return offset
 }
 
-func (x *PayRsp_PayRspData) FastWrite(buf []byte) (offset int) {
+func (x *ReTradeReq) FastWrite(buf []byte) (offset int) {
+	if x == nil {
+		return offset
+	}
+	offset += x.fastWriteField1(buf[offset:])
+	return offset
+}
+
+func (x *ReTradeReq) fastWriteField1(buf []byte) (offset int) {
+	if x.TradeNo == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 1, x.GetTradeNo())
+	return offset
+}
+
+func (x *ReTradeRsp) FastWrite(buf []byte) (offset int) {
 	if x == nil {
 		return offset
 	}
 	offset += x.fastWriteField1(buf[offset:])
 	offset += x.fastWriteField2(buf[offset:])
+	offset += x.fastWriteField3(buf[offset:])
+	offset += x.fastWriteField4(buf[offset:])
+	return offset
+}
+
+func (x *ReTradeRsp) fastWriteField1(buf []byte) (offset int) {
+	if x.Code == 0 {
+		return offset
+	}
+	offset += fastpb.WriteInt32(buf[offset:], 1, x.GetCode())
+	return offset
+}
+
+func (x *ReTradeRsp) fastWriteField2(buf []byte) (offset int) {
+	if x.Msg == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 2, x.GetMsg())
+	return offset
+}
+
+func (x *ReTradeRsp) fastWriteField3(buf []byte) (offset int) {
+	if x.LogId == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 3, x.GetLogId())
+	return offset
+}
+
+func (x *ReTradeRsp) fastWriteField4(buf []byte) (offset int) {
+	if x.Data == nil {
+		return offset
+	}
+	offset += fastpb.WriteMessage(buf[offset:], 4, x.GetData())
+	return offset
+}
+
+func (x *PayRsp_PayRspData) FastWrite(buf []byte) (offset int) {
+	if x == nil {
+		return offset
+	}
+	offset += x.fastWriteField1(buf[offset:])
 	return offset
 }
 
 func (x *PayRsp_PayRspData) fastWriteField1(buf []byte) (offset int) {
-	if x.PayPageUrl == "" {
+	if x.PayInfo == nil {
 		return offset
 	}
-	offset += fastpb.WriteString(buf[offset:], 1, x.GetPayPageUrl())
+	offset += fastpb.WriteMessage(buf[offset:], 1, x.GetPayInfo())
 	return offset
 }
 
-func (x *PayRsp_PayRspData) fastWriteField2(buf []byte) (offset int) {
-	if x.TradeNo == "" {
+func (x *ReTradeRsp_ReTradeRspData) FastWrite(buf []byte) (offset int) {
+	if x == nil {
 		return offset
 	}
-	offset += fastpb.WriteString(buf[offset:], 2, x.GetTradeNo())
+	offset += x.fastWriteField1(buf[offset:])
+	return offset
+}
+
+func (x *ReTradeRsp_ReTradeRspData) fastWriteField1(buf []byte) (offset int) {
+	if x.PayInfo == nil {
+		return offset
+	}
+	offset += fastpb.WriteMessage(buf[offset:], 1, x.GetPayInfo())
 	return offset
 }
 
@@ -359,28 +535,94 @@ func (x *PayRsp) sizeField4() (n int) {
 	return n
 }
 
-func (x *PayRsp_PayRspData) Size() (n int) {
+func (x *ReTradeReq) Size() (n int) {
+	if x == nil {
+		return n
+	}
+	n += x.sizeField1()
+	return n
+}
+
+func (x *ReTradeReq) sizeField1() (n int) {
+	if x.TradeNo == "" {
+		return n
+	}
+	n += fastpb.SizeString(1, x.GetTradeNo())
+	return n
+}
+
+func (x *ReTradeRsp) Size() (n int) {
 	if x == nil {
 		return n
 	}
 	n += x.sizeField1()
 	n += x.sizeField2()
+	n += x.sizeField3()
+	n += x.sizeField4()
+	return n
+}
+
+func (x *ReTradeRsp) sizeField1() (n int) {
+	if x.Code == 0 {
+		return n
+	}
+	n += fastpb.SizeInt32(1, x.GetCode())
+	return n
+}
+
+func (x *ReTradeRsp) sizeField2() (n int) {
+	if x.Msg == "" {
+		return n
+	}
+	n += fastpb.SizeString(2, x.GetMsg())
+	return n
+}
+
+func (x *ReTradeRsp) sizeField3() (n int) {
+	if x.LogId == "" {
+		return n
+	}
+	n += fastpb.SizeString(3, x.GetLogId())
+	return n
+}
+
+func (x *ReTradeRsp) sizeField4() (n int) {
+	if x.Data == nil {
+		return n
+	}
+	n += fastpb.SizeMessage(4, x.GetData())
+	return n
+}
+
+func (x *PayRsp_PayRspData) Size() (n int) {
+	if x == nil {
+		return n
+	}
+	n += x.sizeField1()
 	return n
 }
 
 func (x *PayRsp_PayRspData) sizeField1() (n int) {
-	if x.PayPageUrl == "" {
+	if x.PayInfo == nil {
 		return n
 	}
-	n += fastpb.SizeString(1, x.GetPayPageUrl())
+	n += fastpb.SizeMessage(1, x.GetPayInfo())
 	return n
 }
 
-func (x *PayRsp_PayRspData) sizeField2() (n int) {
-	if x.TradeNo == "" {
+func (x *ReTradeRsp_ReTradeRspData) Size() (n int) {
+	if x == nil {
 		return n
 	}
-	n += fastpb.SizeString(2, x.GetTradeNo())
+	n += x.sizeField1()
+	return n
+}
+
+func (x *ReTradeRsp_ReTradeRspData) sizeField1() (n int) {
+	if x.PayInfo == nil {
+		return n
+	}
+	n += fastpb.SizeMessage(1, x.GetPayInfo())
 	return n
 }
 
@@ -398,7 +640,21 @@ var fieldIDToName_PayRsp = map[int32]string{
 	4: "Data",
 }
 
+var fieldIDToName_ReTradeReq = map[int32]string{
+	1: "TradeNo",
+}
+
+var fieldIDToName_ReTradeRsp = map[int32]string{
+	1: "Code",
+	2: "Msg",
+	3: "LogId",
+	4: "Data",
+}
+
 var fieldIDToName_PayRsp_PayRspData = map[int32]string{
-	1: "PayPageUrl",
-	2: "TradeNo",
+	1: "PayInfo",
+}
+
+var fieldIDToName_ReTradeRsp_ReTradeRspData = map[int32]string{
+	1: "PayInfo",
 }

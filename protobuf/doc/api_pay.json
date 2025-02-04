@@ -1,0 +1,234 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Pay API Service",
+    "version": "1.0"
+  },
+  "paths": {
+    "/pay/pay": {
+      "post": {
+        "summary": "支付",
+        "operationId": "Pay",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PayReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "$ref": "#/definitions/PayRsp"
+            }
+          }
+        }
+      }
+    },
+    "/pay/webhook/alipay": {
+      "post": {
+        "summary": "支付宝异步回调",
+        "operationId": "AlipayWebhook",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AlipayWebhookReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "$ref": "#/definitions/AlipayWebhookRsp"
+            }
+          }
+        }
+      }
+    },
+    "/pay/close_pay": {
+      "post": {
+        "summary": "取消支付",
+        "operationId": "ClosePay",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ClosePayReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "$ref": "#/definitions/ClosePayRsp"
+            }
+          }
+        }
+      }
+    },
+    "/pay/refund_pay": {
+      "post": {
+        "summary": "退款",
+        "operationId": "RefundPay",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RefundPayReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "$ref": "#/definitions/RefundPayRsp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "PayReq": {
+      "type": "object",
+      "properties": {
+        "trade_no": {
+          "type": "string",
+          "description": "电商平台交易号"
+        },
+        "subject": {
+          "type": "string",
+          "description": "订单标题"
+        },
+        "totalAmount": {
+          "type": "string",
+          "description": "订单金额"
+        },
+        "pay_type": {
+          "type": "string",
+          "description": "支付类型"
+        }
+      }
+    },
+    "PayRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/PayRspData"
+        }
+      }
+    },
+    "PayRspData": {
+      "type": "object",
+      "properties": {
+        "pay_page_url": {
+          "type": "string",
+          "description": "支付页面链接"
+        },
+        "trade_no": {
+          "type": "string",
+          "description": "电商平台交易号"
+        }
+      }
+    },
+    "ClosePayReq": {
+      "type": "object",
+      "properties": {
+        "trade_no": {
+          "type": "string"
+        }
+      }
+    },
+    "ClosePayRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/ClosePayRspData"
+        }
+      }
+    },
+    "ClosePayRspData": {
+      "type": "object"
+    },
+    "RefundPayReq": {
+      "type": "object",
+      "properties": {
+        "trade_no": {
+          "type": "string",
+          "description": "电商交易号"
+        },
+        "refund_amount": {
+          "type": "string",
+          "description": "退款金额"
+        },
+        "out_request_no": {
+          "type": "string",
+          "description": "退款请求号，一笔交易下进行多次退款使用，每次退款都需要是不同的退款请求号，同一笔交易下需要保持唯一"
+        },
+        "refund_reason": {
+          "type": "string",
+          "description": "退款原因"
+        },
+        "related_settle_confirm_no": {
+          "type": "string",
+          "description": "在结算后退款需要指定结算单号"
+        }
+      }
+    },
+    "RefundPayRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/RefundPayRspData"
+        }
+      }
+    },
+    "RefundPayRspData": {
+      "type": "object"
+    }
+  }
+} 

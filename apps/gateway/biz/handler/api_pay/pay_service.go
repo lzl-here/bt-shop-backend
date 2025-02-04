@@ -39,14 +39,10 @@ func Pay(ctx context.Context, c *app.RequestContext) {
 		return
 	}
 
-	resp := &pgen.PayRsp{
-		Code:  int32(rpcResp.Code),
-		Msg:   rpcResp.Msg,
-		LogId: "",
-		Data: &pgen.PayRsp_PayRspData{
-			PayPageUrl: rpcResp.Data.PayPageUrl,
-			TradeNo:    rpcResp.Data.TradeNo,
-		},
+	resp := new(api_pay.PayRsp)
+	if err := utils.CopyFields(rpcResp, resp); err != nil {
+		c.JSON(consts.StatusInternalServerError, &pgen.PayRsp{Code: 500, Msg: err.Error()})
+		return
 	}
 	c.JSON(consts.StatusOK, resp)
 }
@@ -189,6 +185,22 @@ func RefundPay(ctx context.Context, c *app.RequestContext) {
 		c.String(consts.StatusInternalServerError, err.Error())
 		return
 	}
+
+	c.JSON(consts.StatusOK, resp)
+}
+
+// ReTrade .
+// @router /pay/re_trade [POST]
+func ReTrade(ctx context.Context, c *app.RequestContext) {
+	var err error
+	var req api_pay.ReTradeReq
+	err = c.BindAndValidate(&req)
+	if err != nil {
+		c.String(consts.StatusBadRequest, err.Error())
+		return
+	}
+
+	resp := new(api_pay.ReTradeRsp)
 
 	c.JSON(consts.StatusOK, resp)
 }

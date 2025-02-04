@@ -5,13 +5,11 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/cloudwego/kitex/pkg/kerrors"
 	"github.com/lzl-here/bt-shop-backend/apps/order/internal/common"
 	"github.com/lzl-here/bt-shop-backend/apps/order/internal/constant"
 	"github.com/lzl-here/bt-shop-backend/apps/order/internal/domain/model"
 	ggen "github.com/lzl-here/bt-shop-backend/kitex_gen/goods"
 	ogen "github.com/lzl-here/bt-shop-backend/kitex_gen/order"
-	pgen "github.com/lzl-here/bt-shop-backend/kitex_gen/pay"
 	bizerr "github.com/lzl-here/bt-shop-backend/pkg/err"
 	"github.com/lzl-here/bt-shop-backend/pkg/utils"
 	"gorm.io/gorm"
@@ -88,36 +86,12 @@ func (h *OrderHandler) CreateTrade(ctx context.Context, req *ogen.CreateTradeReq
 	if err != nil {
 		return nil, err
 	}
-	// 4. 拉起支付
-	payRsp, err := h.rep.Pay(ctx, &pgen.PayReq{
-		Subject:     "这是一个支付的标题",
-		TotalAmount: req.Trade.Trade.TradeAmount,
-		TradeNo:     tradeNo,
-	})
 
-	if err != nil {
-		return nil, err
-	}
-
-	if payRsp.Code != 1 {
-		return nil, kerrors.NewBizStatusError(payRsp.Code, payRsp.Msg)
-	}
-
-	// 5. 存储支付详情
-	err = h.rep.CreateTradeInfo(ctx, h.rep.GetDB(), &model.TradeInfo{
-		TradeNo: tradeNo,
-		PageUrl: payRsp.Data.PayPageUrl,
-	})
-	if err != nil {
-		return nil, err
-	}
-	// 6. 返回支付页面url
 	return &ogen.CreateTradeRsp{
 		Code: 1,
 		Msg:  "success",
 		Data: &ogen.CreateTradeRsp_CreateTradeRspData{
-			TradeNo:    tradeNo,
-			PayPageUrl: payRsp.Data.PayPageUrl,
+			TradeNo: tradeNo,
 		},
 	}, nil
 }
@@ -235,25 +209,4 @@ func buildModels(req *ogen.CreateTradeReq) (*model.Trade, []*model.Order, []*mod
 
 func (h *OrderHandler) CancelTrade(ctx context.Context, req *ogen.CancelTradeReq) (res *ogen.CancelTradeRsp, err error) {
 	return nil, nil
-}
-
-/**
-* @decription: 重新拉起支付 (返回url)
- */
-func (h *OrderHandler) ReTrade(ctx context.Context, req *ogen.ReTradeReq) (*ogen.ReTradeRsp, error) {
-	tradeInfo, err := h.rep.GetTradeInfo(ctx, &model.TradeInfo{TradeNo: req.TradeNo})
-	if err != nil {
-		return nil, err
-	}
-	return &ogen.ReTradeRsp{
-		Code: 1,
-		Msg:  "success",
-		Data: &ogen.ReTradeRsp_ReTradeRspData{
-			TradeInfo: &ogen.BaseTradeInfo{
-				Id:      tradeInfo.ID,
-				TradeNo: tradeInfo.TradeNo,
-				PageUrl: tradeInfo.PageUrl,
-			},
-		},
-	}, nil
 }

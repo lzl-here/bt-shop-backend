@@ -21,6 +21,7 @@ func Register(r *server.Hertz) {
 		_pay := root.Group("/pay", _payMw()...)
 		_pay.POST("/close_pay", append(_closepayMw(), api_pay.ClosePay)...)
 		_pay.POST("/pay", append(_pay0Mw(), api_pay.Pay)...)
+		_pay.POST("/re_trade", append(_retradeMw(), api_pay.ReTrade)...)
 		_pay.POST("/refund_pay", append(_refundpayMw(), api_pay.RefundPay)...)
 		{
 			_webhook := _pay.Group("/webhook", _webhookMw()...)

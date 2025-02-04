@@ -1,15 +1,3 @@
 分布式链路追踪
 
-TODO：调通前端
-
-
-TODO: 营销、热门、销量
-
-
-
-You are using local thriftgo. Please make sure the version is matched with kitex tool.
-[WARN] "google/protobuf/descriptor.proto" is skipped because its import path "google.golang.org/protobuf/types/descriptorpb" is not located in ./kitex_gen. Change the go_package option or use '--protobuf Mgoogle/protobuf/descriptor.proto=A-Import-Path-In-kitex_gen' to override it if you want this file to be generated under kitex_gen.
-[WARN] "pay/api_pay.proto" is skipped because its import path "api.pay" is not located in ./kitex_gen. Change the go_package option or use '--protobuf Mpay/api_pay.proto=A-Import-Path-In-kitex_gen' to override it if you want this file to be generated under kitex_gen.
-[WARN] "pay/api_webhook.proto" is skipped because its import path "api.pay" is not located in ./kitex_gen. Change the go_package option or use '--protobuf Mpay/api_webhook.proto=A-Import-Path-In-kitex_gen' to override it if you want this file to be generated under kitex_gen.
-[WARN] "pay/api_pay_server.proto" is skipped because its import path "api.pay" is not located in ./kitex_gen. Change the go_package option or use '--protobuf Mpay/api_pay_server.proto=A-Import-Path-In-kitex_gen' to override it if you want this file to be generated under kitex_gen.
-Code Generation is Done!
+TODO: 营销、热门、销量2

@@ -12,7 +12,6 @@ import (
 // Client is designed to provide IDL-compatible methods with call-option parameter for kitex framework.
 type Client interface {
 	CreateTrade(ctx context.Context, Req *order.CreateTradeReq, callOptions ...callopt.Option) (r *order.CreateTradeRsp, err error)
-	ReTrade(ctx context.Context, Req *order.ReTradeReq, callOptions ...callopt.Option) (r *order.ReTradeRsp, err error)
 	CancelTrade(ctx context.Context, Req *order.CancelTradeReq, callOptions ...callopt.Option) (r *order.CancelTradeRsp, err error)
 	GetOrderItems(ctx context.Context, Req *order.GetOrderItemsReq, callOptions ...callopt.Option) (r *order.GetOrderItemsRsp, err error)
 	PaySuccessToOrder(ctx context.Context, Req *order.PaySuccessToOrderReq, callOptions ...callopt.Option) (r *order.PaySuccessToOrderRsp, err error)
@@ -51,11 +50,6 @@ type kOrderServiceClient struct {
 func (p *kOrderServiceClient) CreateTrade(ctx context.Context, Req *order.CreateTradeReq, callOptions ...callopt.Option) (r *order.CreateTradeRsp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
 	return p.kClient.CreateTrade(ctx, Req)
-}
-
-func (p *kOrderServiceClient) ReTrade(ctx context.Context, Req *order.ReTradeReq, callOptions ...callopt.Option) (r *order.ReTradeRsp, err error) {
-	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
-	return p.kClient.ReTrade(ctx, Req)
 }
 
 func (p *kOrderServiceClient) CancelTrade(ctx context.Context, Req *order.CancelTradeReq, callOptions ...callopt.Option) (r *order.CancelTradeRsp, err error) {

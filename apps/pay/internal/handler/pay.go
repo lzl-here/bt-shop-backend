@@ -4,6 +4,7 @@ import (
 	"context"
 	"time"
 
+	"github.com/lzl-here/bt-shop-backend/apps/pay/internal/domain/model"
 	pgen "github.com/lzl-here/bt-shop-backend/kitex_gen/pay"
 	bizerr "github.com/lzl-here/bt-shop-backend/pkg/err"
 	"github.com/lzl-here/bt-shop-backend/pkg/utils"
@@ -18,7 +19,6 @@ func (h *PayHandler) Pay(ctx context.Context, req *pgen.PayReq) (res *pgen.PayRs
 	if !ok {
 		return nil, bizerr.ErrDuplicateReq
 	}
-
 	param := alipay.TradePagePay{}
 	param.OutTradeNo = req.TradeNo
 	param.Subject = req.Subject
@@ -28,12 +28,24 @@ func (h *PayHandler) Pay(ctx context.Context, req *pgen.PayReq) (res *pgen.PayRs
 		cleaner()
 		return nil, err
 	}
+	pageUrl := url.String()
+	// 5. 存储支付详情
+	err = h.rep.CreatePayInfo(ctx, h.rep.GetDB(), &model.PayInfo{
+		TradeNo:    req.TradeNo,
+		PayPageUrl: pageUrl,
+	})
+	if err != nil {
+		return nil, err
+	}
+
 	return &pgen.PayRsp{
 		Code: 1,
 		Msg:  "success",
 		Data: &pgen.PayRsp_PayRspData{
-			PayPageUrl: url.String(),
-			TradeNo:    req.TradeNo,
+			PayInfo: &pgen.BasePayInfo{
+				PayPageUrl: pageUrl,
+				TradeNo:    req.TradeNo,
+			},
 		},
 	}, nil
 }

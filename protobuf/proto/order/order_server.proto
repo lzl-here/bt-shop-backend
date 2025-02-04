@@ -17,10 +17,6 @@ service OrderService {
     rpc CreateTrade(CreateTradeReq) returns (CreateTradeRsp) {
     }
 
-    // 继续支付 对外
-    rpc ReTrade(ReTradeReq) returns (ReTradeRsp){
-    }
-
     // 取消一笔交易 对外
     rpc CancelTrade(CancelTradeReq) returns (CancelTradeRsp) {
     }

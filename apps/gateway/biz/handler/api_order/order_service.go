@@ -45,40 +45,6 @@ func CreateTrade(ctx context.Context, c *app.RequestContext) {
 	c.JSON(consts.StatusOK, resp)
 }
 
-// ReTrade .
-// @router /order/re_trade [POST]
-func ReTrade(ctx context.Context, c *app.RequestContext) {
-	var err error
-	var req api_order.ReTradeReq
-	err = c.BindAndValidate(&req)
-	if err != nil {
-		c.String(consts.StatusBadRequest, err.Error())
-		return
-	}
-
-	rpcReq := &ogen.ReTradeReq{}
-	if err := utils.CopyFields(&req, rpcReq); err != nil {
-		c.String(consts.StatusInternalServerError, err.Error())
-		return
-	}
-
-	rpcResp, err := global.OrderClient.ReTrade(ctx, rpcReq)
-	if err != nil {
-		c.String(consts.StatusInternalServerError, err.Error())
-		return
-	}
-
-	resp := new(api_order.ReTradeRsp)
-	if err := utils.CopyFields(rpcResp, resp); err != nil {
-		c.String(consts.StatusInternalServerError, err.Error())
-		return
-	}
-
-	c.JSON(consts.StatusOK, resp)
-}
-
-// CancelTrade .
-// @router /order/cancel_trade [POST]
 func CancelTrade(ctx context.Context, c *app.RequestContext) {
 	var err error
 	var req api_order.CancelTradeReq

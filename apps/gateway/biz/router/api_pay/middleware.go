@@ -40,3 +40,8 @@ func _alipaywebhookMw() []app.HandlerFunc {
 	// your code...
 	return nil
 }
+
+func _retradeMw() []app.HandlerFunc {
+	// your code...
+	return nil
+}

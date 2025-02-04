@@ -22,13 +22,6 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingUnary),
 	),
-	"ReTrade": kitex.NewMethodInfo(
-		reTradeHandler,
-		newReTradeArgs,
-		newReTradeResult,
-		false,
-		kitex.WithStreamingMode(kitex.StreamingUnary),
-	),
 	"CancelTrade": kitex.NewMethodInfo(
 		cancelTradeHandler,
 		newCancelTradeArgs,
@@ -273,159 +266,6 @@ func (p *CreateTradeResult) IsSetSuccess() bool {
 }
 
 func (p *CreateTradeResult) GetResult() interface{} {
-	return p.Success
-}
-
-func reTradeHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
-	switch s := arg.(type) {
-	case *streaming.Args:
-		st := s.Stream
-		req := new(order.ReTradeReq)
-		if err := st.RecvMsg(req); err != nil {
-			return err
-		}
-		resp, err := handler.(order.OrderService).ReTrade(ctx, req)
-		if err != nil {
-			return err
-		}
-		return st.SendMsg(resp)
-	case *ReTradeArgs:
-		success, err := handler.(order.OrderService).ReTrade(ctx, s.Req)
-		if err != nil {
-			return err
-		}
-		realResult := result.(*ReTradeResult)
-		realResult.Success = success
-		return nil
-	default:
-		return errInvalidMessageType
-	}
-}
-func newReTradeArgs() interface{} {
-	return &ReTradeArgs{}
-}
-
-func newReTradeResult() interface{} {
-	return &ReTradeResult{}
-}
-
-type ReTradeArgs struct {
-	Req *order.ReTradeReq
-}
-
-func (p *ReTradeArgs) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
-	if !p.IsSetReq() {
-		p.Req = new(order.ReTradeReq)
-	}
-	return p.Req.FastRead(buf, _type, number)
-}
-
-func (p *ReTradeArgs) FastWrite(buf []byte) (n int) {
-	if !p.IsSetReq() {
-		return 0
-	}
-	return p.Req.FastWrite(buf)
-}
-
-func (p *ReTradeArgs) Size() (n int) {
-	if !p.IsSetReq() {
-		return 0
-	}
-	return p.Req.Size()
-}
-
-func (p *ReTradeArgs) Marshal(out []byte) ([]byte, error) {
-	if !p.IsSetReq() {
-		return out, nil
-	}
-	return proto.Marshal(p.Req)
-}
-
-func (p *ReTradeArgs) Unmarshal(in []byte) error {
-	msg := new(order.ReTradeReq)
-	if err := proto.Unmarshal(in, msg); err != nil {
-		return err
-	}
-	p.Req = msg
-	return nil
-}
-
-var ReTradeArgs_Req_DEFAULT *order.ReTradeReq
-
-func (p *ReTradeArgs) GetReq() *order.ReTradeReq {
-	if !p.IsSetReq() {
-		return ReTradeArgs_Req_DEFAULT
-	}
-	return p.Req
-}
-
-func (p *ReTradeArgs) IsSetReq() bool {
-	return p.Req != nil
-}
-
-func (p *ReTradeArgs) GetFirstArgument() interface{} {
-	return p.Req
-}
-
-type ReTradeResult struct {
-	Success *order.ReTradeRsp
-}
-
-var ReTradeResult_Success_DEFAULT *order.ReTradeRsp
-
-func (p *ReTradeResult) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
-	if !p.IsSetSuccess() {
-		p.Success = new(order.ReTradeRsp)
-	}
-	return p.Success.FastRead(buf, _type, number)
-}
-
-func (p *ReTradeResult) FastWrite(buf []byte) (n int) {
-	if !p.IsSetSuccess() {
-		return 0
-	}
-	return p.Success.FastWrite(buf)
-}
-
-func (p *ReTradeResult) Size() (n int) {
-	if !p.IsSetSuccess() {
-		return 0
-	}
-	return p.Success.Size()
-}
-
-func (p *ReTradeResult) Marshal(out []byte) ([]byte, error) {
-	if !p.IsSetSuccess() {
-		return out, nil
-	}
-	return proto.Marshal(p.Success)
-}
-
-func (p *ReTradeResult) Unmarshal(in []byte) error {
-	msg := new(order.ReTradeRsp)
-	if err := proto.Unmarshal(in, msg); err != nil {
-		return err
-	}
-	p.Success = msg
-	return nil
-}
-
-func (p *ReTradeResult) GetSuccess() *order.ReTradeRsp {
-	if !p.IsSetSuccess() {
-		return ReTradeResult_Success_DEFAULT
-	}
-	return p.Success
-}
-
-func (p *ReTradeResult) SetSuccess(x interface{}) {
-	p.Success = x.(*order.ReTradeRsp)
-}
-
-func (p *ReTradeResult) IsSetSuccess() bool {
-	return p.Success != nil
-}
-
-func (p *ReTradeResult) GetResult() interface{} {
 	return p.Success
 }
 
@@ -1056,16 +896,6 @@ func (p *kClient) CreateTrade(ctx context.Context, Req *order.CreateTradeReq) (r
 	_args.Req = Req
 	var _result CreateTradeResult
 	if err = p.c.Call(ctx, "CreateTrade", &_args, &_result); err != nil {
-		return
-	}
-	return _result.GetSuccess(), nil
-}
-
-func (p *kClient) ReTrade(ctx context.Context, Req *order.ReTradeReq) (r *order.ReTradeRsp, err error) {
-	var _args ReTradeArgs
-	_args.Req = Req
-	var _result ReTradeResult
-	if err = p.c.Call(ctx, "ReTrade", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil

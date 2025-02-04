@@ -8,6 +8,7 @@ import (
 	"github.com/cloudwego/hertz/pkg/app/server"
 
 	"github.com/lzl-here/bt-shop-backend/apps/gateway/global"
+	"github.com/lzl-here/bt-shop-backend/apps/gateway/middleware"
 	"github.com/lzl-here/bt-shop-backend/pkg/config"
 )
 
@@ -31,6 +32,9 @@ func main() {
 	h := server.Default(
 		server.WithHostPorts(global.AppConfig.GatewayHttpPort),
 	)
+
+	// 注册跨域中间件，确保在注册路由之前添加
+	h.Use(middleware.Cors())
 
 	register(h)
 	h.Spin()

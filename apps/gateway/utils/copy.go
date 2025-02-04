@@ -1,18 +1,15 @@
 package utils
 
 import (
-	"google.golang.org/protobuf/proto"
+	"encoding/json"
 )
 
-// CopyFields performs a deep copy of src to dst using protobuf serialization.
-// Both src and dst must be protobuf message types.
-func CopyFields(src, dst proto.Message) error {
-	// Serialize the source message to a byte slice
-	data, err := proto.Marshal(src)
+// CopyFields performs a deep copy from src to dst using JSON marshaling
+func CopyFields(src, dst interface{}) error {
+	jsonData, err := json.Marshal(src)
 	if err != nil {
 		return err
 	}
-
-	// Deserialize the byte slice into the destination message
-	return proto.Unmarshal(data, dst)
+	// Convert JSON back to dst
+	return json.Unmarshal(jsonData, dst)
 }

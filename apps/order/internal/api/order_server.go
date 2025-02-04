@@ -46,7 +46,3 @@ func (s *OrderServer) PaySuccessToOrder(ctx context.Context, req *ogen.PaySucces
 func (s *OrderServer) PayCancelToOrder(ctx context.Context, req *ogen.PayCancelToOrderReq) (res *ogen.PayCancelToOrderRsp, err error) {
 	return handler.NewOrderHandler(s.rep).PayCancelToOrder(ctx, req)
 }
-
-func (s *OrderServer) ReTrade(ctx context.Context, req *ogen.ReTradeReq) (res *ogen.ReTradeRsp, err error) {
-	return handler.NewOrderHandler(s.rep).ReTrade(ctx, req)
-}

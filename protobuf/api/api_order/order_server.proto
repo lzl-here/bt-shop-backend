@@ -19,11 +19,6 @@ service OrderService {
         option (api.post) = "/order/create_trade";
     }
 
-    // 继续支付 对外
-    rpc ReTrade(ReTradeReq) returns (ReTradeRsp){
-        option (api.post) = "/order/re_trade";
-    }
-
     // 取消一笔交易 对外
     rpc CancelTrade(CancelTradeReq) returns (CancelTradeRsp) {
         option (api.post) = "/order/cancel_trade";

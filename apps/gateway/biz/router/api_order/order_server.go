@@ -24,6 +24,5 @@ func Register(r *server.Hertz) {
 		_order.GET("/get_order_items", append(_getorderitemsMw(), api_order.GetOrderItems)...)
 		_order.POST("/pay_cancel_to_order", append(_paycanceltoorderMw(), api_order.PayCancelToOrder)...)
 		_order.POST("/pay_success_to_order", append(_paysuccesstoorderMw(), api_order.PaySuccessToOrder)...)
-		_order.POST("/re_trade", append(_retradeMw(), api_order.ReTrade)...)
 	}
 }

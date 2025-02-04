@@ -18,6 +18,10 @@ service PayService {
     rpc Pay(PayReq) returns (PayRsp) {
     }
 
+    // 继续支付
+    rpc ReTrade(ReTradeReq) returns (ReTradeRsp) {
+    }
+
     // 支付宝异步回调
     rpc AlipayWebhook(AlipayWebhookReq) returns (AlipayWebhookRsp) {
     }

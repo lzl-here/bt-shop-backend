@@ -7,8 +7,6 @@ MODULE_NAME=github.com/lzl-here/bt-shop-backend
 # 生成proto代码
 gen:
 	@ make clean
-	@ kitex -module $(MODULE_NAME) -type=protobuf -I $(PROTO_PATH) $(PROTO_PATH)/example/example_server.proto
-	@ kitex -module $(MODULE_NAME) -type=protobuf -I $(PROTO_PATH) $(PROTO_PATH)/define/base_response.proto
 	@ kitex -module $(MODULE_NAME) -type=protobuf -I $(PROTO_PATH) $(PROTO_PATH)/user/user.proto
 	@ kitex -module $(MODULE_NAME) -type=protobuf -I $(PROTO_PATH) $(PROTO_PATH)/pay/pay_server.proto
 	@ kitex -module $(MODULE_NAME) -type=protobuf -I $(PROTO_PATH) $(PROTO_PATH)/order/order_server.proto

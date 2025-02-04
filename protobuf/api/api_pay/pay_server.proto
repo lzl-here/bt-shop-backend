@@ -20,6 +20,12 @@ service PayService {
         option (api.post) = "/pay/pay";
     }
 
+
+    // 继续支付
+    rpc ReTrade(ReTradeReq) returns (ReTradeRsp) {
+        option (api.post) = "/pay/re_trade";
+    }
+
     // 支付宝异步回调
     rpc AlipayWebhook(AlipayWebhookReq) returns (AlipayWebhookRsp) {
         option (api.post) = "/pay/webhook/alipay";
