@@ -12,26 +12,33 @@ import "pay/webhook.proto";
 import "pay/close_pay.proto";
 import "pay/refund_pay.proto";
 
+import "api/api.proto";
+
 // rpc服务
 service PayService {
     // 支付 
     rpc Pay(PayReq) returns (PayRsp) {
+        option (api.post)="/pay/pay";
     }
 
     // 继续支付
     rpc ReTrade(ReTradeReq) returns (ReTradeRsp) {
+        option (api.post)="/pay/re_trade";
     }
 
     // 支付宝异步回调
     rpc AlipayWebhook(AlipayWebhookReq) returns (AlipayWebhookRsp) {
+        option (api.post)="/pay/alipay_webhook";
     }
 
     // 取消支付
     rpc ClosePay(ClosePayReq) returns (ClosePayRsp) {
+        option (api.post)="/pay/close_pay";
     }
 
     // 退款
     rpc RefundPay(RefundPayReq) returns (RefundPayRsp) {
+        option (api.post)="/pay/refund_pay";
     }
 }
 

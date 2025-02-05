@@ -11,12 +11,12 @@ import (
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 
-	gc "github.com/lzl-here/bt-shop-backend/kitex_gen/goods/goodsservice"
-	oc "github.com/lzl-here/bt-shop-backend/kitex_gen/order/orderservice"
-	pc "github.com/lzl-here/bt-shop-backend/kitex_gen/pay/payservice"
-	uc "github.com/lzl-here/bt-shop-backend/kitex_gen/user/userservice"
+	gc "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/goods/goodsservice"
+	oc "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/order/orderservice"
+	pc "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/pay/payservice"
+	uc "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/user/userservice"
 
-	ogen "github.com/lzl-here/bt-shop-backend/kitex_gen/order"
+	ogen "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/order"
 )
 
 // 在mock数据时，在newServer的时候替换成mockImpl

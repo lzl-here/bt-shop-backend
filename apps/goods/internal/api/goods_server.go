@@ -5,7 +5,7 @@ import (
 
 	"github.com/lzl-here/bt-shop-backend/apps/goods/internal/handler"
 	"github.com/lzl-here/bt-shop-backend/apps/goods/internal/repo"
-	ggen "github.com/lzl-here/bt-shop-backend/kitex_gen/goods"
+	ggen "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/goods"
 )
 
 // rpc入口

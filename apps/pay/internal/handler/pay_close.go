@@ -6,7 +6,7 @@ import (
 	"github.com/cloudwego/kitex/pkg/kerrors"
 	"github.com/lzl-here/bt-shop-backend/apps/pay/internal/constant"
 	"github.com/lzl-here/bt-shop-backend/apps/pay/internal/domain/model"
-	pgen "github.com/lzl-here/bt-shop-backend/kitex_gen/pay"
+	pgen "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/pay"
 	bizerr "github.com/lzl-here/bt-shop-backend/pkg/err"
 
 	"github.com/smartwalle/alipay/v3"

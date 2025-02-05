@@ -7,13 +7,13 @@ import (
 	"gorm.io/gorm"
 
 	"github.com/lzl-here/bt-shop-backend/apps/order/internal/domain/model"
-	oc "github.com/lzl-here/bt-shop-backend/kitex_gen/order/orderservice"
-	pc "github.com/lzl-here/bt-shop-backend/kitex_gen/pay/payservice"
-	uc "github.com/lzl-here/bt-shop-backend/kitex_gen/user/userservice"
+	oc "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/order/orderservice"
+	pc "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/pay/payservice"
+	uc "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/user/userservice"
 
-	ggen "github.com/lzl-here/bt-shop-backend/kitex_gen/goods"
-	gc "github.com/lzl-here/bt-shop-backend/kitex_gen/goods/goodsservice"
-	pgen "github.com/lzl-here/bt-shop-backend/kitex_gen/pay"
+	ggen "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/goods"
+	gc "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/goods/goodsservice"
+	pgen "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/pay"
 )
 
 // 在mock数据时，在newServer的时候替换成mockImpl

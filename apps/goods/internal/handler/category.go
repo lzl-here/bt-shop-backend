@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/lzl-here/bt-shop-backend/apps/goods/internal/domain/model"
-	ggen "github.com/lzl-here/bt-shop-backend/kitex_gen/goods"
+	ggen "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/goods"
 )
 
 /**

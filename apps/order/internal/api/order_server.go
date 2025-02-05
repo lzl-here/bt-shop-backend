@@ -5,7 +5,7 @@ import (
 
 	"github.com/lzl-here/bt-shop-backend/apps/order/internal/handler"
 	"github.com/lzl-here/bt-shop-backend/apps/order/internal/repo"
-	ogen "github.com/lzl-here/bt-shop-backend/kitex_gen/order"
+	ogen "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/order"
 )
 
 // rpc入口
@@ -45,4 +45,9 @@ func (s *OrderServer) PaySuccessToOrder(ctx context.Context, req *ogen.PaySucces
 // 支付取消回调
 func (s *OrderServer) PayCancelToOrder(ctx context.Context, req *ogen.PayCancelToOrderReq) (res *ogen.PayCancelToOrderRsp, err error) {
 	return handler.NewOrderHandler(s.rep).PayCancelToOrder(ctx, req)
+}
+
+// 获取交易列表
+func (s *OrderServer) GetTradeList(ctx context.Context, req *ogen.GetTradeListReq) (res *ogen.GetTradeListRsp, err error) {
+	return handler.NewOrderHandler(s.rep).GetTradeList(ctx, req)
 }

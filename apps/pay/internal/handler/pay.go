@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/lzl-here/bt-shop-backend/apps/pay/internal/domain/model"
-	pgen "github.com/lzl-here/bt-shop-backend/kitex_gen/pay"
+	pgen "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/pay"
 	bizerr "github.com/lzl-here/bt-shop-backend/pkg/err"
 	"github.com/lzl-here/bt-shop-backend/pkg/utils"
 	"github.com/smartwalle/alipay/v3"
@@ -48,4 +48,8 @@ func (h *PayHandler) Pay(ctx context.Context, req *pgen.PayReq) (res *pgen.PayRs
 			},
 		},
 	}, nil
+}
+
+func (h *PayHandler) ReTrade(ctx context.Context, req *pgen.ReTradeReq) (res *pgen.ReTradeRsp, err error) {
+	return nil, nil
 }

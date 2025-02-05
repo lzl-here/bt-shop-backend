@@ -3,7 +3,7 @@ package handler
 import (
 	"context"
 
-	ggen "github.com/lzl-here/bt-shop-backend/kitex_gen/goods"
+	ggen "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/goods"
 )
 
 // TODO 添加到购物车

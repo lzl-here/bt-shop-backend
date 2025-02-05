@@ -149,6 +149,30 @@
         }
       }
     },
+    "/goods/add_to_cart": {
+      "post": {
+        "summary": "添加到购物车",
+        "operationId": "AddToCart",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddToCartReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "$ref": "#/definitions/AddToCartRsp"
+            }
+          }
+        }
+      }
+    },
     "/goods/publish_goods": {
       "post": {
         "summary": "发布商品",

@@ -13,10 +13,10 @@ import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 
-	gc "github.com/lzl-here/bt-shop-backend/kitex_gen/goods/goodsservice"
-	oc "github.com/lzl-here/bt-shop-backend/kitex_gen/order/orderservice"
-	pc "github.com/lzl-here/bt-shop-backend/kitex_gen/pay/payservice"
-	uc "github.com/lzl-here/bt-shop-backend/kitex_gen/user/userservice"
+	gc "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/goods/goodsservice"
+	oc "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/order/orderservice"
+	pc "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/pay/payservice"
+	uc "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/user/userservice"
 )
 
 func (a *AppServiceConfig) ConnectDB(gormCfg *gorm.Config) (*gorm.DB, error) {

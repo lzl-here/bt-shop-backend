@@ -15,7 +15,7 @@ import (
 	repo "github.com/lzl-here/bt-shop-backend/apps/goods/internal/repo"
 	"github.com/lzl-here/bt-shop-backend/pkg/middleware"
 
-	ggens "github.com/lzl-here/bt-shop-backend/kitex_gen/goods/goodsservice"
+	ggens "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/goods/goodsservice"
 	"gorm.io/gorm"
 
 	"context"

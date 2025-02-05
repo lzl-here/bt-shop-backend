@@ -5,7 +5,7 @@ import (
 
 	"github.com/lzl-here/bt-shop-backend/apps/order/internal/constant"
 	"github.com/lzl-here/bt-shop-backend/apps/order/internal/domain/model"
-	ogen "github.com/lzl-here/bt-shop-backend/kitex_gen/order"
+	ogen "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/order"
 	"gorm.io/gorm"
 )
 
@@ -68,4 +68,10 @@ func (h *OrderHandler) PayCancelToOrder(ctx context.Context, req *ogen.PayCancel
 			TradeNo: req.TradeNo,
 		},
 	}, nil
+}
+/**	
+* @description: 获取交易列表
+*/
+func (h *OrderHandler) GetTradeList(ctx context.Context, req *ogen.GetTradeListReq) (*ogen.GetTradeListRsp, error) {
+	return nil, nil
 }

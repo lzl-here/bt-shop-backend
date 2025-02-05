@@ -5,7 +5,7 @@ import (
 
 	"github.com/lzl-here/bt-shop-backend/apps/pay/internal/handler"
 	"github.com/lzl-here/bt-shop-backend/apps/pay/internal/repo"
-	pgen "github.com/lzl-here/bt-shop-backend/kitex_gen/pay"
+	pgen "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/pay"
 )
 
 // rpc入口
@@ -41,4 +41,9 @@ func (s *PayServer) ClosePay(ctx context.Context, req *pgen.ClosePayReq) (res *p
 // 退款
 func (s *PayServer) RefundPay(ctx context.Context, req *pgen.RefundPayReq) (res *pgen.RefundPayRsp, err error) {
 	return handler.NewPayHandler(s.rep).RefundPay(ctx, req)
+}
+
+// 重新支付
+func (s *PayServer) ReTrade(ctx context.Context, req *pgen.ReTradeReq) (res *pgen.ReTradeRsp, err error) {
+	return handler.NewPayHandler(s.rep).ReTrade(ctx, req)
 }

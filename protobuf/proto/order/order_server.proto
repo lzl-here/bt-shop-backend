@@ -6,6 +6,8 @@ package order;
 // 和package保持一致
 option go_package = "order";
 
+import "api/api.proto"; 
+
 // 导入需要使用的文件，package/文件名
 import "order/trade.proto";
 import "order/order_items.proto";
@@ -15,22 +17,32 @@ service OrderService {
 
     // 创建一笔交易 对外
     rpc CreateTrade(CreateTradeReq) returns (CreateTradeRsp) {
+        option (api.post)="/order/create_trade";
+    }
+
+    // 查询交易列表 对外
+    rpc GetTradeList(GetTradeListReq) returns (GetTradeListRsp) {
+        option (api.post)="/order/get_trade_list";
     }
 
     // 取消一笔交易 对外
     rpc CancelTrade(CancelTradeReq) returns (CancelTradeRsp) {
+        option (api.post)="/order/cancel_trade";
     }
 
     // 查询订单项 对外
     rpc GetOrderItems(GetOrderItemsReq) returns (GetOrderItemsRsp) {
+        option (api.post)="/order/get_order_items";
     }
 
     // 支付成功通知 对内
     rpc PaySuccessToOrder(PaySuccessToOrderReq) returns (PaySuccessToOrderRsp) {
+        option (api.post)="/order/pay_success_to_order";
     }
     
     // 支付取消通知 对内
     rpc PayCancelToOrder(PayCancelToOrderReq) returns (PayCancelToOrderRsp) {
+        option (api.post)="/order/pay_cancel_to_order";
     }
 
 }

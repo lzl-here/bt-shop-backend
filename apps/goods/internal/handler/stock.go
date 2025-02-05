@@ -6,7 +6,7 @@ import (
 
 	"github.com/lzl-here/bt-shop-backend/apps/goods/internal/constant"
 	"github.com/lzl-here/bt-shop-backend/apps/goods/internal/domain/model"
-	ggen "github.com/lzl-here/bt-shop-backend/kitex_gen/goods"
+	ggen "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/goods"
 	bizerr "github.com/lzl-here/bt-shop-backend/pkg/err"
 	"github.com/lzl-here/bt-shop-backend/pkg/utils"
 	"golang.org/x/sync/errgroup"

@@ -1,0 +1,382 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "protobuf的package，根据业务来定，一个文件夹下的package得是一样的",
+    "version": "version not set"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "CancelTradeRspCancelTradeRspData": {
+      "type": "object",
+      "properties": {
+        "trade_no": {
+          "type": "string"
+        }
+      }
+    },
+    "CreateTradeRspCreateTradeRspData": {
+      "type": "object",
+      "properties": {
+        "trade_no": {
+          "type": "string"
+        }
+      }
+    },
+    "GetOrderItemsRspGetOrderItemsRspData": {
+      "type": "object",
+      "properties": {
+        "order_item_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/orderBaseOrderItem"
+          }
+        }
+      }
+    },
+    "GetTradeListRspGetTradeListRspData": {
+      "type": "object",
+      "properties": {
+        "trade_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/orderTradeTrade"
+          }
+        }
+      }
+    },
+    "PayCancelToOrderRspPayCancelToOrderRspData": {
+      "type": "object",
+      "properties": {
+        "trade_no": {
+          "type": "string"
+        }
+      }
+    },
+    "PaySuccessToOrderRspPaySuccessToOrderRspData": {
+      "type": "object",
+      "properties": {
+        "trade_no": {
+          "type": "string"
+        }
+      }
+    },
+    "orderBaseOrder": {
+      "type": "object",
+      "properties": {
+        "order_no": {
+          "type": "string"
+        },
+        "trade_no": {
+          "type": "string"
+        },
+        "shop_id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "order_amount": {
+          "type": "string"
+        },
+        "seller_id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "buyer_id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "buy_num": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "订单基础信息 (不带有订单项)"
+    },
+    "orderBaseOrderItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "spu_id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "sku_id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "spu_name": {
+          "type": "string"
+        },
+        "category_id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "category_name": {
+          "type": "string"
+        },
+        "brand_id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "brand_name": {
+          "type": "string"
+        },
+        "sku_img_url": {
+          "type": "string"
+        },
+        "sku_amount": {
+          "type": "string"
+        },
+        "spec_value_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/orderBaseSpecValue"
+          }
+        },
+        "trade_no": {
+          "type": "string"
+        },
+        "order_no": {
+          "type": "string"
+        },
+        "shop_id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "seller_id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "buyer_id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "buy_num": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "订单项基础信息"
+    },
+    "orderBaseSpecValue": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "spec_id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "spec_name": {
+          "type": "string"
+        },
+        "spec_value": {
+          "type": "string"
+        }
+      },
+      "title": "规格值信息"
+    },
+    "orderBaseTrade": {
+      "type": "object",
+      "properties": {
+        "trade_no": {
+          "type": "string"
+        },
+        "trade_amount": {
+          "type": "string"
+        },
+        "buyer_id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "seller_id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "pay_type": {
+          "type": "string"
+        }
+      },
+      "title": "交易基础信息 （不带有订单）"
+    },
+    "orderCancelTradeRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/CancelTradeRspCancelTradeRspData"
+        }
+      }
+    },
+    "orderCreateTradeRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/CreateTradeRspCreateTradeRspData"
+        }
+      }
+    },
+    "orderGetOrderItemsRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/GetOrderItemsRspGetOrderItemsRspData"
+        }
+      }
+    },
+    "orderGetTradeListRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/GetTradeListRspGetTradeListRspData"
+        }
+      }
+    },
+    "orderPayCancelToOrderRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/PayCancelToOrderRspPayCancelToOrderRspData"
+        }
+      }
+    },
+    "orderPaySuccessToOrderRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/PaySuccessToOrderRspPaySuccessToOrderRspData"
+        }
+      }
+    },
+    "orderTradeOrder": {
+      "type": "object",
+      "properties": {
+        "order": {
+          "$ref": "#/definitions/orderBaseOrder"
+        },
+        "order_item_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/orderBaseOrderItem"
+          }
+        }
+      }
+    },
+    "orderTradeTrade": {
+      "type": "object",
+      "properties": {
+        "trade": {
+          "$ref": "#/definitions/orderBaseTrade"
+        },
+        "order_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/orderTradeOrder"
+          }
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "runtimeError": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

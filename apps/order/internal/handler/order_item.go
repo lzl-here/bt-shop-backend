@@ -5,7 +5,7 @@ import (
 
 	"github.com/cloudwego/hertz/pkg/common/json"
 	"github.com/lzl-here/bt-shop-backend/apps/order/internal/domain/model"
-	ogen "github.com/lzl-here/bt-shop-backend/kitex_gen/order"
+	ogen "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/order"
 )
 
 /**

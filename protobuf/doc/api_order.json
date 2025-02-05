@@ -7,7 +7,7 @@
   "paths": {
     "/order/create_trade": {
       "post": {
-        "summary": "创建交易",
+        "summary": "创建一笔交易",
         "operationId": "CreateTrade",
         "parameters": [
           {
@@ -28,213 +28,78 @@
           }
         }
       }
-    }
-  },
-  "definitions": {
-    "CreateTradeReq": {
-      "type": "object",
-      "properties": {
-        "token": {
-          "type": "string"
-        },
-        "trade": {
-          "$ref": "#/definitions/TradeTrade"
-        }
-      }
     },
-    "CreateTradeRsp": {
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "msg": {
-          "type": "string"
-        },
-        "log_id": {
-          "type": "string"
-        },
-        "data": {
-          "$ref": "#/definitions/CreateTradeRspData"
-        }
-      }
-    },
-    "CreateTradeRspData": {
-      "type": "object",
-      "properties": {
-        "trade_no": {
-          "type": "string",
-          "description": "电商交易号"
-        }
-      }
-    },
-    "TradeTrade": {
-      "type": "object",
-      "properties": {
-        "trade": {
-          "$ref": "#/definitions/BaseTrade"
-        },
-        "order_list": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TradeOrder"
+    "/order/get_trade_list": {
+      "post": {
+        "summary": "查询交易列表",
+        "operationId": "GetTradeList",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetTradeListReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "$ref": "#/definitions/GetTradeListRsp"
+            }
           }
         }
       }
     },
-    "BaseTrade": {
-      "type": "object",
-      "properties": {
-        "trade_no": {
-          "type": "string"
-        },
-        "trade_amount": {
-          "type": "string"
-        },
-        "buyer_id": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "seller_id": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "pay_type": {
-          "type": "string"
-        }
-      }
-    },
-    "TradeOrder": {
-      "type": "object",
-      "properties": {
-        "order": {
-          "$ref": "#/definitions/BaseOrder"
-        },
-        "order_item_list": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/BaseOrderItem"
+    "/order/cancel_trade": {
+      "post": {
+        "summary": "取消一笔交易",
+        "operationId": "CancelTrade",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CancelTradeReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "$ref": "#/definitions/CancelTradeRsp"
+            }
           }
         }
       }
     },
-    "BaseOrder": {
-      "type": "object",
-      "properties": {
-        "order_no": {
-          "type": "string"
-        },
-        "trade_no": {
-          "type": "string"
-        },
-        "shop_id": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "order_amount": {
-          "type": "string"
-        },
-        "seller_id": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "buyer_id": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "buy_num": {
-          "type": "integer",
-          "format": "int32"
-        }
-      }
-    },
-    "BaseOrderItem": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "spu_id": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "sku_id": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "spu_name": {
-          "type": "string"
-        },
-        "category_id": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "category_name": {
-          "type": "string"
-        },
-        "brand_id": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "brand_name": {
-          "type": "string"
-        },
-        "sku_img_url": {
-          "type": "string"
-        },
-        "sku_amount": {
-          "type": "string"
-        },
-        "spec_value_list": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/BaseSpecValue"
+    "/order/get_order_items": {
+      "post": {
+        "summary": "查询订单项",
+        "operationId": "GetOrderItems",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetOrderItemsReq"
+            }
           }
-        },
-        "trade_no": {
-          "type": "string"
-        },
-        "order_no": {
-          "type": "string"
-        },
-        "shop_id": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "seller_id": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "buyer_id": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "buy_num": {
-          "type": "integer",
-          "format": "int32"
-        }
-      }
-    },
-    "BaseSpecValue": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "spec_id": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "spec_name": {
-          "type": "string"
-        },
-        "spec_value": {
-          "type": "string"
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "$ref": "#/definitions/GetOrderItemsRsp"
+            }
+          }
         }
       }
     }
   }
-} 
+}

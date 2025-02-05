@@ -17,7 +17,7 @@ import (
 	repo "github.com/lzl-here/bt-shop-backend/apps/pay/internal/repo"
 	"github.com/lzl-here/bt-shop-backend/pkg/middleware"
 
-	pgens "github.com/lzl-here/bt-shop-backend/kitex_gen/pay/payservice"
+	pgens "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/pay/payservice"
 	"gorm.io/gorm"
 
 	"github.com/smartwalle/alipay/v3"

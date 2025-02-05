@@ -5,8 +5,8 @@ import (
 
 	"github.com/lzl-here/bt-shop-backend/apps/pay/internal/constant"
 	"github.com/lzl-here/bt-shop-backend/apps/pay/internal/domain/model"
-	ogen "github.com/lzl-here/bt-shop-backend/kitex_gen/order"
-	pgen "github.com/lzl-here/bt-shop-backend/kitex_gen/pay"
+	ogen "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/order"
+	pgen "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/pay"
 	bizerr "github.com/lzl-here/bt-shop-backend/pkg/err"
 	"github.com/lzl-here/bt-shop-backend/pkg/utils"
 )

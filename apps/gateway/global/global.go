@@ -1,10 +1,10 @@
 package global
 
 import (
-	gc "github.com/lzl-here/bt-shop-backend/kitex_gen/goods/goodsservice"
-	oc "github.com/lzl-here/bt-shop-backend/kitex_gen/order/orderservice"
-	pc "github.com/lzl-here/bt-shop-backend/kitex_gen/pay/payservice"
-	uc "github.com/lzl-here/bt-shop-backend/kitex_gen/user/userservice"
+	gc "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/goods/goodsservice"
+	oc "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/order/orderservice"
+	pc "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/pay/payservice"
+	uc "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/user/userservice"
 	cfg "github.com/lzl-here/bt-shop-backend/pkg/config"
 	"github.com/smartwalle/alipay/v3"
 )

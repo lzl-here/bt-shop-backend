@@ -1,0 +1,179 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "protobuf的package，根据业务来定，一个文件夹下的package得是一样的",
+    "version": "version not set"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "AlipayWebhookRspAlipayWebhookRspData": {
+      "type": "object"
+    },
+    "ClosePayRspClosePayRspData": {
+      "type": "object"
+    },
+    "PayRspPayRspData": {
+      "type": "object",
+      "properties": {
+        "pay_info": {
+          "$ref": "#/definitions/payBasePayInfo"
+        }
+      }
+    },
+    "ReTradeRspReTradeRspData": {
+      "type": "object",
+      "properties": {
+        "pay_info": {
+          "$ref": "#/definitions/payBasePayInfo"
+        }
+      }
+    },
+    "RefundPayRspRefundPayRspData": {
+      "type": "object"
+    },
+    "payAlipayWebhookRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/AlipayWebhookRspAlipayWebhookRspData"
+        }
+      }
+    },
+    "payBasePayInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "trade_no": {
+          "type": "string"
+        },
+        "pay_page_url": {
+          "type": "string"
+        }
+      }
+    },
+    "payClosePayRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/ClosePayRspClosePayRspData"
+        }
+      }
+    },
+    "payPayRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/PayRspPayRspData"
+        }
+      }
+    },
+    "payReTradeRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/ReTradeRspReTradeRspData"
+        }
+      }
+    },
+    "payRefundPayRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/RefundPayRspRefundPayRspData"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "runtimeError": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

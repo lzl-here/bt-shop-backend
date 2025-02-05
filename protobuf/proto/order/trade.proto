@@ -8,6 +8,18 @@ option go_package = "order";
 import "order/common.proto";
 
 
+message TradeTrade{
+    BaseTrade trade = 1;
+    repeated TradeOrder order_list = 2;
+}
+
+message TradeOrder {
+    BaseOrder order = 1;
+    repeated BaseOrderItem order_item_list = 2;
+}
+
+
+
 // 创建交易
 message CreateTradeReq{
     string token = 1;
@@ -41,14 +53,18 @@ message CancelTradeRsp{
     }
 }
 
-message TradeTrade{
-    BaseTrade trade = 1;
-    repeated TradeOrder order_list = 2;
+
+// 查询交易列表
+message GetTradeListReq {
 }
 
-message TradeOrder {
-    BaseOrder order = 1;
-    repeated BaseOrderItem order_item_list = 2;
+message GetTradeListRsp {
+    int32 code = 1;
+    string msg = 2;
+    string log_id = 3;
+    GetTradeListRspData data = 4;
+
+    message GetTradeListRspData {
+        repeated TradeTrade trade_list = 1;
+    }
 }
-
-

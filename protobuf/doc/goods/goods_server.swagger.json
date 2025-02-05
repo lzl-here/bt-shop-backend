@@ -1,0 +1,563 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "protobuf的package，根据业务来定，一个文件夹下的package得是一样的",
+    "version": "version not set"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "AddToCartRspAddToCartRspData": {
+      "type": "object"
+    },
+    "GetBrandListRspGetBrandListDataRsp": {
+      "type": "object",
+      "properties": {
+        "brand_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/goodsBaseBrand"
+          }
+        }
+      }
+    },
+    "GetCategoryListRspGetCategoryListRspData": {
+      "type": "object",
+      "properties": {
+        "category_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/goodsBaseCategory"
+          }
+        }
+      }
+    },
+    "GetGoodsDetailRspGetGoodsDetailRspData": {
+      "type": "object",
+      "properties": {
+        "spu": {
+          "$ref": "#/definitions/goodsGoodsSpu"
+        }
+      }
+    },
+    "GetGoodsListRspGetGoodsListRspData": {
+      "type": "object",
+      "properties": {
+        "spu_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/goodsGoodsSpu"
+          }
+        }
+      }
+    },
+    "GetKeywordDownListRspGetKeyDownListRspData": {
+      "type": "object",
+      "properties": {
+        "keyword_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/goodsBaseKeyword"
+          }
+        }
+      }
+    },
+    "PublishGoodsReqPublishAttribute": {
+      "type": "object",
+      "properties": {
+        "attribute_name": {
+          "type": "string"
+        },
+        "attribute_value": {
+          "type": "string"
+        }
+      }
+    },
+    "PublishGoodsReqPublishSku": {
+      "type": "object",
+      "properties": {
+        "stock_num": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "sku_price": {
+          "type": "string"
+        },
+        "spec_key_value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PublishGoodsReqPublishSpecValue"
+          }
+        }
+      }
+    },
+    "PublishGoodsReqPublishSpecValue": {
+      "type": "object",
+      "properties": {
+        "spec_name": {
+          "type": "string"
+        },
+        "spec_value": {
+          "type": "string"
+        }
+      }
+    },
+    "PublishGoodsRspPublishGoodsRspData": {
+      "type": "object",
+      "properties": {
+        "spu_id": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    },
+    "SearchSpuListRspSearchSpuListRspData": {
+      "type": "object",
+      "properties": {
+        "spu_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/goodsBaseSpu"
+          }
+        },
+        "page_size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "page_no": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "StockIncreaseRspStockIncreaseRspData": {
+      "type": "object"
+    },
+    "StockReduceRspStockReduceRspData": {
+      "type": "object"
+    },
+    "goodsAddToCartRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/AddToCartRspAddToCartRspData"
+        }
+      }
+    },
+    "goodsBaseBrand": {
+      "type": "object",
+      "properties": {
+        "brand_id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "brand_name": {
+          "type": "string"
+        },
+        "icon_url": {
+          "type": "string"
+        }
+      }
+    },
+    "goodsBaseCategory": {
+      "type": "object",
+      "properties": {
+        "category_id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "category_name": {
+          "type": "string"
+        },
+        "parent_id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "level": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/goodsBaseCategory"
+          }
+        }
+      },
+      "title": "商品分类"
+    },
+    "goodsBaseKeyword": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "title": "关键词下拉框项"
+    },
+    "goodsBaseSku": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "spu_id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "stock_num": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "sku_price": {
+          "type": "string"
+        }
+      },
+      "title": "sku信息"
+    },
+    "goodsBaseSpec": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "spec_name": {
+          "type": "string"
+        },
+        "spu_id": {
+          "type": "string",
+          "format": "uint64"
+        }
+      },
+      "title": "规格项"
+    },
+    "goodsBaseSpecValue": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "spec_id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "spec_name": {
+          "type": "string"
+        },
+        "spec_value": {
+          "type": "string"
+        }
+      },
+      "title": "规格值信息"
+    },
+    "goodsBaseSpu": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "spu_name": {
+          "type": "string"
+        },
+        "spu_desc": {
+          "type": "string"
+        },
+        "category_id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "category_name": {
+          "type": "string"
+        },
+        "brand_id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "brand_name": {
+          "type": "string"
+        },
+        "spu_price": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "spu_img_url": {
+          "type": "string"
+        }
+      },
+      "title": "基础的spu信息，没有规格和属性"
+    },
+    "goodsGetBrandListRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/GetBrandListRspGetBrandListDataRsp"
+        }
+      }
+    },
+    "goodsGetCategoryListRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/GetCategoryListRspGetCategoryListRspData"
+        }
+      }
+    },
+    "goodsGetGoodsDetailRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/GetGoodsDetailRspGetGoodsDetailRspData"
+        }
+      }
+    },
+    "goodsGetGoodsListRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/GetGoodsListRspGetGoodsListRspData"
+        }
+      }
+    },
+    "goodsGetKeywordDownListRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/GetKeywordDownListRspGetKeyDownListRspData"
+        }
+      }
+    },
+    "goodsGoodsSku": {
+      "type": "object",
+      "properties": {
+        "sku": {
+          "$ref": "#/definitions/goodsBaseSku"
+        },
+        "spec_value_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/goodsBaseSpecValue"
+          }
+        }
+      },
+      "title": "sku信息"
+    },
+    "goodsGoodsSpu": {
+      "type": "object",
+      "properties": {
+        "spu": {
+          "$ref": "#/definitions/goodsBaseSpu"
+        },
+        "sku_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/goodsGoodsSku"
+          }
+        },
+        "spec_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/goodsBaseSpec"
+          }
+        }
+      },
+      "title": "详细的spu信息，加上了 sku 和 规格项"
+    },
+    "goodsPublishGoodsRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/PublishGoodsRspPublishGoodsRspData"
+        }
+      }
+    },
+    "goodsSearchSpuListRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/SearchSpuListRspSearchSpuListRspData"
+        }
+      }
+    },
+    "goodsStockIncreaseRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/StockIncreaseRspStockIncreaseRspData"
+        }
+      }
+    },
+    "goodsStockReduceItem": {
+      "type": "object",
+      "properties": {
+        "sku_id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "buy_num": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "goodsStockReduceRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/StockReduceRspStockReduceRspData"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "runtimeError": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

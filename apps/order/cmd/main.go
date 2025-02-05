@@ -17,7 +17,7 @@ import (
 	repo "github.com/lzl-here/bt-shop-backend/apps/order/internal/repo"
 	"github.com/lzl-here/bt-shop-backend/pkg/middleware"
 
-	ogens "github.com/lzl-here/bt-shop-backend/kitex_gen/order/orderservice"
+	ogens "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/order/orderservice"
 	"gorm.io/gorm"
 )
 

@@ -29,7 +29,31 @@
         }
       }
     },
-    "/pay/webhook/alipay": {
+    "/pay/re_trade": {
+      "post": {
+        "summary": "继续支付",
+        "operationId": "ReTrade",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ReTradeReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "$ref": "#/definitions/ReTradeRsp"
+            }
+          }
+        }
+      }
+    },
+    "/pay/alipay_webhook": {
       "post": {
         "summary": "支付宝异步回调",
         "operationId": "AlipayWebhook",
