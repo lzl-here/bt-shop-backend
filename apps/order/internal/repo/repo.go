@@ -33,7 +33,15 @@ type RepoInterface interface {
 	UpdateTrade(ctx context.Context, tx *gorm.DB, where, update *model.Trade) error
 	UpdateOrder(ctx context.Context, tx *gorm.DB, where, update *model.Order) error
 
+	GetTrade(ctx context.Context, where *model.Trade) (*model.Trade, error)
+	CountTrade(ctx context.Context, where *model.Trade) (int64, error)
+	PageTradeList(ctx context.Context, where *model.Trade, pageSize, pageNum int) ([]*model.Trade, error)
+	GetOrder(ctx context.Context, where *model.Order) (*model.Order, error)
+	GetOrderList(ctx context.Context, where *model.Order) ([]*model.Order, error)
+	GetOrderListByTradeNo(ctx context.Context, tradeNo []string) ([]*model.Order, error)
 	GetOrderItems(ctx context.Context, where *model.OrderItem) ([]*model.OrderItem, error)
+	GetOrderItemsByOrderNo(ctx context.Context, orderNo []string) ([]*model.OrderItem, error)
+	GetOrderItemsByTradeNo(ctx context.Context, tradeNo []string) ([]*model.OrderItem, error)
 }
 
 var _ RepoInterface = (*Repo)(nil)
@@ -102,4 +110,75 @@ func (r *Repo) UpdateOrder(ctx context.Context, tx *gorm.DB, where, update *mode
 
 func (r *Repo) ReduceStock(ctx context.Context, req *ggen.StockReduceReq) (*ggen.StockReduceRsp, error) {
 	return r.GoodsClient.StockReduce(ctx, req)
+}
+
+func (r *Repo) GetTrade(ctx context.Context, where *model.Trade) (*model.Trade, error) {
+	res := &model.Trade{}
+	err := r.DB.Model(&model.Trade{}).Where(where).First(res).Error
+	if err != nil {
+		return nil, err
+	}
+	return res, nil
+}
+func (r *Repo) GetOrder(ctx context.Context, where *model.Order) (*model.Order, error) {
+	res := &model.Order{}
+	err := r.DB.Model(&model.Order{}).Where(where).First(res).Error
+	if err != nil {
+		return nil, err
+	}
+	return res, nil
+}
+
+func (r *Repo) GetOrderList(ctx context.Context, where *model.Order) ([]*model.Order, error) {
+	res := []*model.Order{}
+	err := r.DB.Model(&model.Order{}).Where(where).Find(&res).Error
+	if err != nil {
+		return nil, err
+	}
+	return res, nil
+}
+
+func (r *Repo) PageTradeList(ctx context.Context, where *model.Trade, pageSize, pageNum int) ([]*model.Trade, error) {
+	res := []*model.Trade{}
+	err := r.DB.Model(&model.Trade{}).Where(where).Offset((pageNum - 1) * pageSize).Limit(pageSize).Find(&res).Error
+	if err != nil {
+		return nil, err
+	}
+	return res, nil
+}
+
+func (r *Repo) GetOrderListByTradeNo(ctx context.Context, tradeNo []string) ([]*model.Order, error) {
+	res := []*model.Order{}
+	err := r.DB.Model(&model.Order{}).Where("trade_no IN (?)", tradeNo).Find(&res).Error
+	if err != nil {
+		return nil, err
+	}
+	return res, nil
+}
+
+func (r *Repo) GetOrderItemsByOrderNo(ctx context.Context, orderNo []string) ([]*model.OrderItem, error) {
+	res := []*model.OrderItem{}
+	err := r.DB.Model(&model.OrderItem{}).Where("order_no IN (?)", orderNo).Find(&res).Error
+	if err != nil {
+		return nil, err
+	}
+	return res, nil
+}
+
+func (r *Repo) GetOrderItemsByTradeNo(ctx context.Context, tradeNo []string) ([]*model.OrderItem, error) {
+	res := []*model.OrderItem{}
+	err := r.DB.Model(&model.OrderItem{}).Where("trade_no IN (?)", tradeNo).Find(&res).Error
+	if err != nil {
+		return nil, err
+	}
+	return res, nil
+}
+
+func (r *Repo) CountTrade(ctx context.Context, where *model.Trade) (int64, error) {
+	var count int64
+	err := r.DB.Model(&model.Trade{}).Where(where).Count(&count).Error
+	if err != nil {
+		return 0, err
+	}
+	return count, nil
 }

@@ -39,6 +39,11 @@ func (x *BaseTrade) FastRead(buf []byte, _type int8, number int32) (offset int, 
 		if err != nil {
 			goto ReadFieldError
 		}
+	case 6:
+		offset, err = x.fastReadField6(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
 	default:
 		offset, err = fastpb.Skip(buf, _type, number)
 		if err != nil {
@@ -74,6 +79,11 @@ func (x *BaseTrade) fastReadField4(buf []byte, _type int8) (offset int, err erro
 
 func (x *BaseTrade) fastReadField5(buf []byte, _type int8) (offset int, err error) {
 	x.PayType, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
+func (x *BaseTrade) fastReadField6(buf []byte, _type int8) (offset int, err error) {
+	x.TradeStatus, offset, err = fastpb.ReadString(buf, _type)
 	return offset, err
 }
 
@@ -461,6 +471,7 @@ func (x *BaseTrade) FastWrite(buf []byte) (offset int) {
 	offset += x.fastWriteField3(buf[offset:])
 	offset += x.fastWriteField4(buf[offset:])
 	offset += x.fastWriteField5(buf[offset:])
+	offset += x.fastWriteField6(buf[offset:])
 	return offset
 }
 
@@ -501,6 +512,14 @@ func (x *BaseTrade) fastWriteField5(buf []byte) (offset int) {
 		return offset
 	}
 	offset += fastpb.WriteString(buf[offset:], 5, x.GetPayType())
+	return offset
+}
+
+func (x *BaseTrade) fastWriteField6(buf []byte) (offset int) {
+	if x.TradeStatus == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 6, x.GetTradeStatus())
 	return offset
 }
 
@@ -822,6 +841,7 @@ func (x *BaseTrade) Size() (n int) {
 	n += x.sizeField3()
 	n += x.sizeField4()
 	n += x.sizeField5()
+	n += x.sizeField6()
 	return n
 }
 
@@ -862,6 +882,14 @@ func (x *BaseTrade) sizeField5() (n int) {
 		return n
 	}
 	n += fastpb.SizeString(5, x.GetPayType())
+	return n
+}
+
+func (x *BaseTrade) sizeField6() (n int) {
+	if x.TradeStatus == "" {
+		return n
+	}
+	n += fastpb.SizeString(6, x.GetTradeStatus())
 	return n
 }
 
@@ -1180,6 +1208,7 @@ var fieldIDToName_BaseTrade = map[int32]string{
 	3: "BuyerId",
 	4: "SellerId",
 	5: "PayType",
+	6: "TradeStatus",
 }
 
 var fieldIDToName_BaseOrder = map[int32]string{

@@ -69,9 +69,4 @@ func (h *OrderHandler) PayCancelToOrder(ctx context.Context, req *ogen.PayCancel
 		},
 	}, nil
 }
-/**	
-* @description: 获取交易列表
-*/
-func (h *OrderHandler) GetTradeList(ctx context.Context, req *ogen.GetTradeListReq) (*ogen.GetTradeListRsp, error) {
-	return nil, nil
-}
+

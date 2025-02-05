@@ -25,6 +25,16 @@ service OrderService {
         option (api.post)="/order/get_trade_list";
     }
 
+    // 查询交易详情 对外
+    rpc GetTradeDetail(GetTradeDetailReq) returns (GetTradeDetailRsp) {
+        option (api.post)="/order/get_trade_detail";
+    }
+    
+    // 订单详情
+    rpc GetOrderDetail(GetOrderDetailReq) returns (GetOrderDetailRsp) {
+        option (api.post)="/order/get_order_detail";
+    }
+
     // 取消一笔交易 对外
     rpc CancelTrade(CancelTradeReq) returns (CancelTradeRsp) {
         option (api.post)="/order/cancel_trade";

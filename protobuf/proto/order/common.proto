@@ -11,6 +11,7 @@ message BaseTrade {
     uint64 buyer_id = 3;
     uint64 seller_id = 4;
     string pay_type = 5; // 支付类型
+    string trade_status = 6;
 }
 
 // 订单基础信息 (不带有订单项)

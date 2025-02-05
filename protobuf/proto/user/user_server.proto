@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "user";
+
+import "api/api.proto";
+import "user/login.proto";
+import "user/user.proto";
+
+service UserService {
+    // 普通登录
+    rpc NormalLogin(NormalLoginReq) returns (NormalLoginRsp) {
+        option (api.post) = "/user/login";
+    }
+
+    // 普通注册
+    rpc NormalRegister(NormalRegisterReq) returns (NormalRegisterRsp) {
+        option (api.post) = "/user/register";
+    }
+
+    // 退出登录
+    rpc Logout(LogoutReq) returns (LogoutRsp) {
+        option (api.post) = "/user/logout";
+    }
+
+    // 获取用户信息
+    rpc GetUserInfo(GetUserInfoReq) returns (GetUserInfoRsp) {
+        option (api.post) = "/user/get_user_info";
+    }
+
+    // 更新用户信息
+    rpc UpdateUserInfo(UpdateUserInfoReq) returns (UpdateUserInfoRsp) {
+        option (api.post) = "/user/update_user_info";
+    }
+}
+

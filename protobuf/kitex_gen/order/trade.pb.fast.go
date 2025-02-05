@@ -289,6 +289,16 @@ func (x *CancelTradeRsp) fastReadField4(buf []byte, _type int8) (offset int, err
 
 func (x *GetTradeListReq) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
 	switch number {
+	case 1:
+		offset, err = x.fastReadField1(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 2:
+		offset, err = x.fastReadField2(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
 	default:
 		offset, err = fastpb.Skip(buf, _type, number)
 		if err != nil {
@@ -298,6 +308,18 @@ func (x *GetTradeListReq) FastRead(buf []byte, _type int8, number int32) (offset
 	return offset, nil
 SkipFieldError:
 	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
+ReadFieldError:
+	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_GetTradeListReq[number], err)
+}
+
+func (x *GetTradeListReq) fastReadField1(buf []byte, _type int8) (offset int, err error) {
+	x.PageSize, offset, err = fastpb.ReadInt32(buf, _type)
+	return offset, err
+}
+
+func (x *GetTradeListReq) fastReadField2(buf []byte, _type int8) (offset int, err error) {
+	x.PageNo, offset, err = fastpb.ReadInt32(buf, _type)
+	return offset, err
 }
 
 func (x *GetTradeListRsp) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
@@ -352,6 +374,91 @@ func (x *GetTradeListRsp) fastReadField3(buf []byte, _type int8) (offset int, er
 
 func (x *GetTradeListRsp) fastReadField4(buf []byte, _type int8) (offset int, err error) {
 	var v GetTradeListRsp_GetTradeListRspData
+	offset, err = fastpb.ReadMessage(buf, _type, &v)
+	if err != nil {
+		return offset, err
+	}
+	x.Data = &v
+	return offset, nil
+}
+
+func (x *GetTradeDetailReq) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
+	switch number {
+	case 1:
+		offset, err = x.fastReadField1(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	default:
+		offset, err = fastpb.Skip(buf, _type, number)
+		if err != nil {
+			goto SkipFieldError
+		}
+	}
+	return offset, nil
+SkipFieldError:
+	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
+ReadFieldError:
+	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_GetTradeDetailReq[number], err)
+}
+
+func (x *GetTradeDetailReq) fastReadField1(buf []byte, _type int8) (offset int, err error) {
+	x.TradeNo, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
+func (x *GetTradeDetailRsp) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
+	switch number {
+	case 1:
+		offset, err = x.fastReadField1(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 2:
+		offset, err = x.fastReadField2(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 3:
+		offset, err = x.fastReadField3(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 4:
+		offset, err = x.fastReadField4(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	default:
+		offset, err = fastpb.Skip(buf, _type, number)
+		if err != nil {
+			goto SkipFieldError
+		}
+	}
+	return offset, nil
+SkipFieldError:
+	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
+ReadFieldError:
+	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_GetTradeDetailRsp[number], err)
+}
+
+func (x *GetTradeDetailRsp) fastReadField1(buf []byte, _type int8) (offset int, err error) {
+	x.Code, offset, err = fastpb.ReadInt32(buf, _type)
+	return offset, err
+}
+
+func (x *GetTradeDetailRsp) fastReadField2(buf []byte, _type int8) (offset int, err error) {
+	x.Msg, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
+func (x *GetTradeDetailRsp) fastReadField3(buf []byte, _type int8) (offset int, err error) {
+	x.LogId, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
+func (x *GetTradeDetailRsp) fastReadField4(buf []byte, _type int8) (offset int, err error) {
+	var v GetTradeDetailRsp_GetTradeDetailRspData
 	offset, err = fastpb.ReadMessage(buf, _type, &v)
 	if err != nil {
 		return offset, err
@@ -417,6 +524,21 @@ func (x *GetTradeListRsp_GetTradeListRspData) FastRead(buf []byte, _type int8, n
 		if err != nil {
 			goto ReadFieldError
 		}
+	case 2:
+		offset, err = x.fastReadField2(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 3:
+		offset, err = x.fastReadField3(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 4:
+		offset, err = x.fastReadField4(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
 	default:
 		offset, err = fastpb.Skip(buf, _type, number)
 		if err != nil {
@@ -437,6 +559,51 @@ func (x *GetTradeListRsp_GetTradeListRspData) fastReadField1(buf []byte, _type i
 		return offset, err
 	}
 	x.TradeList = append(x.TradeList, &v)
+	return offset, nil
+}
+
+func (x *GetTradeListRsp_GetTradeListRspData) fastReadField2(buf []byte, _type int8) (offset int, err error) {
+	x.Count, offset, err = fastpb.ReadInt32(buf, _type)
+	return offset, err
+}
+
+func (x *GetTradeListRsp_GetTradeListRspData) fastReadField3(buf []byte, _type int8) (offset int, err error) {
+	x.PageSize, offset, err = fastpb.ReadInt32(buf, _type)
+	return offset, err
+}
+
+func (x *GetTradeListRsp_GetTradeListRspData) fastReadField4(buf []byte, _type int8) (offset int, err error) {
+	x.PageNo, offset, err = fastpb.ReadInt32(buf, _type)
+	return offset, err
+}
+
+func (x *GetTradeDetailRsp_GetTradeDetailRspData) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
+	switch number {
+	case 1:
+		offset, err = x.fastReadField1(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	default:
+		offset, err = fastpb.Skip(buf, _type, number)
+		if err != nil {
+			goto SkipFieldError
+		}
+	}
+	return offset, nil
+SkipFieldError:
+	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
+ReadFieldError:
+	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_GetTradeDetailRsp_GetTradeDetailRspData[number], err)
+}
+
+func (x *GetTradeDetailRsp_GetTradeDetailRspData) fastReadField1(buf []byte, _type int8) (offset int, err error) {
+	var v TradeTrade
+	offset, err = fastpb.ReadMessage(buf, _type, &v)
+	if err != nil {
+		return offset, err
+	}
+	x.Trade = &v
 	return offset, nil
 }
 
@@ -625,6 +792,24 @@ func (x *GetTradeListReq) FastWrite(buf []byte) (offset int) {
 	if x == nil {
 		return offset
 	}
+	offset += x.fastWriteField1(buf[offset:])
+	offset += x.fastWriteField2(buf[offset:])
+	return offset
+}
+
+func (x *GetTradeListReq) fastWriteField1(buf []byte) (offset int) {
+	if x.PageSize == 0 {
+		return offset
+	}
+	offset += fastpb.WriteInt32(buf[offset:], 1, x.GetPageSize())
+	return offset
+}
+
+func (x *GetTradeListReq) fastWriteField2(buf []byte) (offset int) {
+	if x.PageNo == 0 {
+		return offset
+	}
+	offset += fastpb.WriteInt32(buf[offset:], 2, x.GetPageNo())
 	return offset
 }
 
@@ -671,6 +856,65 @@ func (x *GetTradeListRsp) fastWriteField4(buf []byte) (offset int) {
 	return offset
 }
 
+func (x *GetTradeDetailReq) FastWrite(buf []byte) (offset int) {
+	if x == nil {
+		return offset
+	}
+	offset += x.fastWriteField1(buf[offset:])
+	return offset
+}
+
+func (x *GetTradeDetailReq) fastWriteField1(buf []byte) (offset int) {
+	if x.TradeNo == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 1, x.GetTradeNo())
+	return offset
+}
+
+func (x *GetTradeDetailRsp) FastWrite(buf []byte) (offset int) {
+	if x == nil {
+		return offset
+	}
+	offset += x.fastWriteField1(buf[offset:])
+	offset += x.fastWriteField2(buf[offset:])
+	offset += x.fastWriteField3(buf[offset:])
+	offset += x.fastWriteField4(buf[offset:])
+	return offset
+}
+
+func (x *GetTradeDetailRsp) fastWriteField1(buf []byte) (offset int) {
+	if x.Code == 0 {
+		return offset
+	}
+	offset += fastpb.WriteInt32(buf[offset:], 1, x.GetCode())
+	return offset
+}
+
+func (x *GetTradeDetailRsp) fastWriteField2(buf []byte) (offset int) {
+	if x.Msg == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 2, x.GetMsg())
+	return offset
+}
+
+func (x *GetTradeDetailRsp) fastWriteField3(buf []byte) (offset int) {
+	if x.LogId == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 3, x.GetLogId())
+	return offset
+}
+
+func (x *GetTradeDetailRsp) fastWriteField4(buf []byte) (offset int) {
+	if x.Data == nil {
+		return offset
+	}
+	offset += fastpb.WriteMessage(buf[offset:], 4, x.GetData())
+	return offset
+}
+
 func (x *CreateTradeRsp_CreateTradeRspData) FastWrite(buf []byte) (offset int) {
 	if x == nil {
 		return offset
@@ -708,6 +952,9 @@ func (x *GetTradeListRsp_GetTradeListRspData) FastWrite(buf []byte) (offset int)
 		return offset
 	}
 	offset += x.fastWriteField1(buf[offset:])
+	offset += x.fastWriteField2(buf[offset:])
+	offset += x.fastWriteField3(buf[offset:])
+	offset += x.fastWriteField4(buf[offset:])
 	return offset
 }
 
@@ -718,6 +965,46 @@ func (x *GetTradeListRsp_GetTradeListRspData) fastWriteField1(buf []byte) (offse
 	for i := range x.GetTradeList() {
 		offset += fastpb.WriteMessage(buf[offset:], 1, x.GetTradeList()[i])
 	}
+	return offset
+}
+
+func (x *GetTradeListRsp_GetTradeListRspData) fastWriteField2(buf []byte) (offset int) {
+	if x.Count == 0 {
+		return offset
+	}
+	offset += fastpb.WriteInt32(buf[offset:], 2, x.GetCount())
+	return offset
+}
+
+func (x *GetTradeListRsp_GetTradeListRspData) fastWriteField3(buf []byte) (offset int) {
+	if x.PageSize == 0 {
+		return offset
+	}
+	offset += fastpb.WriteInt32(buf[offset:], 3, x.GetPageSize())
+	return offset
+}
+
+func (x *GetTradeListRsp_GetTradeListRspData) fastWriteField4(buf []byte) (offset int) {
+	if x.PageNo == 0 {
+		return offset
+	}
+	offset += fastpb.WriteInt32(buf[offset:], 4, x.GetPageNo())
+	return offset
+}
+
+func (x *GetTradeDetailRsp_GetTradeDetailRspData) FastWrite(buf []byte) (offset int) {
+	if x == nil {
+		return offset
+	}
+	offset += x.fastWriteField1(buf[offset:])
+	return offset
+}
+
+func (x *GetTradeDetailRsp_GetTradeDetailRspData) fastWriteField1(buf []byte) (offset int) {
+	if x.Trade == nil {
+		return offset
+	}
+	offset += fastpb.WriteMessage(buf[offset:], 1, x.GetTrade())
 	return offset
 }
 
@@ -906,6 +1193,24 @@ func (x *GetTradeListReq) Size() (n int) {
 	if x == nil {
 		return n
 	}
+	n += x.sizeField1()
+	n += x.sizeField2()
+	return n
+}
+
+func (x *GetTradeListReq) sizeField1() (n int) {
+	if x.PageSize == 0 {
+		return n
+	}
+	n += fastpb.SizeInt32(1, x.GetPageSize())
+	return n
+}
+
+func (x *GetTradeListReq) sizeField2() (n int) {
+	if x.PageNo == 0 {
+		return n
+	}
+	n += fastpb.SizeInt32(2, x.GetPageNo())
 	return n
 }
 
@@ -952,6 +1257,65 @@ func (x *GetTradeListRsp) sizeField4() (n int) {
 	return n
 }
 
+func (x *GetTradeDetailReq) Size() (n int) {
+	if x == nil {
+		return n
+	}
+	n += x.sizeField1()
+	return n
+}
+
+func (x *GetTradeDetailReq) sizeField1() (n int) {
+	if x.TradeNo == "" {
+		return n
+	}
+	n += fastpb.SizeString(1, x.GetTradeNo())
+	return n
+}
+
+func (x *GetTradeDetailRsp) Size() (n int) {
+	if x == nil {
+		return n
+	}
+	n += x.sizeField1()
+	n += x.sizeField2()
+	n += x.sizeField3()
+	n += x.sizeField4()
+	return n
+}
+
+func (x *GetTradeDetailRsp) sizeField1() (n int) {
+	if x.Code == 0 {
+		return n
+	}
+	n += fastpb.SizeInt32(1, x.GetCode())
+	return n
+}
+
+func (x *GetTradeDetailRsp) sizeField2() (n int) {
+	if x.Msg == "" {
+		return n
+	}
+	n += fastpb.SizeString(2, x.GetMsg())
+	return n
+}
+
+func (x *GetTradeDetailRsp) sizeField3() (n int) {
+	if x.LogId == "" {
+		return n
+	}
+	n += fastpb.SizeString(3, x.GetLogId())
+	return n
+}
+
+func (x *GetTradeDetailRsp) sizeField4() (n int) {
+	if x.Data == nil {
+		return n
+	}
+	n += fastpb.SizeMessage(4, x.GetData())
+	return n
+}
+
 func (x *CreateTradeRsp_CreateTradeRspData) Size() (n int) {
 	if x == nil {
 		return n
@@ -989,6 +1353,9 @@ func (x *GetTradeListRsp_GetTradeListRspData) Size() (n int) {
 		return n
 	}
 	n += x.sizeField1()
+	n += x.sizeField2()
+	n += x.sizeField3()
+	n += x.sizeField4()
 	return n
 }
 
@@ -999,6 +1366,46 @@ func (x *GetTradeListRsp_GetTradeListRspData) sizeField1() (n int) {
 	for i := range x.GetTradeList() {
 		n += fastpb.SizeMessage(1, x.GetTradeList()[i])
 	}
+	return n
+}
+
+func (x *GetTradeListRsp_GetTradeListRspData) sizeField2() (n int) {
+	if x.Count == 0 {
+		return n
+	}
+	n += fastpb.SizeInt32(2, x.GetCount())
+	return n
+}
+
+func (x *GetTradeListRsp_GetTradeListRspData) sizeField3() (n int) {
+	if x.PageSize == 0 {
+		return n
+	}
+	n += fastpb.SizeInt32(3, x.GetPageSize())
+	return n
+}
+
+func (x *GetTradeListRsp_GetTradeListRspData) sizeField4() (n int) {
+	if x.PageNo == 0 {
+		return n
+	}
+	n += fastpb.SizeInt32(4, x.GetPageNo())
+	return n
+}
+
+func (x *GetTradeDetailRsp_GetTradeDetailRspData) Size() (n int) {
+	if x == nil {
+		return n
+	}
+	n += x.sizeField1()
+	return n
+}
+
+func (x *GetTradeDetailRsp_GetTradeDetailRspData) sizeField1() (n int) {
+	if x.Trade == nil {
+		return n
+	}
+	n += fastpb.SizeMessage(1, x.GetTrade())
 	return n
 }
 
@@ -1035,9 +1442,23 @@ var fieldIDToName_CancelTradeRsp = map[int32]string{
 	4: "Data",
 }
 
-var fieldIDToName_GetTradeListReq = map[int32]string{}
+var fieldIDToName_GetTradeListReq = map[int32]string{
+	1: "PageSize",
+	2: "PageNo",
+}
 
 var fieldIDToName_GetTradeListRsp = map[int32]string{
+	1: "Code",
+	2: "Msg",
+	3: "LogId",
+	4: "Data",
+}
+
+var fieldIDToName_GetTradeDetailReq = map[int32]string{
+	1: "TradeNo",
+}
+
+var fieldIDToName_GetTradeDetailRsp = map[int32]string{
 	1: "Code",
 	2: "Msg",
 	3: "LogId",
@@ -1054,4 +1475,11 @@ var fieldIDToName_CancelTradeRsp_CancelTradeRspData = map[int32]string{
 
 var fieldIDToName_GetTradeListRsp_GetTradeListRspData = map[int32]string{
 	1: "TradeList",
+	2: "Count",
+	3: "PageSize",
+	4: "PageNo",
+}
+
+var fieldIDToName_GetTradeDetailRsp_GetTradeDetailRspData = map[int32]string{
+	1: "Trade",
 }

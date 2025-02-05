@@ -21,6 +21,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// 交易详情
 type TradeTrade struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -76,6 +77,7 @@ func (x *TradeTrade) GetOrderList() []*TradeOrder {
 	return nil
 }
 
+// 订单详情
 type TradeOrder struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -382,6 +384,9 @@ type GetTradeListReq struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
+
+	PageSize int32 `protobuf:"varint,1,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	PageNo   int32 `protobuf:"varint,2,opt,name=page_no,json=pageNo,proto3" json:"page_no,omitempty"`
 }
 
 func (x *GetTradeListReq) Reset() {
@@ -414,6 +419,20 @@ func (x *GetTradeListReq) ProtoReflect() protoreflect.Message {
 // Deprecated: Use GetTradeListReq.ProtoReflect.Descriptor instead.
 func (*GetTradeListReq) Descriptor() ([]byte, []int) {
 	return file_order_trade_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *GetTradeListReq) GetPageSize() int32 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+func (x *GetTradeListReq) GetPageNo() int32 {
+	if x != nil {
+		return x.PageNo
+	}
+	return 0
 }
 
 type GetTradeListRsp struct {
@@ -487,6 +506,125 @@ func (x *GetTradeListRsp) GetData() *GetTradeListRsp_GetTradeListRspData {
 	return nil
 }
 
+// 交易详情页
+type GetTradeDetailReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	TradeNo string `protobuf:"bytes,1,opt,name=trade_no,json=tradeNo,proto3" json:"trade_no,omitempty"`
+}
+
+func (x *GetTradeDetailReq) Reset() {
+	*x = GetTradeDetailReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_order_trade_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetTradeDetailReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetTradeDetailReq) ProtoMessage() {}
+
+func (x *GetTradeDetailReq) ProtoReflect() protoreflect.Message {
+	mi := &file_order_trade_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetTradeDetailReq.ProtoReflect.Descriptor instead.
+func (*GetTradeDetailReq) Descriptor() ([]byte, []int) {
+	return file_order_trade_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *GetTradeDetailReq) GetTradeNo() string {
+	if x != nil {
+		return x.TradeNo
+	}
+	return ""
+}
+
+type GetTradeDetailRsp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Code  int32                                    `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
+	Msg   string                                   `protobuf:"bytes,2,opt,name=msg,proto3" json:"msg,omitempty"`
+	LogId string                                   `protobuf:"bytes,3,opt,name=log_id,json=logId,proto3" json:"log_id,omitempty"`
+	Data  *GetTradeDetailRsp_GetTradeDetailRspData `protobuf:"bytes,4,opt,name=data,proto3" json:"data,omitempty"`
+}
+
+func (x *GetTradeDetailRsp) Reset() {
+	*x = GetTradeDetailRsp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_order_trade_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetTradeDetailRsp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetTradeDetailRsp) ProtoMessage() {}
+
+func (x *GetTradeDetailRsp) ProtoReflect() protoreflect.Message {
+	mi := &file_order_trade_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetTradeDetailRsp.ProtoReflect.Descriptor instead.
+func (*GetTradeDetailRsp) Descriptor() ([]byte, []int) {
+	return file_order_trade_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *GetTradeDetailRsp) GetCode() int32 {
+	if x != nil {
+		return x.Code
+	}
+	return 0
+}
+
+func (x *GetTradeDetailRsp) GetMsg() string {
+	if x != nil {
+		return x.Msg
+	}
+	return ""
+}
+
+func (x *GetTradeDetailRsp) GetLogId() string {
+	if x != nil {
+		return x.LogId
+	}
+	return ""
+}
+
+func (x *GetTradeDetailRsp) GetData() *GetTradeDetailRsp_GetTradeDetailRspData {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
 type CreateTradeRsp_CreateTradeRspData struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -498,7 +636,7 @@ type CreateTradeRsp_CreateTradeRspData struct {
 func (x *CreateTradeRsp_CreateTradeRspData) Reset() {
 	*x = CreateTradeRsp_CreateTradeRspData{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_order_trade_proto_msgTypes[8]
+		mi := &file_order_trade_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -511,7 +649,7 @@ func (x *CreateTradeRsp_CreateTradeRspData) String() string {
 func (*CreateTradeRsp_CreateTradeRspData) ProtoMessage() {}
 
 func (x *CreateTradeRsp_CreateTradeRspData) ProtoReflect() protoreflect.Message {
-	mi := &file_order_trade_proto_msgTypes[8]
+	mi := &file_order_trade_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -545,7 +683,7 @@ type CancelTradeRsp_CancelTradeRspData struct {
 func (x *CancelTradeRsp_CancelTradeRspData) Reset() {
 	*x = CancelTradeRsp_CancelTradeRspData{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_order_trade_proto_msgTypes[9]
+		mi := &file_order_trade_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -558,7 +696,7 @@ func (x *CancelTradeRsp_CancelTradeRspData) String() string {
 func (*CancelTradeRsp_CancelTradeRspData) ProtoMessage() {}
 
 func (x *CancelTradeRsp_CancelTradeRspData) ProtoReflect() protoreflect.Message {
-	mi := &file_order_trade_proto_msgTypes[9]
+	mi := &file_order_trade_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -587,12 +725,15 @@ type GetTradeListRsp_GetTradeListRspData struct {
 	unknownFields protoimpl.UnknownFields
 
 	TradeList []*TradeTrade `protobuf:"bytes,1,rep,name=trade_list,json=tradeList,proto3" json:"trade_list,omitempty"`
+	Count     int32         `protobuf:"varint,2,opt,name=count,proto3" json:"count,omitempty"`
+	PageSize  int32         `protobuf:"varint,3,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	PageNo    int32         `protobuf:"varint,4,opt,name=page_no,json=pageNo,proto3" json:"page_no,omitempty"`
 }
 
 func (x *GetTradeListRsp_GetTradeListRspData) Reset() {
 	*x = GetTradeListRsp_GetTradeListRspData{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_order_trade_proto_msgTypes[10]
+		mi := &file_order_trade_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -605,7 +746,7 @@ func (x *GetTradeListRsp_GetTradeListRspData) String() string {
 func (*GetTradeListRsp_GetTradeListRspData) ProtoMessage() {}
 
 func (x *GetTradeListRsp_GetTradeListRspData) ProtoReflect() protoreflect.Message {
-	mi := &file_order_trade_proto_msgTypes[10]
+	mi := &file_order_trade_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -624,6 +765,74 @@ func (*GetTradeListRsp_GetTradeListRspData) Descriptor() ([]byte, []int) {
 func (x *GetTradeListRsp_GetTradeListRspData) GetTradeList() []*TradeTrade {
 	if x != nil {
 		return x.TradeList
+	}
+	return nil
+}
+
+func (x *GetTradeListRsp_GetTradeListRspData) GetCount() int32 {
+	if x != nil {
+		return x.Count
+	}
+	return 0
+}
+
+func (x *GetTradeListRsp_GetTradeListRspData) GetPageSize() int32 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+func (x *GetTradeListRsp_GetTradeListRspData) GetPageNo() int32 {
+	if x != nil {
+		return x.PageNo
+	}
+	return 0
+}
+
+type GetTradeDetailRsp_GetTradeDetailRspData struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Trade *TradeTrade `protobuf:"bytes,1,opt,name=trade,proto3" json:"trade,omitempty"`
+}
+
+func (x *GetTradeDetailRsp_GetTradeDetailRspData) Reset() {
+	*x = GetTradeDetailRsp_GetTradeDetailRspData{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_order_trade_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetTradeDetailRsp_GetTradeDetailRspData) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetTradeDetailRsp_GetTradeDetailRspData) ProtoMessage() {}
+
+func (x *GetTradeDetailRsp_GetTradeDetailRspData) ProtoReflect() protoreflect.Message {
+	mi := &file_order_trade_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetTradeDetailRsp_GetTradeDetailRspData.ProtoReflect.Descriptor instead.
+func (*GetTradeDetailRsp_GetTradeDetailRspData) Descriptor() ([]byte, []int) {
+	return file_order_trade_proto_rawDescGZIP(), []int{9, 0}
+}
+
+func (x *GetTradeDetailRsp_GetTradeDetailRspData) GetTrade() *TradeTrade {
+	if x != nil {
+		return x.Trade
 	}
 	return nil
 }
@@ -679,26 +888,51 @@ var file_order_trade_proto_rawDesc = []byte{
 	0x04, 0x64, 0x61, 0x74, 0x61, 0x1a, 0x2f, 0x0a, 0x12, 0x43, 0x61, 0x6e, 0x63, 0x65, 0x6c, 0x54,
 	0x72, 0x61, 0x64, 0x65, 0x52, 0x73, 0x70, 0x44, 0x61, 0x74, 0x61, 0x12, 0x19, 0x0a, 0x08, 0x74,
 	0x72, 0x61, 0x64, 0x65, 0x5f, 0x6e, 0x6f, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x74,
-	0x72, 0x61, 0x64, 0x65, 0x4e, 0x6f, 0x22, 0x11, 0x0a, 0x0f, 0x47, 0x65, 0x74, 0x54, 0x72, 0x61,
-	0x64, 0x65, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71, 0x22, 0xd7, 0x01, 0x0a, 0x0f, 0x47, 0x65,
-	0x74, 0x54, 0x72, 0x61, 0x64, 0x65, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x73, 0x70, 0x12, 0x12, 0x0a,
-	0x04, 0x63, 0x6f, 0x64, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x04, 0x63, 0x6f, 0x64,
-	0x65, 0x12, 0x10, 0x0a, 0x03, 0x6d, 0x73, 0x67, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03,
-	0x6d, 0x73, 0x67, 0x12, 0x15, 0x0a, 0x06, 0x6c, 0x6f, 0x67, 0x5f, 0x69, 0x64, 0x18, 0x03, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x05, 0x6c, 0x6f, 0x67, 0x49, 0x64, 0x12, 0x3e, 0x0a, 0x04, 0x64, 0x61,
-	0x74, 0x61, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x2a, 0x2e, 0x6f, 0x72, 0x64, 0x65, 0x72,
-	0x2e, 0x47, 0x65, 0x74, 0x54, 0x72, 0x61, 0x64, 0x65, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x73, 0x70,
-	0x2e, 0x47, 0x65, 0x74, 0x54, 0x72, 0x61, 0x64, 0x65, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x73, 0x70,
-	0x44, 0x61, 0x74, 0x61, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x1a, 0x47, 0x0a, 0x13, 0x47, 0x65,
-	0x74, 0x54, 0x72, 0x61, 0x64, 0x65, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x73, 0x70, 0x44, 0x61, 0x74,
-	0x61, 0x12, 0x30, 0x0a, 0x0a, 0x74, 0x72, 0x61, 0x64, 0x65, 0x5f, 0x6c, 0x69, 0x73, 0x74, 0x18,
-	0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x2e, 0x54, 0x72,
-	0x61, 0x64, 0x65, 0x54, 0x72, 0x61, 0x64, 0x65, 0x52, 0x09, 0x74, 0x72, 0x61, 0x64, 0x65, 0x4c,
-	0x69, 0x73, 0x74, 0x42, 0x3e, 0x5a, 0x3c, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f,
-	0x6d, 0x2f, 0x6c, 0x7a, 0x6c, 0x2d, 0x68, 0x65, 0x72, 0x65, 0x2f, 0x62, 0x74, 0x2d, 0x73, 0x68,
-	0x6f, 0x70, 0x2d, 0x62, 0x61, 0x63, 0x6b, 0x65, 0x6e, 0x64, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x62, 0x75, 0x66, 0x2f, 0x6b, 0x69, 0x74, 0x65, 0x78, 0x5f, 0x67, 0x65, 0x6e, 0x2f, 0x6f, 0x72,
-	0x64, 0x65, 0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x72, 0x61, 0x64, 0x65, 0x4e, 0x6f, 0x22, 0x47, 0x0a, 0x0f, 0x47, 0x65, 0x74, 0x54, 0x72, 0x61,
+	0x64, 0x65, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71, 0x12, 0x1b, 0x0a, 0x09, 0x70, 0x61, 0x67,
+	0x65, 0x5f, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x08, 0x70, 0x61,
+	0x67, 0x65, 0x53, 0x69, 0x7a, 0x65, 0x12, 0x17, 0x0a, 0x07, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x6e,
+	0x6f, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x06, 0x70, 0x61, 0x67, 0x65, 0x4e, 0x6f, 0x22,
+	0xa4, 0x02, 0x0a, 0x0f, 0x47, 0x65, 0x74, 0x54, 0x72, 0x61, 0x64, 0x65, 0x4c, 0x69, 0x73, 0x74,
+	0x52, 0x73, 0x70, 0x12, 0x12, 0x0a, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x05, 0x52, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x6d, 0x73, 0x67, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6d, 0x73, 0x67, 0x12, 0x15, 0x0a, 0x06, 0x6c, 0x6f, 0x67,
+	0x5f, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6c, 0x6f, 0x67, 0x49, 0x64,
+	0x12, 0x3e, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x2a,
+	0x2e, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x2e, 0x47, 0x65, 0x74, 0x54, 0x72, 0x61, 0x64, 0x65, 0x4c,
+	0x69, 0x73, 0x74, 0x52, 0x73, 0x70, 0x2e, 0x47, 0x65, 0x74, 0x54, 0x72, 0x61, 0x64, 0x65, 0x4c,
+	0x69, 0x73, 0x74, 0x52, 0x73, 0x70, 0x44, 0x61, 0x74, 0x61, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61,
+	0x1a, 0x93, 0x01, 0x0a, 0x13, 0x47, 0x65, 0x74, 0x54, 0x72, 0x61, 0x64, 0x65, 0x4c, 0x69, 0x73,
+	0x74, 0x52, 0x73, 0x70, 0x44, 0x61, 0x74, 0x61, 0x12, 0x30, 0x0a, 0x0a, 0x74, 0x72, 0x61, 0x64,
+	0x65, 0x5f, 0x6c, 0x69, 0x73, 0x74, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x6f,
+	0x72, 0x64, 0x65, 0x72, 0x2e, 0x54, 0x72, 0x61, 0x64, 0x65, 0x54, 0x72, 0x61, 0x64, 0x65, 0x52,
+	0x09, 0x74, 0x72, 0x61, 0x64, 0x65, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x63, 0x6f,
+	0x75, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x63, 0x6f, 0x75, 0x6e, 0x74,
+	0x12, 0x1b, 0x0a, 0x09, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x03, 0x20,
+	0x01, 0x28, 0x05, 0x52, 0x08, 0x70, 0x61, 0x67, 0x65, 0x53, 0x69, 0x7a, 0x65, 0x12, 0x17, 0x0a,
+	0x07, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x6e, 0x6f, 0x18, 0x04, 0x20, 0x01, 0x28, 0x05, 0x52, 0x06,
+	0x70, 0x61, 0x67, 0x65, 0x4e, 0x6f, 0x22, 0x2e, 0x0a, 0x11, 0x47, 0x65, 0x74, 0x54, 0x72, 0x61,
+	0x64, 0x65, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x52, 0x65, 0x71, 0x12, 0x19, 0x0a, 0x08, 0x74,
+	0x72, 0x61, 0x64, 0x65, 0x5f, 0x6e, 0x6f, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x74,
+	0x72, 0x61, 0x64, 0x65, 0x4e, 0x6f, 0x22, 0xd6, 0x01, 0x0a, 0x11, 0x47, 0x65, 0x74, 0x54, 0x72,
+	0x61, 0x64, 0x65, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x52, 0x73, 0x70, 0x12, 0x12, 0x0a, 0x04,
+	0x63, 0x6f, 0x64, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x04, 0x63, 0x6f, 0x64, 0x65,
+	0x12, 0x10, 0x0a, 0x03, 0x6d, 0x73, 0x67, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6d,
+	0x73, 0x67, 0x12, 0x15, 0x0a, 0x06, 0x6c, 0x6f, 0x67, 0x5f, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x05, 0x6c, 0x6f, 0x67, 0x49, 0x64, 0x12, 0x42, 0x0a, 0x04, 0x64, 0x61, 0x74,
+	0x61, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x2e, 0x2e, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x2e,
+	0x47, 0x65, 0x74, 0x54, 0x72, 0x61, 0x64, 0x65, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x52, 0x73,
+	0x70, 0x2e, 0x47, 0x65, 0x74, 0x54, 0x72, 0x61, 0x64, 0x65, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c,
+	0x52, 0x73, 0x70, 0x44, 0x61, 0x74, 0x61, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x1a, 0x40, 0x0a,
+	0x15, 0x47, 0x65, 0x74, 0x54, 0x72, 0x61, 0x64, 0x65, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x52,
+	0x73, 0x70, 0x44, 0x61, 0x74, 0x61, 0x12, 0x27, 0x0a, 0x05, 0x74, 0x72, 0x61, 0x64, 0x65, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x2e, 0x54, 0x72,
+	0x61, 0x64, 0x65, 0x54, 0x72, 0x61, 0x64, 0x65, 0x52, 0x05, 0x74, 0x72, 0x61, 0x64, 0x65, 0x42,
+	0x3e, 0x5a, 0x3c, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x6c, 0x7a,
+	0x6c, 0x2d, 0x68, 0x65, 0x72, 0x65, 0x2f, 0x62, 0x74, 0x2d, 0x73, 0x68, 0x6f, 0x70, 0x2d, 0x62,
+	0x61, 0x63, 0x6b, 0x65, 0x6e, 0x64, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f,
+	0x6b, 0x69, 0x74, 0x65, 0x78, 0x5f, 0x67, 0x65, 0x6e, 0x2f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x62,
+	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -713,38 +947,43 @@ func file_order_trade_proto_rawDescGZIP() []byte {
 	return file_order_trade_proto_rawDescData
 }
 
-var file_order_trade_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_order_trade_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_order_trade_proto_goTypes = []interface{}{
-	(*TradeTrade)(nil),                          // 0: order.TradeTrade
-	(*TradeOrder)(nil),                          // 1: order.TradeOrder
-	(*CreateTradeReq)(nil),                      // 2: order.CreateTradeReq
-	(*CreateTradeRsp)(nil),                      // 3: order.CreateTradeRsp
-	(*CancelTradeReq)(nil),                      // 4: order.CancelTradeReq
-	(*CancelTradeRsp)(nil),                      // 5: order.CancelTradeRsp
-	(*GetTradeListReq)(nil),                     // 6: order.GetTradeListReq
-	(*GetTradeListRsp)(nil),                     // 7: order.GetTradeListRsp
-	(*CreateTradeRsp_CreateTradeRspData)(nil),   // 8: order.CreateTradeRsp.CreateTradeRspData
-	(*CancelTradeRsp_CancelTradeRspData)(nil),   // 9: order.CancelTradeRsp.CancelTradeRspData
-	(*GetTradeListRsp_GetTradeListRspData)(nil), // 10: order.GetTradeListRsp.GetTradeListRspData
-	(*BaseTrade)(nil),                           // 11: order.BaseTrade
-	(*BaseOrder)(nil),                           // 12: order.BaseOrder
-	(*BaseOrderItem)(nil),                       // 13: order.BaseOrderItem
+	(*TradeTrade)(nil),                              // 0: order.TradeTrade
+	(*TradeOrder)(nil),                              // 1: order.TradeOrder
+	(*CreateTradeReq)(nil),                          // 2: order.CreateTradeReq
+	(*CreateTradeRsp)(nil),                          // 3: order.CreateTradeRsp
+	(*CancelTradeReq)(nil),                          // 4: order.CancelTradeReq
+	(*CancelTradeRsp)(nil),                          // 5: order.CancelTradeRsp
+	(*GetTradeListReq)(nil),                         // 6: order.GetTradeListReq
+	(*GetTradeListRsp)(nil),                         // 7: order.GetTradeListRsp
+	(*GetTradeDetailReq)(nil),                       // 8: order.GetTradeDetailReq
+	(*GetTradeDetailRsp)(nil),                       // 9: order.GetTradeDetailRsp
+	(*CreateTradeRsp_CreateTradeRspData)(nil),       // 10: order.CreateTradeRsp.CreateTradeRspData
+	(*CancelTradeRsp_CancelTradeRspData)(nil),       // 11: order.CancelTradeRsp.CancelTradeRspData
+	(*GetTradeListRsp_GetTradeListRspData)(nil),     // 12: order.GetTradeListRsp.GetTradeListRspData
+	(*GetTradeDetailRsp_GetTradeDetailRspData)(nil), // 13: order.GetTradeDetailRsp.GetTradeDetailRspData
+	(*BaseTrade)(nil),                               // 14: order.BaseTrade
+	(*BaseOrder)(nil),                               // 15: order.BaseOrder
+	(*BaseOrderItem)(nil),                           // 16: order.BaseOrderItem
 }
 var file_order_trade_proto_depIdxs = []int32{
-	11, // 0: order.TradeTrade.trade:type_name -> order.BaseTrade
+	14, // 0: order.TradeTrade.trade:type_name -> order.BaseTrade
 	1,  // 1: order.TradeTrade.order_list:type_name -> order.TradeOrder
-	12, // 2: order.TradeOrder.order:type_name -> order.BaseOrder
-	13, // 3: order.TradeOrder.order_item_list:type_name -> order.BaseOrderItem
+	15, // 2: order.TradeOrder.order:type_name -> order.BaseOrder
+	16, // 3: order.TradeOrder.order_item_list:type_name -> order.BaseOrderItem
 	0,  // 4: order.CreateTradeReq.trade:type_name -> order.TradeTrade
-	8,  // 5: order.CreateTradeRsp.data:type_name -> order.CreateTradeRsp.CreateTradeRspData
-	9,  // 6: order.CancelTradeRsp.data:type_name -> order.CancelTradeRsp.CancelTradeRspData
-	10, // 7: order.GetTradeListRsp.data:type_name -> order.GetTradeListRsp.GetTradeListRspData
-	0,  // 8: order.GetTradeListRsp.GetTradeListRspData.trade_list:type_name -> order.TradeTrade
-	9,  // [9:9] is the sub-list for method output_type
-	9,  // [9:9] is the sub-list for method input_type
-	9,  // [9:9] is the sub-list for extension type_name
-	9,  // [9:9] is the sub-list for extension extendee
-	0,  // [0:9] is the sub-list for field type_name
+	10, // 5: order.CreateTradeRsp.data:type_name -> order.CreateTradeRsp.CreateTradeRspData
+	11, // 6: order.CancelTradeRsp.data:type_name -> order.CancelTradeRsp.CancelTradeRspData
+	12, // 7: order.GetTradeListRsp.data:type_name -> order.GetTradeListRsp.GetTradeListRspData
+	13, // 8: order.GetTradeDetailRsp.data:type_name -> order.GetTradeDetailRsp.GetTradeDetailRspData
+	0,  // 9: order.GetTradeListRsp.GetTradeListRspData.trade_list:type_name -> order.TradeTrade
+	0,  // 10: order.GetTradeDetailRsp.GetTradeDetailRspData.trade:type_name -> order.TradeTrade
+	11, // [11:11] is the sub-list for method output_type
+	11, // [11:11] is the sub-list for method input_type
+	11, // [11:11] is the sub-list for extension type_name
+	11, // [11:11] is the sub-list for extension extendee
+	0,  // [0:11] is the sub-list for field type_name
 }
 
 func init() { file_order_trade_proto_init() }
@@ -851,7 +1090,7 @@ func file_order_trade_proto_init() {
 			}
 		}
 		file_order_trade_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateTradeRsp_CreateTradeRspData); i {
+			switch v := v.(*GetTradeDetailReq); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -863,7 +1102,7 @@ func file_order_trade_proto_init() {
 			}
 		}
 		file_order_trade_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CancelTradeRsp_CancelTradeRspData); i {
+			switch v := v.(*GetTradeDetailRsp); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -875,7 +1114,43 @@ func file_order_trade_proto_init() {
 			}
 		}
 		file_order_trade_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateTradeRsp_CreateTradeRspData); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_order_trade_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CancelTradeRsp_CancelTradeRspData); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_order_trade_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetTradeListRsp_GetTradeListRspData); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_order_trade_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetTradeDetailRsp_GetTradeDetailRspData); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -893,7 +1168,7 @@ func file_order_trade_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_order_trade_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   11,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

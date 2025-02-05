@@ -45,3 +45,13 @@ func _paysuccesstoorderMw() []app.HandlerFunc {
 	// your code...
 	return nil
 }
+
+func _getorderdetailMw() []app.HandlerFunc {
+	// your code...
+	return nil
+}
+
+func _gettradedetailMw() []app.HandlerFunc {
+	// your code...
+	return nil
+}

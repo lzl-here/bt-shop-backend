@@ -51,3 +51,13 @@ func (s *OrderServer) PayCancelToOrder(ctx context.Context, req *ogen.PayCancelT
 func (s *OrderServer) GetTradeList(ctx context.Context, req *ogen.GetTradeListReq) (res *ogen.GetTradeListRsp, err error) {
 	return handler.NewOrderHandler(s.rep).GetTradeList(ctx, req)
 }
+
+// 交易详情
+func (s *OrderServer) GetTradeDetail(ctx context.Context, req *ogen.GetTradeDetailReq) (res *ogen.GetTradeDetailRsp, err error) {
+	return handler.NewOrderHandler(s.rep).GetTradeDetail(ctx, req)
+}
+
+// 订单详情
+func (s *OrderServer) GetOrderDetail(ctx context.Context, req *ogen.GetOrderDetailReq) (res *ogen.GetOrderDetailRsp, err error) {
+	return handler.NewOrderHandler(s.rep).GetOrderDetail(ctx, req)
+}

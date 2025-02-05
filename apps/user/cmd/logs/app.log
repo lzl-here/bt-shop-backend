@@ -1,0 +1,145 @@
+2025/02/05 19:09:24.978095 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-user?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/05 19:09:25.353048 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/05 19:09:25.421367 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9092
+2025/02/05 19:09:26.663891 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f369cb for etcd registry
+2025/02/05 19:12:03.519404 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-user?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/05 19:12:03.531652 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/05 19:12:03.602255 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9092
+2025/02/05 19:12:04.692603 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f369f5 for etcd registry
+2025/02/05 19:12:28.684806 log_md.go:25: [Info] 请求路径: UserService.NormalLogin, 请求地址: 127.0.0.1:51593, 请求体: &{Stream:0x14001d1ac80}
+2025/02/05 19:12:28.744926 error_md.go:22: [Error] biz error: record not found
+2025/02/05 19:12:28.745123 error_md.go:27: [Error] biz error: code=10002, msg=biz error: record not found
+2025/02/05 19:12:28.745165 log_md.go:36: [Info] 响应体: <nil>, 耗时: 60ms
+2025/02/05 19:12:35.682555 log_md.go:25: [Info] 请求路径: UserService.NormalRegister, 请求地址: 127.0.0.1:51616, 请求体: &{Stream:0x14001b580c0}
+2025/02/05 19:12:35.682690 error_md.go:34: [Error] biz error: code=40002, msg=密码不匹配
+2025/02/05 19:12:35.682723 log_md.go:36: [Info] 响应体: <nil>, 耗时: 0ms
+2025/02/05 19:12:44.752298 log_md.go:25: [Info] 请求路径: UserService.NormalRegister, 请求地址: 127.0.0.1:51632, 请求体: &{Stream:0x14001c0e1c0}
+2025/02/05 19:12:44.755698 error_md.go:22: [Error] biz error: record not found
+2025/02/05 19:12:44.755726 error_md.go:27: [Error] biz error: code=10002, msg=biz error: record not found
+2025/02/05 19:12:44.755739 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/05 19:13:20.305420 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-user?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/05 19:13:20.321604 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/05 19:13:20.389352 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9092
+2025/02/05 19:13:21.395419 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f36a0e for etcd registry
+2025/02/05 19:14:00.482562 log_md.go:25: [Info] 请求路径: UserService.NormalRegister, 请求地址: 127.0.0.1:51768, 请求体: &{Stream:0x14001e14580}
+2025/02/05 19:14:00.491309 error_md.go:22: [Error] biz error: record not found
+2025/02/05 19:14:00.491425 error_md.go:27: [Error] biz error: code=10002, msg=biz error: record not found
+2025/02/05 19:14:00.491467 log_md.go:36: [Info] 响应体: <nil>, 耗时: 8ms
+2025/02/05 19:14:23.668863 log_md.go:25: [Info] 请求路径: UserService.NormalRegister, 请求地址: 127.0.0.1:51778, 请求体: &{Stream:0x14001c04220}
+2025/02/05 19:16:23.719634 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-user?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/05 19:16:23.734327 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/05 19:16:23.799936 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9092
+2025/02/05 19:16:24.808371 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f36a32 for etcd registry
+2025/02/05 19:16:47.353752 log_md.go:25: [Info] 请求路径: UserService.NormalRegister, 请求地址: 127.0.0.1:52096, 请求体: &{Stream:0x14001bfb360}
+2025/02/05 19:16:56.252869 error_md.go:22: [Error] biz error: Error 1054 (42S22): Unknown column 'salt' in 'field list'
+2025/02/05 19:16:56.252929 error_md.go:27: [Error] biz error: code=10002, msg=biz error: Error 1054 (42S22): Unknown column 'salt' in 'field list'
+2025/02/05 19:16:56.252946 log_md.go:36: [Info] 响应体: <nil>, 耗时: 8899ms
+2025/02/05 19:17:49.096184 log_md.go:25: [Info] 请求路径: UserService.NormalRegister, 请求地址: 127.0.0.1:52188, 请求体: &{Stream:0x14001c88c40}
+2025/02/05 19:18:02.017107 error_md.go:34: [Error] <nil>
+2025/02/05 19:18:02.017251 log_md.go:36: [Info] 响应体: <nil>, 耗时: 12921ms
+2025/02/05 19:18:18.888931 log_md.go:25: [Info] 请求路径: UserService.NormalLogin, 请求地址: 127.0.0.1:52205, 请求体: &{Stream:0x14001d1d400}
+2025/02/05 19:18:18.893462 error_md.go:34: [Error] <nil>
+2025/02/05 19:18:18.893505 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/05 19:19:38.160041 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-user?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/05 19:19:38.173560 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/05 19:19:38.241441 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9092
+2025/02/05 19:19:39.246646 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f36a58 for etcd registry
+2025/02/05 19:19:45.529246 log_md.go:25: [Info] 请求路径: UserService.NormalLogin, 请求地址: 127.0.0.1:52369, 请求体: &{Stream:0x14001d3a640}
+2025/02/05 19:19:45.547927 error_md.go:34: [Error] <nil>
+2025/02/05 19:19:45.547991 log_md.go:36: [Info] 响应体: <nil>, 耗时: 18ms
+2025/02/05 19:19:50.838343 log_md.go:25: [Info] 请求路径: UserService.NormalLogin, 请求地址: 127.0.0.1:52379, 请求体: &{Stream:0x1400208a1e0}
+2025/02/05 19:19:50.845991 error_md.go:34: [Error] biz error: code=40002, msg=密码不匹配
+2025/02/05 19:19:50.846096 log_md.go:36: [Info] 响应体: <nil>, 耗时: 7ms
+2025/02/05 19:37:45.701982 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-user?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/05 19:37:45.745208 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/05 19:37:45.820055 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9092
+2025/02/05 19:37:46.830228 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f36ab9 for etcd registry
+2025/02/05 19:38:57.831353 log_md.go:25: [Info] 请求路径: UserService.GetUserInfo, 请求地址: 127.0.0.1:54546, 请求体: &{Stream:0x14001c96a80}
+2025/02/05 19:38:57.844307 error_md.go:34: [Error] <nil>
+2025/02/05 19:38:57.844386 log_md.go:36: [Info] 响应体: <nil>, 耗时: 13ms
+2025/02/05 19:39:37.236519 log_md.go:25: [Info] 请求路径: UserService.GetUserInfo, 请求地址: 127.0.0.1:54579, 请求体: &{Stream:0x14001c962a0}
+2025/02/05 19:40:01.912679 error_md.go:34: [Error] <nil>
+2025/02/05 19:40:01.912943 log_md.go:36: [Info] 响应体: <nil>, 耗时: 24676ms
+2025/02/05 19:40:21.606567 log_md.go:25: [Info] 请求路径: UserService.GetUserInfo, 请求地址: 127.0.0.1:54546, 请求体: &{Stream:0x14001c96380}
+2025/02/05 19:40:24.598890 error_md.go:34: [Error] <nil>
+2025/02/05 19:40:24.598953 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2992ms
+2025/02/05 19:40:32.517722 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 19:40:32.517730 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 19:41:00.094671 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-user?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/05 19:41:00.108035 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/05 19:41:00.181079 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9092
+2025/02/05 19:41:01.191120 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f36ae4 for etcd registry
+2025/02/05 19:42:06.243467 log_md.go:25: [Info] 请求路径: UserService.GetUserInfo, 请求地址: 127.0.0.1:54780, 请求体: &{Stream:0x140020881e0}
+2025/02/05 19:42:08.845704 error_md.go:34: [Error] <nil>
+2025/02/05 19:42:08.845778 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2602ms
+2025/02/05 19:59:48.812259 log_md.go:25: [Info] 请求路径: UserService.NormalLogin, 请求地址: 127.0.0.1:56402, 请求体: &{Stream:0x14001c00020}
+2025/02/05 19:59:48.825649 error_md.go:22: [Error] biz error: record not found
+2025/02/05 19:59:48.825930 error_md.go:27: [Error] biz error: code=10002, msg=biz error: record not found
+2025/02/05 19:59:48.825944 log_md.go:36: [Info] 响应体: <nil>, 耗时: 15ms
+2025/02/05 19:59:56.439868 log_md.go:25: [Info] 请求路径: UserService.NormalLogin, 请求地址: 127.0.0.1:56427, 请求体: &{Stream:0x140020881a0}
+2025/02/05 19:59:56.441371 error_md.go:22: [Error] biz error: record not found
+2025/02/05 19:59:56.441462 error_md.go:27: [Error] biz error: code=10002, msg=biz error: record not found
+2025/02/05 19:59:56.441500 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/05 20:05:39.926838 log_md.go:25: [Info] 请求路径: UserService.NormalLogin, 请求地址: 127.0.0.1:57201, 请求体: &{Stream:0x14001b5c040}
+2025/02/05 20:05:39.931657 error_md.go:22: [Error] biz error: record not found
+2025/02/05 20:05:39.931794 error_md.go:27: [Error] biz error: code=10002, msg=biz error: record not found
+2025/02/05 20:05:39.931841 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/05 20:07:50.880150 log_md.go:25: [Info] 请求路径: UserService.NormalRegister, 请求地址: 127.0.0.1:57498, 请求体: &{Stream:0x14001d986e0}
+2025/02/05 20:07:53.133573 error_md.go:34: [Error] <nil>
+2025/02/05 20:07:53.133655 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2253ms
+2025/02/05 20:08:06.102119 log_md.go:25: [Info] 请求路径: UserService.NormalLogin, 请求地址: 127.0.0.1:57526, 请求体: &{Stream:0x14001c00300}
+2025/02/05 20:08:06.112224 error_md.go:34: [Error] biz error: code=40002, msg=密码不匹配
+2025/02/05 20:08:06.112280 log_md.go:36: [Info] 响应体: <nil>, 耗时: 10ms
+2025/02/05 20:08:12.253316 log_md.go:25: [Info] 请求路径: UserService.NormalLogin, 请求地址: 127.0.0.1:57527, 请求体: &{Stream:0x14001d98080}
+2025/02/05 20:08:12.255501 error_md.go:34: [Error] biz error: code=40002, msg=密码不匹配
+2025/02/05 20:08:12.255539 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/05 20:08:23.804486 log_md.go:25: [Info] 请求路径: UserService.NormalLogin, 请求地址: 127.0.0.1:57528, 请求体: &{Stream:0x14001c00360}
+2025/02/05 20:08:23.811537 error_md.go:34: [Error] biz error: code=40002, msg=密码不匹配
+2025/02/05 20:08:23.811650 log_md.go:36: [Info] 响应体: <nil>, 耗时: 7ms
+2025/02/05 20:11:27.007487 log_md.go:25: [Info] 请求路径: UserService.NormalLogin, 请求地址: 127.0.0.1:57860, 请求体: &{Stream:0x14001b5c580}
+2025/02/05 20:11:27.013648 error_md.go:34: [Error] <nil>
+2025/02/05 20:11:27.013697 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/05 20:14:19.375707 log_md.go:25: [Info] 请求路径: UserService.NormalLogin, 请求地址: 127.0.0.1:58230, 请求体: &{Stream:0x14001d3a560}
+2025/02/05 20:14:19.385487 error_md.go:34: [Error] <nil>
+2025/02/05 20:14:19.385540 log_md.go:36: [Info] 响应体: <nil>, 耗时: 9ms
+2025/02/05 20:17:16.271979 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-user?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/05 20:17:16.317945 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/05 20:17:16.431826 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9092
+2025/02/05 20:17:17.449544 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f36bfb for etcd registry
+2025/02/05 20:18:05.000638 log_md.go:25: [Info] 请求路径: UserService.NormalLogin, 请求地址: 127.0.0.1:58648, 请求体: &{Stream:0x14001b562c0}
+2025/02/05 20:18:05.017303 error_md.go:34: [Error] <nil>
+2025/02/05 20:18:05.017459 log_md.go:36: [Info] 响应体: <nil>, 耗时: 16ms
+2025/02/05 20:19:05.860086 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 20:20:05.557233 log_md.go:25: [Info] 请求路径: UserService.NormalLogin, 请求地址: 127.0.0.1:58840, 请求体: &{Stream:0x14001b56300}
+2025/02/05 20:20:05.565053 error_md.go:34: [Error] <nil>
+2025/02/05 20:20:05.565121 log_md.go:36: [Info] 响应体: <nil>, 耗时: 7ms
+2025/02/05 20:23:21.156033 log_md.go:25: [Info] 请求路径: UserService.NormalLogin, 请求地址: 127.0.0.1:59322, 请求体: &{Stream:0x14001d8a0e0}
+2025/02/05 20:23:21.167758 error_md.go:34: [Error] <nil>
+2025/02/05 20:23:21.167999 log_md.go:36: [Info] 响应体: <nil>, 耗时: 12ms
+2025/02/05 20:29:46.362508 log_md.go:25: [Info] 请求路径: UserService.NormalLogin, 请求地址: 127.0.0.1:60042, 请求体: &{Stream:0x14001b56260}
+2025/02/05 20:29:46.369530 error_md.go:34: [Error] <nil>
+2025/02/05 20:29:46.369587 log_md.go:36: [Info] 响应体: <nil>, 耗时: 7ms
+2025/02/05 20:29:52.528274 log_md.go:25: [Info] 请求路径: UserService.NormalLogin, 请求地址: 127.0.0.1:60058, 请求体: &{Stream:0x14001d8a180}
+2025/02/05 20:29:52.531275 error_md.go:34: [Error] <nil>
+2025/02/05 20:29:52.531378 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/05 20:35:35.062501 log_md.go:25: [Info] 请求路径: UserService.NormalLogin, 请求地址: 127.0.0.1:60891, 请求体: &{Stream:0x14001b56360}
+2025/02/05 20:35:35.092355 error_md.go:34: [Error] <nil>
+2025/02/05 20:35:35.092527 log_md.go:36: [Info] 响应体: <nil>, 耗时: 30ms
+2025/02/05 20:48:53.099026 log_md.go:25: [Info] 请求路径: UserService.NormalLogin, 请求地址: 127.0.0.1:62670, 请求体: &{Stream:0x14001d8a120}
+2025/02/05 20:48:53.106863 error_md.go:34: [Error] <nil>
+2025/02/05 20:48:53.106925 log_md.go:36: [Info] 响应体: <nil>, 耗时: 7ms
+2025/02/05 20:48:59.162898 log_md.go:25: [Info] 请求路径: UserService.NormalLogin, 请求地址: 127.0.0.1:62706, 请求体: &{Stream:0x140001421c0}
+2025/02/05 20:48:59.168582 error_md.go:34: [Error] <nil>
+2025/02/05 20:48:59.168622 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/05 20:50:49.057615 log_md.go:25: [Info] 请求路径: UserService.NormalLogin, 请求地址: 127.0.0.1:63069, 请求体: &{Stream:0x14001d8a0e0}
+2025/02/05 20:50:49.063321 error_md.go:34: [Error] <nil>
+2025/02/05 20:50:49.063350 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/05 20:54:26.427252 log_md.go:25: [Info] 请求路径: UserService.NormalLogin, 请求地址: 127.0.0.1:63552, 请求体: &{Stream:0x14000142aa0}
+2025/02/05 20:54:26.432044 error_md.go:34: [Error] <nil>
+2025/02/05 20:54:26.432091 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/05 20:54:44.473774 log_md.go:25: [Info] 请求路径: UserService.NormalLogin, 请求地址: 127.0.0.1:63580, 请求体: &{Stream:0x140000bec80}
+2025/02/05 20:54:45.114311 error_md.go:34: [Error] <nil>
+2025/02/05 20:54:45.114471 log_md.go:36: [Info] 响应体: <nil>, 耗时: 752ms
+2025/02/05 20:57:33.441299 log_md.go:25: [Info] 请求路径: UserService.NormalLogin, 请求地址: 127.0.0.1:63970, 请求体: &{Stream:0x14001d8ab80}
+2025/02/05 20:57:33.449556 error_md.go:34: [Error] <nil>
+2025/02/05 20:57:33.449729 log_md.go:36: [Info] 响应体: <nil>, 耗时: 8ms

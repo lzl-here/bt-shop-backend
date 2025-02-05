@@ -1,0 +1,53 @@
+syntax="proto3";
+
+package user;
+
+option go_package="user";
+
+import "user/common.proto";
+
+
+message NormalRegisterReq {
+  string username = 1;
+  string password = 2;
+  string confirm_password = 3;
+}
+
+message NormalRegisterRsp {
+    int32 code = 1;
+    string msg = 2;
+    string log_id = 3;
+    Data data = 4;
+    message Data {
+        uint64 user_id = 1;
+    }
+}
+
+message NormalLoginReq {
+  string username= 1;
+  string password = 2;
+}
+
+message NormalLoginRsp {
+    int32 code = 1;
+    string msg = 2;
+    string log_id = 3;
+    Data data = 4;
+    message Data {
+        BaseUser user = 1;
+    }
+}
+
+message LogoutReq {
+    uint64 user_id = 1;
+}
+
+message LogoutRsp {
+    int32 code = 1;
+    string msg = 2;
+    string log_id = 3;
+    Data data = 4;
+    message Data {
+        uint64 user_id = 1;
+    }
+}

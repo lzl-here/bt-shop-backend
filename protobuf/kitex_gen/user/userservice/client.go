@@ -11,8 +11,11 @@ import (
 
 // Client is designed to provide IDL-compatible methods with call-option parameter for kitex framework.
 type Client interface {
-	Register(ctx context.Context, Req *user.RegisterReq, callOptions ...callopt.Option) (r *user.RegisterResp, err error)
-	Login(ctx context.Context, Req *user.LoginReq, callOptions ...callopt.Option) (r *user.LoginResp, err error)
+	NormalLogin(ctx context.Context, Req *user.NormalLoginReq, callOptions ...callopt.Option) (r *user.NormalLoginRsp, err error)
+	NormalRegister(ctx context.Context, Req *user.NormalRegisterReq, callOptions ...callopt.Option) (r *user.NormalRegisterRsp, err error)
+	Logout(ctx context.Context, Req *user.LogoutReq, callOptions ...callopt.Option) (r *user.LogoutRsp, err error)
+	GetUserInfo(ctx context.Context, Req *user.GetUserInfoReq, callOptions ...callopt.Option) (r *user.GetUserInfoRsp, err error)
+	UpdateUserInfo(ctx context.Context, Req *user.UpdateUserInfoReq, callOptions ...callopt.Option) (r *user.UpdateUserInfoRsp, err error)
 }
 
 // NewClient creates a client for the service defined in IDL.
@@ -44,12 +47,27 @@ type kUserServiceClient struct {
 	*kClient
 }
 
-func (p *kUserServiceClient) Register(ctx context.Context, Req *user.RegisterReq, callOptions ...callopt.Option) (r *user.RegisterResp, err error) {
+func (p *kUserServiceClient) NormalLogin(ctx context.Context, Req *user.NormalLoginReq, callOptions ...callopt.Option) (r *user.NormalLoginRsp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
-	return p.kClient.Register(ctx, Req)
+	return p.kClient.NormalLogin(ctx, Req)
 }
 
-func (p *kUserServiceClient) Login(ctx context.Context, Req *user.LoginReq, callOptions ...callopt.Option) (r *user.LoginResp, err error) {
+func (p *kUserServiceClient) NormalRegister(ctx context.Context, Req *user.NormalRegisterReq, callOptions ...callopt.Option) (r *user.NormalRegisterRsp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
-	return p.kClient.Login(ctx, Req)
+	return p.kClient.NormalRegister(ctx, Req)
+}
+
+func (p *kUserServiceClient) Logout(ctx context.Context, Req *user.LogoutReq, callOptions ...callopt.Option) (r *user.LogoutRsp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.Logout(ctx, Req)
+}
+
+func (p *kUserServiceClient) GetUserInfo(ctx context.Context, Req *user.GetUserInfoReq, callOptions ...callopt.Option) (r *user.GetUserInfoRsp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.GetUserInfo(ctx, Req)
+}
+
+func (p *kUserServiceClient) UpdateUserInfo(ctx context.Context, Req *user.UpdateUserInfoReq, callOptions ...callopt.Option) (r *user.UpdateUserInfoRsp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.UpdateUserInfo(ctx, Req)
 }

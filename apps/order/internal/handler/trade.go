@@ -8,10 +8,10 @@ import (
 	"github.com/lzl-here/bt-shop-backend/apps/order/internal/common"
 	"github.com/lzl-here/bt-shop-backend/apps/order/internal/constant"
 	"github.com/lzl-here/bt-shop-backend/apps/order/internal/domain/model"
-	ggen "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/goods"
-	ogen "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/order"
 	bizerr "github.com/lzl-here/bt-shop-backend/pkg/err"
 	"github.com/lzl-here/bt-shop-backend/pkg/utils"
+	ggen "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/goods"
+	ogen "github.com/lzl-here/bt-shop-backend/protobuf/kitex_gen/order"
 	"gorm.io/gorm"
 )
 
@@ -207,6 +207,159 @@ func buildModels(req *ogen.CreateTradeReq) (*model.Trade, []*model.Order, []*mod
 	return trade, orderRsp, itemRSp, tradeNo, nil
 }
 
+/*
+* @description: 取消交易
+**/
 func (h *OrderHandler) CancelTrade(ctx context.Context, req *ogen.CancelTradeReq) (res *ogen.CancelTradeRsp, err error) {
 	return nil, nil
+}
+
+/*
+* @description: 获取交易详情
+**/
+func (h *OrderHandler) GetTradeDetail(ctx context.Context, req *ogen.GetTradeDetailReq) (*ogen.GetTradeDetailRsp, error) {
+	var err error
+	var trade *model.Trade
+	trade, err = h.rep.GetTrade(ctx, &model.Trade{TradeNo: req.TradeNo})
+	if err != nil {
+		return nil, err
+	}
+	if trade == nil {
+		return nil, bizerr.ErrResourceNotFound
+	}
+	// TODO 校验权限 if trade.BuyerID != 0 {
+	// 	return nil, bizerr.ErrResourceNotFound
+	// }
+	var orderList []*model.Order
+	if orderList, err = h.rep.GetOrderList(ctx, &model.Order{TradeNo: req.TradeNo}); err != nil {
+		return nil, err
+	}
+	var orderItems []*model.OrderItem
+	if orderItems, err = h.rep.GetOrderItems(ctx, &model.OrderItem{TradeNo: req.TradeNo}); err != nil {
+		return nil, err
+	}
+	return buildTradeRsp(trade, orderList, orderItems)
+}
+
+func buildTradeRsp(trade *model.Trade, orderList []*model.Order, orderItems []*model.OrderItem) (*ogen.GetTradeDetailRsp, error) {
+	baseTrade, err := trade.ToGen()
+	if err != nil {
+		return nil, err
+	}
+	orderItemMap := make(map[string][]*ogen.BaseOrderItem)
+	for _, oi := range orderItems {
+		baseOrderItem, err := oi.ToGen()
+		if err != nil {
+			return nil, err
+		}
+		orderItemMap[oi.OrderNo] = append(orderItemMap[oi.OrderNo], baseOrderItem)
+	}
+	orderRspList := make([]*ogen.TradeOrder, 0)
+	for _, order := range orderList {
+		baseOrder, err := order.ToGen()
+		if err != nil {
+			return nil, err
+		}
+		orderRspList = append(orderRspList, &ogen.TradeOrder{
+			Order:         baseOrder,
+			OrderItemList: orderItemMap[order.OrderNo],
+		})
+	}
+	data := &ogen.GetTradeDetailRsp_GetTradeDetailRspData{
+		Trade: &ogen.TradeTrade{
+			Trade:     baseTrade,
+			OrderList: orderRspList,
+		},
+	}
+	rsp := &ogen.GetTradeDetailRsp{
+		Code: 1,
+		Msg:  "success",
+		Data: data,
+	}
+	return rsp, nil
+}
+
+/**
+* @description: 获取交易列表
+ */
+func (h *OrderHandler) GetTradeList(ctx context.Context, req *ogen.GetTradeListReq) (*ogen.GetTradeListRsp, error) {
+	tradeList, err := h.rep.PageTradeList(ctx, &model.Trade{}, int(req.PageSize), int(req.PageNo))
+	if err != nil {
+		return nil, err
+	}
+	tradeNos := make([]string, 0)
+	for _, t := range tradeList {
+		tradeNos = append(tradeNos, t.TradeNo)
+	}
+	orderList, err := h.rep.GetOrderListByTradeNo(ctx, tradeNos)
+	if err != nil {
+		return nil, err
+	}
+	orderItems, err := h.rep.GetOrderItemsByTradeNo(ctx, tradeNos)
+	if err != nil {
+		return nil, err
+	}
+	orderMap := make(map[string][]*model.Order)
+	for _, o := range orderList {
+		orderMap[o.TradeNo] = append(orderMap[o.TradeNo], o)
+	}
+	orderItemsMap := make(map[string][]*model.OrderItem)
+	for _, oi := range orderItems {
+		orderItemsMap[oi.OrderNo] = append(orderItemsMap[oi.TradeNo], oi)
+	}
+	count, err := h.rep.CountTrade(ctx, &model.Trade{})
+	if err != nil {
+		return nil, err
+	}
+	return buildTradeListRsp(tradeList, orderMap, orderItemsMap, req.PageSize, req.PageNo, count)
+}
+
+func buildTradeListRsp(tradeList []*model.Trade, orderMap map[string][]*model.Order, orderItemsMap map[string][]*model.OrderItem, pageSize int32, pageNo int32, count int64) (*ogen.GetTradeListRsp, error) {
+	tradeRspList := make([]*ogen.TradeTrade, 0)
+
+	// trade
+	for _, t := range tradeList {
+		baseTrade, err := t.ToGen()
+		if err != nil {
+			return nil, err
+		}
+		// order
+		orderRspList := make([]*ogen.TradeOrder, 0)
+		orderList := orderMap[t.TradeNo]
+		for _, o := range orderList {
+			baseOrder, err := o.ToGen()
+			if err != nil {
+				return nil, err
+			}
+			// orderItem
+			orderItemRspList := make([]*ogen.BaseOrderItem, 0)
+			orderItems := orderItemsMap[o.OrderNo]
+			for _, oi := range orderItems {
+				baseOrderItem, err := oi.ToGen()
+				if err != nil {
+					return nil, err
+				}
+				orderItemRspList = append(orderItemRspList, baseOrderItem)
+			}
+			orderRspList = append(orderRspList, &ogen.TradeOrder{
+				Order:         baseOrder,
+				OrderItemList: orderItemRspList,
+			})
+		}
+		tradeRspList = append(tradeRspList, &ogen.TradeTrade{
+			Trade:     baseTrade,
+			OrderList: orderRspList,
+		})
+	}
+	rsp := &ogen.GetTradeListRsp{
+		Code: 1,
+		Msg:  "success",
+		Data: &ogen.GetTradeListRsp_GetTradeListRspData{
+			TradeList: tradeRspList,
+			Count:     int32(count),
+			PageSize:  pageSize,
+			PageNo:    pageNo,
+		},
+	}
+	return rsp, nil
 }

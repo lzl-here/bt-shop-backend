@@ -29,6 +29,20 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingUnary),
 	),
+	"GetTradeDetail": kitex.NewMethodInfo(
+		getTradeDetailHandler,
+		newGetTradeDetailArgs,
+		newGetTradeDetailResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingUnary),
+	),
+	"GetOrderDetail": kitex.NewMethodInfo(
+		getOrderDetailHandler,
+		newGetOrderDetailArgs,
+		newGetOrderDetailResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingUnary),
+	),
 	"CancelTrade": kitex.NewMethodInfo(
 		cancelTradeHandler,
 		newCancelTradeArgs,
@@ -426,6 +440,312 @@ func (p *GetTradeListResult) IsSetSuccess() bool {
 }
 
 func (p *GetTradeListResult) GetResult() interface{} {
+	return p.Success
+}
+
+func getTradeDetailHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	switch s := arg.(type) {
+	case *streaming.Args:
+		st := s.Stream
+		req := new(order.GetTradeDetailReq)
+		if err := st.RecvMsg(req); err != nil {
+			return err
+		}
+		resp, err := handler.(order.OrderService).GetTradeDetail(ctx, req)
+		if err != nil {
+			return err
+		}
+		return st.SendMsg(resp)
+	case *GetTradeDetailArgs:
+		success, err := handler.(order.OrderService).GetTradeDetail(ctx, s.Req)
+		if err != nil {
+			return err
+		}
+		realResult := result.(*GetTradeDetailResult)
+		realResult.Success = success
+		return nil
+	default:
+		return errInvalidMessageType
+	}
+}
+func newGetTradeDetailArgs() interface{} {
+	return &GetTradeDetailArgs{}
+}
+
+func newGetTradeDetailResult() interface{} {
+	return &GetTradeDetailResult{}
+}
+
+type GetTradeDetailArgs struct {
+	Req *order.GetTradeDetailReq
+}
+
+func (p *GetTradeDetailArgs) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
+	if !p.IsSetReq() {
+		p.Req = new(order.GetTradeDetailReq)
+	}
+	return p.Req.FastRead(buf, _type, number)
+}
+
+func (p *GetTradeDetailArgs) FastWrite(buf []byte) (n int) {
+	if !p.IsSetReq() {
+		return 0
+	}
+	return p.Req.FastWrite(buf)
+}
+
+func (p *GetTradeDetailArgs) Size() (n int) {
+	if !p.IsSetReq() {
+		return 0
+	}
+	return p.Req.Size()
+}
+
+func (p *GetTradeDetailArgs) Marshal(out []byte) ([]byte, error) {
+	if !p.IsSetReq() {
+		return out, nil
+	}
+	return proto.Marshal(p.Req)
+}
+
+func (p *GetTradeDetailArgs) Unmarshal(in []byte) error {
+	msg := new(order.GetTradeDetailReq)
+	if err := proto.Unmarshal(in, msg); err != nil {
+		return err
+	}
+	p.Req = msg
+	return nil
+}
+
+var GetTradeDetailArgs_Req_DEFAULT *order.GetTradeDetailReq
+
+func (p *GetTradeDetailArgs) GetReq() *order.GetTradeDetailReq {
+	if !p.IsSetReq() {
+		return GetTradeDetailArgs_Req_DEFAULT
+	}
+	return p.Req
+}
+
+func (p *GetTradeDetailArgs) IsSetReq() bool {
+	return p.Req != nil
+}
+
+func (p *GetTradeDetailArgs) GetFirstArgument() interface{} {
+	return p.Req
+}
+
+type GetTradeDetailResult struct {
+	Success *order.GetTradeDetailRsp
+}
+
+var GetTradeDetailResult_Success_DEFAULT *order.GetTradeDetailRsp
+
+func (p *GetTradeDetailResult) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
+	if !p.IsSetSuccess() {
+		p.Success = new(order.GetTradeDetailRsp)
+	}
+	return p.Success.FastRead(buf, _type, number)
+}
+
+func (p *GetTradeDetailResult) FastWrite(buf []byte) (n int) {
+	if !p.IsSetSuccess() {
+		return 0
+	}
+	return p.Success.FastWrite(buf)
+}
+
+func (p *GetTradeDetailResult) Size() (n int) {
+	if !p.IsSetSuccess() {
+		return 0
+	}
+	return p.Success.Size()
+}
+
+func (p *GetTradeDetailResult) Marshal(out []byte) ([]byte, error) {
+	if !p.IsSetSuccess() {
+		return out, nil
+	}
+	return proto.Marshal(p.Success)
+}
+
+func (p *GetTradeDetailResult) Unmarshal(in []byte) error {
+	msg := new(order.GetTradeDetailRsp)
+	if err := proto.Unmarshal(in, msg); err != nil {
+		return err
+	}
+	p.Success = msg
+	return nil
+}
+
+func (p *GetTradeDetailResult) GetSuccess() *order.GetTradeDetailRsp {
+	if !p.IsSetSuccess() {
+		return GetTradeDetailResult_Success_DEFAULT
+	}
+	return p.Success
+}
+
+func (p *GetTradeDetailResult) SetSuccess(x interface{}) {
+	p.Success = x.(*order.GetTradeDetailRsp)
+}
+
+func (p *GetTradeDetailResult) IsSetSuccess() bool {
+	return p.Success != nil
+}
+
+func (p *GetTradeDetailResult) GetResult() interface{} {
+	return p.Success
+}
+
+func getOrderDetailHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	switch s := arg.(type) {
+	case *streaming.Args:
+		st := s.Stream
+		req := new(order.GetOrderDetailReq)
+		if err := st.RecvMsg(req); err != nil {
+			return err
+		}
+		resp, err := handler.(order.OrderService).GetOrderDetail(ctx, req)
+		if err != nil {
+			return err
+		}
+		return st.SendMsg(resp)
+	case *GetOrderDetailArgs:
+		success, err := handler.(order.OrderService).GetOrderDetail(ctx, s.Req)
+		if err != nil {
+			return err
+		}
+		realResult := result.(*GetOrderDetailResult)
+		realResult.Success = success
+		return nil
+	default:
+		return errInvalidMessageType
+	}
+}
+func newGetOrderDetailArgs() interface{} {
+	return &GetOrderDetailArgs{}
+}
+
+func newGetOrderDetailResult() interface{} {
+	return &GetOrderDetailResult{}
+}
+
+type GetOrderDetailArgs struct {
+	Req *order.GetOrderDetailReq
+}
+
+func (p *GetOrderDetailArgs) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
+	if !p.IsSetReq() {
+		p.Req = new(order.GetOrderDetailReq)
+	}
+	return p.Req.FastRead(buf, _type, number)
+}
+
+func (p *GetOrderDetailArgs) FastWrite(buf []byte) (n int) {
+	if !p.IsSetReq() {
+		return 0
+	}
+	return p.Req.FastWrite(buf)
+}
+
+func (p *GetOrderDetailArgs) Size() (n int) {
+	if !p.IsSetReq() {
+		return 0
+	}
+	return p.Req.Size()
+}
+
+func (p *GetOrderDetailArgs) Marshal(out []byte) ([]byte, error) {
+	if !p.IsSetReq() {
+		return out, nil
+	}
+	return proto.Marshal(p.Req)
+}
+
+func (p *GetOrderDetailArgs) Unmarshal(in []byte) error {
+	msg := new(order.GetOrderDetailReq)
+	if err := proto.Unmarshal(in, msg); err != nil {
+		return err
+	}
+	p.Req = msg
+	return nil
+}
+
+var GetOrderDetailArgs_Req_DEFAULT *order.GetOrderDetailReq
+
+func (p *GetOrderDetailArgs) GetReq() *order.GetOrderDetailReq {
+	if !p.IsSetReq() {
+		return GetOrderDetailArgs_Req_DEFAULT
+	}
+	return p.Req
+}
+
+func (p *GetOrderDetailArgs) IsSetReq() bool {
+	return p.Req != nil
+}
+
+func (p *GetOrderDetailArgs) GetFirstArgument() interface{} {
+	return p.Req
+}
+
+type GetOrderDetailResult struct {
+	Success *order.GetOrderDetailRsp
+}
+
+var GetOrderDetailResult_Success_DEFAULT *order.GetOrderDetailRsp
+
+func (p *GetOrderDetailResult) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
+	if !p.IsSetSuccess() {
+		p.Success = new(order.GetOrderDetailRsp)
+	}
+	return p.Success.FastRead(buf, _type, number)
+}
+
+func (p *GetOrderDetailResult) FastWrite(buf []byte) (n int) {
+	if !p.IsSetSuccess() {
+		return 0
+	}
+	return p.Success.FastWrite(buf)
+}
+
+func (p *GetOrderDetailResult) Size() (n int) {
+	if !p.IsSetSuccess() {
+		return 0
+	}
+	return p.Success.Size()
+}
+
+func (p *GetOrderDetailResult) Marshal(out []byte) ([]byte, error) {
+	if !p.IsSetSuccess() {
+		return out, nil
+	}
+	return proto.Marshal(p.Success)
+}
+
+func (p *GetOrderDetailResult) Unmarshal(in []byte) error {
+	msg := new(order.GetOrderDetailRsp)
+	if err := proto.Unmarshal(in, msg); err != nil {
+		return err
+	}
+	p.Success = msg
+	return nil
+}
+
+func (p *GetOrderDetailResult) GetSuccess() *order.GetOrderDetailRsp {
+	if !p.IsSetSuccess() {
+		return GetOrderDetailResult_Success_DEFAULT
+	}
+	return p.Success
+}
+
+func (p *GetOrderDetailResult) SetSuccess(x interface{}) {
+	p.Success = x.(*order.GetOrderDetailRsp)
+}
+
+func (p *GetOrderDetailResult) IsSetSuccess() bool {
+	return p.Success != nil
+}
+
+func (p *GetOrderDetailResult) GetResult() interface{} {
 	return p.Success
 }
 
@@ -1066,6 +1386,26 @@ func (p *kClient) GetTradeList(ctx context.Context, Req *order.GetTradeListReq) 
 	_args.Req = Req
 	var _result GetTradeListResult
 	if err = p.c.Call(ctx, "GetTradeList", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) GetTradeDetail(ctx context.Context, Req *order.GetTradeDetailReq) (r *order.GetTradeDetailRsp, err error) {
+	var _args GetTradeDetailArgs
+	_args.Req = Req
+	var _result GetTradeDetailResult
+	if err = p.c.Call(ctx, "GetTradeDetail", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) GetOrderDetail(ctx context.Context, Req *order.GetOrderDetailReq) (r *order.GetOrderDetailRsp, err error) {
+	var _args GetOrderDetailArgs
+	_args.Req = Req
+	var _result GetOrderDetailResult
+	if err = p.c.Call(ctx, "GetOrderDetail", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil

@@ -54,3 +54,214 @@
 2025/02/05 12:17:28.633195 load.go:47: [Info] 连接到redis成功, pong: PONG
 2025/02/05 12:17:29.119568 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9092
 2025/02/05 12:17:30.190314 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f361a3 for etcd registry
+2025/02/05 12:42:29.220984 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-order?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/05 12:42:29.261937 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/05 12:42:29.426675 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9092
+2025/02/05 12:42:30.433783 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f36243 for etcd registry
+2025/02/05 12:43:47.939918 log_md.go:25: [Info] 请求路径: OrderService.CreateTrade, 请求地址: 127.0.0.1:64326, 请求体: &{Stream:0x14001c86580}
+2025/02/05 12:43:47.995595 error_md.go:34: [Error] <nil>
+2025/02/05 12:43:47.995734 log_md.go:36: [Info] 响应体: <nil>, 耗时: 55ms
+2025/02/05 12:55:23.714166 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 12:59:25.133717 http2_client.go:262: [Error] KITEX: grpc client loopyWriter.run returning, error=connection error: desc = "error reading from server, remoteAddress=127.0.0.1:9093, error=EOF peer close"
+2025/02/05 12:59:25.133668 http2_client.go:262: [Error] KITEX: grpc client loopyWriter.run returning, error=connection error: desc = "error reading from server, remoteAddress=127.0.0.1:9093, error=EOF peer close"
+2025/02/05 14:11:24.665686 server_handler.go:372: [Error] KITEX: processing gRPC request error, remoteAddr=127.0.0.1:52370, error=unknown method GetTradeDetail
+2025/02/05 14:11:38.477561 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 14:13:55.694437 server_handler.go:372: [Error] KITEX: processing gRPC request error, remoteAddr=127.0.0.1:52528, error=unknown method GetTradeDetail
+2025/02/05 14:14:50.686391 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-order?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/05 14:14:50.711411 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/05 14:14:50.823349 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9092
+2025/02/05 14:14:51.830995 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f3642c for etcd registry
+2025/02/05 14:14:57.312575 log_md.go:25: [Info] 请求路径: OrderService.GetTradeDetail, 请求地址: 127.0.0.1:52601, 请求体: &{Stream:0x14001f8c360}
+2025/02/05 14:14:57.353942 error_md.go:34: [Error] <nil>
+2025/02/05 14:14:57.355137 log_md.go:36: [Info] 响应体: <nil>, 耗时: 42ms
+2025/02/05 14:15:19.094748 log_md.go:25: [Info] 请求路径: OrderService.GetTradeDetail, 请求地址: 127.0.0.1:52642, 请求体: &{Stream:0x14001c081a0}
+2025/02/05 14:15:19.103627 error_md.go:34: [Error] <nil>
+2025/02/05 14:15:19.103724 log_md.go:36: [Info] 响应体: <nil>, 耗时: 9ms
+2025/02/05 14:15:49.420863 log_md.go:25: [Info] 请求路径: OrderService.GetTradeDetail, 请求地址: 127.0.0.1:52670, 请求体: &{Stream:0x14001c8a020}
+2025/02/05 14:21:01.697655 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-order?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/05 14:21:01.762094 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/05 14:21:01.916058 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9092
+2025/02/05 14:21:02.930175 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f3644f for etcd registry
+2025/02/05 14:21:37.236458 log_md.go:25: [Info] 请求路径: OrderService.GetTradeDetail, 请求地址: 127.0.0.1:53802, 请求体: &{Stream:0x14002122020}
+2025/02/05 14:21:37.293333 error_md.go:34: [Error] <nil>
+2025/02/05 14:21:37.293407 log_md.go:36: [Info] 响应体: <nil>, 耗时: 57ms
+2025/02/05 14:22:28.127202 log_md.go:25: [Info] 请求路径: OrderService.GetTradeDetail, 请求地址: 127.0.0.1:53903, 请求体: &{Stream:0x14001c88a80}
+2025/02/05 14:24:18.517058 error_md.go:34: [Error] <nil>
+2025/02/05 14:24:18.517627 log_md.go:36: [Info] 响应体: <nil>, 耗时: 110390ms
+2025/02/05 14:24:18.517300 etcd_registry.go:225: [Warn] keep register get kitex/registry-etcd/order/127.0.0.1:9092 failed with err: context deadline exceeded
+2025/02/05 14:24:28.523747 etcd_registry.go:232: [Info] keep register service kitex/registry-etcd/order/127.0.0.1:9092
+2025/02/05 14:24:28.531000 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f36484 for etcd registry
+2025/02/05 14:24:44.864859 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-order?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/05 14:24:45.150490 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/05 14:24:45.345800 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9092
+2025/02/05 14:24:46.355584 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f3648c for etcd registry
+2025/02/05 14:25:23.566919 log_md.go:25: [Info] 请求路径: OrderService.GetTradeDetail, 请求地址: 127.0.0.1:54267, 请求体: &{Stream:0x14000672660}
+2025/02/05 14:26:17.828046 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-order?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/05 14:26:17.843433 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/05 14:26:17.957917 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9092
+2025/02/05 14:26:18.968390 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f364a1 for etcd registry
+2025/02/05 14:26:34.468377 log_md.go:25: [Info] 请求路径: OrderService.GetTradeDetail, 请求地址: 127.0.0.1:54406, 请求体: &{Stream:0x14001c8ab60}
+2025/02/05 14:27:13.984462 etcd_registry.go:225: [Warn] keep register get kitex/registry-etcd/order/127.0.0.1:9092 failed with err: context deadline exceeded
+2025/02/05 14:27:13.984933 error_md.go:34: [Error] <nil>
+2025/02/05 14:27:13.985092 log_md.go:36: [Info] 响应体: <nil>, 耗时: 39516ms
+2025/02/05 14:38:41.855053 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-order?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/05 14:38:41.891962 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/05 14:38:42.006752 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9092
+2025/02/05 14:38:43.014316 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f364eb for etcd registry
+2025/02/05 14:39:40.610286 log_md.go:25: [Info] 请求路径: OrderService.GetTradeList, 请求地址: 127.0.0.1:56250, 请求体: &{Stream:0x14001b76260}
+2025/02/05 14:39:40.730298 error_md.go:34: [Error] <nil>
+2025/02/05 14:39:40.730380 log_md.go:36: [Info] 响应体: <nil>, 耗时: 120ms
+2025/02/05 14:44:43.546954 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-order?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/05 14:44:43.562935 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/05 14:44:43.678532 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9092
+2025/02/05 14:44:44.689505 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f36517 for etcd registry
+2025/02/05 14:44:52.882838 log_md.go:25: [Info] 请求路径: OrderService.GetTradeList, 请求地址: 127.0.0.1:56724, 请求体: &{Stream:0x14001b12c80}
+2025/02/05 14:44:52.916585 error_md.go:34: [Error] <nil>
+2025/02/05 14:44:52.916662 log_md.go:36: [Info] 响应体: <nil>, 耗时: 33ms
+2025/02/05 15:44:08.159408 log_md.go:25: [Info] 请求路径: OrderService.GetTradeList, 请求地址: 127.0.0.1:60255, 请求体: &{Stream:0x14001c1e100}
+2025/02/05 15:44:08.225812 error_md.go:34: [Error] <nil>
+2025/02/05 15:44:08.225847 log_md.go:36: [Info] 响应体: <nil>, 耗时: 67ms
+2025/02/05 15:44:28.335572 log_md.go:25: [Info] 请求路径: OrderService.GetTradeList, 请求地址: 127.0.0.1:60302, 请求体: &{Stream:0x140000b0240}
+2025/02/05 15:44:28.348320 error_md.go:34: [Error] <nil>
+2025/02/05 15:44:28.348355 log_md.go:36: [Info] 响应体: <nil>, 耗时: 13ms
+2025/02/05 15:46:10.063740 log_md.go:25: [Info] 请求路径: OrderService.GetTradeList, 请求地址: 127.0.0.1:56724, 请求体: &{Stream:0x140000b0340}
+2025/02/05 15:46:10.129675 error_md.go:34: [Error] <nil>
+2025/02/05 15:46:10.129800 log_md.go:36: [Info] 响应体: <nil>, 耗时: 66ms
+2025/02/05 15:46:22.162681 log_md.go:25: [Info] 请求路径: OrderService.GetTradeList, 请求地址: 127.0.0.1:60255, 请求体: &{Stream:0x14001c8e200}
+2025/02/05 15:46:22.181322 error_md.go:34: [Error] <nil>
+2025/02/05 15:46:22.181415 log_md.go:36: [Info] 响应体: <nil>, 耗时: 18ms
+2025/02/05 15:47:37.751507 log_md.go:25: [Info] 请求路径: OrderService.GetTradeList, 请求地址: 127.0.0.1:60302, 请求体: &{Stream:0x140000b0820}
+2025/02/05 15:47:37.782989 error_md.go:34: [Error] <nil>
+2025/02/05 15:47:37.783117 log_md.go:36: [Info] 响应体: <nil>, 耗时: 31ms
+2025/02/05 15:47:52.315348 log_md.go:25: [Info] 请求路径: OrderService.GetTradeList, 请求地址: 127.0.0.1:60941, 请求体: &{Stream:0x14001d2a480}
+2025/02/05 15:47:52.332468 error_md.go:34: [Error] <nil>
+2025/02/05 15:47:52.332635 log_md.go:36: [Info] 响应体: <nil>, 耗时: 17ms
+2025/02/05 15:48:55.498566 log_md.go:25: [Info] 请求路径: OrderService.GetTradeList, 请求地址: 127.0.0.1:61129, 请求体: &{Stream:0x14001d2a8a0}
+2025/02/05 15:48:55.519329 error_md.go:34: [Error] <nil>
+2025/02/05 15:48:55.519451 log_md.go:36: [Info] 响应体: <nil>, 耗时: 20ms
+2025/02/05 15:49:21.991863 log_md.go:25: [Info] 请求路径: OrderService.GetTradeList, 请求地址: 127.0.0.1:61137, 请求体: &{Stream:0x14001d2ad00}
+2025/02/05 15:49:22.003783 error_md.go:34: [Error] <nil>
+2025/02/05 15:49:22.003891 log_md.go:36: [Info] 响应体: <nil>, 耗时: 12ms
+2025/02/05 15:50:22.932782 log_md.go:25: [Info] 请求路径: OrderService.GetTradeList, 请求地址: 127.0.0.1:61363, 请求体: &{Stream:0x14001c1e380}
+2025/02/05 15:50:22.949455 error_md.go:34: [Error] <nil>
+2025/02/05 15:50:22.949513 log_md.go:36: [Info] 响应体: <nil>, 耗时: 16ms
+2025/02/05 15:50:34.116145 log_md.go:25: [Info] 请求路径: OrderService.GetTradeList, 请求地址: 127.0.0.1:61367, 请求体: &{Stream:0x140000b01c0}
+2025/02/05 15:50:34.131543 error_md.go:34: [Error] <nil>
+2025/02/05 15:50:34.131594 log_md.go:36: [Info] 响应体: <nil>, 耗时: 15ms
+2025/02/05 15:50:38.321557 log_md.go:25: [Info] 请求路径: OrderService.GetTradeList, 请求地址: 127.0.0.1:61377, 请求体: &{Stream:0x14001b12040}
+2025/02/05 15:50:38.339631 error_md.go:34: [Error] <nil>
+2025/02/05 15:50:38.339747 log_md.go:36: [Info] 响应体: <nil>, 耗时: 18ms
+2025/02/05 15:50:56.098985 log_md.go:25: [Info] 请求路径: OrderService.GetTradeList, 请求地址: 127.0.0.1:61444, 请求体: &{Stream:0x140001124e0}
+2025/02/05 15:50:56.109083 error_md.go:34: [Error] <nil>
+2025/02/05 15:50:56.109145 log_md.go:36: [Info] 响应体: <nil>, 耗时: 10ms
+2025/02/05 15:51:00.602879 log_md.go:25: [Info] 请求路径: OrderService.GetTradeList, 请求地址: 127.0.0.1:61445, 请求体: &{Stream:0x14001b12500}
+2025/02/05 15:51:00.618084 error_md.go:34: [Error] <nil>
+2025/02/05 15:51:00.618202 log_md.go:36: [Info] 响应体: <nil>, 耗时: 15ms
+2025/02/05 15:56:39.967914 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-order?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/05 15:56:40.018459 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/05 15:56:40.312127 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9092
+2025/02/05 15:56:42.522170 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f36656 for etcd registry
+2025/02/05 15:56:53.501791 log_md.go:25: [Info] 请求路径: OrderService.GetTradeList, 请求地址: 127.0.0.1:62162, 请求体: &{Stream:0x14001b56240}
+2025/02/05 15:56:53.554504 error_md.go:34: [Error] <nil>
+2025/02/05 15:56:53.554578 log_md.go:36: [Info] 响应体: <nil>, 耗时: 52ms
+2025/02/05 15:58:20.937784 log_md.go:25: [Info] 请求路径: OrderService.GetTradeList, 请求地址: 127.0.0.1:62340, 请求体: &{Stream:0x140005c6820}
+2025/02/05 15:58:20.980740 error_md.go:34: [Error] <nil>
+2025/02/05 15:58:20.982733 log_md.go:36: [Info] 响应体: <nil>, 耗时: 45ms
+2025/02/05 15:58:30.289532 log_md.go:25: [Info] 请求路径: OrderService.GetTradeList, 请求地址: 127.0.0.1:62364, 请求体: &{Stream:0x14001b56b80}
+2025/02/05 15:58:30.310288 error_md.go:34: [Error] <nil>
+2025/02/05 15:58:30.310357 log_md.go:36: [Info] 响应体: <nil>, 耗时: 20ms
+2025/02/05 15:58:36.020275 log_md.go:25: [Info] 请求路径: OrderService.GetTradeList, 请求地址: 127.0.0.1:62390, 请求体: &{Stream:0x14001b56e80}
+2025/02/05 15:58:36.036948 error_md.go:34: [Error] <nil>
+2025/02/05 15:58:36.036997 log_md.go:36: [Info] 响应体: <nil>, 耗时: 16ms
+2025/02/05 15:58:45.616948 log_md.go:25: [Info] 请求路径: OrderService.GetTradeList, 请求地址: 127.0.0.1:62423, 请求体: &{Stream:0x140005c6440}
+2025/02/05 15:58:45.631250 error_md.go:34: [Error] <nil>
+2025/02/05 15:58:45.631297 log_md.go:36: [Info] 响应体: <nil>, 耗时: 14ms
+2025/02/05 16:00:35.842851 log_md.go:25: [Info] 请求路径: OrderService.GetTradeList, 请求地址: 127.0.0.1:62642, 请求体: &{Stream:0x14001e8a020}
+2025/02/05 16:00:35.866855 error_md.go:34: [Error] <nil>
+2025/02/05 16:00:35.866982 log_md.go:36: [Info] 响应体: <nil>, 耗时: 24ms
+2025/02/05 16:00:49.316804 log_md.go:25: [Info] 请求路径: OrderService.GetTradeList, 请求地址: 127.0.0.1:62698, 请求体: &{Stream:0x1400209c0a0}
+2025/02/05 16:00:49.338810 error_md.go:34: [Error] <nil>
+2025/02/05 16:00:49.338924 log_md.go:36: [Info] 响应体: <nil>, 耗时: 22ms
+2025/02/05 16:03:24.096652 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-order?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/05 16:03:24.116216 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/05 16:03:24.230120 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9092
+2025/02/05 16:03:25.240205 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f3669b for etcd registry
+2025/02/05 16:03:55.924665 log_md.go:25: [Info] 请求路径: OrderService.GetTradeList, 请求地址: 127.0.0.1:63096, 请求体: &{Stream:0x14001d9b280}
+2025/02/05 16:03:55.997843 error_md.go:34: [Error] <nil>
+2025/02/05 16:03:56.005002 log_md.go:36: [Info] 响应体: <nil>, 耗时: 80ms
+2025/02/05 16:04:38.813012 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-order?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/05 16:04:38.831024 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/05 16:04:38.945497 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9092
+2025/02/05 16:04:39.955657 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f366b2 for etcd registry
+2025/02/05 16:04:53.916318 log_md.go:25: [Info] 请求路径: OrderService.GetTradeList, 请求地址: 127.0.0.1:63224, 请求体: &{Stream:0x140021121e0}
+2025/02/05 16:04:53.955382 error_md.go:34: [Error] <nil>
+2025/02/05 16:04:53.955463 log_md.go:36: [Info] 响应体: <nil>, 耗时: 39ms
+2025/02/05 16:04:57.381967 log_md.go:25: [Info] 请求路径: OrderService.GetTradeList, 请求地址: 127.0.0.1:63233, 请求体: &{Stream:0x14001b7b040}
+2025/02/05 16:04:57.391752 error_md.go:34: [Error] <nil>
+2025/02/05 16:04:57.391795 log_md.go:36: [Info] 响应体: <nil>, 耗时: 9ms
+2025/02/05 16:05:01.742751 log_md.go:25: [Info] 请求路径: OrderService.GetTradeList, 请求地址: 127.0.0.1:63244, 请求体: &{Stream:0x14001b9c200}
+2025/02/05 16:05:01.772833 error_md.go:34: [Error] <nil>
+2025/02/05 16:05:01.772997 log_md.go:36: [Info] 响应体: <nil>, 耗时: 30ms
+2025/02/05 16:05:12.930020 log_md.go:25: [Info] 请求路径: OrderService.GetTradeList, 请求地址: 127.0.0.1:63305, 请求体: &{Stream:0x14001b9c2c0}
+2025/02/05 16:05:12.941564 error_md.go:34: [Error] <nil>
+2025/02/05 16:05:12.941614 log_md.go:36: [Info] 响应体: <nil>, 耗时: 11ms
+2025/02/05 16:06:54.535070 log_md.go:25: [Info] 请求路径: OrderService.GetTradeList, 请求地址: 127.0.0.1:63224, 请求体: &{Stream:0x14001c88160}
+2025/02/05 16:06:54.593676 error_md.go:34: [Error] <nil>
+2025/02/05 16:06:54.593755 log_md.go:36: [Info] 响应体: <nil>, 耗时: 58ms
+2025/02/05 16:09:46.954659 log_md.go:25: [Info] 请求路径: OrderService.GetTradeDetail, 请求地址: 127.0.0.1:63233, 请求体: &{Stream:0x14001e120a0}
+2025/02/05 16:09:53.829912 error_md.go:34: [Error] <nil>
+2025/02/05 16:09:53.830205 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6876ms
+2025/02/05 16:09:56.504050 log_md.go:25: [Info] 请求路径: OrderService.GetTradeDetail, 请求地址: 127.0.0.1:63244, 请求体: &{Stream:0x14002112200}
+2025/02/05 16:10:00.231249 error_md.go:34: [Error] <nil>
+2025/02/05 16:10:00.231492 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3727ms
+2025/02/05 16:10:12.226982 log_md.go:25: [Info] 请求路径: OrderService.GetTradeDetail, 请求地址: 127.0.0.1:63305, 请求体: &{Stream:0x14001b9c440}
+2025/02/05 16:10:12.235684 error_md.go:34: [Error] <nil>
+2025/02/05 16:10:12.235777 log_md.go:36: [Info] 响应体: <nil>, 耗时: 8ms
+2025/02/05 16:12:32.109379 log_md.go:25: [Info] 请求路径: OrderService.GetTradeDetail, 请求地址: 127.0.0.1:64410, 请求体: &{Stream:0x14001c882c0}
+2025/02/05 16:12:32.151271 error_md.go:34: [Error] <nil>
+2025/02/05 16:12:32.155212 log_md.go:36: [Info] 响应体: <nil>, 耗时: 45ms
+2025/02/05 16:13:08.003127 log_md.go:25: [Info] 请求路径: OrderService.GetTradeDetail, 请求地址: 127.0.0.1:64498, 请求体: &{Stream:0x14001b9c360}
+2025/02/05 16:13:08.010406 error_md.go:34: [Error] <nil>
+2025/02/05 16:13:08.010529 log_md.go:36: [Info] 响应体: <nil>, 耗时: 7ms
+2025/02/05 16:13:19.776736 log_md.go:25: [Info] 请求路径: OrderService.GetTradeList, 请求地址: 127.0.0.1:64523, 请求体: &{Stream:0x14002112300}
+2025/02/05 16:13:19.794641 error_md.go:34: [Error] <nil>
+2025/02/05 16:13:19.794926 log_md.go:36: [Info] 响应体: <nil>, 耗时: 18ms
+2025/02/05 16:13:23.812207 log_md.go:25: [Info] 请求路径: OrderService.GetTradeDetail, 请求地址: 127.0.0.1:64528, 请求体: &{Stream:0x14001b9c8e0}
+2025/02/05 16:13:23.817555 error_md.go:34: [Error] <nil>
+2025/02/05 16:13:23.817720 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/05 16:14:43.923500 log_md.go:25: [Info] 请求路径: OrderService.GetTradeDetail, 请求地址: 127.0.0.1:64697, 请求体: &{Stream:0x14002112620}
+2025/02/05 16:14:43.933440 error_md.go:34: [Error] <nil>
+2025/02/05 16:14:43.933498 log_md.go:36: [Info] 响应体: <nil>, 耗时: 10ms
+2025/02/05 16:15:28.184816 log_md.go:25: [Info] 请求路径: OrderService.GetTradeList, 请求地址: 127.0.0.1:64787, 请求体: &{Stream:0x14001b9c360}
+2025/02/05 16:15:28.201162 error_md.go:34: [Error] <nil>
+2025/02/05 16:15:28.201290 log_md.go:36: [Info] 响应体: <nil>, 耗时: 16ms
+2025/02/05 17:18:40.017453 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 17:18:40.017096 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 17:18:40.019033 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 17:18:40.017140 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 17:18:40.019044 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 17:18:40.017635 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 17:18:40.017098 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 17:18:40.017093 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 17:18:40.017097 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 17:18:40.017290 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 20:58:58.333607 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-order?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/05 20:58:58.384087 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/05 20:58:58.499374 server.go:77: [Error] KITEX: server listen failed, addr=127.0.0.1:9092 error=listen tcp 127.0.0.1:9092: bind: address already in use
+2025/02/05 20:58:58.499520 server.go:275: [Error] KITEX: server start error: error=listen tcp 127.0.0.1:9092: bind: address already in use
+2025/02/05 20:58:58.499546 main.go:69: [Error] 服务启动失败errlisten tcp 127.0.0.1:9092: bind: address already in use
+2025/02/05 21:00:20.895588 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-order?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/05 21:00:20.915953 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/05 21:00:21.032298 server.go:77: [Error] KITEX: server listen failed, addr=127.0.0.1:9092 error=listen tcp 127.0.0.1:9092: bind: address already in use
+2025/02/05 21:00:21.032434 server.go:275: [Error] KITEX: server start error: error=listen tcp 127.0.0.1:9092: bind: address already in use
+2025/02/05 21:00:21.032471 main.go:69: [Error] 服务启动失败errlisten tcp 127.0.0.1:9092: bind: address already in use
+2025/02/05 21:00:42.510009 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-order?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/05 21:00:42.523799 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/05 21:00:42.637626 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9094
+2025/02/05 21:00:43.648856 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f36d88 for etcd registry
+2025/02/05 21:00:48.920786 log_md.go:25: [Info] 请求路径: OrderService.GetTradeList, 请求地址: 127.0.0.1:64565, 请求体: &{Stream:0x1400221a020}
+2025/02/05 21:00:48.981041 error_md.go:34: [Error] <nil>
+2025/02/05 21:00:48.981103 log_md.go:36: [Info] 响应体: <nil>, 耗时: 60ms
+2025/02/05 21:00:55.781342 log_md.go:25: [Info] 请求路径: OrderService.GetTradeList, 请求地址: 127.0.0.1:64579, 请求体: &{Stream:0x14001c00020}
+2025/02/05 21:00:55.793423 error_md.go:34: [Error] <nil>
+2025/02/05 21:00:55.793548 log_md.go:36: [Info] 响应体: <nil>, 耗时: 12ms

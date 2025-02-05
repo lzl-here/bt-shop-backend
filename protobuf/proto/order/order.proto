@@ -36,3 +36,18 @@ message PayCancelToOrderRsp{
     }
 }
 
+// 订单详情
+message GetOrderDetailReq {
+    string order_no = 1;
+}
+
+message GetOrderDetailRsp {
+    int32 code = 1;
+    string msg = 2;
+    string log_id = 3;
+    GetOrderDetailRspData data = 4;
+    message GetOrderDetailRspData {
+        BaseOrder order = 1;
+        repeated BaseOrderItem order_item_list = 2;
+    }
+}

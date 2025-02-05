@@ -1,0 +1,15 @@
+syntax = "proto3";
+package user;
+
+option go_package="user";
+
+
+
+message BaseUser{
+    uint64 id = 1;
+    string username = 2;
+    string avatar_url = 3;
+    string register_type = 4;
+    uint64 shop_id = 5;
+}
+

@@ -242,11 +242,13 @@
       "properties": {
         "page_size": {
           "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "description": "每页大小"
         },
         "page_no": {
           "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "description": "页码"
         },
         "keyword": {
           "type": "string",
@@ -256,17 +258,17 @@
           "type": "array",
           "items": {
             "type": "integer",
-            "format": "int64"
+            "format": "uint64"
           },
-          "description": "分类id"
+          "description": "分类id列表"
         },
         "brand_ids": {
           "type": "array",
           "items": {
             "type": "integer",
-            "format": "int64"
+            "format": "uint64"
           },
-          "description": "品牌id"
+          "description": "品牌id列表"
         },
         "order_by": {
           "type": "string",
@@ -320,7 +322,8 @@
       "properties": {
         "spu_id": {
           "type": "integer",
-          "format": "int64"
+          "format": "uint64",
+          "description": "商品SPU ID"
         }
       }
     },
@@ -357,8 +360,9 @@
           "type": "array",
           "items": {
             "type": "integer",
-            "format": "int64"
-          }
+            "format": "uint64"
+          },
+          "description": "商品SPU ID列表"
         }
       }
     },
@@ -455,19 +459,43 @@
         }
       }
     },
+    "AddToCartReq": {
+      "type": "object"
+    },
+    "AddToCartRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/AddToCartRspData"
+        }
+      }
+    },
+    "AddToCartRspData": {
+      "type": "object"
+    },
     "PublishGoodsReq": {
       "type": "object",
       "properties": {
         "category_id": {
           "type": "integer",
-          "format": "int64"
+          "format": "uint64"
         },
         "category_name": {
           "type": "string"
         },
         "brand_id": {
           "type": "integer",
-          "format": "int64"
+          "format": "uint64"
         },
         "brand_name": {
           "type": "string"
@@ -521,7 +549,7 @@
       "properties": {
         "spu_id": {
           "type": "integer",
-          "format": "int64"
+          "format": "uint64"
         }
       }
     },
@@ -530,7 +558,7 @@
       "properties": {
         "stock_num": {
           "type": "integer",
-          "format": "int64"
+          "format": "uint64"
         },
         "sku_price": {
           "type": "string"
@@ -570,7 +598,7 @@
       "properties": {
         "id": {
           "type": "integer",
-          "format": "int64"
+          "format": "uint64"
         },
         "spu_name": {
           "type": "string"
@@ -580,14 +608,14 @@
         },
         "category_id": {
           "type": "integer",
-          "format": "int64"
+          "format": "uint64"
         },
         "category_name": {
           "type": "string"
         },
         "brand_id": {
           "type": "integer",
-          "format": "int64"
+          "format": "uint64"
         },
         "brand_name": {
           "type": "string"
@@ -642,15 +670,15 @@
       "properties": {
         "id": {
           "type": "integer",
-          "format": "int64"
+          "format": "uint64"
         },
         "spu_id": {
           "type": "integer",
-          "format": "int64"
+          "format": "uint64"
         },
         "stock_num": {
           "type": "integer",
-          "format": "int64"
+          "format": "uint64"
         },
         "sku_price": {
           "type": "string"
@@ -662,14 +690,14 @@
       "properties": {
         "id": {
           "type": "integer",
-          "format": "int64"
+          "format": "uint64"
         },
         "spec_name": {
           "type": "string"
         },
         "spu_id": {
           "type": "integer",
-          "format": "int64"
+          "format": "uint64"
         }
       }
     },
@@ -678,11 +706,11 @@
       "properties": {
         "id": {
           "type": "integer",
-          "format": "int64"
+          "format": "uint64"
         },
         "spec_id": {
           "type": "integer",
-          "format": "int64"
+          "format": "uint64"
         },
         "spec_name": {
           "type": "string"
@@ -697,7 +725,7 @@
       "properties": {
         "id": {
           "type": "integer",
-          "format": "int64"
+          "format": "uint64"
         },
         "value": {
           "type": "string"
@@ -709,14 +737,14 @@
       "properties": {
         "category_id": {
           "type": "integer",
-          "format": "int64"
+          "format": "uint64"
         },
         "category_name": {
           "type": "string"
         },
         "parent_id": {
           "type": "integer",
-          "format": "int64"
+          "format": "uint64"
         },
         "level": {
           "type": "integer",
@@ -735,7 +763,7 @@
       "properties": {
         "brand_id": {
           "type": "integer",
-          "format": "int64"
+          "format": "uint64"
         },
         "brand_name": {
           "type": "string"
@@ -746,4 +774,4 @@
       }
     }
   }
-} 
+}

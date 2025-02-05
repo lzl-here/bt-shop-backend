@@ -1,0 +1,326 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "User API Service",
+    "version": "1.0"
+  },
+  "paths": {
+    "/user/login": {
+      "post": {
+        "summary": "普通登录",
+        "operationId": "NormalLogin",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NormalLoginReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "$ref": "#/definitions/NormalLoginRsp"
+            }
+          }
+        }
+      }
+    },
+    "/user/register": {
+      "post": {
+        "summary": "普通注册",
+        "operationId": "NormalRegister",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NormalRegisterReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "$ref": "#/definitions/NormalRegisterRsp"
+            }
+          }
+        }
+      }
+    },
+    "/user/logout": {
+      "post": {
+        "summary": "退出登录",
+        "operationId": "Logout",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LogoutReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "$ref": "#/definitions/LogoutRsp"
+            }
+          }
+        }
+      }
+    },
+    "/user/get_user_info": {
+      "post": {
+        "summary": "获取用户信息",
+        "operationId": "GetUserInfo",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetUserInfoReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "$ref": "#/definitions/GetUserInfoRsp"
+            }
+          }
+        }
+      }
+    },
+    "/user/update_user_info": {
+      "post": {
+        "summary": "更新用户信息",
+        "operationId": "UpdateUserInfo",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateUserInfoReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "$ref": "#/definitions/UpdateUserInfoRsp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "NormalLoginReq": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "description": "用户名"
+        },
+        "password": {
+          "type": "string",
+          "description": "密码"
+        }
+      }
+    },
+    "NormalLoginRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/NormalLoginRspData"
+        }
+      }
+    },
+    "NormalLoginRspData": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "NormalRegisterReq": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "description": "用户名"
+        },
+        "password": {
+          "type": "string",
+          "description": "密码"
+        },
+        "confirm_password": {
+          "type": "string",
+          "description": "确认密码"
+        }
+      }
+    },
+    "NormalRegisterRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/NormalRegisterRspData"
+        }
+      }
+    },
+    "NormalRegisterRspData": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "LogoutReq": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "用户ID"
+        }
+      }
+    },
+    "LogoutRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/LogoutRspData"
+        }
+      }
+    },
+    "LogoutRspData": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "GetUserInfoReq": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "用户ID"
+        }
+      }
+    },
+    "GetUserInfoRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/GetUserInfoRspData"
+        }
+      }
+    },
+    "GetUserInfoRspData": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "UpdateUserInfoReq": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "用户ID"
+        }
+      }
+    },
+    "UpdateUserInfoRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/UpdateUserInfoRspData"
+        }
+      }
+    },
+    "UpdateUserInfoRspData": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    }
+  }
+} 

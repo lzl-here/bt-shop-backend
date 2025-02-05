@@ -1,29 +1,40 @@
-syntax="proto3";
+syntax = "proto3";
 
 package user;
 
-option go_package="/user";
+option go_package="user";
 
-service UserService {
-  rpc Register(RegisterReq) returns (RegisterResp) {}
-  rpc Login(LoginReq) returns (LoginResp) {}
+import "user/common.proto";
+
+
+message GetUserInfoReq {
+    uint64 user_id = 1;
 }
 
-message RegisterReq {
-  string email = 1;
-  string password = 2;
-  string confirm_password = 3;
+message GetUserInfoRsp {
+    int32 code = 1;
+    string msg = 2;
+    string log_id = 3;
+    Data data = 4;
+    message Data {
+        BaseUser user = 1;
+    }
 }
 
-message RegisterResp {
-  int32 user_id = 1;
+message UpdateUserInfoReq {
+    uint64 user_id = 1;
+    string username = 2;
+    string avatar_url = 3;
+    string register_type = 4;
+    uint64 shop_id = 5;
 }
 
-message LoginReq {
-  string email= 1;
-  string password = 2;
-}
-
-message LoginResp {
-  int32 user_id = 1;
+message UpdateUserInfoRsp {
+    int32 code = 1;
+    string msg = 2;
+    string log_id = 3;
+    Data data = 4;
+    message Data {
+        BaseUser user = 1;
+    }
 }

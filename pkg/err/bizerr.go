@@ -23,3 +23,9 @@ var (
 	ErrInvalidTradeAmount = kerrors.NewBizStatusError(30003, "交易金额有误")
 	ErrStockNotEnough     = kerrors.NewBizStatusError(30004, "库存不足")
 )
+
+// 用户异常
+var (
+	ErrUserAlreadyExists = kerrors.NewBizStatusError(40001, "用户已存在")
+	ErrPasswordNotMatch = kerrors.NewBizStatusError(40002, "密码不匹配")
+)

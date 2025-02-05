@@ -259,6 +259,125 @@ func (x *PayCancelToOrderRsp) GetData() *PayCancelToOrderRsp_PayCancelToOrderRsp
 	return nil
 }
 
+// 订单详情
+type GetOrderDetailReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	OrderNo string `protobuf:"bytes,1,opt,name=order_no,json=orderNo,proto3" json:"order_no,omitempty"`
+}
+
+func (x *GetOrderDetailReq) Reset() {
+	*x = GetOrderDetailReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_order_order_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetOrderDetailReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetOrderDetailReq) ProtoMessage() {}
+
+func (x *GetOrderDetailReq) ProtoReflect() protoreflect.Message {
+	mi := &file_order_order_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetOrderDetailReq.ProtoReflect.Descriptor instead.
+func (*GetOrderDetailReq) Descriptor() ([]byte, []int) {
+	return file_order_order_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *GetOrderDetailReq) GetOrderNo() string {
+	if x != nil {
+		return x.OrderNo
+	}
+	return ""
+}
+
+type GetOrderDetailRsp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Code  int32                                    `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
+	Msg   string                                   `protobuf:"bytes,2,opt,name=msg,proto3" json:"msg,omitempty"`
+	LogId string                                   `protobuf:"bytes,3,opt,name=log_id,json=logId,proto3" json:"log_id,omitempty"`
+	Data  *GetOrderDetailRsp_GetOrderDetailRspData `protobuf:"bytes,4,opt,name=data,proto3" json:"data,omitempty"`
+}
+
+func (x *GetOrderDetailRsp) Reset() {
+	*x = GetOrderDetailRsp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_order_order_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetOrderDetailRsp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetOrderDetailRsp) ProtoMessage() {}
+
+func (x *GetOrderDetailRsp) ProtoReflect() protoreflect.Message {
+	mi := &file_order_order_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetOrderDetailRsp.ProtoReflect.Descriptor instead.
+func (*GetOrderDetailRsp) Descriptor() ([]byte, []int) {
+	return file_order_order_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *GetOrderDetailRsp) GetCode() int32 {
+	if x != nil {
+		return x.Code
+	}
+	return 0
+}
+
+func (x *GetOrderDetailRsp) GetMsg() string {
+	if x != nil {
+		return x.Msg
+	}
+	return ""
+}
+
+func (x *GetOrderDetailRsp) GetLogId() string {
+	if x != nil {
+		return x.LogId
+	}
+	return ""
+}
+
+func (x *GetOrderDetailRsp) GetData() *GetOrderDetailRsp_GetOrderDetailRspData {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
 type PaySuccessToOrderRsp_PaySuccessToOrderRspData struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -270,7 +389,7 @@ type PaySuccessToOrderRsp_PaySuccessToOrderRspData struct {
 func (x *PaySuccessToOrderRsp_PaySuccessToOrderRspData) Reset() {
 	*x = PaySuccessToOrderRsp_PaySuccessToOrderRspData{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_order_order_proto_msgTypes[4]
+		mi := &file_order_order_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -283,7 +402,7 @@ func (x *PaySuccessToOrderRsp_PaySuccessToOrderRspData) String() string {
 func (*PaySuccessToOrderRsp_PaySuccessToOrderRspData) ProtoMessage() {}
 
 func (x *PaySuccessToOrderRsp_PaySuccessToOrderRspData) ProtoReflect() protoreflect.Message {
-	mi := &file_order_order_proto_msgTypes[4]
+	mi := &file_order_order_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -317,7 +436,7 @@ type PayCancelToOrderRsp_PayCancelToOrderRspData struct {
 func (x *PayCancelToOrderRsp_PayCancelToOrderRspData) Reset() {
 	*x = PayCancelToOrderRsp_PayCancelToOrderRspData{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_order_order_proto_msgTypes[5]
+		mi := &file_order_order_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -330,7 +449,7 @@ func (x *PayCancelToOrderRsp_PayCancelToOrderRspData) String() string {
 func (*PayCancelToOrderRsp_PayCancelToOrderRspData) ProtoMessage() {}
 
 func (x *PayCancelToOrderRsp_PayCancelToOrderRspData) ProtoReflect() protoreflect.Message {
-	mi := &file_order_order_proto_msgTypes[5]
+	mi := &file_order_order_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -351,6 +470,61 @@ func (x *PayCancelToOrderRsp_PayCancelToOrderRspData) GetTradeNo() string {
 		return x.TradeNo
 	}
 	return ""
+}
+
+type GetOrderDetailRsp_GetOrderDetailRspData struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Order         *BaseOrder       `protobuf:"bytes,1,opt,name=order,proto3" json:"order,omitempty"`
+	OrderItemList []*BaseOrderItem `protobuf:"bytes,2,rep,name=order_item_list,json=orderItemList,proto3" json:"order_item_list,omitempty"`
+}
+
+func (x *GetOrderDetailRsp_GetOrderDetailRspData) Reset() {
+	*x = GetOrderDetailRsp_GetOrderDetailRspData{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_order_order_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetOrderDetailRsp_GetOrderDetailRspData) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetOrderDetailRsp_GetOrderDetailRspData) ProtoMessage() {}
+
+func (x *GetOrderDetailRsp_GetOrderDetailRspData) ProtoReflect() protoreflect.Message {
+	mi := &file_order_order_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetOrderDetailRsp_GetOrderDetailRspData.ProtoReflect.Descriptor instead.
+func (*GetOrderDetailRsp_GetOrderDetailRspData) Descriptor() ([]byte, []int) {
+	return file_order_order_proto_rawDescGZIP(), []int{5, 0}
+}
+
+func (x *GetOrderDetailRsp_GetOrderDetailRspData) GetOrder() *BaseOrder {
+	if x != nil {
+		return x.Order
+	}
+	return nil
+}
+
+func (x *GetOrderDetailRsp_GetOrderDetailRspData) GetOrderItemList() []*BaseOrderItem {
+	if x != nil {
+		return x.OrderItemList
+	}
+	return nil
 }
 
 var File_order_order_proto protoreflect.FileDescriptor
@@ -391,12 +565,32 @@ var file_order_order_proto_rawDesc = []byte{
 	0x61, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x1a, 0x34, 0x0a, 0x17, 0x50, 0x61, 0x79, 0x43, 0x61,
 	0x6e, 0x63, 0x65, 0x6c, 0x54, 0x6f, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x73, 0x70, 0x44, 0x61,
 	0x74, 0x61, 0x12, 0x19, 0x0a, 0x08, 0x74, 0x72, 0x61, 0x64, 0x65, 0x5f, 0x6e, 0x6f, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x74, 0x72, 0x61, 0x64, 0x65, 0x4e, 0x6f, 0x42, 0x3e, 0x5a,
-	0x3c, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x6c, 0x7a, 0x6c, 0x2d,
-	0x68, 0x65, 0x72, 0x65, 0x2f, 0x62, 0x74, 0x2d, 0x73, 0x68, 0x6f, 0x70, 0x2d, 0x62, 0x61, 0x63,
-	0x6b, 0x65, 0x6e, 0x64, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x6b, 0x69,
-	0x74, 0x65, 0x78, 0x5f, 0x67, 0x65, 0x6e, 0x2f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x62, 0x06, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x74, 0x72, 0x61, 0x64, 0x65, 0x4e, 0x6f, 0x22, 0x2e, 0x0a,
+	0x11, 0x47, 0x65, 0x74, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x52,
+	0x65, 0x71, 0x12, 0x19, 0x0a, 0x08, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x5f, 0x6e, 0x6f, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x4e, 0x6f, 0x22, 0x93, 0x02,
+	0x0a, 0x11, 0x47, 0x65, 0x74, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c,
+	0x52, 0x73, 0x70, 0x12, 0x12, 0x0a, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x05, 0x52, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x6d, 0x73, 0x67, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6d, 0x73, 0x67, 0x12, 0x15, 0x0a, 0x06, 0x6c, 0x6f, 0x67,
+	0x5f, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6c, 0x6f, 0x67, 0x49, 0x64,
+	0x12, 0x42, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x2e,
+	0x2e, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x2e, 0x47, 0x65, 0x74, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x44,
+	0x65, 0x74, 0x61, 0x69, 0x6c, 0x52, 0x73, 0x70, 0x2e, 0x47, 0x65, 0x74, 0x4f, 0x72, 0x64, 0x65,
+	0x72, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x52, 0x73, 0x70, 0x44, 0x61, 0x74, 0x61, 0x52, 0x04,
+	0x64, 0x61, 0x74, 0x61, 0x1a, 0x7d, 0x0a, 0x15, 0x47, 0x65, 0x74, 0x4f, 0x72, 0x64, 0x65, 0x72,
+	0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x52, 0x73, 0x70, 0x44, 0x61, 0x74, 0x61, 0x12, 0x26, 0x0a,
+	0x05, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x10, 0x2e, 0x6f,
+	0x72, 0x64, 0x65, 0x72, 0x2e, 0x42, 0x61, 0x73, 0x65, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x05,
+	0x6f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x3c, 0x0a, 0x0f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x5f, 0x69,
+	0x74, 0x65, 0x6d, 0x5f, 0x6c, 0x69, 0x73, 0x74, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x14,
+	0x2e, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x2e, 0x42, 0x61, 0x73, 0x65, 0x4f, 0x72, 0x64, 0x65, 0x72,
+	0x49, 0x74, 0x65, 0x6d, 0x52, 0x0d, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x49, 0x74, 0x65, 0x6d, 0x4c,
+	0x69, 0x73, 0x74, 0x42, 0x3e, 0x5a, 0x3c, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f,
+	0x6d, 0x2f, 0x6c, 0x7a, 0x6c, 0x2d, 0x68, 0x65, 0x72, 0x65, 0x2f, 0x62, 0x74, 0x2d, 0x73, 0x68,
+	0x6f, 0x70, 0x2d, 0x62, 0x61, 0x63, 0x6b, 0x65, 0x6e, 0x64, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x62, 0x75, 0x66, 0x2f, 0x6b, 0x69, 0x74, 0x65, 0x78, 0x5f, 0x67, 0x65, 0x6e, 0x2f, 0x6f, 0x72,
+	0x64, 0x65, 0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -411,23 +605,31 @@ func file_order_order_proto_rawDescGZIP() []byte {
 	return file_order_order_proto_rawDescData
 }
 
-var file_order_order_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_order_order_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_order_order_proto_goTypes = []interface{}{
 	(*PaySuccessToOrderReq)(nil),                          // 0: order.PaySuccessToOrderReq
 	(*PaySuccessToOrderRsp)(nil),                          // 1: order.PaySuccessToOrderRsp
 	(*PayCancelToOrderReq)(nil),                           // 2: order.PayCancelToOrderReq
 	(*PayCancelToOrderRsp)(nil),                           // 3: order.PayCancelToOrderRsp
-	(*PaySuccessToOrderRsp_PaySuccessToOrderRspData)(nil), // 4: order.PaySuccessToOrderRsp.PaySuccessToOrderRspData
-	(*PayCancelToOrderRsp_PayCancelToOrderRspData)(nil),   // 5: order.PayCancelToOrderRsp.PayCancelToOrderRspData
+	(*GetOrderDetailReq)(nil),                             // 4: order.GetOrderDetailReq
+	(*GetOrderDetailRsp)(nil),                             // 5: order.GetOrderDetailRsp
+	(*PaySuccessToOrderRsp_PaySuccessToOrderRspData)(nil), // 6: order.PaySuccessToOrderRsp.PaySuccessToOrderRspData
+	(*PayCancelToOrderRsp_PayCancelToOrderRspData)(nil),   // 7: order.PayCancelToOrderRsp.PayCancelToOrderRspData
+	(*GetOrderDetailRsp_GetOrderDetailRspData)(nil),       // 8: order.GetOrderDetailRsp.GetOrderDetailRspData
+	(*BaseOrder)(nil),                                     // 9: order.BaseOrder
+	(*BaseOrderItem)(nil),                                 // 10: order.BaseOrderItem
 }
 var file_order_order_proto_depIdxs = []int32{
-	4, // 0: order.PaySuccessToOrderRsp.data:type_name -> order.PaySuccessToOrderRsp.PaySuccessToOrderRspData
-	5, // 1: order.PayCancelToOrderRsp.data:type_name -> order.PayCancelToOrderRsp.PayCancelToOrderRspData
-	2, // [2:2] is the sub-list for method output_type
-	2, // [2:2] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	6,  // 0: order.PaySuccessToOrderRsp.data:type_name -> order.PaySuccessToOrderRsp.PaySuccessToOrderRspData
+	7,  // 1: order.PayCancelToOrderRsp.data:type_name -> order.PayCancelToOrderRsp.PayCancelToOrderRspData
+	8,  // 2: order.GetOrderDetailRsp.data:type_name -> order.GetOrderDetailRsp.GetOrderDetailRspData
+	9,  // 3: order.GetOrderDetailRsp.GetOrderDetailRspData.order:type_name -> order.BaseOrder
+	10, // 4: order.GetOrderDetailRsp.GetOrderDetailRspData.order_item_list:type_name -> order.BaseOrderItem
+	5,  // [5:5] is the sub-list for method output_type
+	5,  // [5:5] is the sub-list for method input_type
+	5,  // [5:5] is the sub-list for extension type_name
+	5,  // [5:5] is the sub-list for extension extendee
+	0,  // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_order_order_proto_init() }
@@ -486,7 +688,7 @@ func file_order_order_proto_init() {
 			}
 		}
 		file_order_order_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PaySuccessToOrderRsp_PaySuccessToOrderRspData); i {
+			switch v := v.(*GetOrderDetailReq); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -498,7 +700,43 @@ func file_order_order_proto_init() {
 			}
 		}
 		file_order_order_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetOrderDetailRsp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_order_order_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*PaySuccessToOrderRsp_PaySuccessToOrderRspData); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_order_order_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*PayCancelToOrderRsp_PayCancelToOrderRspData); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_order_order_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetOrderDetailRsp_GetOrderDetailRspData); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -516,7 +754,7 @@ func file_order_order_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_order_order_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
