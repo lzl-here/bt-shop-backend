@@ -25,6 +25,7 @@ func Register(r *server.Hertz) {
 		_goods.POST("/get_goods_detail", append(_getgoodsdetailMw(), goods.GetGoodsDetail)...)
 		_goods.POST("/get_goods_list", append(_getgoodslistMw(), goods.GetGoodsList)...)
 		_goods.POST("/get_keyword_down_list", append(_getkeyworddownlistMw(), goods.GetKeywordDownList)...)
+		_goods.POST("/get_seller_goods_list", append(_getsellergoodslistMw(), goods.GetSellerGoodsList)...)
 		_goods.POST("/publish_goods", append(_publishgoodsMw(), goods.PublishGoods)...)
 		_goods.POST("/search_spu_list", append(_searchspulistMw(), goods.SearchSpuList)...)
 		_goods.POST("/stock_increase", append(_stockincreaseMw(), goods.StockIncrease)...)

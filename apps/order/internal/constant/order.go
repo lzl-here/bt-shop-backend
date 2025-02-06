@@ -10,3 +10,9 @@ const (
 	OrderStatusCompleted   = "completed"    // 已完成
 	OrderStatusCanceled    = "canceled"     // 已取消
 )
+
+// 支付方式
+const (
+	OrderPayTypeAlipay = "ALIPAY"
+	OrderPayTypeWechat = "WECHAT"
+)

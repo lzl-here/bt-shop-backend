@@ -148,6 +148,30 @@
           }
         }
       }
+    },
+    "/order/get_seller_order_list": {
+      "post": {
+        "summary": "查询卖家订单列表",
+        "operationId": "GetSellerOrderList",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetSellerOrderListReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "$ref": "#/definitions/GetSellerOrderListRsp"
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -345,6 +369,15 @@
         "buy_num": {
           "type": "integer",
           "format": "int32"
+        },
+        "order_amount": {
+          "type": "string"
+        },
+        "order_status": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
         }
       }
     },
@@ -432,6 +465,49 @@
         },
         "spec_value": {
           "type": "string"
+        }
+      }
+    },
+    "GetSellerOrderListReq": {
+      "type": "object",
+      "properties": {
+        "shop_id": {
+          "type": "string",
+          "description": "店铺ID"
+        },
+        "order_status": {
+          "type": "string",
+          "description": "订单状态"
+        }
+      }
+    },
+    "GetSellerOrderListRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/GetSellerOrderListRspData"
+        }
+      }
+    },
+    "GetSellerOrderListRspData": {
+      "type": "object",
+      "properties": {
+        "order_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BaseOrder"
+          },
+          "description": "订单列表"
         }
       }
     }

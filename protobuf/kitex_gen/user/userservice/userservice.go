@@ -50,6 +50,13 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingUnary),
 	),
+	"GetShopDetail": kitex.NewMethodInfo(
+		getShopDetailHandler,
+		newGetShopDetailArgs,
+		newGetShopDetailResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingUnary),
+	),
 }
 
 var (
@@ -881,6 +888,159 @@ func (p *UpdateUserInfoResult) GetResult() interface{} {
 	return p.Success
 }
 
+func getShopDetailHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	switch s := arg.(type) {
+	case *streaming.Args:
+		st := s.Stream
+		req := new(user.GetShopDetailReq)
+		if err := st.RecvMsg(req); err != nil {
+			return err
+		}
+		resp, err := handler.(user.UserService).GetShopDetail(ctx, req)
+		if err != nil {
+			return err
+		}
+		return st.SendMsg(resp)
+	case *GetShopDetailArgs:
+		success, err := handler.(user.UserService).GetShopDetail(ctx, s.Req)
+		if err != nil {
+			return err
+		}
+		realResult := result.(*GetShopDetailResult)
+		realResult.Success = success
+		return nil
+	default:
+		return errInvalidMessageType
+	}
+}
+func newGetShopDetailArgs() interface{} {
+	return &GetShopDetailArgs{}
+}
+
+func newGetShopDetailResult() interface{} {
+	return &GetShopDetailResult{}
+}
+
+type GetShopDetailArgs struct {
+	Req *user.GetShopDetailReq
+}
+
+func (p *GetShopDetailArgs) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
+	if !p.IsSetReq() {
+		p.Req = new(user.GetShopDetailReq)
+	}
+	return p.Req.FastRead(buf, _type, number)
+}
+
+func (p *GetShopDetailArgs) FastWrite(buf []byte) (n int) {
+	if !p.IsSetReq() {
+		return 0
+	}
+	return p.Req.FastWrite(buf)
+}
+
+func (p *GetShopDetailArgs) Size() (n int) {
+	if !p.IsSetReq() {
+		return 0
+	}
+	return p.Req.Size()
+}
+
+func (p *GetShopDetailArgs) Marshal(out []byte) ([]byte, error) {
+	if !p.IsSetReq() {
+		return out, nil
+	}
+	return proto.Marshal(p.Req)
+}
+
+func (p *GetShopDetailArgs) Unmarshal(in []byte) error {
+	msg := new(user.GetShopDetailReq)
+	if err := proto.Unmarshal(in, msg); err != nil {
+		return err
+	}
+	p.Req = msg
+	return nil
+}
+
+var GetShopDetailArgs_Req_DEFAULT *user.GetShopDetailReq
+
+func (p *GetShopDetailArgs) GetReq() *user.GetShopDetailReq {
+	if !p.IsSetReq() {
+		return GetShopDetailArgs_Req_DEFAULT
+	}
+	return p.Req
+}
+
+func (p *GetShopDetailArgs) IsSetReq() bool {
+	return p.Req != nil
+}
+
+func (p *GetShopDetailArgs) GetFirstArgument() interface{} {
+	return p.Req
+}
+
+type GetShopDetailResult struct {
+	Success *user.GetShopDetailRsp
+}
+
+var GetShopDetailResult_Success_DEFAULT *user.GetShopDetailRsp
+
+func (p *GetShopDetailResult) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
+	if !p.IsSetSuccess() {
+		p.Success = new(user.GetShopDetailRsp)
+	}
+	return p.Success.FastRead(buf, _type, number)
+}
+
+func (p *GetShopDetailResult) FastWrite(buf []byte) (n int) {
+	if !p.IsSetSuccess() {
+		return 0
+	}
+	return p.Success.FastWrite(buf)
+}
+
+func (p *GetShopDetailResult) Size() (n int) {
+	if !p.IsSetSuccess() {
+		return 0
+	}
+	return p.Success.Size()
+}
+
+func (p *GetShopDetailResult) Marshal(out []byte) ([]byte, error) {
+	if !p.IsSetSuccess() {
+		return out, nil
+	}
+	return proto.Marshal(p.Success)
+}
+
+func (p *GetShopDetailResult) Unmarshal(in []byte) error {
+	msg := new(user.GetShopDetailRsp)
+	if err := proto.Unmarshal(in, msg); err != nil {
+		return err
+	}
+	p.Success = msg
+	return nil
+}
+
+func (p *GetShopDetailResult) GetSuccess() *user.GetShopDetailRsp {
+	if !p.IsSetSuccess() {
+		return GetShopDetailResult_Success_DEFAULT
+	}
+	return p.Success
+}
+
+func (p *GetShopDetailResult) SetSuccess(x interface{}) {
+	p.Success = x.(*user.GetShopDetailRsp)
+}
+
+func (p *GetShopDetailResult) IsSetSuccess() bool {
+	return p.Success != nil
+}
+
+func (p *GetShopDetailResult) GetResult() interface{} {
+	return p.Success
+}
+
 type kClient struct {
 	c client.Client
 }
@@ -936,6 +1096,16 @@ func (p *kClient) UpdateUserInfo(ctx context.Context, Req *user.UpdateUserInfoRe
 	_args.Req = Req
 	var _result UpdateUserInfoResult
 	if err = p.c.Call(ctx, "UpdateUserInfo", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) GetShopDetail(ctx context.Context, Req *user.GetShopDetailReq) (r *user.GetShopDetailRsp, err error) {
+	var _args GetShopDetailArgs
+	_args.Req = Req
+	var _result GetShopDetailResult
+	if err = p.c.Call(ctx, "GetShopDetail", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil

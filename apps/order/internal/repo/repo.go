@@ -37,11 +37,14 @@ type RepoInterface interface {
 	CountTrade(ctx context.Context, where *model.Trade) (int64, error)
 	PageTradeList(ctx context.Context, where *model.Trade, pageSize, pageNum int) ([]*model.Trade, error)
 	GetOrder(ctx context.Context, where *model.Order) (*model.Order, error)
+	PageOrderList(ctx context.Context, where *model.Order, pageSize, pageNum int) ([]*model.Order, error)
 	GetOrderList(ctx context.Context, where *model.Order) ([]*model.Order, error)
 	GetOrderListByTradeNo(ctx context.Context, tradeNo []string) ([]*model.Order, error)
 	GetOrderItems(ctx context.Context, where *model.OrderItem) ([]*model.OrderItem, error)
 	GetOrderItemsByOrderNo(ctx context.Context, orderNo []string) ([]*model.OrderItem, error)
 	GetOrderItemsByTradeNo(ctx context.Context, tradeNo []string) ([]*model.OrderItem, error)
+
+	CountOrder(ctx context.Context, where *model.Order) (int64, error)
 }
 
 var _ RepoInterface = (*Repo)(nil)
@@ -129,9 +132,9 @@ func (r *Repo) GetOrder(ctx context.Context, where *model.Order) (*model.Order, 
 	return res, nil
 }
 
-func (r *Repo) GetOrderList(ctx context.Context, where *model.Order) ([]*model.Order, error) {
+func (r *Repo) PageOrderList(ctx context.Context, where *model.Order, pageSize, pageNum int) ([]*model.Order, error) {
 	res := []*model.Order{}
-	err := r.DB.Model(&model.Order{}).Where(where).Find(&res).Error
+	err := r.DB.Model(&model.Order{}).Where(where).Offset((pageNum - 1) * pageSize).Limit(pageSize).Find(&res).Error
 	if err != nil {
 		return nil, err
 	}
@@ -181,4 +184,22 @@ func (r *Repo) CountTrade(ctx context.Context, where *model.Trade) (int64, error
 		return 0, err
 	}
 	return count, nil
+}
+
+func (r *Repo) CountOrder(ctx context.Context, where *model.Order) (int64, error) {
+	var count int64
+	err := r.DB.Model(&model.Order{}).Where(where).Count(&count).Error
+	if err != nil {
+		return 0, err
+	}
+	return count, nil
+}
+
+func (r *Repo) GetOrderList(ctx context.Context, where *model.Order) ([]*model.Order, error) {
+	res := []*model.Order{}
+	err := r.DB.Model(&model.Order{}).Where(where).Find(&res).Error
+	if err != nil {
+		return nil, err
+	}
+	return res, nil
 }

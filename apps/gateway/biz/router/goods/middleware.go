@@ -65,3 +65,8 @@ func _stockreduceMw() []app.HandlerFunc {
 	// your code...
 	return nil
 }
+
+func _getsellergoodslistMw() []app.HandlerFunc {
+	// your code...
+	return nil
+}

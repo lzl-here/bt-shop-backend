@@ -7,6 +7,7 @@ option go_package = "user";
 import "api/api.proto";
 import "user/login.proto";
 import "user/user.proto";
+import "user/shop.proto";
 
 service UserService {
     // 普通登录
@@ -32,6 +33,11 @@ service UserService {
     // 更新用户信息
     rpc UpdateUserInfo(UpdateUserInfoReq) returns (UpdateUserInfoRsp) {
         option (api.post) = "/user/update_user_info";
+    }
+
+    // 获取店铺详情
+    rpc GetShopDetail(GetShopDetailReq) returns (GetShopDetailRsp) {
+        option (api.post) = "/user/get_shop_detail";
     }
 }
 

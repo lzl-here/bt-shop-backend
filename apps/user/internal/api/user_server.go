@@ -46,3 +46,7 @@ func (s *UserServer) GetUserInfo(ctx context.Context, req *ugen.GetUserInfoReq) 
 func (s *UserServer) UpdateUserInfo(ctx context.Context, req *ugen.UpdateUserInfoReq) (*ugen.UpdateUserInfoRsp, error) {
 	return handler.NewUserHandler(s.rep).UpdateUserInfo(ctx, req)
 }
+
+func (s *UserServer) GetShopDetail(ctx context.Context, req *ugen.GetShopDetailReq) (*ugen.GetShopDetailRsp, error) {
+	return handler.NewUserHandler(s.rep).GetShopDetail(ctx, req)
+}

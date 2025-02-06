@@ -14,6 +14,7 @@ type Client interface {
 	GetKeywordDownList(ctx context.Context, Req *goods.GetKeywordDownListReq, callOptions ...callopt.Option) (r *goods.GetKeywordDownListRsp, err error)
 	SearchSpuList(ctx context.Context, Req *goods.SearchSpuListReq, callOptions ...callopt.Option) (r *goods.SearchSpuListRsp, err error)
 	GetGoodsDetail(ctx context.Context, Req *goods.GetGoodsDetailReq, callOptions ...callopt.Option) (r *goods.GetGoodsDetailRsp, err error)
+	GetSellerGoodsList(ctx context.Context, Req *goods.GetSellerGoodsListReq, callOptions ...callopt.Option) (r *goods.GetSellerGoodsListRsp, err error)
 	GetGoodsList(ctx context.Context, Req *goods.GetGoodsListReq, callOptions ...callopt.Option) (r *goods.GetGoodsListRsp, err error)
 	GetCategoryList(ctx context.Context, Req *goods.GetCategoryListReq, callOptions ...callopt.Option) (r *goods.GetCategoryListRsp, err error)
 	GetBrandList(ctx context.Context, Req *goods.GetBrandListReq, callOptions ...callopt.Option) (r *goods.GetBrandListRsp, err error)
@@ -65,6 +66,11 @@ func (p *kGoodsServiceClient) SearchSpuList(ctx context.Context, Req *goods.Sear
 func (p *kGoodsServiceClient) GetGoodsDetail(ctx context.Context, Req *goods.GetGoodsDetailReq, callOptions ...callopt.Option) (r *goods.GetGoodsDetailRsp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
 	return p.kClient.GetGoodsDetail(ctx, Req)
+}
+
+func (p *kGoodsServiceClient) GetSellerGoodsList(ctx context.Context, Req *goods.GetSellerGoodsListReq, callOptions ...callopt.Option) (r *goods.GetSellerGoodsListRsp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.GetSellerGoodsList(ctx, Req)
 }
 
 func (p *kGoodsServiceClient) GetGoodsList(ctx context.Context, Req *goods.GetGoodsListReq, callOptions ...callopt.Option) (r *goods.GetGoodsListRsp, err error) {

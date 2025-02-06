@@ -23,6 +23,7 @@ func Register(r *server.Hertz) {
 		_order.POST("/create_trade", append(_createtradeMw(), order.CreateTrade)...)
 		_order.POST("/get_order_detail", append(_getorderdetailMw(), order.GetOrderDetail)...)
 		_order.POST("/get_order_items", append(_getorderitemsMw(), order.GetOrderItems)...)
+		_order.POST("/get_seller_order_list", append(_getsellerorderlistMw(), order.GetSellerOrderList)...)
 		_order.POST("/get_trade_detail", append(_gettradedetailMw(), order.GetTradeDetail)...)
 		_order.POST("/get_trade_list", append(_gettradelistMw(), order.GetTradeList)...)
 		_order.POST("/pay_cancel_to_order", append(_paycanceltoorderMw(), order.PayCancelToOrder)...)

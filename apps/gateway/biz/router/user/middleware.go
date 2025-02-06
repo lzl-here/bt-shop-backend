@@ -50,3 +50,13 @@ func _normalregisterMw() []app.HandlerFunc {
 	// your code...
 	return nil
 }
+
+func _createshopMw() []app.HandlerFunc {
+	// your code...
+	return nil
+}
+
+func _getshopdetailMw() []app.HandlerFunc {
+	// your code...
+	return nil
+}

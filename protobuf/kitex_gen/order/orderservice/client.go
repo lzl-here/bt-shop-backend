@@ -15,6 +15,7 @@ type Client interface {
 	GetTradeList(ctx context.Context, Req *order.GetTradeListReq, callOptions ...callopt.Option) (r *order.GetTradeListRsp, err error)
 	GetTradeDetail(ctx context.Context, Req *order.GetTradeDetailReq, callOptions ...callopt.Option) (r *order.GetTradeDetailRsp, err error)
 	GetOrderDetail(ctx context.Context, Req *order.GetOrderDetailReq, callOptions ...callopt.Option) (r *order.GetOrderDetailRsp, err error)
+	GetSellerOrderList(ctx context.Context, Req *order.GetSellerOrderListReq, callOptions ...callopt.Option) (r *order.GetSellerOrderListRsp, err error)
 	CancelTrade(ctx context.Context, Req *order.CancelTradeReq, callOptions ...callopt.Option) (r *order.CancelTradeRsp, err error)
 	GetOrderItems(ctx context.Context, Req *order.GetOrderItemsReq, callOptions ...callopt.Option) (r *order.GetOrderItemsRsp, err error)
 	PaySuccessToOrder(ctx context.Context, Req *order.PaySuccessToOrderReq, callOptions ...callopt.Option) (r *order.PaySuccessToOrderRsp, err error)
@@ -68,6 +69,11 @@ func (p *kOrderServiceClient) GetTradeDetail(ctx context.Context, Req *order.Get
 func (p *kOrderServiceClient) GetOrderDetail(ctx context.Context, Req *order.GetOrderDetailReq, callOptions ...callopt.Option) (r *order.GetOrderDetailRsp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
 	return p.kClient.GetOrderDetail(ctx, Req)
+}
+
+func (p *kOrderServiceClient) GetSellerOrderList(ctx context.Context, Req *order.GetSellerOrderListReq, callOptions ...callopt.Option) (r *order.GetSellerOrderListRsp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.GetSellerOrderList(ctx, Req)
 }
 
 func (p *kOrderServiceClient) CancelTrade(ctx context.Context, Req *order.CancelTradeReq, callOptions ...callopt.Option) (r *order.CancelTradeRsp, err error) {

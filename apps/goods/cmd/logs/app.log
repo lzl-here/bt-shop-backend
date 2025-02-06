@@ -1819,3 +1819,1377 @@
 2025/02/05 21:04:58.403902 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:59564, 请求体: &{Stream:0x140005da0e0}
 2025/02/05 21:04:58.413429 error_md.go:34: [Error] <nil>
 2025/02/05 21:04:58.413518 log_md.go:36: [Info] 响应体: <nil>, 耗时: 10ms
+2025/02/05 21:29:42.366090 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/05 21:29:42.378555 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/05 21:29:42.495187 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9093
+2025/02/05 21:29:43.504341 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f36df2 for etcd registry
+2025/02/05 21:30:22.667244 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:52530, 请求体: &{Stream:0x14001d7c1e0}
+2025/02/05 21:30:22.693667 error_md.go:34: [Error] <nil>
+2025/02/05 21:30:22.693757 log_md.go:36: [Info] 响应体: <nil>, 耗时: 26ms
+2025/02/05 21:30:22.726137 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:52531, 请求体: &{Stream:0x14001d7c7c0}
+2025/02/05 21:30:22.732292 error_md.go:34: [Error] <nil>
+2025/02/05 21:30:22.732357 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/05 21:30:59.380379 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:52586, 请求体: &{Stream:0x14001d7cda0}
+2025/02/05 21:30:59.380377 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:52586, 请求体: &{Stream:0x1400036c2c0}
+2025/02/05 21:30:59.385032 error_md.go:34: [Error] <nil>
+2025/02/05 21:30:59.385136 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/05 21:30:59.391142 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:52589, 请求体: &{Stream:0x14001b885c0}
+2025/02/05 21:30:59.392726 error_md.go:34: [Error] <nil>
+2025/02/05 21:30:59.392801 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/05 21:30:59.426656 error_md.go:34: [Error] <nil>
+2025/02/05 21:30:59.426769 log_md.go:36: [Info] 响应体: <nil>, 耗时: 46ms
+2025/02/05 21:31:04.767993 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:52590, 请求体: &{Stream:0x14001e0a560}
+2025/02/05 21:31:04.773343 error_md.go:34: [Error] <nil>
+2025/02/05 21:31:04.773461 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/05 21:31:06.682426 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:52600, 请求体: &{Stream:0x14001b88820}
+2025/02/05 21:31:06.689933 error_md.go:34: [Error] <nil>
+2025/02/05 21:31:06.690144 log_md.go:36: [Info] 响应体: <nil>, 耗时: 7ms
+2025/02/05 21:31:17.800755 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:52609, 请求体: &{Stream:0x14001b88a00}
+2025/02/05 21:31:17.803171 error_md.go:34: [Error] <nil>
+2025/02/05 21:31:17.803242 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/05 21:31:18.775540 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:52610, 请求体: &{Stream:0x14001d7d5e0}
+2025/02/05 21:31:18.796093 error_md.go:34: [Error] <nil>
+2025/02/05 21:31:18.796140 log_md.go:36: [Info] 响应体: <nil>, 耗时: 20ms
+2025/02/05 21:31:20.412250 log_md.go:25: [Info] 请求路径: GoodsService.GetGoodsDetail, 请求地址: 127.0.0.1:52612, 请求体: &{Stream:0x14001e0a800}
+2025/02/05 21:31:20.431517 error_md.go:34: [Error] <nil>
+2025/02/05 21:31:20.431720 log_md.go:36: [Info] 响应体: <nil>, 耗时: 19ms
+2025/02/05 21:31:29.656340 log_md.go:25: [Info] 请求路径: GoodsService.GetGoodsDetail, 请求地址: 127.0.0.1:52614, 请求体: &{Stream:0x14001e0aee0}
+2025/02/05 21:31:29.660616 error_md.go:34: [Error] <nil>
+2025/02/05 21:31:29.660713 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/05 21:31:36.712205 log_md.go:25: [Info] 请求路径: GoodsService.GetGoodsList, 请求地址: 127.0.0.1:52616, 请求体: &{Stream:0x14001d7db80}
+2025/02/05 21:31:36.717546 error_md.go:34: [Error] <nil>
+2025/02/05 21:31:36.717736 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/05 21:31:36.769403 log_md.go:25: [Info] 请求路径: GoodsService.StockReduce, 请求地址: 127.0.0.1:52618, 请求体: &{Stream:0x14001e0b1c0}
+2025/02/05 21:31:36.781654 error_md.go:34: [Error] <nil>
+2025/02/05 21:31:36.781754 log_md.go:36: [Info] 响应体: <nil>, 耗时: 12ms
+2025/02/05 21:31:47.762276 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:52686, 请求体: &{Stream:0x14001f889a0}
+2025/02/05 21:31:47.762681 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:52530, 请求体: &{Stream:0x14001d7c280}
+2025/02/05 21:31:47.772262 error_md.go:34: [Error] <nil>
+2025/02/05 21:31:47.772360 log_md.go:36: [Info] 响应体: <nil>, 耗时: 10ms
+2025/02/05 21:31:47.778059 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:52531, 请求体: &{Stream:0x14001f88a00}
+2025/02/05 21:31:47.779568 error_md.go:34: [Error] <nil>
+2025/02/05 21:31:47.779619 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/05 21:31:47.782082 error_md.go:34: [Error] <nil>
+2025/02/05 21:31:47.782162 log_md.go:36: [Info] 响应体: <nil>, 耗时: 19ms
+2025/02/05 21:32:02.142130 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:52589, 请求体: &{Stream:0x1400036c280}
+2025/02/05 21:32:02.142136 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:52586, 请求体: &{Stream:0x14001b88560}
+2025/02/05 21:32:02.145766 error_md.go:34: [Error] <nil>
+2025/02/05 21:32:02.145859 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/05 21:32:02.147991 error_md.go:34: [Error] <nil>
+2025/02/05 21:32:02.148070 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/05 21:32:02.150190 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:52590, 请求体: &{Stream:0x14001e0a100}
+2025/02/05 21:32:02.151553 error_md.go:34: [Error] <nil>
+2025/02/05 21:32:02.151641 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/05 21:32:06.195268 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:52600, 请求体: &{Stream:0x14001f88b20}
+2025/02/05 21:32:06.195271 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:52609, 请求体: &{Stream:0x140000c4220}
+2025/02/05 21:32:06.199039 error_md.go:34: [Error] <nil>
+2025/02/05 21:32:06.199095 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/05 21:32:06.199539 error_md.go:34: [Error] <nil>
+2025/02/05 21:32:06.199578 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/05 21:32:06.203429 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:52610, 请求体: &{Stream:0x140000c4ba0}
+2025/02/05 21:32:06.206839 error_md.go:34: [Error] <nil>
+2025/02/05 21:32:06.206875 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/05 21:32:07.414492 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:52612, 请求体: &{Stream:0x1400036ccc0}
+2025/02/05 21:32:07.418288 error_md.go:34: [Error] <nil>
+2025/02/05 21:32:07.418563 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/05 21:32:07.429669 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:52614, 请求体: &{Stream:0x140000c4da0}
+2025/02/05 21:32:07.431713 error_md.go:34: [Error] <nil>
+2025/02/05 21:32:07.431832 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/05 21:32:13.329848 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:52686, 请求体: &{Stream:0x140000c4f00}
+2025/02/05 21:32:13.335304 error_md.go:34: [Error] <nil>
+2025/02/05 21:32:13.335396 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/05 21:32:13.346303 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:52725, 请求体: &{Stream:0x140000c57a0}
+2025/02/05 21:32:13.348320 error_md.go:34: [Error] <nil>
+2025/02/05 21:32:13.348445 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/05 21:46:31.184395 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 21:46:31.184397 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 21:46:31.185862 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 21:46:31.185867 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 21:46:31.184367 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 21:46:31.184401 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 21:46:31.185877 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 21:46:31.185879 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 21:46:31.184378 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 21:46:31.184409 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 21:46:31.184391 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 21:46:31.184374 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 22:05:07.057992 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 22:05:07.058056 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 22:05:20.227514 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:57561, 请求体: &{Stream:0x1400036c040}
+2025/02/05 22:05:20.265354 error_md.go:34: [Error] <nil>
+2025/02/05 22:05:20.265489 log_md.go:36: [Info] 响应体: <nil>, 耗时: 39ms
+2025/02/05 22:05:20.324541 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:57563, 请求体: &{Stream:0x1400036c960}
+2025/02/05 22:05:20.332219 error_md.go:34: [Error] <nil>
+2025/02/05 22:05:20.332622 log_md.go:36: [Info] 响应体: <nil>, 耗时: 7ms
+2025/02/05 22:05:26.592832 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:57581, 请求体: &{Stream:0x1400036cb80}
+2025/02/05 22:05:26.600533 error_md.go:34: [Error] <nil>
+2025/02/05 22:05:26.600577 log_md.go:36: [Info] 响应体: <nil>, 耗时: 7ms
+2025/02/05 22:05:26.622031 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:57582, 请求体: &{Stream:0x14001b88720}
+2025/02/05 22:05:26.624001 error_md.go:34: [Error] <nil>
+2025/02/05 22:05:26.624126 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/05 22:11:32.163559 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58277, 请求体: &{Stream:0x14001d7c340}
+2025/02/05 22:11:32.168283 error_md.go:34: [Error] <nil>
+2025/02/05 22:11:32.168350 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/05 22:11:32.184101 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:58278, 请求体: &{Stream:0x14001d7c6e0}
+2025/02/05 22:11:32.185466 error_md.go:34: [Error] <nil>
+2025/02/05 22:11:32.185506 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/05 22:11:43.955819 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58283, 请求体: &{Stream:0x1400036c160}
+2025/02/05 22:11:43.958756 error_md.go:34: [Error] <nil>
+2025/02/05 22:11:43.958821 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/05 22:11:43.975468 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:58284, 请求体: &{Stream:0x14001d7c920}
+2025/02/05 22:11:43.976889 error_md.go:34: [Error] <nil>
+2025/02/05 22:11:43.977008 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/05 22:11:47.740549 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58286, 请求体: &{Stream:0x14001f89100}
+2025/02/05 22:11:47.740601 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:58288, 请求体: &{Stream:0x14001b88a60}
+2025/02/05 22:11:47.756645 error_md.go:34: [Error] <nil>
+2025/02/05 22:11:47.756800 log_md.go:36: [Info] 响应体: <nil>, 耗时: 16ms
+2025/02/05 22:11:47.765034 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:58289, 请求体: &{Stream:0x1400036cca0}
+2025/02/05 22:11:47.767587 error_md.go:34: [Error] <nil>
+2025/02/05 22:11:47.767631 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/05 22:11:47.913286 error_md.go:34: [Error] <nil>
+2025/02/05 22:11:47.913326 log_md.go:36: [Info] 响应体: <nil>, 耗时: 172ms
+2025/02/05 22:11:48.567138 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58291, 请求体: &{Stream:0x1400036ce40}
+2025/02/05 22:11:48.570000 error_md.go:34: [Error] <nil>
+2025/02/05 22:11:48.570049 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/05 22:11:48.581132 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:57561, 请求体: &{Stream:0x140000c51c0}
+2025/02/05 22:11:48.583278 error_md.go:34: [Error] <nil>
+2025/02/05 22:11:48.583319 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/05 22:16:44.832204 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:57563, 请求体: &{Stream:0x1400036c360}
+2025/02/05 22:16:44.838385 error_md.go:34: [Error] <nil>
+2025/02/05 22:16:44.838449 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/05 22:16:44.854684 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:57581, 请求体: &{Stream:0x14001f887a0}
+2025/02/05 22:16:44.858647 error_md.go:34: [Error] <nil>
+2025/02/05 22:16:44.858730 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/05 22:16:51.664179 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:57582, 请求体: &{Stream:0x14001b889c0}
+2025/02/05 22:16:51.667477 error_md.go:34: [Error] <nil>
+2025/02/05 22:16:51.667528 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/05 22:16:51.679749 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:58277, 请求体: &{Stream:0x14001b892c0}
+2025/02/05 22:16:51.681034 error_md.go:34: [Error] <nil>
+2025/02/05 22:16:51.681090 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/05 22:16:57.359448 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58278, 请求体: &{Stream:0x14001f88980}
+2025/02/05 22:16:57.363887 error_md.go:34: [Error] <nil>
+2025/02/05 22:16:57.363998 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/05 22:16:57.396489 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:58283, 请求体: &{Stream:0x14001b89400}
+2025/02/05 22:16:57.398037 error_md.go:34: [Error] <nil>
+2025/02/05 22:16:57.398130 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/05 22:17:05.042422 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58284, 请求体: &{Stream:0x1400036d4e0}
+2025/02/05 22:17:05.047084 error_md.go:34: [Error] <nil>
+2025/02/05 22:17:05.047198 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/05 22:17:05.073789 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:58286, 请求体: &{Stream:0x1400036db60}
+2025/02/05 22:17:05.075850 error_md.go:34: [Error] <nil>
+2025/02/05 22:17:05.075936 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/05 22:17:08.007994 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58288, 请求体: &{Stream:0x14001f88b00}
+2025/02/05 22:17:08.010152 error_md.go:34: [Error] <nil>
+2025/02/05 22:17:08.010197 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/05 22:17:08.024777 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:58289, 请求体: &{Stream:0x14001f89540}
+2025/02/05 22:17:08.026014 error_md.go:34: [Error] <nil>
+2025/02/05 22:17:08.026063 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/05 22:20:06.131759 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 22:20:06.131520 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 22:20:06.132313 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 22:20:06.132322 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 22:20:06.132328 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 22:20:06.132341 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 22:20:06.131746 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 22:20:06.131572 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 22:20:06.131825 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 22:20:06.131515 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 22:20:06.131846 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 22:20:06.131801 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/05 22:24:11.121060 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:60045, 请求体: &{Stream:0x140000c4540}
+2025/02/05 22:24:11.133203 error_md.go:34: [Error] <nil>
+2025/02/05 22:24:11.133302 log_md.go:36: [Info] 响应体: <nil>, 耗时: 12ms
+2025/02/05 22:24:11.171270 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:60046, 请求体: &{Stream:0x140000c5400}
+2025/02/05 22:24:11.174755 error_md.go:34: [Error] <nil>
+2025/02/05 22:24:11.174812 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/05 22:24:14.506502 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:60282, 请求体: &{Stream:0x1400036c520}
+2025/02/05 22:24:14.510703 error_md.go:34: [Error] <nil>
+2025/02/05 22:24:14.510760 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/05 22:24:14.537502 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:60283, 请求体: &{Stream:0x14001b88700}
+2025/02/05 22:24:14.539217 error_md.go:34: [Error] <nil>
+2025/02/05 22:24:14.539322 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/05 22:27:38.572298 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:60825, 请求体: &{Stream:0x14001f88200}
+2025/02/05 22:27:38.578661 error_md.go:34: [Error] <nil>
+2025/02/05 22:27:38.578769 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/05 22:27:38.608002 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:60826, 请求体: &{Stream:0x1400036c520}
+2025/02/05 22:27:38.609654 error_md.go:34: [Error] <nil>
+2025/02/05 22:27:38.609723 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/05 22:29:11.932281 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:61064, 请求体: &{Stream:0x14001f88ea0}
+2025/02/05 22:29:11.951444 error_md.go:34: [Error] <nil>
+2025/02/05 22:29:11.951543 log_md.go:36: [Info] 响应体: <nil>, 耗时: 19ms
+2025/02/05 22:29:11.990703 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:61067, 请求体: &{Stream:0x140000c4e40}
+2025/02/05 22:29:11.999570 error_md.go:34: [Error] <nil>
+2025/02/05 22:29:11.999656 log_md.go:36: [Info] 响应体: <nil>, 耗时: 9ms
+2025/02/05 22:29:17.474649 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:61106, 请求体: &{Stream:0x140000c50c0}
+2025/02/05 22:29:17.477654 error_md.go:34: [Error] <nil>
+2025/02/05 22:29:17.477706 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/05 22:29:17.848881 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:61123, 请求体: &{Stream:0x14001f89120}
+2025/02/05 22:29:17.854754 error_md.go:34: [Error] <nil>
+2025/02/05 22:29:17.854812 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/05 22:29:17.883415 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:61124, 请求体: &{Stream:0x14001b886e0}
+2025/02/05 22:29:17.885225 error_md.go:34: [Error] <nil>
+2025/02/05 22:29:17.885265 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/05 22:30:17.736234 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:61264, 请求体: &{Stream:0x1400036c600}
+2025/02/05 22:30:17.740944 error_md.go:34: [Error] <nil>
+2025/02/05 22:30:17.741013 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/05 22:30:17.759146 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:60045, 请求体: &{Stream:0x1400036cd00}
+2025/02/05 22:30:17.760585 error_md.go:34: [Error] <nil>
+2025/02/05 22:30:17.760626 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/05 22:30:20.034915 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:60046, 请求体: &{Stream:0x14001b88a00}
+2025/02/05 22:30:20.037662 error_md.go:34: [Error] <nil>
+2025/02/05 22:30:20.037748 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/05 22:30:20.054188 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:60282, 请求体: &{Stream:0x14001b89120}
+2025/02/05 22:30:20.055766 error_md.go:34: [Error] <nil>
+2025/02/05 22:30:20.055849 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/05 22:30:22.099652 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:60283, 请求体: &{Stream:0x14001b89260}
+2025/02/05 22:30:22.102385 error_md.go:34: [Error] <nil>
+2025/02/05 22:30:22.102445 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/05 22:30:22.130440 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:60825, 请求体: &{Stream:0x14001b898e0}
+2025/02/05 22:30:22.132066 error_md.go:34: [Error] <nil>
+2025/02/05 22:30:22.132164 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/05 22:30:26.548869 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:60826, 请求体: &{Stream:0x1400036cf20}
+2025/02/05 22:30:26.553250 error_md.go:34: [Error] <nil>
+2025/02/05 22:30:26.553360 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/05 22:30:26.565384 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:61064, 请求体: &{Stream:0x14001b89a40}
+2025/02/05 22:30:26.567602 error_md.go:34: [Error] <nil>
+2025/02/05 22:30:26.567706 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/05 22:31:33.691731 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:61067, 请求体: &{Stream:0x14001f881a0}
+2025/02/05 22:31:33.699639 error_md.go:34: [Error] <nil>
+2025/02/05 22:31:33.699728 log_md.go:36: [Info] 响应体: <nil>, 耗时: 8ms
+2025/02/05 22:31:33.725324 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:61106, 请求体: &{Stream:0x140000c4e60}
+2025/02/05 22:31:33.727461 error_md.go:34: [Error] <nil>
+2025/02/05 22:31:33.727570 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/05 22:34:19.993961 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:61123, 请求体: &{Stream:0x14001b88840}
+2025/02/05 22:34:20.009115 error_md.go:34: [Error] <nil>
+2025/02/05 22:34:20.009215 log_md.go:36: [Info] 响应体: <nil>, 耗时: 15ms
+2025/02/05 22:34:20.049593 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:61124, 请求体: &{Stream:0x1400036c600}
+2025/02/05 22:34:20.052277 error_md.go:34: [Error] <nil>
+2025/02/05 22:34:20.052336 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/05 22:35:20.014840 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:61264, 请求体: &{Stream:0x14001b89040}
+2025/02/05 22:35:20.021147 error_md.go:34: [Error] <nil>
+2025/02/05 22:35:20.021241 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/05 22:35:20.041320 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:60045, 请求体: &{Stream:0x14001b89700}
+2025/02/05 22:35:20.059790 error_md.go:34: [Error] <nil>
+2025/02/05 22:35:20.059897 log_md.go:36: [Info] 响应体: <nil>, 耗时: 18ms
+2025/02/05 22:35:22.123361 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:60046, 请求体: &{Stream:0x1400036c500}
+2025/02/05 22:35:22.125808 error_md.go:34: [Error] <nil>
+2025/02/05 22:35:22.125855 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/05 22:35:22.139176 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:60282, 请求体: &{Stream:0x1400036cc60}
+2025/02/05 22:35:22.141034 error_md.go:34: [Error] <nil>
+2025/02/05 22:35:22.141090 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/05 22:38:38.431576 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:60283, 请求体: &{Stream:0x14001d7c180}
+2025/02/05 22:38:38.431576 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:60825, 请求体: &{Stream:0x14001f888e0}
+2025/02/05 22:38:38.437530 error_md.go:34: [Error] <nil>
+2025/02/05 22:38:38.437589 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/05 22:38:38.441570 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:60826, 请求体: &{Stream:0x14001e0a140}
+2025/02/05 22:38:38.442592 error_md.go:34: [Error] <nil>
+2025/02/05 22:38:38.442622 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/05 22:38:38.572880 error_md.go:34: [Error] <nil>
+2025/02/05 22:38:38.572994 log_md.go:36: [Info] 响应体: <nil>, 耗时: 141ms
+2025/02/06 09:09:22.650978 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:61064, 请求体: &{Stream:0x14001f881a0}
+2025/02/06 09:09:22.667964 error_md.go:34: [Error] <nil>
+2025/02/06 09:09:22.668161 log_md.go:36: [Info] 响应体: <nil>, 耗时: 19ms
+2025/02/06 09:09:22.689367 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:61067, 请求体: &{Stream:0x14001e0a0e0}
+2025/02/06 09:09:22.691128 error_md.go:34: [Error] <nil>
+2025/02/06 09:09:22.691171 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/06 09:09:40.199037 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:61106, 请求体: &{Stream:0x1400036c680}
+2025/02/06 09:09:40.199703 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:61123, 请求体: &{Stream:0x14001b88920}
+2025/02/06 09:09:40.202687 error_md.go:34: [Error] <nil>
+2025/02/06 09:09:40.202753 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 09:09:40.207715 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:61124, 请求体: &{Stream:0x14001d7c180}
+2025/02/06 09:09:40.208932 error_md.go:34: [Error] <nil>
+2025/02/06 09:09:40.209022 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/06 09:09:40.244621 error_md.go:34: [Error] <nil>
+2025/02/06 09:09:40.244704 log_md.go:36: [Info] 响应体: <nil>, 耗时: 45ms
+2025/02/06 09:09:42.677865 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:61264, 请求体: &{Stream:0x14001d7c340}
+2025/02/06 09:09:42.690260 error_md.go:34: [Error] <nil>
+2025/02/06 09:09:42.690453 log_md.go:36: [Info] 响应体: <nil>, 耗时: 12ms
+2025/02/06 09:09:45.277990 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:60045, 请求体: &{Stream:0x14001e0a400}
+2025/02/06 09:09:45.286787 error_md.go:34: [Error] <nil>
+2025/02/06 09:09:45.286986 log_md.go:36: [Info] 响应体: <nil>, 耗时: 9ms
+2025/02/06 09:09:46.652501 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:60046, 请求体: &{Stream:0x1400036c740}
+2025/02/06 09:09:46.660498 error_md.go:34: [Error] <nil>
+2025/02/06 09:09:46.660643 log_md.go:36: [Info] 响应体: <nil>, 耗时: 8ms
+2025/02/06 09:09:49.119900 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:60282, 请求体: &{Stream:0x14001d7c6a0}
+2025/02/06 09:09:49.122992 error_md.go:34: [Error] <nil>
+2025/02/06 09:09:49.123033 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 09:09:59.989543 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:60825, 请求体: &{Stream:0x14001b88c40}
+2025/02/06 09:09:59.989555 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:60283, 请求体: &{Stream:0x140000c5400}
+2025/02/06 09:09:59.997478 error_md.go:34: [Error] <nil>
+2025/02/06 09:09:59.997561 log_md.go:36: [Info] 响应体: <nil>, 耗时: 8ms
+2025/02/06 09:10:00.001657 error_md.go:34: [Error] <nil>
+2025/02/06 09:10:00.001708 log_md.go:36: [Info] 响应体: <nil>, 耗时: 12ms
+2025/02/06 09:10:00.018685 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:60826, 请求体: &{Stream:0x140005f8060}
+2025/02/06 09:10:00.021076 error_md.go:34: [Error] <nil>
+2025/02/06 09:10:00.021129 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 09:10:15.673819 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:61064, 请求体: &{Stream:0x140005f8240}
+2025/02/06 09:10:15.685745 error_md.go:34: [Error] <nil>
+2025/02/06 09:10:15.685913 log_md.go:36: [Info] 响应体: <nil>, 耗时: 12ms
+2025/02/06 09:10:16.870979 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:61067, 请求体: &{Stream:0x14001d7c7a0}
+2025/02/06 09:10:16.894377 error_md.go:34: [Error] <nil>
+2025/02/06 09:10:16.894480 log_md.go:36: [Info] 响应体: <nil>, 耗时: 23ms
+2025/02/06 09:10:19.660876 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:61106, 请求体: &{Stream:0x14001e0a5a0}
+2025/02/06 09:10:19.679372 error_md.go:34: [Error] <nil>
+2025/02/06 09:10:19.679496 log_md.go:36: [Info] 响应体: <nil>, 耗时: 18ms
+2025/02/06 09:10:22.883898 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:61123, 请求体: &{Stream:0x140005f8600}
+2025/02/06 09:10:22.894068 error_md.go:34: [Error] <nil>
+2025/02/06 09:10:22.894211 log_md.go:36: [Info] 响应体: <nil>, 耗时: 10ms
+2025/02/06 09:10:24.406277 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:61124, 请求体: &{Stream:0x14001b88ec0}
+2025/02/06 09:10:24.413610 error_md.go:34: [Error] <nil>
+2025/02/06 09:10:24.413720 log_md.go:36: [Info] 响应体: <nil>, 耗时: 7ms
+2025/02/06 09:10:27.703597 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:61264, 请求体: &{Stream:0x14001d7c8c0}
+2025/02/06 09:10:27.710333 error_md.go:34: [Error] <nil>
+2025/02/06 09:10:27.710412 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/06 09:10:28.917265 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:60045, 请求体: &{Stream:0x14001b89100}
+2025/02/06 09:10:28.924006 error_md.go:34: [Error] <nil>
+2025/02/06 09:10:28.924103 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/06 09:11:31.283341 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:60046, 请求体: &{Stream:0x14001b888e0}
+2025/02/06 09:11:31.291972 error_md.go:34: [Error] <nil>
+2025/02/06 09:11:31.292074 log_md.go:36: [Info] 响应体: <nil>, 耗时: 8ms
+2025/02/06 09:11:31.306101 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:60282, 请求体: &{Stream:0x14001b89080}
+2025/02/06 09:11:31.308745 error_md.go:34: [Error] <nil>
+2025/02/06 09:11:31.308827 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 09:33:08.572504 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/06 09:33:08.589845 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/06 09:33:08.658256 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9093
+2025/02/06 09:33:09.666344 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f3729b for etcd registry
+2025/02/06 09:36:47.779448 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/06 09:36:47.791905 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/06 09:36:47.880432 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9093
+2025/02/06 09:36:48.889337 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f372dc for etcd registry
+2025/02/06 09:38:48.024529 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:57958, 请求体: &{Stream:0x140001130a0}
+2025/02/06 09:38:48.048221 error_md.go:34: [Error] <nil>
+2025/02/06 09:38:48.048299 log_md.go:36: [Info] 响应体: <nil>, 耗时: 23ms
+2025/02/06 09:38:48.071231 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:57959, 请求体: &{Stream:0x14000112200}
+2025/02/06 09:38:48.075293 error_md.go:34: [Error] <nil>
+2025/02/06 09:38:48.075364 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/06 09:38:49.727490 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:57965, 请求体: &{Stream:0x140006342a0}
+2025/02/06 09:38:49.728360 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:57967, 请求体: &{Stream:0x14000634520}
+2025/02/06 09:38:49.729199 error_md.go:34: [Error] <nil>
+2025/02/06 09:38:49.729232 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/06 09:38:49.733369 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:57970, 请求体: &{Stream:0x14001d1e7a0}
+2025/02/06 09:38:49.736624 error_md.go:34: [Error] <nil>
+2025/02/06 09:38:49.736656 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 09:38:49.830838 error_md.go:34: [Error] <nil>
+2025/02/06 09:38:49.830945 log_md.go:36: [Info] 响应体: <nil>, 耗时: 102ms
+2025/02/06 09:38:51.508782 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:57971, 请求体: &{Stream:0x14001d1e920}
+2025/02/06 09:38:51.512915 error_md.go:34: [Error] <nil>
+2025/02/06 09:38:51.512954 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/06 09:38:51.521133 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:57972, 请求体: &{Stream:0x14001b98000}
+2025/02/06 09:38:51.524460 error_md.go:34: [Error] <nil>
+2025/02/06 09:38:51.524501 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 09:42:28.710482 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58339, 请求体: &{Stream:0x14001b98020}
+2025/02/06 09:42:28.714490 error_md.go:34: [Error] <nil>
+2025/02/06 09:42:28.714542 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/06 09:42:28.728745 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:58340, 请求体: &{Stream:0x140005da780}
+2025/02/06 09:42:28.733752 error_md.go:34: [Error] <nil>
+2025/02/06 09:42:28.733913 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/06 09:45:34.345151 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:58660, 请求体: &{Stream:0x14001d1e480}
+2025/02/06 09:45:34.368907 error_md.go:34: [Error] <nil>
+2025/02/06 09:45:34.368990 log_md.go:36: [Info] 响应体: <nil>, 耗时: 23ms
+2025/02/06 09:45:57.648284 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58669, 请求体: &{Stream:0x14001d1ed00}
+2025/02/06 09:45:57.653454 error_md.go:34: [Error] <nil>
+2025/02/06 09:45:57.653557 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/06 09:45:57.664647 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:58670, 请求体: &{Stream:0x14000634620}
+2025/02/06 09:45:57.667533 error_md.go:34: [Error] <nil>
+2025/02/06 09:45:57.667664 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 09:45:58.979257 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:57958, 请求体: &{Stream:0x14001d1f480}
+2025/02/06 09:45:58.982371 error_md.go:34: [Error] <nil>
+2025/02/06 09:45:58.982401 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 09:46:02.081574 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:57959, 请求体: &{Stream:0x14001d1f5e0}
+2025/02/06 09:46:02.084595 error_md.go:34: [Error] <nil>
+2025/02/06 09:46:02.084693 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 09:46:02.095432 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:57965, 请求体: &{Stream:0x14001d1fc60}
+2025/02/06 09:46:02.096830 error_md.go:34: [Error] <nil>
+2025/02/06 09:46:02.096896 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/06 09:46:27.216688 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:57967, 请求体: &{Stream:0x140005da980}
+2025/02/06 09:46:27.219637 error_md.go:34: [Error] <nil>
+2025/02/06 09:46:27.219737 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 09:46:27.240127 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:57970, 请求体: &{Stream:0x140005db320}
+2025/02/06 09:46:27.243052 error_md.go:34: [Error] <nil>
+2025/02/06 09:46:27.243096 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 09:46:29.232276 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:57971, 请求体: &{Stream:0x140005db3e0}
+2025/02/06 09:46:29.236518 error_md.go:34: [Error] <nil>
+2025/02/06 09:46:29.236561 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/06 09:46:29.246659 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:57972, 请求体: &{Stream:0x14001b98760}
+2025/02/06 09:46:29.251515 error_md.go:34: [Error] <nil>
+2025/02/06 09:46:29.251555 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/06 09:48:05.266127 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:58340, 请求体: &{Stream:0x140005da480}
+2025/02/06 09:48:05.266127 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58339, 请求体: &{Stream:0x14001c5a040}
+2025/02/06 09:48:05.275872 error_md.go:34: [Error] <nil>
+2025/02/06 09:48:05.275916 log_md.go:36: [Info] 响应体: <nil>, 耗时: 9ms
+2025/02/06 09:48:05.279396 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:58660, 请求体: &{Stream:0x140005da8a0}
+2025/02/06 09:48:05.280504 error_md.go:34: [Error] <nil>
+2025/02/06 09:48:05.280524 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/06 09:48:05.291711 error_md.go:34: [Error] <nil>
+2025/02/06 09:48:05.291764 log_md.go:36: [Info] 响应体: <nil>, 耗时: 25ms
+2025/02/06 09:48:06.827947 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58669, 请求体: &{Stream:0x14001c5aca0}
+2025/02/06 09:48:06.830160 error_md.go:34: [Error] <nil>
+2025/02/06 09:48:06.830191 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 09:48:06.840749 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:58670, 请求体: &{Stream:0x14001c5b460}
+2025/02/06 09:48:06.841894 error_md.go:34: [Error] <nil>
+2025/02/06 09:48:06.841936 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/06 10:02:48.936348 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:57958, 请求体: &{Stream:0x14001d1e640}
+2025/02/06 10:02:48.944376 error_md.go:34: [Error] <nil>
+2025/02/06 10:02:48.944456 log_md.go:36: [Info] 响应体: <nil>, 耗时: 8ms
+2025/02/06 10:02:48.957341 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:57959, 请求体: &{Stream:0x14001b98120}
+2025/02/06 10:02:48.959480 error_md.go:34: [Error] <nil>
+2025/02/06 10:02:48.959609 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 10:05:56.486324 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:57965, 请求体: &{Stream:0x14000634620}
+2025/02/06 10:05:56.492397 error_md.go:34: [Error] <nil>
+2025/02/06 10:05:56.492467 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/06 10:05:56.504682 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:57967, 请求体: &{Stream:0x14001d1e520}
+2025/02/06 10:05:56.506931 error_md.go:34: [Error] <nil>
+2025/02/06 10:05:56.506982 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 10:15:09.871576 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:57970, 请求体: &{Stream:0x14001b98020}
+2025/02/06 10:15:09.952825 error_md.go:34: [Error] <nil>
+2025/02/06 10:15:09.955134 log_md.go:36: [Info] 响应体: <nil>, 耗时: 83ms
+2025/02/06 10:15:09.967009 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:57971, 请求体: &{Stream:0x140005da240}
+2025/02/06 10:15:09.969331 error_md.go:34: [Error] <nil>
+2025/02/06 10:15:09.969398 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 10:17:05.785449 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:57972, 请求体: &{Stream:0x140005da480}
+2025/02/06 10:17:05.809610 error_md.go:34: [Error] <nil>
+2025/02/06 10:17:05.809686 log_md.go:36: [Info] 响应体: <nil>, 耗时: 24ms
+2025/02/06 10:17:05.817913 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:58339, 请求体: &{Stream:0x14001b98100}
+2025/02/06 10:17:05.819085 error_md.go:34: [Error] <nil>
+2025/02/06 10:17:05.819118 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/06 10:20:49.750907 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:58340, 请求体: &{Stream:0x14001d1e520}
+2025/02/06 10:20:49.760629 error_md.go:34: [Error] <nil>
+2025/02/06 10:20:49.760684 log_md.go:36: [Info] 响应体: <nil>, 耗时: 9ms
+2025/02/06 10:20:49.786032 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:58660, 请求体: &{Stream:0x14001c5a120}
+2025/02/06 10:20:49.788032 error_md.go:34: [Error] <nil>
+2025/02/06 10:20:49.788068 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 10:20:59.097236 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:58669, 请求体: &{Stream:0x14001b981a0}
+2025/02/06 10:20:59.103688 error_md.go:34: [Error] <nil>
+2025/02/06 10:20:59.103771 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/06 10:20:59.128228 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:58670, 请求体: &{Stream:0x14001c5a4c0}
+2025/02/06 10:20:59.130755 error_md.go:34: [Error] <nil>
+2025/02/06 10:20:59.130848 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 10:22:55.613229 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/06 10:22:55.645904 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/06 10:22:55.754088 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9093
+2025/02/06 10:22:57.175135 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f37504 for etcd registry
+2025/02/06 10:24:19.585984 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64003, 请求体: &{Stream:0x14001d80420}
+2025/02/06 10:24:19.614105 error_md.go:34: [Error] <nil>
+2025/02/06 10:24:19.614182 log_md.go:36: [Info] 响应体: <nil>, 耗时: 28ms
+2025/02/06 10:24:19.632844 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:64005, 请求体: &{Stream:0x14001d808a0}
+2025/02/06 10:24:19.636130 error_md.go:34: [Error] <nil>
+2025/02/06 10:24:19.636177 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 10:26:37.385248 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:64214, 请求体: &{Stream:0x14001d80460}
+2025/02/06 10:26:37.412863 error_md.go:34: [Error] <nil>
+2025/02/06 10:26:37.413112 log_md.go:36: [Info] 响应体: <nil>, 耗时: 30ms
+2025/02/06 10:29:16.314413 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64600, 请求体: &{Stream:0x14001a2a340}
+2025/02/06 10:29:16.335812 error_md.go:34: [Error] <nil>
+2025/02/06 10:29:16.336107 log_md.go:36: [Info] 响应体: <nil>, 耗时: 22ms
+2025/02/06 10:29:41.651946 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64702, 请求体: &{Stream:0x14001a2a640}
+2025/02/06 10:29:41.656040 error_md.go:34: [Error] <nil>
+2025/02/06 10:29:41.656074 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/06 10:29:46.729721 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64704, 请求体: &{Stream:0x14001d80f00}
+2025/02/06 10:29:46.732145 error_md.go:34: [Error] <nil>
+2025/02/06 10:29:46.732180 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 10:29:46.756000 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:64705, 请求体: &{Stream:0x14001e16300}
+2025/02/06 10:29:46.759330 error_md.go:34: [Error] <nil>
+2025/02/06 10:29:46.759368 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 10:30:02.618739 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:64730, 请求体: &{Stream:0x14001e16800}
+2025/02/06 10:30:02.626343 error_md.go:34: [Error] <nil>
+2025/02/06 10:30:02.626389 log_md.go:36: [Info] 响应体: <nil>, 耗时: 7ms
+2025/02/06 10:30:04.374981 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64732, 请求体: &{Stream:0x14001a2b5e0}
+2025/02/06 10:30:04.377337 error_md.go:34: [Error] <nil>
+2025/02/06 10:30:04.377357 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 10:30:11.059727 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64741, 请求体: &{Stream:0x14001a2bea0}
+2025/02/06 10:30:11.065377 error_md.go:34: [Error] <nil>
+2025/02/06 10:30:11.065474 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/06 10:31:43.329361 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:65040, 请求体: &{Stream:0x14001b88100}
+2025/02/06 10:31:43.335240 error_md.go:34: [Error] <nil>
+2025/02/06 10:31:43.335269 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/06 10:32:32.951252 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:65285, 请求体: &{Stream:0x14000142c00}
+2025/02/06 10:32:32.956118 error_md.go:34: [Error] <nil>
+2025/02/06 10:32:32.956193 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/06 10:32:33.696668 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64003, 请求体: &{Stream:0x14001e164c0}
+2025/02/06 10:32:33.701305 error_md.go:34: [Error] <nil>
+2025/02/06 10:32:33.701527 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/06 10:32:50.636947 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:64005, 请求体: &{Stream:0x140005e24a0}
+2025/02/06 10:32:50.641261 error_md.go:34: [Error] <nil>
+2025/02/06 10:32:50.641343 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/06 10:32:52.103926 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64214, 请求体: &{Stream:0x140005e26c0}
+2025/02/06 10:32:52.107276 error_md.go:34: [Error] <nil>
+2025/02/06 10:32:52.107420 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 10:34:01.109675 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64600, 请求体: &{Stream:0x140005e21a0}
+2025/02/06 10:34:01.118271 error_md.go:34: [Error] <nil>
+2025/02/06 10:34:01.118317 log_md.go:36: [Info] 响应体: <nil>, 耗时: 8ms
+2025/02/06 10:34:25.091885 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64702, 请求体: &{Stream:0x14001b88100}
+2025/02/06 10:34:25.097817 error_md.go:34: [Error] <nil>
+2025/02/06 10:34:25.097867 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/06 10:35:27.051929 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64704, 请求体: &{Stream:0x14001b88860}
+2025/02/06 10:35:27.057924 error_md.go:34: [Error] <nil>
+2025/02/06 10:35:27.058223 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/06 10:38:53.976241 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64705, 请求体: &{Stream:0x14001e16500}
+2025/02/06 10:38:53.988722 error_md.go:34: [Error] <nil>
+2025/02/06 10:38:53.988775 log_md.go:36: [Info] 响应体: <nil>, 耗时: 12ms
+2025/02/06 10:38:59.150598 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64730, 请求体: &{Stream:0x14000142220}
+2025/02/06 10:38:59.157004 error_md.go:34: [Error] <nil>
+2025/02/06 10:38:59.157057 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/06 10:42:20.262151 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64732, 请求体: &{Stream:0x140005e20e0}
+2025/02/06 10:42:20.280167 error_md.go:34: [Error] <nil>
+2025/02/06 10:42:20.280207 log_md.go:36: [Info] 响应体: <nil>, 耗时: 18ms
+2025/02/06 10:42:32.999000 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:64741, 请求体: &{Stream:0x14001b888a0}
+2025/02/06 10:42:33.007184 error_md.go:34: [Error] <nil>
+2025/02/06 10:42:33.007224 log_md.go:36: [Info] 响应体: <nil>, 耗时: 8ms
+2025/02/06 10:42:34.366077 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:65040, 请求体: &{Stream:0x14001e16c40}
+2025/02/06 10:42:34.368878 error_md.go:34: [Error] <nil>
+2025/02/06 10:42:34.368912 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 10:44:42.802643 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:65285, 请求体: &{Stream:0x14001e16300}
+2025/02/06 10:44:42.807280 error_md.go:34: [Error] <nil>
+2025/02/06 10:44:42.807376 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/06 10:44:42.821141 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:64003, 请求体: &{Stream:0x14001d800c0}
+2025/02/06 10:44:42.823355 error_md.go:34: [Error] <nil>
+2025/02/06 10:44:42.823478 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 10:44:45.077715 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:64005, 请求体: &{Stream:0x14001e16500}
+2025/02/06 10:44:45.082912 error_md.go:34: [Error] <nil>
+2025/02/06 10:44:45.083054 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/06 10:44:46.030467 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64214, 请求体: &{Stream:0x14001e167e0}
+2025/02/06 10:44:46.032598 error_md.go:34: [Error] <nil>
+2025/02/06 10:44:46.032645 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 10:46:36.018917 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64600, 请求体: &{Stream:0x140005e20c0}
+2025/02/06 10:46:36.021825 error_md.go:34: [Error] <nil>
+2025/02/06 10:46:36.021858 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 10:51:42.341244 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64702, 请求体: &{Stream:0x14001b88860}
+2025/02/06 10:51:42.347185 error_md.go:34: [Error] <nil>
+2025/02/06 10:51:42.347240 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/06 10:51:42.390938 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:64704, 请求体: &{Stream:0x14001b89340}
+2025/02/06 10:51:42.392721 error_md.go:34: [Error] <nil>
+2025/02/06 10:51:42.392836 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/06 10:51:46.398952 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:64705, 请求体: &{Stream:0x14001b89440}
+2025/02/06 10:51:46.403145 error_md.go:34: [Error] <nil>
+2025/02/06 10:51:46.403207 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/06 10:51:48.003418 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64730, 请求体: &{Stream:0x14001e16580}
+2025/02/06 10:51:48.011864 error_md.go:34: [Error] <nil>
+2025/02/06 10:51:48.011898 log_md.go:36: [Info] 响应体: <nil>, 耗时: 8ms
+2025/02/06 10:54:26.620073 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64732, 请求体: &{Stream:0x14001e16640}
+2025/02/06 10:54:26.627302 error_md.go:34: [Error] <nil>
+2025/02/06 10:54:26.627381 log_md.go:36: [Info] 响应体: <nil>, 耗时: 7ms
+2025/02/06 10:55:56.982626 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64741, 请求体: &{Stream:0x14001e16500}
+2025/02/06 10:55:56.990113 error_md.go:34: [Error] <nil>
+2025/02/06 10:55:56.990217 log_md.go:36: [Info] 响应体: <nil>, 耗时: 7ms
+2025/02/06 10:55:57.010788 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:65040, 请求体: &{Stream:0x14001e16d20}
+2025/02/06 10:55:57.012493 error_md.go:34: [Error] <nil>
+2025/02/06 10:55:57.012570 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/06 10:56:07.396935 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:65285, 请求体: &{Stream:0x14001e16f40}
+2025/02/06 10:56:07.401959 error_md.go:34: [Error] <nil>
+2025/02/06 10:56:07.402102 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/06 10:56:08.575533 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64003, 请求体: &{Stream:0x140005e2140}
+2025/02/06 10:56:08.578497 error_md.go:34: [Error] <nil>
+2025/02/06 10:56:08.578553 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 10:57:26.102702 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64005, 请求体: &{Stream:0x14001e16500}
+2025/02/06 10:57:26.123229 error_md.go:34: [Error] <nil>
+2025/02/06 10:57:26.123282 log_md.go:36: [Info] 响应体: <nil>, 耗时: 20ms
+2025/02/06 10:57:38.980817 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64214, 请求体: &{Stream:0x140001421a0}
+2025/02/06 10:57:39.009014 error_md.go:34: [Error] <nil>
+2025/02/06 10:57:39.009114 log_md.go:36: [Info] 响应体: <nil>, 耗时: 28ms
+2025/02/06 10:57:39.051352 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:64600, 请求体: &{Stream:0x140005e2ae0}
+2025/02/06 10:57:39.053675 error_md.go:34: [Error] <nil>
+2025/02/06 10:57:39.054191 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 10:57:42.467635 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:64702, 请求体: &{Stream:0x140005e2d20}
+2025/02/06 10:57:42.472358 error_md.go:34: [Error] <nil>
+2025/02/06 10:57:42.472468 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/06 10:57:43.616405 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64704, 请求体: &{Stream:0x140005e2ec0}
+2025/02/06 10:57:43.619030 error_md.go:34: [Error] <nil>
+2025/02/06 10:57:43.619087 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 11:01:05.976972 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64705, 请求体: &{Stream:0x14001e164a0}
+2025/02/06 11:01:06.070993 error_md.go:34: [Error] <nil>
+2025/02/06 11:01:06.071351 log_md.go:36: [Info] 响应体: <nil>, 耗时: 94ms
+2025/02/06 11:02:59.251086 log_md.go:25: [Info] 请求路径: GoodsService.PublishGoods, 请求地址: 127.0.0.1:64730, 请求体: &{Stream:0x14001e16500}
+2025/02/06 11:02:59.271514 error_md.go:22: [Error] biz error: empty slice found
+2025/02/06 11:02:59.271574 error_md.go:27: [Error] biz error: code=10002, msg=biz error: empty slice found
+2025/02/06 11:02:59.271594 log_md.go:36: [Info] 响应体: <nil>, 耗时: 20ms
+2025/02/06 11:04:11.021952 log_md.go:25: [Info] 请求路径: GoodsService.PublishGoods, 请求地址: 127.0.0.1:64732, 请求体: &{Stream:0x140005e20e0}
+2025/02/06 11:08:04.245629 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/06 11:08:04.295839 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/06 11:08:04.444600 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9093
+2025/02/06 11:08:05.454680 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f37747 for etcd registry
+2025/02/06 11:08:17.203515 log_md.go:25: [Info] 请求路径: GoodsService.PublishGoods, 请求地址: 127.0.0.1:54335, 请求体: &{Stream:0x140000c4460}
+2025/02/06 11:09:01.403025 log_md.go:25: [Info] 请求路径: GoodsService.PublishGoods, 请求地址: 127.0.0.1:54436, 请求体: &{Stream:0x140005b0020}
+2025/02/06 11:09:16.987892 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:54453, 请求体: &{Stream:0x140000c5ec0}
+2025/02/06 11:09:16.994191 error_md.go:34: [Error] <nil>
+2025/02/06 11:09:16.994294 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/06 11:09:18.348317 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:54335, 请求体: &{Stream:0x14000696a00}
+2025/02/06 11:09:18.357724 error_md.go:34: [Error] <nil>
+2025/02/06 11:09:18.357774 log_md.go:36: [Info] 响应体: <nil>, 耗时: 9ms
+2025/02/06 11:10:32.347968 goods.go:260: [Error] add spu to es errorerror indexing document: 503 Service Unavailable
+2025/02/06 11:10:32.348428 error_md.go:34: [Error] <nil>
+2025/02/06 11:10:32.348460 log_md.go:36: [Info] 响应体: <nil>, 耗时: 135146ms
+2025/02/06 11:10:33.059008 log_md.go:25: [Info] 请求路径: GoodsService.PublishGoods, 请求地址: 127.0.0.1:54436, 请求体: &{Stream:0x14000696020}
+2025/02/06 11:11:01.658755 goods.go:260: [Error] add spu to es errorerror indexing document: 503 Service Unavailable
+2025/02/06 11:11:01.660104 error_md.go:34: [Error] <nil>
+2025/02/06 11:11:01.660141 log_md.go:36: [Info] 响应体: <nil>, 耗时: 120258ms
+2025/02/06 11:11:09.366928 log_md.go:25: [Info] 请求路径: GoodsService.PublishGoods, 请求地址: 127.0.0.1:54453, 请求体: &{Stream:0x14000696740}
+2025/02/06 11:11:40.596341 etcd_registry.go:225: [Warn] keep register get kitex/registry-etcd/goods/127.0.0.1:9093 failed with err: context deadline exceeded
+2025/02/06 11:12:05.711629 log_md.go:25: [Info] 请求路径: GoodsService.PublishGoods, 请求地址: 127.0.0.1:54708, 请求体: &{Stream:0x14001d8c420}
+2025/02/06 11:12:48.602477 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/06 11:12:48.639328 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/06 11:12:48.757258 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9093
+2025/02/06 11:12:49.766854 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f37798 for etcd registry
+2025/02/06 11:13:19.866039 log_md.go:25: [Info] 请求路径: GoodsService.PublishGoods, 请求地址: 127.0.0.1:54827, 请求体: &{Stream:0x14001c08b00}
+2025/02/06 11:13:58.598748 goods.go:260: [Error] add spu to es errorcontext canceled
+2025/02/06 11:13:58.598679 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/06 11:13:58.599428 error_md.go:22: [Error] biz error: rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/06 11:13:58.599495 error_md.go:27: [Error] biz error: code=10002, msg=biz error: rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/06 11:13:58.599523 log_md.go:36: [Info] 响应体: <nil>, 耗时: 38734ms
+2025/02/06 11:14:37.637573 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/06 11:14:37.649163 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/06 11:14:37.765389 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9093
+2025/02/06 11:14:38.776258 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f377b6 for etcd registry
+2025/02/06 11:16:06.104758 log_md.go:25: [Info] 请求路径: GoodsService.PublishGoods, 请求地址: 127.0.0.1:55208, 请求体: &{Stream:0x140001b5160}
+2025/02/06 11:17:14.566396 log_md.go:25: [Info] 请求路径: GoodsService.PublishGoods, 请求地址: 127.0.0.1:55343, 请求体: &{Stream:0x140001b4f80}
+2025/02/06 11:18:06.449650 goods.go:260: [Error] add spu to es errorerror indexing document: 503 Service Unavailable
+2025/02/06 11:18:06.547712 error_md.go:34: [Error] <nil>
+2025/02/06 11:18:06.547786 log_md.go:36: [Info] 响应体: <nil>, 耗时: 120444ms
+2025/02/06 11:18:58.741503 log_md.go:25: [Info] 请求路径: GoodsService.PublishGoods, 请求地址: 127.0.0.1:55586, 请求体: &{Stream:0x140001b41e0}
+2025/02/06 11:19:02.992143 log_md.go:25: [Info] 请求路径: GoodsService.PublishGoods, 请求地址: 127.0.0.1:55589, 请求体: &{Stream:0x140001b53a0}
+2025/02/06 11:19:03.802773 log_md.go:25: [Info] 请求路径: GoodsService.PublishGoods, 请求地址: 127.0.0.1:55592, 请求体: &{Stream:0x14000622280}
+2025/02/06 11:19:04.164663 log_md.go:25: [Info] 请求路径: GoodsService.PublishGoods, 请求地址: 127.0.0.1:55595, 请求体: &{Stream:0x140001b5900}
+2025/02/06 11:19:08.991473 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:55601, 请求体: &{Stream:0x140006f46a0}
+2025/02/06 11:19:09.008469 error_md.go:34: [Error] <nil>
+2025/02/06 11:19:09.008551 log_md.go:36: [Info] 响应体: <nil>, 耗时: 17ms
+2025/02/06 11:19:10.292930 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:55603, 请求体: &{Stream:0x14001c08920}
+2025/02/06 11:19:10.305635 error_md.go:34: [Error] <nil>
+2025/02/06 11:19:10.305689 log_md.go:36: [Info] 响应体: <nil>, 耗时: 12ms
+2025/02/06 11:22:13.054558 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/06 11:22:13.175354 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/06 11:22:13.468682 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9093
+2025/02/06 11:22:14.492233 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f37815 for etcd registry
+2025/02/06 11:23:01.713329 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:56206, 请求体: &{Stream:0x14001e08280}
+2025/02/06 11:23:01.748748 error_md.go:34: [Error] <nil>
+2025/02/06 11:23:01.748898 log_md.go:36: [Info] 响应体: <nil>, 耗时: 35ms
+2025/02/06 11:23:01.769484 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:56207, 请求体: &{Stream:0x14001b36bc0}
+2025/02/06 11:23:01.780343 error_md.go:34: [Error] <nil>
+2025/02/06 11:23:01.780388 log_md.go:36: [Info] 响应体: <nil>, 耗时: 10ms
+2025/02/06 11:23:07.553112 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:56216, 请求体: &{Stream:0x14000298a60}
+2025/02/06 11:23:07.561115 error_md.go:34: [Error] <nil>
+2025/02/06 11:23:07.561212 log_md.go:36: [Info] 响应体: <nil>, 耗时: 8ms
+2025/02/06 11:23:09.316522 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:56219, 请求体: &{Stream:0x14001a06980}
+2025/02/06 11:23:09.319381 error_md.go:34: [Error] <nil>
+2025/02/06 11:23:09.319424 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 11:24:16.665194 log_md.go:25: [Info] 请求路径: GoodsService.PublishGoods, 请求地址: 127.0.0.1:56334, 请求体: &{Stream:0x14001b362e0}
+2025/02/06 11:25:44.124509 log_md.go:25: [Info] 请求路径: GoodsService.PublishGoods, 请求地址: 127.0.0.1:56483, 请求体: &{Stream:0x14001b37500}
+2025/02/06 11:26:01.529952 etcd_registry.go:225: [Warn] keep register get kitex/registry-etcd/goods/127.0.0.1:9093 failed with err: context deadline exceeded
+2025/02/06 11:26:55.788347 etcd_registry.go:225: [Warn] keep register get kitex/registry-etcd/goods/127.0.0.1:9093 failed with err: context deadline exceeded
+2025/02/06 11:26:55.788085 goods.go:260: [Error] add spu to es errorerror indexing document: 503 Service Unavailable
+2025/02/06 11:26:55.796257 error_md.go:34: [Error] <nil>
+2025/02/06 11:26:55.796322 log_md.go:36: [Info] 响应体: <nil>, 耗时: 159132ms
+2025/02/06 11:28:35.663553 goods.go:260: [Error] add spu to es errorerror indexing document: 503 Service Unavailable
+2025/02/06 11:28:35.664471 error_md.go:34: [Error] <nil>
+2025/02/06 11:28:35.664640 log_md.go:36: [Info] 响应体: <nil>, 耗时: 171541ms
+2025/02/06 11:33:38.453034 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:57366, 请求体: &{Stream:0x14000298fc0}
+2025/02/06 11:33:38.474888 error_md.go:34: [Error] <nil>
+2025/02/06 11:33:38.475049 log_md.go:36: [Info] 响应体: <nil>, 耗时: 22ms
+2025/02/06 11:33:38.561534 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:57367, 请求体: &{Stream:0x14000299280}
+2025/02/06 11:33:38.564068 error_md.go:34: [Error] <nil>
+2025/02/06 11:33:38.564138 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 11:33:43.895296 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:57374, 请求体: &{Stream:0x14001a07220}
+2025/02/06 11:33:43.901381 error_md.go:34: [Error] <nil>
+2025/02/06 11:33:43.901450 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/06 11:33:44.980174 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:57377, 请求体: &{Stream:0x14001a073e0}
+2025/02/06 11:33:44.983746 error_md.go:34: [Error] <nil>
+2025/02/06 11:33:44.983779 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 11:34:11.721364 log_md.go:25: [Info] 请求路径: GoodsService.PublishGoods, 请求地址: 127.0.0.1:57378, 请求体: &{Stream:0x140002996c0}
+2025/02/06 11:35:18.040536 goods.go:260: [Error] add spu to es errorEOF
+2025/02/06 11:35:21.567621 error_md.go:34: [Error] <nil>
+2025/02/06 11:35:21.567733 log_md.go:36: [Info] 响应体: <nil>, 耗时: 69847ms
+2025/02/06 11:35:21.569520 etcd_registry.go:225: [Warn] keep register get kitex/registry-etcd/goods/127.0.0.1:9093 failed with err: context deadline exceeded
+2025/02/06 11:36:00.318760 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/06 11:36:00.341803 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/06 11:36:00.457446 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9093
+2025/02/06 11:36:01.469853 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f378e2 for etcd registry
+2025/02/06 11:36:15.009357 log_md.go:25: [Info] 请求路径: GoodsService.PublishGoods, 请求地址: 127.0.0.1:57741, 请求体: &{Stream:0x140003e6020}
+2025/02/06 11:36:19.411692 error_md.go:34: [Error] <nil>
+2025/02/06 11:36:19.412922 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4403ms
+2025/02/06 11:41:23.971231 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:57741, 请求体: &{Stream:0x14001c16160}
+2025/02/06 11:41:23.985083 error_md.go:34: [Error] <nil>
+2025/02/06 11:41:23.985136 log_md.go:36: [Info] 响应体: <nil>, 耗时: 13ms
+2025/02/06 11:42:08.971375 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58289, 请求体: &{Stream:0x14001a42040}
+2025/02/06 11:42:08.971375 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:58289, 请求体: &{Stream:0x140001b6f00}
+2025/02/06 11:42:08.978345 error_md.go:34: [Error] <nil>
+2025/02/06 11:42:08.978381 log_md.go:36: [Info] 响应体: <nil>, 耗时: 7ms
+2025/02/06 11:42:08.983006 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:58291, 请求体: &{Stream:0x14001a42960}
+2025/02/06 11:42:08.986426 error_md.go:34: [Error] <nil>
+2025/02/06 11:42:08.986467 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 11:42:09.004242 error_md.go:34: [Error] <nil>
+2025/02/06 11:42:09.004283 log_md.go:36: [Info] 响应体: <nil>, 耗时: 32ms
+2025/02/06 11:42:10.936317 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:58292, 请求体: &{Stream:0x140001b6fc0}
+2025/02/06 11:42:10.942948 error_md.go:34: [Error] <nil>
+2025/02/06 11:42:10.943073 log_md.go:36: [Info] 响应体: <nil>, 耗时: 7ms
+2025/02/06 11:42:12.678626 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:58295, 请求体: &{Stream:0x14001e10a20}
+2025/02/06 11:42:12.683325 error_md.go:34: [Error] <nil>
+2025/02/06 11:42:12.683471 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/06 11:42:13.450902 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:58297, 请求体: &{Stream:0x14001c16a40}
+2025/02/06 11:42:13.471800 error_md.go:34: [Error] <nil>
+2025/02/06 11:42:13.471995 log_md.go:36: [Info] 响应体: <nil>, 耗时: 21ms
+2025/02/06 11:42:14.325760 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:58300, 请求体: &{Stream:0x14001e10c60}
+2025/02/06 11:42:14.344491 error_md.go:34: [Error] <nil>
+2025/02/06 11:42:14.344619 log_md.go:36: [Info] 响应体: <nil>, 耗时: 19ms
+2025/02/06 11:42:17.994267 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:58305, 请求体: &{Stream:0x140001b72a0}
+2025/02/06 11:42:17.997011 error_md.go:34: [Error] <nil>
+2025/02/06 11:42:17.997162 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 11:42:18.727691 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:58306, 请求体: &{Stream:0x14001c17100}
+2025/02/06 11:42:18.729152 error_md.go:34: [Error] <nil>
+2025/02/06 11:42:18.729200 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/06 11:42:19.308685 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:58307, 请求体: &{Stream:0x14001c17400}
+2025/02/06 11:42:19.310465 error_md.go:34: [Error] <nil>
+2025/02/06 11:42:19.310551 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/06 11:42:19.321516 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:58308, 请求体: &{Stream:0x14001a43320}
+2025/02/06 11:42:19.327983 error_md.go:34: [Error] <nil>
+2025/02/06 11:42:19.328066 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/06 11:42:20.257279 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:57741, 请求体: &{Stream:0x140001b7620}
+2025/02/06 11:42:20.268826 error_md.go:34: [Error] <nil>
+2025/02/06 11:42:20.268913 log_md.go:36: [Info] 响应体: <nil>, 耗时: 11ms
+2025/02/06 11:42:33.360788 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:58289, 请求体: &{Stream:0x14001c17680}
+2025/02/06 11:42:33.367458 error_md.go:34: [Error] <nil>
+2025/02/06 11:42:33.367646 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/06 11:42:34.656212 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:58291, 请求体: &{Stream:0x14001e110a0}
+2025/02/06 11:42:34.658757 error_md.go:34: [Error] <nil>
+2025/02/06 11:42:34.658858 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 11:42:35.326485 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:58292, 请求体: &{Stream:0x140003e7160}
+2025/02/06 11:42:35.341018 error_md.go:34: [Error] <nil>
+2025/02/06 11:42:35.341226 log_md.go:36: [Info] 响应体: <nil>, 耗时: 14ms
+2025/02/06 11:42:35.891221 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:58295, 请求体: &{Stream:0x140003e7280}
+2025/02/06 11:42:35.902058 error_md.go:34: [Error] <nil>
+2025/02/06 11:42:35.902153 log_md.go:36: [Info] 响应体: <nil>, 耗时: 10ms
+2025/02/06 11:42:36.038023 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:58297, 请求体: &{Stream:0x14001c17860}
+2025/02/06 11:42:36.049366 error_md.go:34: [Error] <nil>
+2025/02/06 11:42:36.049455 log_md.go:36: [Info] 响应体: <nil>, 耗时: 11ms
+2025/02/06 11:42:47.377150 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:58300, 请求体: &{Stream:0x140003e73e0}
+2025/02/06 11:42:47.380232 error_md.go:34: [Error] <nil>
+2025/02/06 11:42:47.380389 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 11:42:47.817054 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:58305, 请求体: &{Stream:0x14001e11420}
+2025/02/06 11:42:47.819624 error_md.go:34: [Error] <nil>
+2025/02/06 11:42:47.819753 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 11:42:48.727357 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:58306, 请求体: &{Stream:0x14001a43660}
+2025/02/06 11:42:48.729960 error_md.go:34: [Error] <nil>
+2025/02/06 11:42:48.730084 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 11:42:49.325931 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:58307, 请求体: &{Stream:0x14001c17980}
+2025/02/06 11:42:49.335319 error_md.go:34: [Error] <nil>
+2025/02/06 11:42:49.335410 log_md.go:36: [Info] 响应体: <nil>, 耗时: 9ms
+2025/02/06 11:43:26.521162 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/06 11:43:26.532249 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/06 11:43:26.602978 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9093
+2025/02/06 11:43:27.613150 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f3794c for etcd registry
+2025/02/06 11:43:27.886567 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58409, 请求体: &{Stream:0x14001bd4340}
+2025/02/06 11:43:27.889823 error_md.go:34: [Error] <nil>
+2025/02/06 11:43:27.889854 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 11:44:18.465991 log_md.go:25: [Info] 请求路径: GoodsService.PublishGoods, 请求地址: 127.0.0.1:58437, 请求体: &{Stream:0x14001bd5460}
+2025/02/06 11:46:47.655522 etcd_registry.go:232: [Info] keep register service kitex/registry-etcd/goods/127.0.0.1:9093
+2025/02/06 11:46:47.676290 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f3797e for etcd registry
+2025/02/06 11:46:47.753110 error_md.go:34: [Error] <nil>
+2025/02/06 11:46:47.753146 log_md.go:36: [Info] 响应体: <nil>, 耗时: 149286ms
+2025/02/06 11:47:07.615138 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58409, 请求体: &{Stream:0x14001c90320}
+2025/02/06 11:47:07.618437 error_md.go:34: [Error] <nil>
+2025/02/06 11:47:07.618474 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 11:47:16.007945 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:58437, 请求体: &{Stream:0x140003c2140}
+2025/02/06 11:47:16.017074 error_md.go:34: [Error] <nil>
+2025/02/06 11:47:16.017185 log_md.go:36: [Info] 响应体: <nil>, 耗时: 9ms
+2025/02/06 11:47:17.634855 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58839, 请求体: &{Stream:0x14001bd43a0}
+2025/02/06 11:47:17.647012 error_md.go:34: [Error] <nil>
+2025/02/06 11:47:17.647073 log_md.go:36: [Info] 响应体: <nil>, 耗时: 12ms
+2025/02/06 11:48:51.681147 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58980, 请求体: &{Stream:0x14001bd4600}
+2025/02/06 11:48:51.699548 error_md.go:34: [Error] <nil>
+2025/02/06 11:48:51.699774 log_md.go:36: [Info] 响应体: <nil>, 耗时: 18ms
+2025/02/06 11:49:42.928210 log_md.go:25: [Info] 请求路径: GoodsService.PublishGoods, 请求地址: 127.0.0.1:59035, 请求体: &{Stream:0x140001b4aa0}
+2025/02/06 11:49:42.962590 error_md.go:34: [Error] <nil>
+2025/02/06 11:49:42.962682 log_md.go:36: [Info] 响应体: <nil>, 耗时: 34ms
+2025/02/06 11:49:47.807106 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:59038, 请求体: &{Stream:0x14001bd4a60}
+2025/02/06 11:49:47.809488 error_md.go:34: [Error] <nil>
+2025/02/06 11:49:47.809568 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 11:49:53.839749 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:59043, 请求体: &{Stream:0x14001c90120}
+2025/02/06 11:49:53.841340 error_md.go:34: [Error] <nil>
+2025/02/06 11:49:53.841373 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/06 11:52:43.004056 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:59473, 请求体: &{Stream:0x14001d402e0}
+2025/02/06 11:52:43.007478 error_md.go:34: [Error] <nil>
+2025/02/06 11:52:43.007507 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 11:52:44.659012 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:59479, 请求体: &{Stream:0x14001bd49c0}
+2025/02/06 11:52:44.671124 error_md.go:34: [Error] <nil>
+2025/02/06 11:52:44.671241 log_md.go:36: [Info] 响应体: <nil>, 耗时: 12ms
+2025/02/06 11:52:44.680145 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:59480, 请求体: &{Stream:0x140001b5620}
+2025/02/06 11:52:44.682784 error_md.go:34: [Error] <nil>
+2025/02/06 11:52:44.682897 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 11:52:46.980733 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:59481, 请求体: &{Stream:0x14001d40480}
+2025/02/06 11:52:46.984388 error_md.go:34: [Error] <nil>
+2025/02/06 11:52:46.984502 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 11:53:41.362232 log_md.go:25: [Info] 请求路径: GoodsService.PublishGoods, 请求地址: 127.0.0.1:59529, 请求体: &{Stream:0x140001b4da0}
+2025/02/06 11:53:41.416416 error_md.go:34: [Error] <nil>
+2025/02/06 11:53:41.416498 log_md.go:36: [Info] 响应体: <nil>, 耗时: 54ms
+2025/02/06 11:53:44.647766 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:58409, 请求体: &{Stream:0x140003c2560}
+2025/02/06 11:53:44.650465 error_md.go:34: [Error] <nil>
+2025/02/06 11:53:44.650505 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 11:54:15.553844 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58437, 请求体: &{Stream:0x14001bd46a0}
+2025/02/06 11:54:15.557946 error_md.go:34: [Error] <nil>
+2025/02/06 11:54:15.558062 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/06 11:57:11.955805 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58839, 请求体: &{Stream:0x14001d401e0}
+2025/02/06 11:57:11.976651 error_md.go:34: [Error] <nil>
+2025/02/06 11:57:11.976843 log_md.go:36: [Info] 响应体: <nil>, 耗时: 24ms
+2025/02/06 11:57:16.876252 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58980, 请求体: &{Stream:0x14001c90de0}
+2025/02/06 11:57:16.883156 error_md.go:34: [Error] <nil>
+2025/02/06 11:57:16.883275 log_md.go:36: [Info] 响应体: <nil>, 耗时: 7ms
+2025/02/06 11:57:20.500900 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:59035, 请求体: &{Stream:0x140001b4fa0}
+2025/02/06 11:57:20.516506 error_md.go:34: [Error] <nil>
+2025/02/06 11:57:20.518570 log_md.go:36: [Info] 响应体: <nil>, 耗时: 17ms
+2025/02/06 11:57:33.171548 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:59038, 请求体: &{Stream:0x140003c2380}
+2025/02/06 11:57:33.175752 error_md.go:34: [Error] <nil>
+2025/02/06 11:57:33.175785 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/06 11:57:47.954798 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:59043, 请求体: &{Stream:0x14001bd4780}
+2025/02/06 11:57:47.959310 error_md.go:34: [Error] <nil>
+2025/02/06 11:57:47.962158 log_md.go:36: [Info] 响应体: <nil>, 耗时: 7ms
+2025/02/06 11:57:58.931505 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:59473, 请求体: &{Stream:0x140001b5060}
+2025/02/06 11:57:58.937468 error_md.go:34: [Error] <nil>
+2025/02/06 11:57:58.937500 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/06 11:57:58.959080 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:59479, 请求体: &{Stream:0x140001b5be0}
+2025/02/06 11:57:58.964100 error_md.go:34: [Error] <nil>
+2025/02/06 11:57:58.964136 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/06 11:58:03.760200 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:59480, 请求体: &{Stream:0x14001bd4b80}
+2025/02/06 11:58:03.762900 error_md.go:34: [Error] <nil>
+2025/02/06 11:58:03.762940 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 11:58:05.257483 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:59481, 请求体: &{Stream:0x14000614180}
+2025/02/06 11:58:05.259371 error_md.go:34: [Error] <nil>
+2025/02/06 11:58:05.259400 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/06 11:58:10.829889 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:59529, 请求体: &{Stream:0x14000614a20}
+2025/02/06 11:58:10.832181 error_md.go:34: [Error] <nil>
+2025/02/06 11:58:10.832230 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 11:58:10.841926 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:58409, 请求体: &{Stream:0x140006159a0}
+2025/02/06 11:58:10.843337 error_md.go:34: [Error] <nil>
+2025/02/06 11:58:10.843364 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/06 11:58:13.485736 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:58437, 请求体: &{Stream:0x14000615e40}
+2025/02/06 11:58:13.488550 error_md.go:34: [Error] <nil>
+2025/02/06 11:58:13.488589 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 11:58:15.218976 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58839, 请求体: &{Stream:0x14001bd4e00}
+2025/02/06 11:58:15.221060 error_md.go:34: [Error] <nil>
+2025/02/06 11:58:15.221094 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 11:59:21.295514 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58980, 请求体: &{Stream:0x14001c900e0}
+2025/02/06 11:59:21.295530 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:59035, 请求体: &{Stream:0x14001bd4520}
+2025/02/06 11:59:21.310777 error_md.go:34: [Error] <nil>
+2025/02/06 11:59:21.311726 log_md.go:36: [Info] 响应体: <nil>, 耗时: 16ms
+2025/02/06 11:59:21.311998 error_md.go:34: [Error] <nil>
+2025/02/06 11:59:21.312024 log_md.go:36: [Info] 响应体: <nil>, 耗时: 16ms
+2025/02/06 11:59:27.590745 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:59043, 请求体: &{Stream:0x14001bd5860}
+2025/02/06 11:59:27.590892 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:59038, 请求体: &{Stream:0x14001c90600}
+2025/02/06 11:59:27.600114 error_md.go:34: [Error] <nil>
+2025/02/06 11:59:27.600157 log_md.go:36: [Info] 响应体: <nil>, 耗时: 9ms
+2025/02/06 11:59:27.607938 error_md.go:34: [Error] <nil>
+2025/02/06 11:59:27.607994 log_md.go:36: [Info] 响应体: <nil>, 耗时: 17ms
+2025/02/06 11:59:52.193000 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:59473, 请求体: &{Stream:0x14001c90860}
+2025/02/06 11:59:52.193015 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:59479, 请求体: &{Stream:0x14001d404a0}
+2025/02/06 11:59:52.195852 error_md.go:34: [Error] <nil>
+2025/02/06 11:59:52.195893 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 11:59:52.199856 error_md.go:34: [Error] <nil>
+2025/02/06 11:59:52.199890 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/06 11:59:59.399054 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:59480, 请求体: &{Stream:0x140006b0b40}
+2025/02/06 11:59:59.407135 error_md.go:34: [Error] <nil>
+2025/02/06 11:59:59.407205 log_md.go:36: [Info] 响应体: <nil>, 耗时: 8ms
+2025/02/06 11:59:59.431727 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:59481, 请求体: &{Stream:0x140001b4e00}
+2025/02/06 11:59:59.436373 error_md.go:34: [Error] <nil>
+2025/02/06 11:59:59.436430 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/06 12:00:02.361308 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:59529, 请求体: &{Stream:0x140001b50c0}
+2025/02/06 12:00:02.368590 error_md.go:34: [Error] <nil>
+2025/02/06 12:00:02.368642 log_md.go:36: [Info] 响应体: <nil>, 耗时: 7ms
+2025/02/06 12:00:03.833288 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:58409, 请求体: &{Stream:0x14001c911e0}
+2025/02/06 12:00:03.833278 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58437, 请求体: &{Stream:0x140003c2fc0}
+2025/02/06 12:00:03.835843 error_md.go:34: [Error] <nil>
+2025/02/06 12:00:03.835894 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 12:00:03.836491 error_md.go:34: [Error] <nil>
+2025/02/06 12:00:03.836506 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 12:00:17.197795 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58839, 请求体: &{Stream:0x140001b5280}
+2025/02/06 12:00:17.202513 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:58980, 请求体: &{Stream:0x14001d40560}
+2025/02/06 12:00:17.205852 error_md.go:34: [Error] <nil>
+2025/02/06 12:00:17.205873 log_md.go:36: [Info] 响应体: <nil>, 耗时: 8ms
+2025/02/06 12:00:17.206691 error_md.go:34: [Error] <nil>
+2025/02/06 12:00:17.206715 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/06 12:01:32.877769 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:59035, 请求体: &{Stream:0x140006b0020}
+2025/02/06 12:01:32.877769 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:59038, 请求体: &{Stream:0x140001b4d20}
+2025/02/06 12:01:32.895296 error_md.go:34: [Error] <nil>
+2025/02/06 12:01:32.895369 log_md.go:36: [Info] 响应体: <nil>, 耗时: 17ms
+2025/02/06 12:01:32.896048 error_md.go:34: [Error] <nil>
+2025/02/06 12:01:32.896078 log_md.go:36: [Info] 响应体: <nil>, 耗时: 18ms
+2025/02/06 12:02:04.386570 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:59473, 请求体: &{Stream:0x140006b01a0}
+2025/02/06 12:02:04.386570 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:59043, 请求体: &{Stream:0x140001b5a60}
+2025/02/06 12:02:04.389670 error_md.go:34: [Error] <nil>
+2025/02/06 12:02:04.389716 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 12:02:04.389775 error_md.go:34: [Error] <nil>
+2025/02/06 12:02:04.389808 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 12:03:17.697417 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:59480, 请求体: &{Stream:0x14001bd4600}
+2025/02/06 12:03:17.697596 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:59479, 请求体: &{Stream:0x14001c900a0}
+2025/02/06 12:03:17.707130 error_md.go:34: [Error] <nil>
+2025/02/06 12:03:17.707187 log_md.go:36: [Info] 响应体: <nil>, 耗时: 9ms
+2025/02/06 12:03:17.708068 error_md.go:34: [Error] <nil>
+2025/02/06 12:03:17.708094 log_md.go:36: [Info] 响应体: <nil>, 耗时: 10ms
+2025/02/06 12:03:27.663043 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:59481, 请求体: &{Stream:0x14001c900e0}
+2025/02/06 12:03:27.663254 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:59529, 请求体: &{Stream:0x140003c2560}
+2025/02/06 12:03:27.667606 error_md.go:34: [Error] <nil>
+2025/02/06 12:03:27.667644 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/06 12:03:27.668062 error_md.go:34: [Error] <nil>
+2025/02/06 12:03:27.668097 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/06 12:03:37.811537 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58409, 请求体: &{Stream:0x140003c2740}
+2025/02/06 12:03:37.811702 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:58437, 请求体: &{Stream:0x14001d40260}
+2025/02/06 12:03:37.814678 error_md.go:34: [Error] <nil>
+2025/02/06 12:03:37.814785 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 12:03:37.814835 error_md.go:34: [Error] <nil>
+2025/02/06 12:03:37.814928 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 12:05:54.757898 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58839, 请求体: &{Stream:0x140001b4d20}
+2025/02/06 12:05:54.757897 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:58980, 请求体: &{Stream:0x140003c21a0}
+2025/02/06 12:05:54.761440 error_md.go:34: [Error] <nil>
+2025/02/06 12:05:54.761471 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 12:05:54.761869 error_md.go:34: [Error] <nil>
+2025/02/06 12:05:54.761892 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/06 12:06:17.952003 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:59035, 请求体: &{Stream:0x140001b5a00}
+2025/02/06 12:06:17.957165 error_md.go:34: [Error] <nil>
+2025/02/06 12:06:17.957200 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/06 12:06:17.980788 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:59038, 请求体: &{Stream:0x14000614500}
+2025/02/06 12:06:17.984021 error_md.go:34: [Error] <nil>
+2025/02/06 12:06:17.984060 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 12:06:21.945363 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:59043, 请求体: &{Stream:0x14001c90340}
+2025/02/06 12:06:21.949979 error_md.go:34: [Error] <nil>
+2025/02/06 12:06:21.950069 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/06 12:06:22.977607 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:59479, 请求体: &{Stream:0x140003c2500}
+2025/02/06 12:06:22.977609 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:59473, 请求体: &{Stream:0x140006b04a0}
+2025/02/06 12:06:22.981352 error_md.go:34: [Error] <nil>
+2025/02/06 12:06:22.981464 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 12:06:22.983115 error_md.go:34: [Error] <nil>
+2025/02/06 12:06:22.983210 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/06 12:06:55.998747 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:59481, 请求体: &{Stream:0x14001c903c0}
+2025/02/06 12:06:55.998746 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:59480, 请求体: &{Stream:0x140006b0100}
+2025/02/06 12:06:56.003973 error_md.go:34: [Error] <nil>
+2025/02/06 12:06:56.004086 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/06 12:06:56.005509 error_md.go:34: [Error] <nil>
+2025/02/06 12:06:56.005584 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/06 12:09:23.169253 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:59529, 请求体: &{Stream:0x14001c90400}
+2025/02/06 12:09:23.177136 error_md.go:34: [Error] <nil>
+2025/02/06 12:09:23.177173 log_md.go:36: [Info] 响应体: <nil>, 耗时: 8ms
+2025/02/06 12:10:35.098233 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58409, 请求体: &{Stream:0x14001c909a0}
+2025/02/06 12:10:35.164635 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:58437, 请求体: &{Stream:0x140003c2180}
+2025/02/06 12:10:35.195406 error_md.go:34: [Error] <nil>
+2025/02/06 12:10:35.195491 log_md.go:36: [Info] 响应体: <nil>, 耗时: 97ms
+2025/02/06 12:10:35.194593 error_md.go:34: [Error] <nil>
+2025/02/06 12:10:35.248394 log_md.go:36: [Info] 响应体: <nil>, 耗时: 148ms
+2025/02/06 12:10:58.707602 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:58839, 请求体: &{Stream:0x14001bd4520}
+2025/02/06 12:10:58.713309 error_md.go:34: [Error] <nil>
+2025/02/06 12:10:58.713409 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/06 12:12:23.800145 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58980, 请求体: &{Stream:0x14000614020}
+2025/02/06 12:12:23.800835 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:59035, 请求体: &{Stream:0x140003c2200}
+2025/02/06 12:12:23.809553 error_md.go:34: [Error] <nil>
+2025/02/06 12:12:23.809619 log_md.go:36: [Info] 响应体: <nil>, 耗时: 8ms
+2025/02/06 12:12:23.815116 error_md.go:34: [Error] <nil>
+2025/02/06 12:12:23.815212 log_md.go:36: [Info] 响应体: <nil>, 耗时: 15ms
+2025/02/06 12:12:30.070109 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:59038, 请求体: &{Stream:0x14000614920}
+2025/02/06 12:12:30.074787 error_md.go:34: [Error] <nil>
+2025/02/06 12:12:30.074845 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/06 12:12:36.676551 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:59043, 请求体: &{Stream:0x14001d40280}
+2025/02/06 12:12:36.677399 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:59473, 请求体: &{Stream:0x14001d402e0}
+2025/02/06 12:12:36.703477 error_md.go:34: [Error] <nil>
+2025/02/06 12:12:36.703823 log_md.go:36: [Info] 响应体: <nil>, 耗时: 27ms
+2025/02/06 12:12:36.706351 error_md.go:34: [Error] <nil>
+2025/02/06 12:12:36.706823 log_md.go:36: [Info] 响应体: <nil>, 耗时: 29ms
+2025/02/06 12:12:38.066972 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:59479, 请求体: &{Stream:0x140003c2300}
+2025/02/06 12:12:38.070840 error_md.go:34: [Error] <nil>
+2025/02/06 12:12:38.070906 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/06 12:12:38.327334 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:59480, 请求体: &{Stream:0x14001d404c0}
+2025/02/06 12:12:38.334607 error_md.go:34: [Error] <nil>
+2025/02/06 12:12:38.334673 log_md.go:36: [Info] 响应体: <nil>, 耗时: 7ms
+2025/02/06 12:12:46.238031 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:59481, 请求体: &{Stream:0x14001c904a0}
+2025/02/06 12:12:46.245841 error_md.go:34: [Error] <nil>
+2025/02/06 12:12:46.245891 log_md.go:36: [Info] 响应体: <nil>, 耗时: 8ms
+2025/02/06 12:12:46.356435 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:59529, 请求体: &{Stream:0x14001d40680}
+2025/02/06 12:12:46.363382 error_md.go:34: [Error] <nil>
+2025/02/06 12:12:46.363458 log_md.go:36: [Info] 响应体: <nil>, 耗时: 7ms
+2025/02/06 12:12:49.543692 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:58409, 请求体: &{Stream:0x14001d401c0}
+2025/02/06 12:12:49.547444 error_md.go:34: [Error] <nil>
+2025/02/06 12:12:49.547492 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 12:12:53.896257 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:58437, 请求体: &{Stream:0x14001d40480}
+2025/02/06 12:12:53.911255 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:58839, 请求体: &{Stream:0x14001bd4600}
+2025/02/06 12:12:53.920832 error_md.go:34: [Error] <nil>
+2025/02/06 12:12:53.920943 log_md.go:36: [Info] 响应体: <nil>, 耗时: 24ms
+2025/02/06 12:12:53.934922 error_md.go:34: [Error] <nil>
+2025/02/06 12:12:53.939109 log_md.go:36: [Info] 响应体: <nil>, 耗时: 28ms
+2025/02/06 12:12:56.607787 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:58980, 请求体: &{Stream:0x14001c90de0}
+2025/02/06 12:12:56.611951 error_md.go:34: [Error] <nil>
+2025/02/06 12:12:56.612052 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/06 12:13:00.599027 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:59035, 请求体: &{Stream:0x14001d405a0}
+2025/02/06 12:13:00.599411 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:59038, 请求体: &{Stream:0x14001bd4a60}
+2025/02/06 12:13:00.601720 error_md.go:34: [Error] <nil>
+2025/02/06 12:13:00.601927 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 12:13:00.603084 error_md.go:34: [Error] <nil>
+2025/02/06 12:13:00.603160 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/06 12:13:07.057973 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:59043, 请求体: &{Stream:0x140003c21e0}
+2025/02/06 12:13:07.063903 error_md.go:34: [Error] <nil>
+2025/02/06 12:13:07.064019 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/06 12:14:09.248357 log_md.go:25: [Info] 请求路径: GoodsService.PublishGoods, 请求地址: 127.0.0.1:59473, 请求体: &{Stream:0x14001d406c0}
+2025/02/06 12:14:09.327449 error_md.go:34: [Error] <nil>
+2025/02/06 12:14:09.327496 log_md.go:36: [Info] 响应体: <nil>, 耗时: 79ms
+2025/02/06 12:14:12.093011 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:59479, 请求体: &{Stream:0x14001bd5c80}
+2025/02/06 12:14:12.096454 error_md.go:34: [Error] <nil>
+2025/02/06 12:14:12.096521 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 12:14:41.305633 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:59480, 请求体: &{Stream:0x14001bd5e00}
+2025/02/06 12:14:41.306567 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:59481, 请求体: &{Stream:0x140003c27a0}
+2025/02/06 12:14:41.310548 error_md.go:34: [Error] <nil>
+2025/02/06 12:14:41.310588 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/06 12:14:41.311239 error_md.go:34: [Error] <nil>
+2025/02/06 12:14:41.311286 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/06 12:14:44.917295 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:59529, 请求体: &{Stream:0x14001c911c0}
+2025/02/06 12:14:44.924859 error_md.go:34: [Error] <nil>
+2025/02/06 12:14:44.925003 log_md.go:36: [Info] 响应体: <nil>, 耗时: 7ms
+2025/02/06 12:15:45.279684 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:58409, 请求体: &{Stream:0x140003c22c0}
+2025/02/06 12:15:45.284395 error_md.go:34: [Error] <nil>
+2025/02/06 12:15:45.284456 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/06 12:16:00.441236 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:58437, 请求体: &{Stream:0x14001d40400}
+2025/02/06 12:16:00.447310 error_md.go:34: [Error] <nil>
+2025/02/06 12:16:00.447388 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/06 12:20:50.444554 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/06 12:20:50.651773 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/06 12:20:50.823448 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9093
+2025/02/06 12:20:51.858209 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f37b95 for etcd registry
+2025/02/06 12:20:52.411836 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:63156, 请求体: &{Stream:0x1400211c020}
+2025/02/06 12:20:52.428269 error_md.go:34: [Error] <nil>
+2025/02/06 12:20:52.428380 log_md.go:36: [Info] 响应体: <nil>, 耗时: 16ms
+2025/02/06 12:21:50.665179 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:63222, 请求体: &{Stream:0x14001b92120}
+2025/02/06 12:21:50.683110 error_md.go:34: [Error] <nil>
+2025/02/06 12:21:50.683211 log_md.go:36: [Info] 响应体: <nil>, 耗时: 18ms
+2025/02/06 12:21:50.739600 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:63223, 请求体: &{Stream:0x14001e0b4e0}
+2025/02/06 12:21:50.744012 error_md.go:34: [Error] <nil>
+2025/02/06 12:21:50.744166 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/06 12:21:54.097780 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:63225, 请求体: &{Stream:0x14001b56260}
+2025/02/06 12:21:54.098718 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:63227, 请求体: &{Stream:0x1400211c4e0}
+2025/02/06 12:21:54.104450 error_md.go:34: [Error] <nil>
+2025/02/06 12:21:54.104484 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/06 12:21:54.113135 error_md.go:34: [Error] <nil>
+2025/02/06 12:21:54.113171 log_md.go:36: [Info] 响应体: <nil>, 耗时: 14ms
+2025/02/06 12:21:58.743848 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:63232, 请求体: &{Stream:0x1400211cfe0}
+2025/02/06 12:21:58.745822 error_md.go:34: [Error] <nil>
+2025/02/06 12:21:58.745910 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 12:23:05.102893 log_md.go:25: [Info] 请求路径: GoodsService.PublishGoods, 请求地址: 127.0.0.1:63314, 请求体: &{Stream:0x140021b6400}
+2025/02/06 12:23:05.345171 error_md.go:34: [Error] <nil>
+2025/02/06 12:23:05.345249 log_md.go:36: [Info] 响应体: <nil>, 耗时: 242ms
+2025/02/06 12:23:08.126399 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:63318, 请求体: &{Stream:0x14001e0a2c0}
+2025/02/06 12:23:08.133989 error_md.go:34: [Error] <nil>
+2025/02/06 12:23:08.134104 log_md.go:36: [Info] 响应体: <nil>, 耗时: 7ms
+2025/02/06 12:24:44.929853 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:63565, 请求体: &{Stream:0x14001b56be0}
+2025/02/06 12:24:44.949677 error_md.go:34: [Error] <nil>
+2025/02/06 12:24:44.949766 log_md.go:36: [Info] 响应体: <nil>, 耗时: 19ms
+2025/02/06 12:27:32.304570 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:63872, 请求体: &{Stream:0x140021b64a0}
+2025/02/06 12:27:32.317655 error_md.go:34: [Error] <nil>
+2025/02/06 12:27:32.317755 log_md.go:36: [Info] 响应体: <nil>, 耗时: 13ms
+2025/02/06 12:28:42.714530 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:64016, 请求体: &{Stream:0x14001e0a660}
+2025/02/06 12:28:42.733361 error_md.go:34: [Error] <nil>
+2025/02/06 12:28:42.733567 log_md.go:36: [Info] 响应体: <nil>, 耗时: 19ms
+2025/02/06 12:30:32.983681 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:63156, 请求体: &{Stream:0x1400211c020}
+2025/02/06 12:30:32.983671 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64301, 请求体: &{Stream:0x14001b56540}
+2025/02/06 12:30:32.999844 error_md.go:34: [Error] <nil>
+2025/02/06 12:30:32.999910 log_md.go:36: [Info] 响应体: <nil>, 耗时: 16ms
+2025/02/06 12:30:33.006585 error_md.go:34: [Error] <nil>
+2025/02/06 12:30:33.006680 log_md.go:36: [Info] 响应体: <nil>, 耗时: 23ms
+2025/02/06 12:30:33.014631 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:63222, 请求体: &{Stream:0x14001e0a5c0}
+2025/02/06 12:30:33.017208 error_md.go:34: [Error] <nil>
+2025/02/06 12:30:33.017281 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 12:30:36.443437 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:63223, 请求体: &{Stream:0x1400211caa0}
+2025/02/06 12:30:36.445569 error_md.go:34: [Error] <nil>
+2025/02/06 12:30:36.445605 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 12:30:36.730787 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:63225, 请求体: &{Stream:0x1400211cbe0}
+2025/02/06 12:30:36.765446 error_md.go:34: [Error] <nil>
+2025/02/06 12:30:36.765534 log_md.go:36: [Info] 响应体: <nil>, 耗时: 34ms
+2025/02/06 12:30:40.791573 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:63227, 请求体: &{Stream:0x14002098480}
+2025/02/06 12:30:40.794016 error_md.go:34: [Error] <nil>
+2025/02/06 12:30:40.794108 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 12:30:41.027821 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:63232, 请求体: &{Stream:0x14001e0a740}
+2025/02/06 12:30:41.033001 error_md.go:34: [Error] <nil>
+2025/02/06 12:30:41.033037 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/06 12:30:43.734127 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:63314, 请求体: &{Stream:0x14002098720}
+2025/02/06 12:30:43.737163 error_md.go:34: [Error] <nil>
+2025/02/06 12:30:43.737206 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 12:30:44.090688 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:63318, 请求体: &{Stream:0x14002098860}
+2025/02/06 12:30:44.092713 error_md.go:34: [Error] <nil>
+2025/02/06 12:30:44.092752 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 12:30:45.398191 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:63565, 请求体: &{Stream:0x14001b56640}
+2025/02/06 12:30:45.399710 error_md.go:34: [Error] <nil>
+2025/02/06 12:30:45.399744 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/06 12:30:46.092527 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:63872, 请求体: &{Stream:0x14001b567e0}
+2025/02/06 12:30:46.098749 error_md.go:34: [Error] <nil>
+2025/02/06 12:30:46.098792 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/06 12:30:52.224961 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:64016, 请求体: &{Stream:0x14001b920e0}
+2025/02/06 12:30:52.231618 error_md.go:34: [Error] <nil>
+2025/02/06 12:30:52.231652 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/06 12:30:52.244823 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:64301, 请求体: &{Stream:0x14001b92500}
+2025/02/06 12:30:52.246851 error_md.go:34: [Error] <nil>
+2025/02/06 12:30:52.246874 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 12:30:53.723940 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:63156, 请求体: &{Stream:0x14001e0a5c0}
+2025/02/06 12:30:53.736165 error_md.go:34: [Error] <nil>
+2025/02/06 12:30:53.736219 log_md.go:36: [Info] 响应体: <nil>, 耗时: 12ms
+2025/02/06 12:30:58.682105 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:63222, 请求体: &{Stream:0x14001e0a7c0}
+2025/02/06 12:30:58.686864 error_md.go:34: [Error] <nil>
+2025/02/06 12:30:58.686906 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/06 12:31:05.739589 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:63223, 请求体: &{Stream:0x14001b92600}
+2025/02/06 12:31:05.743213 error_md.go:34: [Error] <nil>
+2025/02/06 12:31:05.743261 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 12:31:06.611630 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:63225, 请求体: &{Stream:0x14001b56640}
+2025/02/06 12:31:06.628962 error_md.go:34: [Error] <nil>
+2025/02/06 12:31:06.629017 log_md.go:36: [Info] 响应体: <nil>, 耗时: 17ms
+2025/02/06 12:31:08.991202 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:63227, 请求体: &{Stream:0x14001b92880}
+2025/02/06 12:31:08.992569 error_md.go:34: [Error] <nil>
+2025/02/06 12:31:08.992610 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/06 12:31:10.502500 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:63232, 请求体: &{Stream:0x140021b65a0}
+2025/02/06 12:31:10.505205 error_md.go:34: [Error] <nil>
+2025/02/06 12:31:10.505249 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 12:31:10.512515 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:63314, 请求体: &{Stream:0x14001b929e0}
+2025/02/06 12:31:10.516899 error_md.go:34: [Error] <nil>
+2025/02/06 12:31:10.516936 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/06 12:31:13.011672 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:63318, 请求体: &{Stream:0x14001b92ac0}
+2025/02/06 12:31:13.015590 error_md.go:34: [Error] <nil>
+2025/02/06 12:31:13.015625 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 12:31:15.918353 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:63565, 请求体: &{Stream:0x140021b6aa0}
+2025/02/06 12:31:15.923890 error_md.go:34: [Error] <nil>
+2025/02/06 12:31:15.923935 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/06 12:31:17.850389 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:63872, 请求体: &{Stream:0x1400211c180}
+2025/02/06 12:31:17.856059 error_md.go:34: [Error] <nil>
+2025/02/06 12:31:17.856095 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/06 12:31:32.020993 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:64016, 请求体: &{Stream:0x14001b92cc0}
+2025/02/06 12:31:32.031915 error_md.go:34: [Error] <nil>
+2025/02/06 12:31:32.031967 log_md.go:36: [Info] 响应体: <nil>, 耗时: 11ms
+2025/02/06 12:31:43.472940 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:64301, 请求体: &{Stream:0x140021b6b60}
+2025/02/06 12:31:43.476664 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:63156, 请求体: &{Stream:0x14001e0aa00}
+2025/02/06 12:31:43.480888 error_md.go:34: [Error] <nil>
+2025/02/06 12:31:43.480962 log_md.go:36: [Info] 响应体: <nil>, 耗时: 8ms
+2025/02/06 12:31:43.504444 error_md.go:34: [Error] <nil>
+2025/02/06 12:31:43.504530 log_md.go:36: [Info] 响应体: <nil>, 耗时: 27ms
+2025/02/06 12:31:44.985168 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:63222, 请求体: &{Stream:0x1400211c660}
+2025/02/06 12:31:44.990800 error_md.go:34: [Error] <nil>
+2025/02/06 12:31:44.990847 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/06 12:31:46.129109 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:63223, 请求体: &{Stream:0x14001e0ab20}
+2025/02/06 12:31:46.134089 error_md.go:34: [Error] <nil>
+2025/02/06 12:31:46.134128 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/06 12:31:46.138946 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:63225, 请求体: &{Stream:0x14001b93080}
+2025/02/06 12:31:46.140652 error_md.go:34: [Error] <nil>
+2025/02/06 12:31:46.140676 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/06 12:31:47.268427 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:63227, 请求体: &{Stream:0x1400211c7e0}
+2025/02/06 12:31:47.274595 error_md.go:34: [Error] <nil>
+2025/02/06 12:31:47.274642 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/06 12:31:54.864666 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:63232, 请求体: &{Stream:0x14001e0ac40}
+2025/02/06 12:31:54.866910 error_md.go:34: [Error] <nil>
+2025/02/06 12:31:54.866968 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 12:36:15.444396 load.go:29: [Info] 连接数据库, dsn: root:376772346Lzl@@tcp(localhost:3306)/bt-shop-goods?charset=utf8mb4&parseTime=True&loc=Local
+2025/02/06 12:36:15.636521 load.go:47: [Info] 连接到redis成功, pong: PONG
+2025/02/06 12:36:15.751051 server.go:79: [Info] KITEX: server listen at addr=127.0.0.1:9093
+2025/02/06 12:36:16.760439 etcd_registry.go:299: [Info] start keepalive lease 694d94c6e6f37c5c for etcd registry
+2025/02/06 12:36:18.876327 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:64857, 请求体: &{Stream:0x14001c6a300}
+2025/02/06 12:36:18.887238 error_md.go:34: [Error] <nil>
+2025/02/06 12:36:18.887308 log_md.go:36: [Info] 响应体: <nil>, 耗时: 11ms
+2025/02/06 12:36:23.097145 log_md.go:25: [Info] 请求路径: GoodsService.GetKeywordDownList, 请求地址: 127.0.0.1:64862, 请求体: &{Stream:0x14001c6a840}
+2025/02/06 12:36:23.105207 error_md.go:34: [Error] <nil>
+2025/02/06 12:36:23.105273 log_md.go:36: [Info] 响应体: <nil>, 耗时: 8ms
+2025/02/06 12:36:23.204155 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:64863, 请求体: &{Stream:0x14001c6a940}
+2025/02/06 12:36:23.254619 error_md.go:34: [Error] <nil>
+2025/02/06 12:36:23.254705 log_md.go:36: [Info] 响应体: <nil>, 耗时: 50ms
+2025/02/06 12:36:24.605894 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:64870, 请求体: &{Stream:0x14001d88480}
+2025/02/06 12:36:24.622098 error_md.go:34: [Error] <nil>
+2025/02/06 12:36:24.622154 log_md.go:36: [Info] 响应体: <nil>, 耗时: 16ms
+2025/02/06 12:36:27.437311 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:64896, 请求体: &{Stream:0x140001c4e40}
+2025/02/06 12:36:27.456249 error_md.go:34: [Error] <nil>
+2025/02/06 12:36:27.456417 log_md.go:36: [Info] 响应体: <nil>, 耗时: 19ms
+2025/02/06 12:36:27.928690 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:64898, 请求体: &{Stream:0x14001d04660}
+2025/02/06 12:36:27.938964 error_md.go:34: [Error] <nil>
+2025/02/06 12:36:27.939111 log_md.go:36: [Info] 响应体: <nil>, 耗时: 10ms
+2025/02/06 12:36:30.674836 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:64857, 请求体: &{Stream:0x14001ba65c0}
+2025/02/06 12:36:30.682113 error_md.go:34: [Error] <nil>
+2025/02/06 12:36:30.682166 log_md.go:36: [Info] 响应体: <nil>, 耗时: 7ms
+2025/02/06 12:36:31.836678 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:64862, 请求体: &{Stream:0x14001d885a0}
+2025/02/06 12:36:31.848306 error_md.go:34: [Error] <nil>
+2025/02/06 12:36:31.848545 log_md.go:36: [Info] 响应体: <nil>, 耗时: 11ms
+2025/02/06 12:36:35.659722 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64863, 请求体: &{Stream:0x14001d886e0}
+2025/02/06 12:36:35.665023 error_md.go:34: [Error] <nil>
+2025/02/06 12:36:35.665089 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/06 12:36:35.735275 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:64870, 请求体: &{Stream:0x140001c51e0}
+2025/02/06 12:36:35.741042 error_md.go:34: [Error] <nil>
+2025/02/06 12:36:35.741099 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/06 12:36:38.076370 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64896, 请求体: &{Stream:0x14001d88fe0}
+2025/02/06 12:36:38.077512 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:64898, 请求体: &{Stream:0x14001d890a0}
+2025/02/06 12:36:38.082887 error_md.go:34: [Error] <nil>
+2025/02/06 12:36:38.083014 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/06 12:36:38.085430 error_md.go:34: [Error] <nil>
+2025/02/06 12:36:38.085532 log_md.go:36: [Info] 响应体: <nil>, 耗时: 8ms
+2025/02/06 12:36:38.088246 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:64911, 请求体: &{Stream:0x14001ba68e0}
+2025/02/06 12:36:38.089202 error_md.go:34: [Error] <nil>
+2025/02/06 12:36:38.089258 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/06 12:36:55.735190 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:64913, 请求体: &{Stream:0x14001d89840}
+2025/02/06 12:36:55.739751 error_md.go:34: [Error] <nil>
+2025/02/06 12:36:55.739802 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/06 12:36:57.043103 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:64914, 请求体: &{Stream:0x14001d89a80}
+2025/02/06 12:36:57.050572 error_md.go:34: [Error] <nil>
+2025/02/06 12:36:57.050723 log_md.go:36: [Info] 响应体: <nil>, 耗时: 7ms
+2025/02/06 12:36:58.834188 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:64915, 请求体: &{Stream:0x14001d89b80}
+2025/02/06 12:36:58.854956 error_md.go:34: [Error] <nil>
+2025/02/06 12:36:58.855016 log_md.go:36: [Info] 响应体: <nil>, 耗时: 20ms
+2025/02/06 12:37:00.491487 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:64917, 请求体: &{Stream:0x140001c5f20}
+2025/02/06 12:37:00.496999 error_md.go:34: [Error] <nil>
+2025/02/06 12:37:00.497128 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/06 12:37:02.315427 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:64918, 请求体: &{Stream:0x14001c6b1c0}
+2025/02/06 12:37:02.321836 error_md.go:34: [Error] <nil>
+2025/02/06 12:37:02.321957 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/06 12:37:03.902263 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:64857, 请求体: &{Stream:0x14001c6b2c0}
+2025/02/06 12:37:03.912805 error_md.go:34: [Error] <nil>
+2025/02/06 12:37:03.912960 log_md.go:36: [Info] 响应体: <nil>, 耗时: 10ms
+2025/02/06 12:37:11.472471 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64862, 请求体: &{Stream:0x14001d89c40}
+2025/02/06 12:37:11.478656 error_md.go:34: [Error] <nil>
+2025/02/06 12:37:11.478713 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/06 12:37:11.493000 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:64863, 请求体: &{Stream:0x140006324e0}
+2025/02/06 12:37:11.496551 error_md.go:34: [Error] <nil>
+2025/02/06 12:37:11.496596 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 12:40:35.008866 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64870, 请求体: &{Stream:0x14001d04180}
+2025/02/06 12:40:35.036889 error_md.go:34: [Error] <nil>
+2025/02/06 12:40:35.037007 log_md.go:36: [Info] 响应体: <nil>, 耗时: 29ms
+2025/02/06 12:40:35.064994 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:64896, 请求体: &{Stream:0x14000632240}
+2025/02/06 12:40:35.066367 error_md.go:34: [Error] <nil>
+2025/02/06 12:40:35.066395 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/06 12:40:40.960858 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64898, 请求体: &{Stream:0x14001d04440}
+2025/02/06 12:40:40.968178 error_md.go:34: [Error] <nil>
+2025/02/06 12:40:40.968238 log_md.go:36: [Info] 响应体: <nil>, 耗时: 7ms
+2025/02/06 12:40:41.090599 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:64911, 请求体: &{Stream:0x14001d051e0}
+2025/02/06 12:40:41.091986 error_md.go:34: [Error] <nil>
+2025/02/06 12:40:41.092022 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/06 12:40:45.502777 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64913, 请求体: &{Stream:0x14001d05320}
+2025/02/06 12:40:45.507047 error_md.go:34: [Error] <nil>
+2025/02/06 12:40:45.507086 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/06 12:40:45.523372 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:64914, 请求体: &{Stream:0x14001d059a0}
+2025/02/06 12:40:45.524197 error_md.go:34: [Error] <nil>
+2025/02/06 12:40:45.524230 log_md.go:36: [Info] 响应体: <nil>, 耗时: 0ms
+2025/02/06 12:40:55.271594 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64915, 请求体: &{Stream:0x14001ba62a0}
+2025/02/06 12:40:55.275268 error_md.go:34: [Error] <nil>
+2025/02/06 12:40:55.275310 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 12:40:55.293310 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:64917, 请求体: &{Stream:0x14001d05b00}
+2025/02/06 12:40:55.296196 error_md.go:34: [Error] <nil>
+2025/02/06 12:40:55.296310 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 12:42:10.518489 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64918, 请求体: &{Stream:0x140003c4320}
+2025/02/06 12:42:10.524755 error_md.go:34: [Error] <nil>
+2025/02/06 12:42:10.524800 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/06 12:42:10.552530 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:64857, 请求体: &{Stream:0x14001c6aa20}
+2025/02/06 12:42:10.554675 error_md.go:34: [Error] <nil>
+2025/02/06 12:42:10.554748 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 12:42:51.974178 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64862, 请求体: &{Stream:0x14001ba64a0}
+2025/02/06 12:42:51.989668 error_md.go:34: [Error] <nil>
+2025/02/06 12:42:51.989727 log_md.go:36: [Info] 响应体: <nil>, 耗时: 15ms
+2025/02/06 12:42:52.044953 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:64863, 请求体: &{Stream:0x14001d044c0}
+2025/02/06 12:42:52.047789 error_md.go:34: [Error] <nil>
+2025/02/06 12:42:52.047816 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 12:43:19.408689 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64870, 请求体: &{Stream:0x14001c6a020}
+2025/02/06 12:43:19.409148 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:64896, 请求体: &{Stream:0x14001ba6ea0}
+2025/02/06 12:43:19.414352 error_md.go:34: [Error] <nil>
+2025/02/06 12:43:19.414398 log_md.go:36: [Info] 响应体: <nil>, 耗时: 5ms
+2025/02/06 12:43:19.418553 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:64898, 请求体: &{Stream:0x14001c6a180}
+2025/02/06 12:43:19.422201 error_md.go:34: [Error] <nil>
+2025/02/06 12:43:19.422236 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 12:43:19.425552 error_md.go:34: [Error] <nil>
+2025/02/06 12:43:19.425585 log_md.go:36: [Info] 响应体: <nil>, 耗时: 16ms
+2025/02/06 12:43:21.360026 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64911, 请求体: &{Stream:0x140003c4ae0}
+2025/02/06 12:43:21.368316 error_md.go:34: [Error] <nil>
+2025/02/06 12:43:21.368402 log_md.go:36: [Info] 响应体: <nil>, 耗时: 8ms
+2025/02/06 12:43:21.393618 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:64913, 请求体: &{Stream:0x14000632320}
+2025/02/06 12:43:21.396838 error_md.go:34: [Error] <nil>
+2025/02/06 12:43:21.396936 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 12:43:22.763491 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64914, 请求体: &{Stream:0x14000632540}
+2025/02/06 12:43:22.763511 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:64915, 请求体: &{Stream:0x14001d046a0}
+2025/02/06 12:43:22.767406 error_md.go:34: [Error] <nil>
+2025/02/06 12:43:22.767526 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/06 12:43:22.770234 error_md.go:34: [Error] <nil>
+2025/02/06 12:43:22.770309 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/06 12:43:22.772889 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:64917, 请求体: &{Stream:0x140003c5540}
+2025/02/06 12:43:22.774026 error_md.go:34: [Error] <nil>
+2025/02/06 12:43:22.774079 log_md.go:36: [Info] 响应体: <nil>, 耗时: 1ms
+2025/02/06 12:43:27.196208 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:64918, 请求体: &{Stream:0x14001ba7040}
+2025/02/06 12:43:27.204953 error_md.go:34: [Error] <nil>
+2025/02/06 12:43:27.205097 log_md.go:36: [Info] 响应体: <nil>, 耗时: 8ms
+2025/02/06 12:43:28.482540 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:64857, 请求体: &{Stream:0x14001ba7160}
+2025/02/06 12:43:28.489034 error_md.go:34: [Error] <nil>
+2025/02/06 12:43:28.489160 log_md.go:36: [Info] 响应体: <nil>, 耗时: 6ms
+2025/02/06 12:43:29.527675 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:64862, 请求体: &{Stream:0x14001d05400}
+2025/02/06 12:43:29.537872 error_md.go:34: [Error] <nil>
+2025/02/06 12:43:29.537984 log_md.go:36: [Info] 响应体: <nil>, 耗时: 10ms
+2025/02/06 12:43:30.286453 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:64863, 请求体: &{Stream:0x14001ba72e0}
+2025/02/06 12:43:30.294615 error_md.go:34: [Error] <nil>
+2025/02/06 12:43:30.294760 log_md.go:36: [Info] 响应体: <nil>, 耗时: 8ms
+2025/02/06 12:43:31.264371 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:64870, 请求体: &{Stream:0x14001d05500}
+2025/02/06 12:43:31.271300 error_md.go:34: [Error] <nil>
+2025/02/06 12:43:31.271392 log_md.go:36: [Info] 响应体: <nil>, 耗时: 7ms
+2025/02/06 15:48:51.685289 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:64896, 请求体: &{Stream:0x14001c6a020}
+2025/02/06 15:48:51.706718 error_md.go:34: [Error] <nil>
+2025/02/06 15:48:51.706808 log_md.go:36: [Info] 响应体: <nil>, 耗时: 21ms
+2025/02/06 15:48:51.731448 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:64898, 请求体: &{Stream:0x140003c4020}
+2025/02/06 15:48:51.735463 error_md.go:34: [Error] <nil>
+2025/02/06 15:48:51.735551 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/06 15:48:59.701520 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:64911, 请求体: &{Stream:0x14000632260}
+2025/02/06 15:48:59.726993 error_md.go:34: [Error] <nil>
+2025/02/06 15:48:59.727102 log_md.go:36: [Info] 响应体: <nil>, 耗时: 25ms
+2025/02/06 16:00:35.557561 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/06 16:00:35.558153 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/06 16:00:35.557629 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/06 16:00:35.557469 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/06 16:00:35.558177 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/06 16:00:35.557486 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/06 16:00:35.558183 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/06 16:00:35.557600 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/06 16:00:35.558192 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/06 16:00:35.557581 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/06 16:00:35.557601 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/06 16:00:35.557568 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/06 16:10:20.513056 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:55239, 请求体: &{Stream:0x14001ba6220}
+2025/02/06 16:10:20.564459 error_md.go:34: [Error] <nil>
+2025/02/06 16:10:20.564867 log_md.go:36: [Info] 响应体: <nil>, 耗时: 52ms
+2025/02/06 16:14:19.133275 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:55842, 请求体: &{Stream:0x14001ba63c0}
+2025/02/06 16:14:19.193375 error_md.go:34: [Error] <nil>
+2025/02/06 16:14:19.194115 log_md.go:36: [Info] 响应体: <nil>, 耗时: 60ms
+2025/02/06 16:14:19.287590 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:55843, 请求体: &{Stream:0x14001d05340}
+2025/02/06 16:14:19.306892 error_md.go:34: [Error] <nil>
+2025/02/06 16:14:19.307032 log_md.go:36: [Info] 响应体: <nil>, 耗时: 19ms
+2025/02/06 16:14:20.316234 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:55849, 请求体: &{Stream:0x140003c4020}
+2025/02/06 16:14:20.317070 log_md.go:25: [Info] 请求路径: GoodsService.SearchSpuList, 请求地址: 127.0.0.1:55851, 请求体: &{Stream:0x140003c4320}
+2025/02/06 16:14:20.319426 error_md.go:34: [Error] <nil>
+2025/02/06 16:14:20.319482 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 16:14:20.326562 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:55852, 请求体: &{Stream:0x14000632380}
+2025/02/06 16:14:20.329900 error_md.go:34: [Error] <nil>
+2025/02/06 16:14:20.329937 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 16:14:20.357817 error_md.go:34: [Error] <nil>
+2025/02/06 16:14:20.357874 log_md.go:36: [Info] 响应体: <nil>, 耗时: 40ms
+2025/02/06 16:14:25.262257 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:55855, 请求体: &{Stream:0x14000632420}
+2025/02/06 16:14:25.289839 error_md.go:34: [Error] <nil>
+2025/02/06 16:14:25.289887 log_md.go:36: [Info] 响应体: <nil>, 耗时: 27ms
+2025/02/06 16:14:25.315312 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:55856, 请求体: &{Stream:0x14001c6ab20}
+2025/02/06 16:14:25.318165 error_md.go:34: [Error] <nil>
+2025/02/06 16:14:25.318198 log_md.go:36: [Info] 响应体: <nil>, 耗时: 2ms
+2025/02/06 16:14:31.337275 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:55858, 请求体: &{Stream:0x14001c6ae40}
+2025/02/06 16:14:31.341455 error_md.go:34: [Error] <nil>
+2025/02/06 16:14:31.341557 log_md.go:36: [Info] 响应体: <nil>, 耗时: 4ms
+2025/02/06 16:20:02.155872 log_md.go:25: [Info] 请求路径: GoodsService.GetCategoryList, 请求地址: 127.0.0.1:56832, 请求体: &{Stream:0x140003c4660}
+2025/02/06 16:20:02.180280 error_md.go:34: [Error] <nil>
+2025/02/06 16:20:02.180434 log_md.go:36: [Info] 响应体: <nil>, 耗时: 24ms
+2025/02/06 16:20:02.202147 log_md.go:25: [Info] 请求路径: GoodsService.GetBrandList, 请求地址: 127.0.0.1:56833, 请求体: &{Stream:0x14001d04340}
+2025/02/06 16:20:02.205073 error_md.go:34: [Error] <nil>
+2025/02/06 16:20:02.205243 log_md.go:36: [Info] 响应体: <nil>, 耗时: 3ms
+2025/02/06 16:20:11.963160 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:56862, 请求体: &{Stream:0x14000632720}
+2025/02/06 16:20:11.971615 error_md.go:34: [Error] <nil>
+2025/02/06 16:20:11.971673 log_md.go:36: [Info] 响应体: <nil>, 耗时: 8ms
+2025/02/06 16:22:46.066849 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:55239, 请求体: &{Stream:0x140003c4060}
+2025/02/06 16:22:46.074932 error_md.go:34: [Error] <nil>
+2025/02/06 16:22:46.075066 log_md.go:36: [Info] 响应体: <nil>, 耗时: 8ms
+2025/02/06 16:30:20.728871 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/06 16:30:20.728772 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/06 16:30:20.728714 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/06 16:30:20.728717 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/06 16:30:20.730353 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/06 16:30:20.730572 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/06 16:30:20.730582 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/06 16:30:20.728725 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/06 16:30:20.730584 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/06 16:30:20.728750 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/06 16:30:20.728743 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/06 16:30:20.728715 http2_server.go:295: [Error] KITEX: grpc server loopyWriter.run returning, error=rpc error: code = 1 desc = transport: connection EOF [triggered by remote service]
+2025/02/06 16:42:17.231778 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:60250, 请求体: &{Stream:0x14001ba6220}
+2025/02/06 16:42:17.259927 error_md.go:34: [Error] <nil>
+2025/02/06 16:42:17.260183 log_md.go:36: [Info] 响应体: <nil>, 耗时: 29ms
+2025/02/06 16:45:24.638226 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:60832, 请求体: &{Stream:0x14001ba6200}
+2025/02/06 16:45:24.664083 error_md.go:34: [Error] <nil>
+2025/02/06 16:45:24.664155 log_md.go:36: [Info] 响应体: <nil>, 耗时: 26ms
+2025/02/06 16:45:58.658904 log_md.go:25: [Info] 请求路径: GoodsService.GetSellerGoodsList, 请求地址: 127.0.0.1:60924, 请求体: &{Stream:0x140003c4060}
+2025/02/06 16:45:58.687738 error_md.go:34: [Error] <nil>
+2025/02/06 16:45:58.688105 log_md.go:36: [Info] 响应体: <nil>, 耗时: 29ms

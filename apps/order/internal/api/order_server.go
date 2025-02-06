@@ -61,3 +61,8 @@ func (s *OrderServer) GetTradeDetail(ctx context.Context, req *ogen.GetTradeDeta
 func (s *OrderServer) GetOrderDetail(ctx context.Context, req *ogen.GetOrderDetailReq) (res *ogen.GetOrderDetailRsp, err error) {
 	return handler.NewOrderHandler(s.rep).GetOrderDetail(ctx, req)
 }
+
+// 获取卖家订单列表
+func (s *OrderServer) GetSellerOrderList(ctx context.Context, req *ogen.GetSellerOrderListReq) (res *ogen.GetSellerOrderListRsp, err error) {
+	return handler.NewOrderHandler(s.rep).GetSellerOrderList(ctx, req)
+}

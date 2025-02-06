@@ -36,7 +36,7 @@ func (h *UserHandler) UpdateUserInfo(ctx context.Context, req *ugen.UpdateUserIn
 	}
 	user.AvatarUrl = req.AvatarUrl
 	user.ShopID = req.ShopId
-	user, err = h.rep.UpdateUser(ctx, user)
+	user, err = h.rep.UpdateUser(ctx, &model.User{ID: req.UserId}, user)
 	if err != nil {
 		return nil, err
 	}

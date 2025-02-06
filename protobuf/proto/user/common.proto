@@ -13,3 +13,10 @@ message BaseUser{
     uint64 shop_id = 5;
 }
 
+
+message BaseShop {
+    uint64 id = 1;
+    string shop_name = 2;
+    string shop_url = 3;
+    string shop_description = 4;
+}

@@ -50,11 +50,13 @@ message PublishGoodsReq{
     string spu_desc = 6;
     string spu_price = 7;
     string spu_img_url = 8;
+    uint64 user_id = 9;
+    uint64 shop_id = 10;
 
     // 规格
-    repeated PublishSku sku_list = 9;
+    repeated PublishSku sku_list = 11;
     // 属性
-    repeated PublishAttribute attribute_list = 10;
+    repeated PublishAttribute attribute_list = 12;
 
     message PublishSku {
     uint64 stock_num = 1;
@@ -95,3 +97,26 @@ message GoodsSku {
     BaseSku sku = 1;
     repeated BaseSpecValue spec_value_list = 6; // 可选规格值
 }
+
+
+// 获取卖家店铺的商品列表
+message GetSellerGoodsListReq {
+    uint64 shop_id = 1;
+    int32 page_size = 2;
+    int32 page_no = 3;
+}
+
+
+message GetSellerGoodsListRsp {
+    int32 code = 1;
+    string msg = 2;
+    string log_id = 3;
+    GetSellerGoodsListRspData data = 4;
+    message GetSellerGoodsListRspData {
+        repeated BaseSpu spu_list = 1;
+        int32 total = 2;
+        int32 page_size = 3;
+        int32 page_no = 4;
+    }
+}
+

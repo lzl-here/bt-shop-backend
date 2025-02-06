@@ -36,6 +36,13 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingUnary),
 	),
+	"GetSellerGoodsList": kitex.NewMethodInfo(
+		getSellerGoodsListHandler,
+		newGetSellerGoodsListArgs,
+		newGetSellerGoodsListResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingUnary),
+	),
 	"GetGoodsList": kitex.NewMethodInfo(
 		getGoodsListHandler,
 		newGetGoodsListArgs,
@@ -607,6 +614,159 @@ func (p *GetGoodsDetailResult) IsSetSuccess() bool {
 }
 
 func (p *GetGoodsDetailResult) GetResult() interface{} {
+	return p.Success
+}
+
+func getSellerGoodsListHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	switch s := arg.(type) {
+	case *streaming.Args:
+		st := s.Stream
+		req := new(goods.GetSellerGoodsListReq)
+		if err := st.RecvMsg(req); err != nil {
+			return err
+		}
+		resp, err := handler.(goods.GoodsService).GetSellerGoodsList(ctx, req)
+		if err != nil {
+			return err
+		}
+		return st.SendMsg(resp)
+	case *GetSellerGoodsListArgs:
+		success, err := handler.(goods.GoodsService).GetSellerGoodsList(ctx, s.Req)
+		if err != nil {
+			return err
+		}
+		realResult := result.(*GetSellerGoodsListResult)
+		realResult.Success = success
+		return nil
+	default:
+		return errInvalidMessageType
+	}
+}
+func newGetSellerGoodsListArgs() interface{} {
+	return &GetSellerGoodsListArgs{}
+}
+
+func newGetSellerGoodsListResult() interface{} {
+	return &GetSellerGoodsListResult{}
+}
+
+type GetSellerGoodsListArgs struct {
+	Req *goods.GetSellerGoodsListReq
+}
+
+func (p *GetSellerGoodsListArgs) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
+	if !p.IsSetReq() {
+		p.Req = new(goods.GetSellerGoodsListReq)
+	}
+	return p.Req.FastRead(buf, _type, number)
+}
+
+func (p *GetSellerGoodsListArgs) FastWrite(buf []byte) (n int) {
+	if !p.IsSetReq() {
+		return 0
+	}
+	return p.Req.FastWrite(buf)
+}
+
+func (p *GetSellerGoodsListArgs) Size() (n int) {
+	if !p.IsSetReq() {
+		return 0
+	}
+	return p.Req.Size()
+}
+
+func (p *GetSellerGoodsListArgs) Marshal(out []byte) ([]byte, error) {
+	if !p.IsSetReq() {
+		return out, nil
+	}
+	return proto.Marshal(p.Req)
+}
+
+func (p *GetSellerGoodsListArgs) Unmarshal(in []byte) error {
+	msg := new(goods.GetSellerGoodsListReq)
+	if err := proto.Unmarshal(in, msg); err != nil {
+		return err
+	}
+	p.Req = msg
+	return nil
+}
+
+var GetSellerGoodsListArgs_Req_DEFAULT *goods.GetSellerGoodsListReq
+
+func (p *GetSellerGoodsListArgs) GetReq() *goods.GetSellerGoodsListReq {
+	if !p.IsSetReq() {
+		return GetSellerGoodsListArgs_Req_DEFAULT
+	}
+	return p.Req
+}
+
+func (p *GetSellerGoodsListArgs) IsSetReq() bool {
+	return p.Req != nil
+}
+
+func (p *GetSellerGoodsListArgs) GetFirstArgument() interface{} {
+	return p.Req
+}
+
+type GetSellerGoodsListResult struct {
+	Success *goods.GetSellerGoodsListRsp
+}
+
+var GetSellerGoodsListResult_Success_DEFAULT *goods.GetSellerGoodsListRsp
+
+func (p *GetSellerGoodsListResult) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
+	if !p.IsSetSuccess() {
+		p.Success = new(goods.GetSellerGoodsListRsp)
+	}
+	return p.Success.FastRead(buf, _type, number)
+}
+
+func (p *GetSellerGoodsListResult) FastWrite(buf []byte) (n int) {
+	if !p.IsSetSuccess() {
+		return 0
+	}
+	return p.Success.FastWrite(buf)
+}
+
+func (p *GetSellerGoodsListResult) Size() (n int) {
+	if !p.IsSetSuccess() {
+		return 0
+	}
+	return p.Success.Size()
+}
+
+func (p *GetSellerGoodsListResult) Marshal(out []byte) ([]byte, error) {
+	if !p.IsSetSuccess() {
+		return out, nil
+	}
+	return proto.Marshal(p.Success)
+}
+
+func (p *GetSellerGoodsListResult) Unmarshal(in []byte) error {
+	msg := new(goods.GetSellerGoodsListRsp)
+	if err := proto.Unmarshal(in, msg); err != nil {
+		return err
+	}
+	p.Success = msg
+	return nil
+}
+
+func (p *GetSellerGoodsListResult) GetSuccess() *goods.GetSellerGoodsListRsp {
+	if !p.IsSetSuccess() {
+		return GetSellerGoodsListResult_Success_DEFAULT
+	}
+	return p.Success
+}
+
+func (p *GetSellerGoodsListResult) SetSuccess(x interface{}) {
+	p.Success = x.(*goods.GetSellerGoodsListRsp)
+}
+
+func (p *GetSellerGoodsListResult) IsSetSuccess() bool {
+	return p.Success != nil
+}
+
+func (p *GetSellerGoodsListResult) GetResult() interface{} {
 	return p.Success
 }
 
@@ -1716,6 +1876,16 @@ func (p *kClient) GetGoodsDetail(ctx context.Context, Req *goods.GetGoodsDetailR
 	_args.Req = Req
 	var _result GetGoodsDetailResult
 	if err = p.c.Call(ctx, "GetGoodsDetail", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) GetSellerGoodsList(ctx context.Context, Req *goods.GetSellerGoodsListReq) (r *goods.GetSellerGoodsListRsp, err error) {
+	var _args GetSellerGoodsListArgs
+	_args.Req = Req
+	var _result GetSellerGoodsListResult
+	if err = p.c.Call(ctx, "GetSellerGoodsList", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil

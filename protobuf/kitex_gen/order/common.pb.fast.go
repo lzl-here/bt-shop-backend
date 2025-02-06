@@ -124,6 +124,16 @@ func (x *BaseOrder) FastRead(buf []byte, _type int8, number int32) (offset int, 
 		if err != nil {
 			goto ReadFieldError
 		}
+	case 8:
+		offset, err = x.fastReadField8(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 9:
+		offset, err = x.fastReadField9(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
 	default:
 		offset, err = fastpb.Skip(buf, _type, number)
 		if err != nil {
@@ -168,7 +178,17 @@ func (x *BaseOrder) fastReadField6(buf []byte, _type int8) (offset int, err erro
 }
 
 func (x *BaseOrder) fastReadField7(buf []byte, _type int8) (offset int, err error) {
-	x.BuyNum, offset, err = fastpb.ReadInt32(buf, _type)
+	x.OrderStatus, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
+func (x *BaseOrder) fastReadField8(buf []byte, _type int8) (offset int, err error) {
+	x.PayType, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
+func (x *BaseOrder) fastReadField9(buf []byte, _type int8) (offset int, err error) {
+	x.CreatedAt, offset, err = fastpb.ReadString(buf, _type)
 	return offset, err
 }
 
@@ -534,6 +554,8 @@ func (x *BaseOrder) FastWrite(buf []byte) (offset int) {
 	offset += x.fastWriteField5(buf[offset:])
 	offset += x.fastWriteField6(buf[offset:])
 	offset += x.fastWriteField7(buf[offset:])
+	offset += x.fastWriteField8(buf[offset:])
+	offset += x.fastWriteField9(buf[offset:])
 	return offset
 }
 
@@ -586,10 +608,26 @@ func (x *BaseOrder) fastWriteField6(buf []byte) (offset int) {
 }
 
 func (x *BaseOrder) fastWriteField7(buf []byte) (offset int) {
-	if x.BuyNum == 0 {
+	if x.OrderStatus == "" {
 		return offset
 	}
-	offset += fastpb.WriteInt32(buf[offset:], 7, x.GetBuyNum())
+	offset += fastpb.WriteString(buf[offset:], 7, x.GetOrderStatus())
+	return offset
+}
+
+func (x *BaseOrder) fastWriteField8(buf []byte) (offset int) {
+	if x.PayType == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 8, x.GetPayType())
+	return offset
+}
+
+func (x *BaseOrder) fastWriteField9(buf []byte) (offset int) {
+	if x.CreatedAt == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 9, x.GetCreatedAt())
 	return offset
 }
 
@@ -904,6 +942,8 @@ func (x *BaseOrder) Size() (n int) {
 	n += x.sizeField5()
 	n += x.sizeField6()
 	n += x.sizeField7()
+	n += x.sizeField8()
+	n += x.sizeField9()
 	return n
 }
 
@@ -956,10 +996,26 @@ func (x *BaseOrder) sizeField6() (n int) {
 }
 
 func (x *BaseOrder) sizeField7() (n int) {
-	if x.BuyNum == 0 {
+	if x.OrderStatus == "" {
 		return n
 	}
-	n += fastpb.SizeInt32(7, x.GetBuyNum())
+	n += fastpb.SizeString(7, x.GetOrderStatus())
+	return n
+}
+
+func (x *BaseOrder) sizeField8() (n int) {
+	if x.PayType == "" {
+		return n
+	}
+	n += fastpb.SizeString(8, x.GetPayType())
+	return n
+}
+
+func (x *BaseOrder) sizeField9() (n int) {
+	if x.CreatedAt == "" {
+		return n
+	}
+	n += fastpb.SizeString(9, x.GetCreatedAt())
 	return n
 }
 
@@ -1218,7 +1274,9 @@ var fieldIDToName_BaseOrder = map[int32]string{
 	4: "OrderAmount",
 	5: "SellerId",
 	6: "BuyerId",
-	7: "BuyNum",
+	7: "OrderStatus",
+	8: "PayType",
+	9: "CreatedAt",
 }
 
 var fieldIDToName_BaseSpecValue = map[int32]string{

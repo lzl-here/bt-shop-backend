@@ -45,21 +45,201 @@
         }
       }
     },
-    "userLoginResp": {
+    "userBaseShop": {
       "type": "object",
       "properties": {
-        "user_id": {
-          "type": "integer",
-          "format": "int32"
+        "id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "shop_name": {
+          "type": "string"
+        },
+        "shop_url": {
+          "type": "string"
+        },
+        "shop_description": {
+          "type": "string"
         }
       }
     },
-    "userRegisterResp": {
+    "userBaseUser": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "username": {
+          "type": "string"
+        },
+        "avatar_url": {
+          "type": "string"
+        },
+        "register_type": {
+          "type": "string"
+        },
+        "shop_id": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    },
+    "userGetShopDetailRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/userGetShopDetailRspData"
+        }
+      }
+    },
+    "userGetShopDetailRspData": {
+      "type": "object",
+      "properties": {
+        "shop": {
+          "$ref": "#/definitions/userBaseShop"
+        }
+      }
+    },
+    "userGetUserInfoRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/userGetUserInfoRspData"
+        }
+      }
+    },
+    "userGetUserInfoRspData": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/userBaseUser"
+        }
+      }
+    },
+    "userLogoutRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/userLogoutRspData"
+        }
+      }
+    },
+    "userLogoutRspData": {
       "type": "object",
       "properties": {
         "user_id": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    },
+    "userNormalLoginRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
           "type": "integer",
           "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/userNormalLoginRspData"
+        }
+      }
+    },
+    "userNormalLoginRspData": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/userBaseUser"
+        }
+      }
+    },
+    "userNormalRegisterRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/userNormalRegisterRspData"
+        }
+      }
+    },
+    "userNormalRegisterRspData": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    },
+    "userUpdateUserInfoRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/userUpdateUserInfoRspData"
+        }
+      }
+    },
+    "userUpdateUserInfoRspData": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/userBaseUser"
         }
       }
     }

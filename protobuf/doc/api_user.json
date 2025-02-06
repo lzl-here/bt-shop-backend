@@ -124,19 +124,81 @@
           }
         }
       }
+    },
+    "/user/get_shop_detail": {
+      "post": {
+        "summary": "获取店铺详情",
+        "operationId": "GetShopDetail",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetShopDetailReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "$ref": "#/definitions/GetShopDetailRsp"
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
+    "BaseUser": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "uint64"
+        },
+        "username": {
+          "type": "string"
+        },
+        "avatar_url": {
+          "type": "string"
+        },
+        "register_type": {
+          "type": "string"
+        },
+        "shop_id": {
+          "type": "integer",
+          "format": "uint64"
+        }
+      }
+    },
+    "BaseShop": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "uint64"
+        },
+        "shop_name": {
+          "type": "string"
+        },
+        "shop_url": {
+          "type": "string"
+        },
+        "shop_description": {
+          "type": "string"
+        }
+      }
+    },
     "NormalLoginReq": {
       "type": "object",
       "properties": {
         "username": {
-          "type": "string",
-          "description": "用户名"
+          "type": "string"
         },
         "password": {
-          "type": "string",
-          "description": "密码"
+          "type": "string"
         }
       }
     },
@@ -161,9 +223,8 @@
     "NormalLoginRspData": {
       "type": "object",
       "properties": {
-        "user_id": {
-          "type": "integer",
-          "format": "int32"
+        "user": {
+          "$ref": "#/definitions/BaseUser"
         }
       }
     },
@@ -171,16 +232,13 @@
       "type": "object",
       "properties": {
         "username": {
-          "type": "string",
-          "description": "用户名"
+          "type": "string"
         },
         "password": {
-          "type": "string",
-          "description": "密码"
+          "type": "string"
         },
         "confirm_password": {
-          "type": "string",
-          "description": "确认密码"
+          "type": "string"
         }
       }
     },
@@ -207,7 +265,7 @@
       "properties": {
         "user_id": {
           "type": "integer",
-          "format": "int32"
+          "format": "uint64"
         }
       }
     },
@@ -216,8 +274,7 @@
       "properties": {
         "user_id": {
           "type": "integer",
-          "format": "int32",
-          "description": "用户ID"
+          "format": "uint64"
         }
       }
     },
@@ -244,7 +301,7 @@
       "properties": {
         "user_id": {
           "type": "integer",
-          "format": "int32"
+          "format": "uint64"
         }
       }
     },
@@ -253,8 +310,7 @@
       "properties": {
         "user_id": {
           "type": "integer",
-          "format": "int32",
-          "description": "用户ID"
+          "format": "uint64"
         }
       }
     },
@@ -279,9 +335,8 @@
     "GetUserInfoRspData": {
       "type": "object",
       "properties": {
-        "user_id": {
-          "type": "integer",
-          "format": "int32"
+        "user": {
+          "$ref": "#/definitions/BaseUser"
         }
       }
     },
@@ -290,8 +345,20 @@
       "properties": {
         "user_id": {
           "type": "integer",
-          "format": "int32",
-          "description": "用户ID"
+          "format": "uint64"
+        },
+        "username": {
+          "type": "string"
+        },
+        "avatar_url": {
+          "type": "string"
+        },
+        "register_type": {
+          "type": "string"
+        },
+        "shop_id": {
+          "type": "integer",
+          "format": "uint64"
         }
       }
     },
@@ -316,9 +383,43 @@
     "UpdateUserInfoRspData": {
       "type": "object",
       "properties": {
-        "user_id": {
+        "user": {
+          "$ref": "#/definitions/BaseUser"
+        }
+      }
+    },
+    "GetShopDetailReq": {
+      "type": "object",
+      "properties": {
+        "shop_id": {
+          "type": "integer",
+          "format": "uint64"
+        }
+      }
+    },
+    "GetShopDetailRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
           "type": "integer",
           "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/GetShopDetailRspData"
+        }
+      }
+    },
+    "GetShopDetailRspData": {
+      "type": "object",
+      "properties": {
+        "shop": {
+          "$ref": "#/definitions/BaseShop"
         }
       }
     }

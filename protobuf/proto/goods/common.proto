@@ -14,9 +14,10 @@ message BaseSpu {
     string category_name = 5;
     uint64 brand_id = 6;
     string brand_name = 7;
-    string spu_price = 8;
-    bool enabled = 9;
-    string spu_img_url = 10;
+    string brand_icon_url = 8;
+    string spu_price = 9;
+    bool enabled = 10;
+    string spu_img_url = 11;
 }
 // sku信息
 message BaseSku {

@@ -70,6 +70,20 @@ func (h *UserHandler) NormalRegister(ctx context.Context, req *ugen.NormalRegist
 	if err != nil {
 		return nil, err
 	}
+
+	shop, err := h.rep.CreateShop(ctx, &model.Shop{
+		ShopName:   req.Username + "的店铺",
+		ShopDesc:   "这是" + req.Username + "的店铺",
+		ShopImgUrl: "https://www.logosc.cn/uploads/output/2022/04/12/19ad71585962ea030a102bc7fc5b58aa.jpg",
+		UserID:     user.ID,
+	})
+	if err != nil {
+		return nil, err
+	}
+	_, err = h.rep.UpdateUser(ctx, &model.User{ID: user.ID}, &model.User{ShopID: shop.ID})
+	if err != nil {
+		return nil, err
+	}
 	return &ugen.NormalRegisterRsp{
 		Code: 1,
 		Msg:  "success",

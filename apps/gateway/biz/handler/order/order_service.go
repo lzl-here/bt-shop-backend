@@ -247,3 +247,25 @@ func GetOrderDetail(ctx context.Context, c *app.RequestContext) {
 	}
 	c.JSON(consts.StatusOK, resp)
 }
+
+// GetSellerOrderList .
+// @router /order/get_seller_order_list [POST]
+func GetSellerOrderList(ctx context.Context, c *app.RequestContext) {
+	var err error
+	var req order.GetSellerOrderListReq
+	err = c.BindAndValidate(&req)
+	if err != nil {
+		c.String(consts.StatusBadRequest, err.Error())
+		return
+	}
+
+	resp, err := global.OrderClient.GetSellerOrderList(ctx, &req)
+	if err != nil {
+		c.JSON(consts.StatusInternalServerError, &order.GetSellerOrderListRsp{
+			Code: 500,
+			Msg:  err.Error(),
+		})
+		return
+	}
+	c.JSON(consts.StatusOK, resp)
+}

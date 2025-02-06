@@ -267,6 +267,121 @@ func (x *GetOrderDetailRsp) fastReadField4(buf []byte, _type int8) (offset int, 
 	return offset, nil
 }
 
+func (x *GetSellerOrderListReq) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
+	switch number {
+	case 1:
+		offset, err = x.fastReadField1(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 2:
+		offset, err = x.fastReadField2(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 3:
+		offset, err = x.fastReadField3(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 4:
+		offset, err = x.fastReadField4(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	default:
+		offset, err = fastpb.Skip(buf, _type, number)
+		if err != nil {
+			goto SkipFieldError
+		}
+	}
+	return offset, nil
+SkipFieldError:
+	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
+ReadFieldError:
+	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_GetSellerOrderListReq[number], err)
+}
+
+func (x *GetSellerOrderListReq) fastReadField1(buf []byte, _type int8) (offset int, err error) {
+	x.ShopId, offset, err = fastpb.ReadUint64(buf, _type)
+	return offset, err
+}
+
+func (x *GetSellerOrderListReq) fastReadField2(buf []byte, _type int8) (offset int, err error) {
+	x.OrderStatus, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
+func (x *GetSellerOrderListReq) fastReadField3(buf []byte, _type int8) (offset int, err error) {
+	x.PageSize, offset, err = fastpb.ReadInt32(buf, _type)
+	return offset, err
+}
+
+func (x *GetSellerOrderListReq) fastReadField4(buf []byte, _type int8) (offset int, err error) {
+	x.PageNo, offset, err = fastpb.ReadInt32(buf, _type)
+	return offset, err
+}
+
+func (x *GetSellerOrderListRsp) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
+	switch number {
+	case 1:
+		offset, err = x.fastReadField1(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 2:
+		offset, err = x.fastReadField2(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 3:
+		offset, err = x.fastReadField3(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 4:
+		offset, err = x.fastReadField4(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	default:
+		offset, err = fastpb.Skip(buf, _type, number)
+		if err != nil {
+			goto SkipFieldError
+		}
+	}
+	return offset, nil
+SkipFieldError:
+	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
+ReadFieldError:
+	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_GetSellerOrderListRsp[number], err)
+}
+
+func (x *GetSellerOrderListRsp) fastReadField1(buf []byte, _type int8) (offset int, err error) {
+	x.Code, offset, err = fastpb.ReadInt32(buf, _type)
+	return offset, err
+}
+
+func (x *GetSellerOrderListRsp) fastReadField2(buf []byte, _type int8) (offset int, err error) {
+	x.Msg, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
+func (x *GetSellerOrderListRsp) fastReadField3(buf []byte, _type int8) (offset int, err error) {
+	x.LogId, offset, err = fastpb.ReadString(buf, _type)
+	return offset, err
+}
+
+func (x *GetSellerOrderListRsp) fastReadField4(buf []byte, _type int8) (offset int, err error) {
+	var v GetSellerOrderListRsp_GetSellerOrderListRspData
+	offset, err = fastpb.ReadMessage(buf, _type, &v)
+	if err != nil {
+		return offset, err
+	}
+	x.Data = &v
+	return offset, nil
+}
+
 func (x *PaySuccessToOrderRsp_PaySuccessToOrderRspData) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
 	switch number {
 	case 1:
@@ -360,6 +475,66 @@ func (x *GetOrderDetailRsp_GetOrderDetailRspData) fastReadField2(buf []byte, _ty
 	}
 	x.OrderItemList = append(x.OrderItemList, &v)
 	return offset, nil
+}
+
+func (x *GetSellerOrderListRsp_GetSellerOrderListRspData) FastRead(buf []byte, _type int8, number int32) (offset int, err error) {
+	switch number {
+	case 1:
+		offset, err = x.fastReadField1(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 2:
+		offset, err = x.fastReadField2(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 3:
+		offset, err = x.fastReadField3(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	case 4:
+		offset, err = x.fastReadField4(buf, _type)
+		if err != nil {
+			goto ReadFieldError
+		}
+	default:
+		offset, err = fastpb.Skip(buf, _type, number)
+		if err != nil {
+			goto SkipFieldError
+		}
+	}
+	return offset, nil
+SkipFieldError:
+	return offset, fmt.Errorf("%T cannot parse invalid wire-format data, error: %s", x, err)
+ReadFieldError:
+	return offset, fmt.Errorf("%T read field %d '%s' error: %s", x, number, fieldIDToName_GetSellerOrderListRsp_GetSellerOrderListRspData[number], err)
+}
+
+func (x *GetSellerOrderListRsp_GetSellerOrderListRspData) fastReadField1(buf []byte, _type int8) (offset int, err error) {
+	var v BaseOrder
+	offset, err = fastpb.ReadMessage(buf, _type, &v)
+	if err != nil {
+		return offset, err
+	}
+	x.OrderList = append(x.OrderList, &v)
+	return offset, nil
+}
+
+func (x *GetSellerOrderListRsp_GetSellerOrderListRspData) fastReadField2(buf []byte, _type int8) (offset int, err error) {
+	x.Total, offset, err = fastpb.ReadInt32(buf, _type)
+	return offset, err
+}
+
+func (x *GetSellerOrderListRsp_GetSellerOrderListRspData) fastReadField3(buf []byte, _type int8) (offset int, err error) {
+	x.PageSize, offset, err = fastpb.ReadInt32(buf, _type)
+	return offset, err
+}
+
+func (x *GetSellerOrderListRsp_GetSellerOrderListRspData) fastReadField4(buf []byte, _type int8) (offset int, err error) {
+	x.PageNo, offset, err = fastpb.ReadInt32(buf, _type)
+	return offset, err
 }
 
 func (x *PaySuccessToOrderReq) FastWrite(buf []byte) (offset int) {
@@ -539,6 +714,92 @@ func (x *GetOrderDetailRsp) fastWriteField4(buf []byte) (offset int) {
 	return offset
 }
 
+func (x *GetSellerOrderListReq) FastWrite(buf []byte) (offset int) {
+	if x == nil {
+		return offset
+	}
+	offset += x.fastWriteField1(buf[offset:])
+	offset += x.fastWriteField2(buf[offset:])
+	offset += x.fastWriteField3(buf[offset:])
+	offset += x.fastWriteField4(buf[offset:])
+	return offset
+}
+
+func (x *GetSellerOrderListReq) fastWriteField1(buf []byte) (offset int) {
+	if x.ShopId == 0 {
+		return offset
+	}
+	offset += fastpb.WriteUint64(buf[offset:], 1, x.GetShopId())
+	return offset
+}
+
+func (x *GetSellerOrderListReq) fastWriteField2(buf []byte) (offset int) {
+	if x.OrderStatus == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 2, x.GetOrderStatus())
+	return offset
+}
+
+func (x *GetSellerOrderListReq) fastWriteField3(buf []byte) (offset int) {
+	if x.PageSize == 0 {
+		return offset
+	}
+	offset += fastpb.WriteInt32(buf[offset:], 3, x.GetPageSize())
+	return offset
+}
+
+func (x *GetSellerOrderListReq) fastWriteField4(buf []byte) (offset int) {
+	if x.PageNo == 0 {
+		return offset
+	}
+	offset += fastpb.WriteInt32(buf[offset:], 4, x.GetPageNo())
+	return offset
+}
+
+func (x *GetSellerOrderListRsp) FastWrite(buf []byte) (offset int) {
+	if x == nil {
+		return offset
+	}
+	offset += x.fastWriteField1(buf[offset:])
+	offset += x.fastWriteField2(buf[offset:])
+	offset += x.fastWriteField3(buf[offset:])
+	offset += x.fastWriteField4(buf[offset:])
+	return offset
+}
+
+func (x *GetSellerOrderListRsp) fastWriteField1(buf []byte) (offset int) {
+	if x.Code == 0 {
+		return offset
+	}
+	offset += fastpb.WriteInt32(buf[offset:], 1, x.GetCode())
+	return offset
+}
+
+func (x *GetSellerOrderListRsp) fastWriteField2(buf []byte) (offset int) {
+	if x.Msg == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 2, x.GetMsg())
+	return offset
+}
+
+func (x *GetSellerOrderListRsp) fastWriteField3(buf []byte) (offset int) {
+	if x.LogId == "" {
+		return offset
+	}
+	offset += fastpb.WriteString(buf[offset:], 3, x.GetLogId())
+	return offset
+}
+
+func (x *GetSellerOrderListRsp) fastWriteField4(buf []byte) (offset int) {
+	if x.Data == nil {
+		return offset
+	}
+	offset += fastpb.WriteMessage(buf[offset:], 4, x.GetData())
+	return offset
+}
+
 func (x *PaySuccessToOrderRsp_PaySuccessToOrderRspData) FastWrite(buf []byte) (offset int) {
 	if x == nil {
 		return offset
@@ -595,6 +856,51 @@ func (x *GetOrderDetailRsp_GetOrderDetailRspData) fastWriteField2(buf []byte) (o
 	for i := range x.GetOrderItemList() {
 		offset += fastpb.WriteMessage(buf[offset:], 2, x.GetOrderItemList()[i])
 	}
+	return offset
+}
+
+func (x *GetSellerOrderListRsp_GetSellerOrderListRspData) FastWrite(buf []byte) (offset int) {
+	if x == nil {
+		return offset
+	}
+	offset += x.fastWriteField1(buf[offset:])
+	offset += x.fastWriteField2(buf[offset:])
+	offset += x.fastWriteField3(buf[offset:])
+	offset += x.fastWriteField4(buf[offset:])
+	return offset
+}
+
+func (x *GetSellerOrderListRsp_GetSellerOrderListRspData) fastWriteField1(buf []byte) (offset int) {
+	if x.OrderList == nil {
+		return offset
+	}
+	for i := range x.GetOrderList() {
+		offset += fastpb.WriteMessage(buf[offset:], 1, x.GetOrderList()[i])
+	}
+	return offset
+}
+
+func (x *GetSellerOrderListRsp_GetSellerOrderListRspData) fastWriteField2(buf []byte) (offset int) {
+	if x.Total == 0 {
+		return offset
+	}
+	offset += fastpb.WriteInt32(buf[offset:], 2, x.GetTotal())
+	return offset
+}
+
+func (x *GetSellerOrderListRsp_GetSellerOrderListRspData) fastWriteField3(buf []byte) (offset int) {
+	if x.PageSize == 0 {
+		return offset
+	}
+	offset += fastpb.WriteInt32(buf[offset:], 3, x.GetPageSize())
+	return offset
+}
+
+func (x *GetSellerOrderListRsp_GetSellerOrderListRspData) fastWriteField4(buf []byte) (offset int) {
+	if x.PageNo == 0 {
+		return offset
+	}
+	offset += fastpb.WriteInt32(buf[offset:], 4, x.GetPageNo())
 	return offset
 }
 
@@ -775,6 +1081,92 @@ func (x *GetOrderDetailRsp) sizeField4() (n int) {
 	return n
 }
 
+func (x *GetSellerOrderListReq) Size() (n int) {
+	if x == nil {
+		return n
+	}
+	n += x.sizeField1()
+	n += x.sizeField2()
+	n += x.sizeField3()
+	n += x.sizeField4()
+	return n
+}
+
+func (x *GetSellerOrderListReq) sizeField1() (n int) {
+	if x.ShopId == 0 {
+		return n
+	}
+	n += fastpb.SizeUint64(1, x.GetShopId())
+	return n
+}
+
+func (x *GetSellerOrderListReq) sizeField2() (n int) {
+	if x.OrderStatus == "" {
+		return n
+	}
+	n += fastpb.SizeString(2, x.GetOrderStatus())
+	return n
+}
+
+func (x *GetSellerOrderListReq) sizeField3() (n int) {
+	if x.PageSize == 0 {
+		return n
+	}
+	n += fastpb.SizeInt32(3, x.GetPageSize())
+	return n
+}
+
+func (x *GetSellerOrderListReq) sizeField4() (n int) {
+	if x.PageNo == 0 {
+		return n
+	}
+	n += fastpb.SizeInt32(4, x.GetPageNo())
+	return n
+}
+
+func (x *GetSellerOrderListRsp) Size() (n int) {
+	if x == nil {
+		return n
+	}
+	n += x.sizeField1()
+	n += x.sizeField2()
+	n += x.sizeField3()
+	n += x.sizeField4()
+	return n
+}
+
+func (x *GetSellerOrderListRsp) sizeField1() (n int) {
+	if x.Code == 0 {
+		return n
+	}
+	n += fastpb.SizeInt32(1, x.GetCode())
+	return n
+}
+
+func (x *GetSellerOrderListRsp) sizeField2() (n int) {
+	if x.Msg == "" {
+		return n
+	}
+	n += fastpb.SizeString(2, x.GetMsg())
+	return n
+}
+
+func (x *GetSellerOrderListRsp) sizeField3() (n int) {
+	if x.LogId == "" {
+		return n
+	}
+	n += fastpb.SizeString(3, x.GetLogId())
+	return n
+}
+
+func (x *GetSellerOrderListRsp) sizeField4() (n int) {
+	if x.Data == nil {
+		return n
+	}
+	n += fastpb.SizeMessage(4, x.GetData())
+	return n
+}
+
 func (x *PaySuccessToOrderRsp_PaySuccessToOrderRspData) Size() (n int) {
 	if x == nil {
 		return n
@@ -834,6 +1226,51 @@ func (x *GetOrderDetailRsp_GetOrderDetailRspData) sizeField2() (n int) {
 	return n
 }
 
+func (x *GetSellerOrderListRsp_GetSellerOrderListRspData) Size() (n int) {
+	if x == nil {
+		return n
+	}
+	n += x.sizeField1()
+	n += x.sizeField2()
+	n += x.sizeField3()
+	n += x.sizeField4()
+	return n
+}
+
+func (x *GetSellerOrderListRsp_GetSellerOrderListRspData) sizeField1() (n int) {
+	if x.OrderList == nil {
+		return n
+	}
+	for i := range x.GetOrderList() {
+		n += fastpb.SizeMessage(1, x.GetOrderList()[i])
+	}
+	return n
+}
+
+func (x *GetSellerOrderListRsp_GetSellerOrderListRspData) sizeField2() (n int) {
+	if x.Total == 0 {
+		return n
+	}
+	n += fastpb.SizeInt32(2, x.GetTotal())
+	return n
+}
+
+func (x *GetSellerOrderListRsp_GetSellerOrderListRspData) sizeField3() (n int) {
+	if x.PageSize == 0 {
+		return n
+	}
+	n += fastpb.SizeInt32(3, x.GetPageSize())
+	return n
+}
+
+func (x *GetSellerOrderListRsp_GetSellerOrderListRspData) sizeField4() (n int) {
+	if x.PageNo == 0 {
+		return n
+	}
+	n += fastpb.SizeInt32(4, x.GetPageNo())
+	return n
+}
+
 var fieldIDToName_PaySuccessToOrderReq = map[int32]string{
 	1: "TradeNo",
 }
@@ -867,6 +1304,20 @@ var fieldIDToName_GetOrderDetailRsp = map[int32]string{
 	4: "Data",
 }
 
+var fieldIDToName_GetSellerOrderListReq = map[int32]string{
+	1: "ShopId",
+	2: "OrderStatus",
+	3: "PageSize",
+	4: "PageNo",
+}
+
+var fieldIDToName_GetSellerOrderListRsp = map[int32]string{
+	1: "Code",
+	2: "Msg",
+	3: "LogId",
+	4: "Data",
+}
+
 var fieldIDToName_PaySuccessToOrderRsp_PaySuccessToOrderRspData = map[int32]string{
 	1: "TradeNo",
 }
@@ -878,4 +1329,11 @@ var fieldIDToName_PayCancelToOrderRsp_PayCancelToOrderRspData = map[int32]string
 var fieldIDToName_GetOrderDetailRsp_GetOrderDetailRspData = map[int32]string{
 	1: "Order",
 	2: "OrderItemList",
+}
+
+var fieldIDToName_GetSellerOrderListRsp_GetSellerOrderListRspData = map[int32]string{
+	1: "OrderList",
+	2: "Total",
+	3: "PageSize",
+	4: "PageNo",
 }

@@ -16,6 +16,7 @@ type Client interface {
 	Logout(ctx context.Context, Req *user.LogoutReq, callOptions ...callopt.Option) (r *user.LogoutRsp, err error)
 	GetUserInfo(ctx context.Context, Req *user.GetUserInfoReq, callOptions ...callopt.Option) (r *user.GetUserInfoRsp, err error)
 	UpdateUserInfo(ctx context.Context, Req *user.UpdateUserInfoReq, callOptions ...callopt.Option) (r *user.UpdateUserInfoRsp, err error)
+	GetShopDetail(ctx context.Context, Req *user.GetShopDetailReq, callOptions ...callopt.Option) (r *user.GetShopDetailRsp, err error)
 }
 
 // NewClient creates a client for the service defined in IDL.
@@ -70,4 +71,9 @@ func (p *kUserServiceClient) GetUserInfo(ctx context.Context, Req *user.GetUserI
 func (p *kUserServiceClient) UpdateUserInfo(ctx context.Context, Req *user.UpdateUserInfoReq, callOptions ...callopt.Option) (r *user.UpdateUserInfoRsp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
 	return p.kClient.UpdateUserInfo(ctx, Req)
+}
+
+func (p *kUserServiceClient) GetShopDetail(ctx context.Context, Req *user.GetShopDetailReq, callOptions ...callopt.Option) (r *user.GetShopDetailRsp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.GetShopDetail(ctx, Req)
 }

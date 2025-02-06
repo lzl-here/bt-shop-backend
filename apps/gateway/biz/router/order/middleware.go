@@ -55,3 +55,8 @@ func _gettradedetailMw() []app.HandlerFunc {
 	// your code...
 	return nil
 }
+
+func _getsellerorderlistMw() []app.HandlerFunc {
+	// your code...
+	return nil
+}

@@ -28,6 +28,20 @@
         }
       }
     },
+    "GetOrderDetailRspGetOrderDetailRspData": {
+      "type": "object",
+      "properties": {
+        "order": {
+          "$ref": "#/definitions/orderBaseOrder"
+        },
+        "order_item_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/orderBaseOrderItem"
+          }
+        }
+      }
+    },
     "GetOrderItemsRspGetOrderItemsRspData": {
       "type": "object",
       "properties": {
@@ -39,6 +53,14 @@
         }
       }
     },
+    "GetTradeDetailRspGetTradeDetailRspData": {
+      "type": "object",
+      "properties": {
+        "trade": {
+          "$ref": "#/definitions/orderTradeTrade"
+        }
+      }
+    },
     "GetTradeListRspGetTradeListRspData": {
       "type": "object",
       "properties": {
@@ -47,6 +69,18 @@
           "items": {
             "$ref": "#/definitions/orderTradeTrade"
           }
+        },
+        "count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "page_size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "page_no": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },
@@ -205,6 +239,9 @@
         },
         "pay_type": {
           "type": "string"
+        },
+        "trade_status": {
+          "type": "string"
         }
       },
       "title": "交易基础信息 （不带有订单）"
@@ -245,6 +282,24 @@
         }
       }
     },
+    "orderGetOrderDetailRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/GetOrderDetailRspGetOrderDetailRspData"
+        }
+      }
+    },
     "orderGetOrderItemsRsp": {
       "type": "object",
       "properties": {
@@ -260,6 +315,24 @@
         },
         "data": {
           "$ref": "#/definitions/GetOrderItemsRspGetOrderItemsRspData"
+        }
+      }
+    },
+    "orderGetTradeDetailRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/GetTradeDetailRspGetTradeDetailRspData"
         }
       }
     },
@@ -329,7 +402,8 @@
             "$ref": "#/definitions/orderBaseOrderItem"
           }
         }
-      }
+      },
+      "title": "订单详情"
     },
     "orderTradeTrade": {
       "type": "object",
@@ -343,7 +417,8 @@
             "$ref": "#/definitions/orderTradeOrder"
           }
         }
-      }
+      },
+      "title": "交易详情"
     },
     "protobufAny": {
       "type": "object",

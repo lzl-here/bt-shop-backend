@@ -67,6 +67,29 @@
         }
       }
     },
+    "GetSellerGoodsListRspGetSellerGoodsListRspData": {
+      "type": "object",
+      "properties": {
+        "spu_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/goodsBaseSpu"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "page_size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "page_no": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
     "PublishGoodsReqPublishAttribute": {
       "type": "object",
       "properties": {
@@ -402,6 +425,24 @@
         },
         "data": {
           "$ref": "#/definitions/GetKeywordDownListRspGetKeyDownListRspData"
+        }
+      }
+    },
+    "goodsGetSellerGoodsListRsp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "log_id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/GetSellerGoodsListRspGetSellerGoodsListRspData"
         }
       }
     },

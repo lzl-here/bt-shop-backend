@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "user";
+
+import "user/common.proto";
+
+// 获取店铺详情
+message GetShopDetailReq {
+    uint64 shop_id = 1;
+}
+
+message GetShopDetailRsp {
+    int32 code = 1;
+    string msg = 2;
+    string log_id = 3;
+    Data data = 4;
+    message Data {
+        BaseShop shop = 1;
+    }
+}

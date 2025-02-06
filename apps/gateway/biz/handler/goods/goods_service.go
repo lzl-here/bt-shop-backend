@@ -310,3 +310,25 @@ func StockIncrease(ctx context.Context, c *app.RequestContext) {
 
 	c.JSON(consts.StatusOK, resp)
 }
+
+// GetSellerGoodsList .
+// @router /goods/get_seller_goods_list [POST]
+func GetSellerGoodsList(ctx context.Context, c *app.RequestContext) {
+	var err error
+	var req goods.GetSellerGoodsListReq
+	err = c.BindAndValidate(&req)
+	if err != nil {
+		c.String(consts.StatusBadRequest, err.Error())
+		return
+	}
+
+	resp, err := global.GoodsClient.GetSellerGoodsList(ctx, &req)
+	if err != nil {
+		c.JSON(consts.StatusInternalServerError, &goods.GetSellerGoodsListRsp{
+			Code: 500,
+			Msg:  err.Error(),
+		})
+	}
+
+	c.JSON(consts.StatusOK, resp)
+}

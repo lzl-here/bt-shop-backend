@@ -22,7 +22,9 @@ message BaseOrder {
     string order_amount = 4;                // 订单金额
     uint64 seller_id = 5;                   // 卖家id
     uint64 buyer_id = 6;                    // 买家id
-    int32 buy_num = 7;                      // 购买数量
+    string order_status = 7;                 // 订单状态
+    string pay_type = 8;                    // 支付类型
+    string created_at = 9;                // 创建时间
 }
 
 // 规格值信息

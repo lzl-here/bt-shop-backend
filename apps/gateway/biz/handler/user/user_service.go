@@ -112,3 +112,25 @@ func Logout(ctx context.Context, c *app.RequestContext) {
 
 	c.JSON(consts.StatusOK, resp)
 }
+
+// GetShopDetail .
+// @router /user/get_shop_detail [POST]
+func GetShopDetail(ctx context.Context, c *app.RequestContext) {
+	var err error
+	var req user.GetShopDetailReq
+	err = c.BindAndValidate(&req)
+	if err != nil {
+		c.String(consts.StatusBadRequest, err.Error())
+		return
+	}
+
+	resp, err := global.UserClient.GetShopDetail(ctx, &req)
+	if err != nil {
+		c.JSON(consts.StatusInternalServerError, &user.GetShopDetailRsp{
+			Code: 500,
+			Msg:  err.Error(),
+		})
+	}
+
+	c.JSON(consts.StatusOK, resp)
+}

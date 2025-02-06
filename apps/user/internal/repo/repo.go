@@ -21,7 +21,10 @@ type RepoInterface interface {
 	CreateUser(ctx context.Context, user *model.User) (*model.User, error)
 
 	GetUser(ctx context.Context, where *model.User) (*model.User, error)
-	UpdateUser(ctx context.Context, user *model.User) (*model.User, error)
+	UpdateUser(ctx context.Context, where, update *model.User) (*model.User, error)
+
+	GetShopDetail(ctx context.Context, where *model.Shop) (*model.Shop, error)
+	CreateShop(ctx context.Context, shop *model.Shop) (*model.Shop, error)
 }
 
 var _ RepoInterface = (*Repo)(nil)
@@ -71,10 +74,26 @@ func (r *Repo) CreateUser(ctx context.Context, user *model.User) (*model.User, e
 	return user, nil
 }
 
-func (r *Repo) UpdateUser(ctx context.Context, user *model.User) (*model.User, error) {
-	err := r.DB.Model(&model.User{}).Where("id = ?", user.ID).Updates(user).Error
+func (r *Repo) UpdateUser(ctx context.Context, where, update *model.User) (*model.User, error) {
+	err := r.DB.Model(&model.User{}).Where(where).Updates(update).Error
 	if err != nil {
 		return nil, err
 	}
-	return user, nil
+	return update, nil
+}
+
+func (r *Repo) GetShopDetail(ctx context.Context, where *model.Shop) (*model.Shop, error) {
+	var shop model.Shop
+	if err := r.DB.Where(where).First(&shop).Error; err != nil {
+		return nil, err
+	}
+	return &shop, nil
+}
+
+func (r *Repo) CreateShop(ctx context.Context, shop *model.Shop) (*model.Shop, error) {
+	err := r.DB.Create(shop).Error
+	if err != nil {
+		return nil, err
+	}
+	return shop, nil
 }

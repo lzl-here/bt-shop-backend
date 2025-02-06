@@ -43,6 +43,13 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingUnary),
 	),
+	"GetSellerOrderList": kitex.NewMethodInfo(
+		getSellerOrderListHandler,
+		newGetSellerOrderListArgs,
+		newGetSellerOrderListResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingUnary),
+	),
 	"CancelTrade": kitex.NewMethodInfo(
 		cancelTradeHandler,
 		newCancelTradeArgs,
@@ -749,6 +756,159 @@ func (p *GetOrderDetailResult) GetResult() interface{} {
 	return p.Success
 }
 
+func getSellerOrderListHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	switch s := arg.(type) {
+	case *streaming.Args:
+		st := s.Stream
+		req := new(order.GetSellerOrderListReq)
+		if err := st.RecvMsg(req); err != nil {
+			return err
+		}
+		resp, err := handler.(order.OrderService).GetSellerOrderList(ctx, req)
+		if err != nil {
+			return err
+		}
+		return st.SendMsg(resp)
+	case *GetSellerOrderListArgs:
+		success, err := handler.(order.OrderService).GetSellerOrderList(ctx, s.Req)
+		if err != nil {
+			return err
+		}
+		realResult := result.(*GetSellerOrderListResult)
+		realResult.Success = success
+		return nil
+	default:
+		return errInvalidMessageType
+	}
+}
+func newGetSellerOrderListArgs() interface{} {
+	return &GetSellerOrderListArgs{}
+}
+
+func newGetSellerOrderListResult() interface{} {
+	return &GetSellerOrderListResult{}
+}
+
+type GetSellerOrderListArgs struct {
+	Req *order.GetSellerOrderListReq
+}
+
+func (p *GetSellerOrderListArgs) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
+	if !p.IsSetReq() {
+		p.Req = new(order.GetSellerOrderListReq)
+	}
+	return p.Req.FastRead(buf, _type, number)
+}
+
+func (p *GetSellerOrderListArgs) FastWrite(buf []byte) (n int) {
+	if !p.IsSetReq() {
+		return 0
+	}
+	return p.Req.FastWrite(buf)
+}
+
+func (p *GetSellerOrderListArgs) Size() (n int) {
+	if !p.IsSetReq() {
+		return 0
+	}
+	return p.Req.Size()
+}
+
+func (p *GetSellerOrderListArgs) Marshal(out []byte) ([]byte, error) {
+	if !p.IsSetReq() {
+		return out, nil
+	}
+	return proto.Marshal(p.Req)
+}
+
+func (p *GetSellerOrderListArgs) Unmarshal(in []byte) error {
+	msg := new(order.GetSellerOrderListReq)
+	if err := proto.Unmarshal(in, msg); err != nil {
+		return err
+	}
+	p.Req = msg
+	return nil
+}
+
+var GetSellerOrderListArgs_Req_DEFAULT *order.GetSellerOrderListReq
+
+func (p *GetSellerOrderListArgs) GetReq() *order.GetSellerOrderListReq {
+	if !p.IsSetReq() {
+		return GetSellerOrderListArgs_Req_DEFAULT
+	}
+	return p.Req
+}
+
+func (p *GetSellerOrderListArgs) IsSetReq() bool {
+	return p.Req != nil
+}
+
+func (p *GetSellerOrderListArgs) GetFirstArgument() interface{} {
+	return p.Req
+}
+
+type GetSellerOrderListResult struct {
+	Success *order.GetSellerOrderListRsp
+}
+
+var GetSellerOrderListResult_Success_DEFAULT *order.GetSellerOrderListRsp
+
+func (p *GetSellerOrderListResult) FastRead(buf []byte, _type int8, number int32) (n int, err error) {
+	if !p.IsSetSuccess() {
+		p.Success = new(order.GetSellerOrderListRsp)
+	}
+	return p.Success.FastRead(buf, _type, number)
+}
+
+func (p *GetSellerOrderListResult) FastWrite(buf []byte) (n int) {
+	if !p.IsSetSuccess() {
+		return 0
+	}
+	return p.Success.FastWrite(buf)
+}
+
+func (p *GetSellerOrderListResult) Size() (n int) {
+	if !p.IsSetSuccess() {
+		return 0
+	}
+	return p.Success.Size()
+}
+
+func (p *GetSellerOrderListResult) Marshal(out []byte) ([]byte, error) {
+	if !p.IsSetSuccess() {
+		return out, nil
+	}
+	return proto.Marshal(p.Success)
+}
+
+func (p *GetSellerOrderListResult) Unmarshal(in []byte) error {
+	msg := new(order.GetSellerOrderListRsp)
+	if err := proto.Unmarshal(in, msg); err != nil {
+		return err
+	}
+	p.Success = msg
+	return nil
+}
+
+func (p *GetSellerOrderListResult) GetSuccess() *order.GetSellerOrderListRsp {
+	if !p.IsSetSuccess() {
+		return GetSellerOrderListResult_Success_DEFAULT
+	}
+	return p.Success
+}
+
+func (p *GetSellerOrderListResult) SetSuccess(x interface{}) {
+	p.Success = x.(*order.GetSellerOrderListRsp)
+}
+
+func (p *GetSellerOrderListResult) IsSetSuccess() bool {
+	return p.Success != nil
+}
+
+func (p *GetSellerOrderListResult) GetResult() interface{} {
+	return p.Success
+}
+
 func cancelTradeHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
 	switch s := arg.(type) {
 	case *streaming.Args:
@@ -1406,6 +1566,16 @@ func (p *kClient) GetOrderDetail(ctx context.Context, Req *order.GetOrderDetailR
 	_args.Req = Req
 	var _result GetOrderDetailResult
 	if err = p.c.Call(ctx, "GetOrderDetail", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) GetSellerOrderList(ctx context.Context, Req *order.GetSellerOrderListReq) (r *order.GetSellerOrderListRsp, err error) {
+	var _args GetSellerOrderListArgs
+	_args.Req = Req
+	var _result GetSellerOrderListResult
+	if err = p.c.Call(ctx, "GetSellerOrderList", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil

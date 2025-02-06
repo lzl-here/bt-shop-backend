@@ -38,7 +38,10 @@ type RepoInterface interface {
 	GetKeywordDownList(ctx context.Context, prefix string, limit int) ([]*model.Keyword, error)
 	GetAllCategoryList(ctx context.Context) ([]*model.Category, error)
 	GetAllBrandList(ctx context.Context) ([]*model.Brand, error)
-
+	GetBrandByID(ctx context.Context, ID uint64) (*model.Brand, error)
+	GetSpuListBySellerID(ctx context.Context, SellerID uint64) ([]*model.GoodsSpu, error)
+	GetSpuListByShopID(ctx context.Context, ShopID uint64, PageNo int32, PageSize int32) ([]*model.GoodsSpu, error)
+	GetSpuTotalByShopID(ctx context.Context, ShopID uint64) (int32, error)
 	CreateSpu(ctx context.Context, tx *gorm.DB, spu *model.GoodsSpu) (*model.GoodsSpu, error)
 	CreateSkus(ctx context.Context, tx *gorm.DB, skus []*model.GoodsSku) error
 	CreateSpecs(ctx context.Context, tx *gorm.DB, specs []*model.Spec) ([]*model.Spec, error)
@@ -168,8 +171,11 @@ func (r *Repo) CreateSpecValues(ctx context.Context, tx *gorm.DB, specValues []*
 }
 
 func (r *Repo) CreateAttributes(ctx context.Context, tx *gorm.DB, attributes []*model.Attribute) ([]*model.Attribute, error) {
-	err := tx.Model(&model.Attribute{}).Clauses(clause.Returning{}).Create(&attributes).Error
-	return attributes, err
+	if len(attributes) > 0 {
+		err := tx.Model(&model.Attribute{}).Clauses(clause.Returning{}).Create(&attributes).Error
+		return attributes, err
+	}
+	return make([]*model.Attribute, 0), nil
 }
 
 func (r *Repo) UpdateOrSaveKeywordTimes(ctx context.Context, tx *gorm.DB, keyword string) error {
@@ -226,7 +232,9 @@ func (r *Repo) SearchSpu(ctx context.Context, req *ggen.SearchSpuListReq) ([]*mo
 	// 构建 bool 查询
 	boolQuery := types.BoolQuery{
 		Must: []types.Query{},
-		Should: []types.Query{
+	}
+	if req.Keyword != "" {
+		boolQuery.Should = []types.Query{
 			{
 				Match: map[string]types.MatchQuery{
 					"spu_name": {
@@ -241,8 +249,15 @@ func (r *Repo) SearchSpu(ctx context.Context, req *ggen.SearchSpuListReq) ([]*mo
 					},
 				},
 			},
-		},
-		MinimumShouldMatch: "1", // 至少匹配一个 should 子句
+			{
+				Match: map[string]types.MatchQuery{
+					"brand_name": {
+						Query: req.Keyword,
+					},
+				},
+			},
+		}
+		boolQuery.MinimumShouldMatch = "1" //至少匹配一个
 	}
 
 	// 添加 category_ids 精准匹配
@@ -329,4 +344,28 @@ func (r *Repo) IncreaseStock(ctx context.Context, tx *gorm.DB, skuID uint64, num
 
 func (r *Repo) CreateStockRecord(ctx context.Context, tx *gorm.DB, record *model.StockOpRecord) error {
 	return tx.Model(&model.StockOpRecord{}).Create(record).Error
+}
+
+func (r *Repo) GetSpuListBySellerID(ctx context.Context, SellerID uint64) ([]*model.GoodsSpu, error) {
+	var spus []*model.GoodsSpu
+	err := r.DB.Model(&model.GoodsSpu{}).Where("seller_id = ?", SellerID).Find(&spus).Error
+	return spus, err
+}
+
+func (r *Repo) GetSpuListByShopID(ctx context.Context, ShopID uint64, PageNo int32, PageSize int32) ([]*model.GoodsSpu, error) {
+	var spus []*model.GoodsSpu
+	err := r.DB.Model(&model.GoodsSpu{}).Where("shop_id = ?", ShopID).Offset(int((PageNo - 1) * PageSize)).Limit(int(PageSize)).Find(&spus).Error
+	return spus, err
+}
+
+func (r *Repo) GetSpuTotalByShopID(ctx context.Context, ShopID uint64) (int32, error) {
+	var total int64
+	err := r.DB.Model(&model.GoodsSpu{}).Where("shop_id = ?", ShopID).Count(&total).Error
+	return int32(total), err
+}
+
+func (r *Repo) GetBrandByID(ctx context.Context, ID uint64) (*model.Brand, error) {
+	var brand *model.Brand
+	err := r.DB.Model(&model.Brand{}).Where("id = ?", ID).First(&brand).Error
+	return brand, err
 }

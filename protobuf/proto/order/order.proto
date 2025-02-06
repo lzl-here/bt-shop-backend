@@ -51,3 +51,25 @@ message GetOrderDetailRsp {
         repeated BaseOrderItem order_item_list = 2;
     }
 }
+
+// 查询卖家订单列表
+message GetSellerOrderListReq {
+    uint64 shop_id = 1;
+    string order_status = 2;
+    int32 page_size = 3;
+    int32 page_no = 4;
+}
+
+
+message GetSellerOrderListRsp {
+    int32 code = 1;
+    string msg = 2;
+    string log_id = 3;
+    GetSellerOrderListRspData data = 4;
+    message GetSellerOrderListRspData {
+        repeated BaseOrder order_list = 1;
+        int32 total = 2;
+        int32 page_size = 3;
+        int32 page_no = 4;
+    }
+}

@@ -70,3 +70,7 @@ func (s *GoodsServer) StockReduce(ctx context.Context, req *ggen.StockReduceReq)
 func (s *GoodsServer) StockIncrease(ctx context.Context, req *ggen.StockIncreaseReq) (res *ggen.StockIncreaseRsp, err error) {
 	return handler.NewGoodsHandler(s.rep).StockIncrease(ctx, req)
 }
+
+func (s *GoodsServer) GetSellerGoodsList(ctx context.Context, req *ggen.GetSellerGoodsListReq) (res *ggen.GetSellerGoodsListRsp, err error) {
+	return handler.NewGoodsHandler(s.rep).GetSellerGoodsList(ctx, req)
+}

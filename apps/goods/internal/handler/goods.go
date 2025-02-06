@@ -335,7 +335,13 @@ func (h *GoodsHandler) storeSpuAndSkus(ctx context.Context, req *ggen.PublishGoo
 	var err error
 	// 存储spu
 	attrIDs, specIDs := getIDs(specs, attrs)
+	brand, err := h.rep.GetBrandByID(ctx, req.BrandId)
+	if err != nil {
+		return nil, err
+	}
 	spu := &model.GoodsSpu{
+		SellerID:     req.UserId,
+		ShopID:       req.ShopId,
 		SpuName:      req.SpuName,
 		SpuDesc:      req.SpuDesc,
 		SpuImgUrl:    req.SpuImgUrl,
@@ -343,7 +349,8 @@ func (h *GoodsHandler) storeSpuAndSkus(ctx context.Context, req *ggen.PublishGoo
 		CategoryID:   req.CategoryId,
 		CategoryName: req.CategoryName,
 		BrandID:      req.BrandId,
-		BrandName:    req.BrandName,
+		BrandName:    brand.Name,
+		BrandIconUrl: brand.IconUrl,
 		Enabled:      true,
 		AttributeIDs: attrIDs,
 		SpecIDs:      specIDs,
@@ -381,4 +388,35 @@ func (h *GoodsHandler) storeSpuAndSkus(ctx context.Context, req *ggen.PublishGoo
 		return nil, err
 	}
 	return spu, nil
+}
+
+func (h *GoodsHandler) GetSellerGoodsList(ctx context.Context, req *ggen.GetSellerGoodsListReq) (*ggen.GetSellerGoodsListRsp, error) {
+	spus, err := h.rep.GetSpuListByShopID(ctx, req.ShopId, req.PageNo, req.PageSize)
+	if err != nil {
+		return nil, err
+	}
+	total, err := h.rep.GetSpuTotalByShopID(ctx, req.ShopId)
+	if err != nil {
+		return nil, err
+	}
+	return buildSellerGoodsListRsp(spus, total, req.PageNo, req.PageSize)
+}
+
+func buildSellerGoodsListRsp(spus []*model.GoodsSpu, total int32, pageNo int32, pageSize int32) (*ggen.GetSellerGoodsListRsp, error) {
+	rsp := &ggen.GetSellerGoodsListRsp{}
+	rsp.Code = 1
+	rsp.Msg = "success"
+	rsp.Data = &ggen.GetSellerGoodsListRsp_GetSellerGoodsListRspData{
+		Total:    total,
+		PageNo:   pageNo,
+		PageSize: pageSize,
+	}
+	for _, s := range spus {
+		spu, err := s.ToGen()
+		if err != nil {
+			return nil, err
+		}
+		rsp.Data.SpuList = append(rsp.Data.SpuList, spu)
+	}
+	return rsp, nil
 }

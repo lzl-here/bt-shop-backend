@@ -34,6 +34,11 @@ service GoodsService {
         option (api.post)="/goods/get_goods_detail";
     } 
 
+    // 获取卖家商品列表 对外
+    rpc GetSellerGoodsList(GetSellerGoodsListReq) returns (GetSellerGoodsListRsp){
+        option (api.post)="/goods/get_seller_goods_list";
+    }
+
     // 获取商品列表详情 sku + spu 对外
     rpc GetGoodsList(GetGoodsListReq) returns (GetGoodsListRsp){
         option (api.post)="/goods/get_goods_list";
