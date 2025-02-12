@@ -35,25 +35,31 @@
 
 2. 每个服务对应一个文件夹，详情查看example，一个文件对应server: XXX_server.proto，其他的一个文件对应一组相关的接口
 
-3. 编写完成后使用Makefile进行生成golang代码，在项目根目录或者protobuf目录下执行make gen，两者等价
+3. 编写proto文件完成后在protobuf文件夹下make gen 和 make api 进行生成golang代码
 
-
-## 项目启动
-每个服务下创建makefile文件，进入到服务文件夹下，make dev执行
 
 ## 项目依赖
 0. golang
-1. kitex
-2. proto，以及proto的golang插件
-3. mysql
-4. redis
-5. etcd
-6. makefile
+1. kitex 代码生成插件(cloudwego官网下载)
+2. hertz代码生成插件(cloudwego官网下载)
+3. proto，以及proto的golang插件
+4. mysql
+5. redis
+6. etcd
+7. makefile
+
+## 项目启动
+0. 安装好上述依赖项，去服务下的.env.production文件中修改对应的配置（服务端口最好别改，前端网关写死的localhost:8081）
+1. 先运行根目录下的deploy下的sql
+2. 运行根目录下的make deploy建立es索引
+3. 每个服务下创建makefile文件，进入到服务文件夹下，make dev启动每个服务
 
 
+## 其他
 
+### 如果需要新增配置：
 因为不同服务之间会有自定义的配置，所以服务需要组合AppServiceConfig使用，详情查看example服务:
 ![alt text](./imgs/image.png)
 
-## 其他
-一定一定先看一遍example服务！！
+### 日志
+日志输出到了cmd的log的app.log文件中了，不会输出到控制台

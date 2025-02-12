@@ -9,6 +9,3 @@ dev:
 	@ make build
 	@ cd ./bin && ./$(SERVICE_NAME)  -cfgFile=../.env.production
 
-deploy:
-	@ go run deploy/es/es.go -host=http://localhost:9200
-	
