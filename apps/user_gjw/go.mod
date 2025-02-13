@@ -2,6 +2,7 @@ module github.com/lzl-here/bt-shop-backend/apps/user_gjw
 
 go 1.23.3
 
+
 require (
 	github.com/bytedance/go-tagexpr/v2 v2.9.11
 	github.com/cloudwego/kitex v0.12.1

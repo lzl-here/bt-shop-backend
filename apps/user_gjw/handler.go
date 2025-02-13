@@ -16,6 +16,7 @@ package main
 
 import (
 	"context"
+	"github.com/lzl-here/bt-shop-backend/apps/user_gjw/biz/service"
 	user "github.com/lzl-here/bt-shop-backend/kitex_gen/user"
 )
 
