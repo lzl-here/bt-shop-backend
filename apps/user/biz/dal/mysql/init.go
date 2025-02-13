@@ -16,12 +16,11 @@ package mysql
 
 import (
 	"fmt"
-	"os"
-
-	"github.com/cloudwego/biz-demo/gomall/app/user/biz/model"
-	"github.com/cloudwego/biz-demo/gomall/app/user/conf"
+	"github.com/lzl-here/bt-shop-backend/apps/user/biz/model"
+	"github.com/lzl-here/bt-shop-backend/apps/user/conf"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	"os"
 )
 
 var (

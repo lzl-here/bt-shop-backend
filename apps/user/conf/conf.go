@@ -15,14 +15,14 @@
 package conf
 
 import (
-	"os"
-	"path/filepath"
-	"sync"
-
+	"github.com/bytedance/go-tagexpr/v2/validator"
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/kr/pretty"
-	"gopkg.in/validator.v2"
+	"os"
+	"path/filepath"
+
 	"gopkg.in/yaml.v2"
+	"sync"
 )
 
 var (

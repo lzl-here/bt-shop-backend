@@ -16,9 +16,8 @@ package main
 
 import (
 	"context"
-
-	"github.com/cloudwego/biz-demo/gomall/app/user/biz/service"
-	user "github.com/cloudwego/biz-demo/gomall/rpc_gen/kitex_gen/user"
+	"github.com/lzl-here/bt-shop-backend/apps/user/biz/service"
+	user "github.com/lzl-here/bt-shop-backend/kitex_gen/user"
 )
 
 // UserServiceImpl implements the last service interface defined in the IDL.

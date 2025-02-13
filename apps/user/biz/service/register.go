@@ -17,11 +17,12 @@ package service
 import (
 	"context"
 	"errors"
-
-	"github.com/cloudwego/biz-demo/gomall/app/user/biz/dal/mysql"
-	"github.com/cloudwego/biz-demo/gomall/app/user/biz/model"
-	"github.com/cloudwego/biz-demo/gomall/rpc_gen/kitex_gen/user"
 	"golang.org/x/crypto/bcrypt"
+
+	"github.com/lzl-here/bt-shop-backend/apps/user/biz/model"
+	"github.com/lzl-here/bt-shop-backend/kitex_gen/user"
+
+	"github.com/lzl-here/bt-shop-backend/apps/user/biz/dal/mysql"
 )
 
 type RegisterService struct {

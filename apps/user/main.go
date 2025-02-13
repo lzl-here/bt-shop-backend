@@ -15,19 +15,19 @@
 package main
 
 import (
-	"net"
-	"strings"
-
-	"github.com/cloudwego/biz-demo/gomall/app/user/biz/dal"
-	"github.com/cloudwego/biz-demo/gomall/app/user/conf"
-	"github.com/cloudwego/biz-demo/gomall/common/mtl"
-	"github.com/cloudwego/biz-demo/gomall/common/serversuite"
-	"github.com/cloudwego/biz-demo/gomall/common/utils"
-	"github.com/cloudwego/biz-demo/gomall/rpc_gen/kitex_gen/user/userservice"
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/cloudwego/kitex/server"
 	"github.com/joho/godotenv"
+	"github.com/lzl-here/bt-shop-backend/apps/user/biz/dal"
 	"gopkg.in/natefinch/lumberjack.v2"
+	"net"
+	"strings"
+
+	"github.com/lzl-here/bt-shop-backend/apps/user/conf"
+	"github.com/lzl-here/bt-shop-backend/common/mtl"
+	"github.com/lzl-here/bt-shop-backend/common/serversuite"
+	"github.com/lzl-here/bt-shop-backend/common/utils"
+	userservice "github.com/lzl-here/bt-shop-backend/kitex_gen/user/userservice"
 )
 
 var serviceName = conf.GetConf().Kitex.Service
@@ -66,6 +66,6 @@ func kitexInit() (opts []server.Option) {
 		panic(err)
 	}
 
-	opts = append(opts, server.WithServiceAddr(addr), server.WithSuite(serversuite.CommonServerSuite{CurrentServiceName: serviceName, RegistryAddr: "127.0.0.1:2379"}))
+	opts = append(opts, server.WithServiceAddr(addr), server.WithSuite(serversuite.CommonServerSuite{CurrentServiceName: serviceName, RegistryAddr: conf.GetConf().Registry.RegistryAddress[0]}))
 	return
 }
