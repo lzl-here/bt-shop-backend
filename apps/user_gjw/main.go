@@ -7,6 +7,7 @@ import (
 	"github.com/lzl-here/bt-shop-backend/apps/user_gjw/biz/dal"
 	"github.com/lzl-here/bt-shop-backend/apps/user_gjw/conf"
 	"github.com/lzl-here/bt-shop-backend/common/mtl"
+	"github.com/lzl-here/bt-shop-backend/common/utils"
 	"github.com/lzl-here/bt-shop-backend/kitex_gen/user/userservice"
 	"gopkg.in/natefinch/lumberjack.v2"
 	"net"
